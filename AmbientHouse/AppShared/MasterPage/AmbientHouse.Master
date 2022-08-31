@@ -1,0 +1,109 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AmbientHouse.Master.cs" Inherits="AmbientHouse.AmbientHouse" %>
+
+<%@ Register Src="~/AppShared/Controles/Footer.ascx" TagPrefix="uc2" TagName="Footer" %>
+<%@ Register Src="~/AppShared/Controles/Menu.ascx" TagPrefix="uc2" TagName="Menu" %>
+<%@ Register Src="~/AppShared/Controles/Header.ascx" TagPrefix="uc2" TagName="Header" %>
+
+
+<link href="../../Content/Black.css" rel="stylesheet" />
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Ambient House</title>
+
+    <link href="../../Content/bootstrap.css" rel="stylesheet" />
+
+
+    <%-- <link href="Content/css/bootstrap.min.css" rel="stylesheet" />--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+   <%-- <script type="text/javascript">
+        $('#myModal').modal('show')
+    </script>--%>
+
+    <script type="text/javascript">
+
+        function showimagepreview(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+
+                    document.getElementsByTagName("img")[0].setAttribute("src", e.target.result);
+                   
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>  
+
+     <script type="text/javascript">
+
+         function showimagepreview1(input) {
+
+             if (input.files && input.files[0]) {
+                 var reader = new FileReader();
+                 reader.onload = function (e) {
+
+                     document.getElementsByTagName("img1")[0].setAttribute("src", e.target.result);
+
+                 }
+                 reader.readAsDataURL(input.files[0]);
+             }
+         }
+
+    </script>  
+
+</head>
+<body>
+
+    <form id="form1" runat="server">
+
+        <asp:ScriptManager ID="ScriptManagerPrincipal" runat="server"></asp:ScriptManager>
+        <div id="page">
+            <%--<uc:messagebar id="MessageBar1" runat="server" />--%>
+            <div id="header">
+
+                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Content/Imagenes/logo.png" OnClick="ImageButton1_Click" Height="156px" Width="344px" />
+            </div>
+
+            <div>
+               
+                <asp:LoginName ID="LoginNameUser" runat="server" />
+            </div>
+
+            <div id="navbar">
+                <%-- <div class="inner">--%>
+                <%--<uc2:Menu runat="server" id="Menu" />--%>
+                <%--</div>--%>
+            </div>
+
+            <div id="content">
+                <div class="inner">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server" />
+                </div>
+            </div>
+
+            <asp:ContentPlaceHolder ID="LinksContainer" runat="server" />
+
+            <div id="footer">
+                <div class="inner">
+                    <uc2:Footer runat="server" ID="Footer2" />
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+
+
+
+    <%--    <script src="Scripts/jquery-3.0.0.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>--%>
+</body>
+</html>

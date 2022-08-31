@@ -1,0 +1,882 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3E39B56B-F529-470B-A244-CD4CEF7972F4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DomainAmbientHouse</RootNamespace>
+    <AssemblyName>DomainAmbientHouse</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToExcel">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\LinqToExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\Archivos\Json\Bin\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Datos\CaracteristicasDatos.cs" />
+    <Compile Include="Datos\ItemDetalleDatos.cs" />
+    <Compile Include="Datos\TABLARetencionesDatos.cs" />
+    <Compile Include="Datos\ClientesDatos.cs" />
+    <Compile Include="Datos\CategoriasDatos.cs" />
+    <Compile Include="Datos\AdicionalesDatos.cs" />
+    <Compile Include="Datos\CategoriasArchivosDatos.cs" />
+    <Compile Include="Datos\ConceptosLogisticaDatos.cs" />
+    <Compile Include="Datos\ComisionesDatos.cs" />
+    <Compile Include="Datos\ConfiguracionCateringTecnicaDatos.cs" />
+    <Compile Include="Datos\ComprobanteProveedoresDatos.cs" />
+    <Compile Include="Datos\CentroCostosDatos.cs" />
+    <Compile Include="Datos\BancosDatos.cs" />
+    <Compile Include="Datos\ChequesDatos.cs" />
+    <Compile Include="Datos\CategoriaItemsDatos.cs" />
+    <Compile Include="Datos\ChecklistOrganizacionDatos.cs" />
+    <Compile Include="Datos\AmbientacionCIDatos.cs" />
+    <Compile Include="Datos\CondicionIvaDatos.cs" />
+    <Compile Include="Datos\UbicacionDatos.cs" />
+    <Compile Include="Datos\FacturasClientesDetalleDatos.cs" />
+    <Compile Include="Datos\FacturasClientesDatos.cs" />
+    <Compile Include="Datos\ValorHorasDatos.cs" />
+    <Compile Include="Datos\MonedasDatos.cs" />
+    <Compile Include="Datos\TipoPagoDatos.cs" />
+    <Compile Include="Datos\LiquidacionEmpleadosDetalleDatos.cs" />
+    <Compile Include="Datos\LiquidacionEmpleadosDatos.cs" />
+    <Compile Include="Datos\INVENTARIODepositosDatos.cs" />
+    <Compile Include="Datos\NotaCreditosDatos.cs" />
+    <Compile Include="Datos\RetencionesDatos.cs" />
+    <Compile Include="Datos\PedidoDatos.cs" />
+    <Compile Include="Datos\RequerimientoDetalleDatos.cs" />
+    <Compile Include="Datos\RequerimientoDatos.cs" />
+    <Compile Include="Datos\IndexacionDatos.cs" />
+    <Compile Include="Datos\DegustacionDetalleDatos.cs" />
+    <Compile Include="Datos\DegustacionDatos.cs" />
+    <Compile Include="Datos\CostosPaquetesCIAmbientacionDatos.cs" />
+    <Compile Include="Datos\EmpresasDatos.cs" />
+    <Compile Include="Datos\PedidoCotizacionDatos.cs" />
+    <Compile Include="Datos\INVENTARIOUnidadesDatos.cs" />
+    <Compile Include="Datos\INVENTARIOProductosDatos.cs" />
+    <Compile Include="Datos\RecibosDatos.cs" />
+    <Compile Include="Datos\TransferenciasDatos.cs" />
+    <Compile Include="Datos\PagosClienteDatos.cs" />
+    <Compile Include="Datos\TipoEmpleadoDatos.cs" />
+    <Compile Include="Datos\SectoresEmpresasDatos.cs" />
+    <Compile Include="Datos\OrganizacionDatos.cs" />
+    <Compile Include="Datos\TipoBarraCategoriaItemDatos.cs" />
+    <Compile Include="Datos\TipoCateringTiempoProductoItemDatos.cs" />
+    <Compile Include="Datos\TiempoDatos.cs" />
+    <Compile Include="Datos\ProductosCateringDatos.cs" />
+    <Compile Include="Datos\IntermediariosDatos.cs" />
+    <Compile Include="Datos\ObjetivosDatos.cs" />
+    <Compile Include="Datos\UsuariosGruposDatos.cs" />
+    <Compile Include="Datos\PagoProveedoresDatos.cs" />
+    <Compile Include="Datos\CuentasDatos.cs" />
+    <Compile Include="Datos\PerfilesDatos.cs" />
+    <Compile Include="Datos\FormasdePagoDatos.cs" />
+    <Compile Include="Datos\MovimientosDatos.cs" />
+    <Compile Include="Datos\TipoMovimientosDatos.cs" />
+    <Compile Include="Datos\PresupuestoDetalleDatos.cs" />
+    <Compile Include="Datos\ProductosDatos.cs" />
+    <Compile Include="Datos\DuracionEventoDatos.cs" />
+    <Compile Include="Datos\MomentosDiaDatos.cs" />
+    <Compile Include="Datos\TipoComprobantesDatos.cs" />
+    <Compile Include="Datos\ImpuestosDatos.cs" />
+    <Compile Include="Datos\UnidadesNegociosDatos.cs" />
+    <Compile Include="Datos\PlanesdePagosDatos.cs" />
+    <Compile Include="Datos\LocalidadesDatos.cs" />
+    <Compile Include="Datos\ProcesoCierreDatos.cs" />
+    <Compile Include="Datos\FeriadosDatos.cs" />
+    <Compile Include="Datos\FamiliasDatos.cs" />
+    <Compile Include="Datos\FuncionesSistema.cs" />
+    <Compile Include="Datos\GruposDatos.cs" />
+    <Compile Include="Datos\ItemsDatos.cs" />
+    <Compile Include="Datos\DepartamentosDatos.cs" />
+    <Compile Include="Datos\HerramientasDatos.cs" />
+    <Compile Include="Datos\PresupuestosDatos.cs" />
+    <Compile Include="Datos\EmpleadosDatos.cs" />
+    <Compile Include="Datos\EstadosDatos.cs" />
+    <Compile Include="Datos\SeguridadDatos.cs" />
+    <Compile Include="Datos\RubrosDatos.cs" />
+    <Compile Include="Datos\ParametrosDatos.cs" />
+    <Compile Include="Datos\ProveedoresDatos.cs" />
+    <Compile Include="Datos\TipoBarrasDatos.cs" />
+    <Compile Include="Datos\CostosDatos.cs" />
+    <Compile Include="Datos\TipoCateringDatos.cs" />
+    <Compile Include="Datos\TipoServiciosDatos.cs" />
+    <Compile Include="Datos\EventosDatos.cs" />
+    <Compile Include="Datos\JornadasDatos.cs" />
+    <Compile Include="Datos\LocacionesDatos.cs" />
+    <Compile Include="Datos\SectoresDatos.cs" />
+    <Compile Include="Datos\SegmentosDatos.cs" />
+    <Compile Include="Datos\TipoEventosDatos.cs" />
+    <Compile Include="Entidades\Adicionales.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\AdicionalesItems.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\AmbientacionCI.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\AmbientacionSalon.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\AmbientHouse.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AmbientHouse.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\AmbientHouse.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\AmbientHouse.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AmbientHouse.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\AvisosClientesPorFecha.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Bancos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\BuscarItemsporTipoCatering_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\BUSCARPAGOS_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Caracteristicas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CargarCostosSalones_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Categorias.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CategoriasArchivos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CategoriasItem.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CentroCostos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Cheques.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ChequesPagosProveedores.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Ciudades.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ClientesBis.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ClientesEventosMovimientos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ClientesPrueba.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CobranzasVentas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CodigoPorRubro.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Comisiones.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ComprobantePagoProveedor.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ComprobantesProveedores.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ComprobantesProveedores_Detalles.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CondicionIva.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ConfiguracionCateringTecnica.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ConversionMonedas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CostoAdicionales.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CostoAmbientacion.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CostoBarra.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CostoCanon.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CostoCatering.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CostoLogistica.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CostoSalones.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CostosPaquetesCIAmbientacion.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CostoTecnica.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Cuentas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Cuentas_Log.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Degustacion.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\DegustacionDetalle.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Departamentos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\DetalleInformeResultados_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\DuracionEvento.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\EjecucionTareasProgramadas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\EMPLEADODEPARTAMENTO.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\EmpleadoDepartamentos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Empleados.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\EmpleadosPresupuestosAprobados.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Empresas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Estados.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Eventos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\EventosConfirmadosProveedores.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\EventosConfirmadosReservadosTODOS.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\EventosReservadosPorFechasPorSegmentos_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\EVENTOSTODOS.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\FacturaClienteDetalle.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\FacturasCliente.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Familias.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\FechasBloqueadas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Feriados.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\FormasdePago.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\GastosporPresupuestos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\GruposItems.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Herramientas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Impuestos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Indexacion.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\InformeResultados_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Intermediarios.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\INVENTARIO_Depositos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\INVENTARIO_Movimiento_Producto.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\INVENTARIO_Pedido.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\INVENTARIO_Producto.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\INVENTARIO_ProductoDeposito.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\INVENTARIO_Recetas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\INVENTARIO_Requerimiento.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\INVENTARIO_Requerimiento_Detalle.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\INVENTARIO_Unidades.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\INVENTARIO_UnidadesConversion.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ItemDetalle.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ItemDetalleProveedor.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ItemDetalleRatio.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Items.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Jornadas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\LiquidacionHorasPersonal.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\LiquidacionHorasPersonal_Detalle.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ListadoProveedoresAsociados_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Locaciones.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\LocacionesValorAnio.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Localidades.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Mapeo.cs" />
+    <Compile Include="Entidades\MomentosDias.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Monedas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Movimientos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\NotaCreditos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObjetivosEmpleados.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObjetivosGrupos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerAdiciones.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerArchivosPorCategorias.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerCantidadInvitadosBarras.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerCantidadInvitadosCatering.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerCantidadPersonasAdicionalesCatering.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerClientes.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerContactosClientes.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerDatosParaPresupuesto.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerEventos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerEventosSeguimiento.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerFamilias.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerGruposconFamilias.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerPrecioCostoBarra.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerPrecioCostoCatering.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerPrecioCostoTecnica.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerPresupuestoAmbientacion.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerPresupuestoArtistica.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerPresupuestoAudiovisual.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerPresupuestoBarra.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerPresupuestoCatering.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerPresupuestoSalon.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerPresupuestoTecnica.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ObtenerUsuarios.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\OrganizacionItems.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\OrganizacionPresupuestoDetalle.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\OrganizacionPresupuestoProveedoresExternos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\OrganizacionPresupuestosArchivos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\OrganizacionPresupuestoTimming.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\PagosClientes.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\PagosProveedores.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Parametros.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Perfiles.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\PlanesDePago.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\PresupuestoDetalle.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Presupuestos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\PresupuestosAVencer.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ProcesoCierre.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Productos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ProductosCatering.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ProductosCateringItems.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Proveedores.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ProveedoresExternos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ProveedoresFormasdePago.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ProveedoresRetenciones.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Provincias.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ReciboEventoPresupuesto.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Recibos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ReporteAdiocionales.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ReporteComprobantes.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ReporteEventosCobranzas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ReporteEventosPorUnidadesdeNegocios.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ReporteIva_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ResponsablesEventos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Retenciones.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Rubros.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Rubros_Proveedores.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Sectores.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\SectoresEmpresa.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Segmentos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\SeguimientosEventosClientesEstados.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\sp_helpdiagrams_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\sysdiagrams.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TABLA_Retenciones.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TecnicaSalon.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Tiempos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoBarraCategoriaItem.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoCatering.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoCateringAdicional.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoCateringFamilia.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoCateringTiempoProductoItem.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoComprobantes.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoComprobante_Impuestos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoEmpleados.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoEventos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoLogistica.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoMovimientos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoPagoEmpleados.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TiposBarras.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoServicioAdicional.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\TipoServicios.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Transferencias.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\UnidadesNegocios.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\UnidadesNegocios_Proveedores.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\UnidadesNegocios_TipoMovimientos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\UsuarioPipeDrive_Ambient.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Usuarios.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\UsuariosGrupos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\UsuariosLocaciones.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Negocios\CaracteristicasNegocios.cs" />
+    <Compile Include="Negocios\ClientesNegocios.cs" />
+    <Compile Include="Negocios\CategoriasNegocios.cs" />
+    <Compile Include="Negocios\AdicionalesNegocios.cs" />
+    <Compile Include="Negocios\CategoriasArchivosNegocios.cs" />
+    <Compile Include="Negocios\ConceptosLogisticaNegocios.cs" />
+    <Compile Include="Negocios\ComisionesNegocios.cs" />
+    <Compile Include="Negocios\ComprobanteProveedoresNegocios.cs" />
+    <Compile Include="Negocios\CentroCostosNegocios.cs" />
+    <Compile Include="Negocios\BancosNegocios.cs" />
+    <Compile Include="Negocios\ChequesNegocios.cs" />
+    <Compile Include="Negocios\CategoriaItemsNegocios.cs" />
+    <Compile Include="Negocios\ChecklistOrganizacionNegocios.cs" />
+    <Compile Include="Negocios\AmbientacionCINegocios.cs" />
+    <Compile Include="Negocios\CondicionIvaNegocios.cs" />
+    <Compile Include="Negocios\ItemDetalleNegocios.cs" />
+    <Compile Include="Negocios\TABLARetencionesNegocios.cs" />
+    <Compile Include="Negocios\UbicacionNegocios.cs" />
+    <Compile Include="Negocios\FacturasClientesNegocios.cs" />
+    <Compile Include="Negocios\ValorHoraNegocios.cs" />
+    <Compile Include="Negocios\MonedasNegocios.cs" />
+    <Compile Include="Negocios\TipoPagoNegocios.cs" />
+    <Compile Include="Negocios\LiquidacionEmpleadosDetalleNegocios.cs" />
+    <Compile Include="Negocios\LiquidacionEmpleadosNegocios.cs" />
+    <Compile Include="Negocios\NotaCreditosNegocios.cs" />
+    <Compile Include="Negocios\INVENTARIODepositosNegocios.cs" />
+    <Compile Include="Negocios\RetencionesNegocios.cs" />
+    <Compile Include="Negocios\RequerimientosNegocios.cs" />
+    <Compile Include="Negocios\DegustacionDetalleNegocios.cs" />
+    <Compile Include="Negocios\DegustacionNegocios.cs" />
+    <Compile Include="Negocios\IndexacionNegocios.cs" />
+    <Compile Include="Negocios\CostosPaquetesCIAmbientacionNegocios.cs" />
+    <Compile Include="Negocios\EmpresasNegocios.cs" />
+    <Compile Include="Negocios\PedidoCotizacionNegocios.cs" />
+    <Compile Include="Negocios\INVENTARIOUnidadesNegocios.cs" />
+    <Compile Include="Negocios\INVENTARIOProductosNegocios.cs" />
+    <Compile Include="Negocios\RecibosNegocios.cs" />
+    <Compile Include="Negocios\TransferenciasNegocios.cs" />
+    <Compile Include="Negocios\PagosClienteNegocios.cs" />
+    <Compile Include="Negocios\TipoEmpleadoNegocios.cs" />
+    <Compile Include="Negocios\SectoresEmpresaNegocios.cs" />
+    <Compile Include="Negocios\OrganizacionNegocios.cs" />
+    <Compile Include="Negocios\PresupuestoDetalleNegocios.cs" />
+    <Compile Include="Negocios\TipoBarraCategoriaItemNegocios.cs" />
+    <Compile Include="Negocios\TipoCateringTiempoProductoItemsNegocios.cs" />
+    <Compile Include="Negocios\TiempoNegocios.cs" />
+    <Compile Include="Negocios\ProductosCateringNegocios.cs" />
+    <Compile Include="Negocios\IntermediariosNegocios.cs" />
+    <Compile Include="Negocios\ObjetivosNegocios.cs" />
+    <Compile Include="Negocios\UsuariosGruposNegocios.cs" />
+    <Compile Include="Negocios\PagoProveedoresNegocios.cs" />
+    <Compile Include="Negocios\CuentasNegocios.cs" />
+    <Compile Include="Negocios\PerfilesNegocios.cs" />
+    <Compile Include="Negocios\FormasdePagoNegocios.cs" />
+    <Compile Include="Negocios\TipoMovimientosNegocios.cs" />
+    <Compile Include="Negocios\ProductosNegocios.cs" />
+    <Compile Include="Negocios\DuracionEventoNegocios.cs" />
+    <Compile Include="Negocios\MomentosDiasNegocios.cs" />
+    <Compile Include="Negocios\TipoComprobantesNegocios.cs" />
+    <Compile Include="Negocios\ImpuestosNegocios.cs" />
+    <Compile Include="Negocios\UnidadesNegociosNegocios.cs" />
+    <Compile Include="Negocios\PlanesDePagosNegocios.cs" />
+    <Compile Include="Negocios\LocalidadesNegocios.cs" />
+    <Compile Include="Negocios\ProcesoCierreNegocios.cs" />
+    <Compile Include="Negocios\FeriadosNegocios.cs" />
+    <Compile Include="Negocios\FamiliasNegocios.cs" />
+    <Compile Include="Negocios\FuncionesSistema.cs" />
+    <Compile Include="Negocios\GruposNegocios.cs" />
+    <Compile Include="Negocios\ItemsNegocios.cs" />
+    <Compile Include="Negocios\DepartamentosNegocios.cs" />
+    <Compile Include="Negocios\HerramientasNegocios.cs" />
+    <Compile Include="Negocios\PresupuestosNegocios.cs" />
+    <Compile Include="Negocios\EmpleadosNegocios.cs" />
+    <Compile Include="Negocios\EstadosNegocios.cs" />
+    <Compile Include="Negocios\SeguridadNegocios.cs" />
+    <Compile Include="Negocios\RubrosNegocios.cs" />
+    <Compile Include="Negocios\ParametrosNegocios.cs" />
+    <Compile Include="Negocios\ProveedoresNegocios.cs" />
+    <Compile Include="Negocios\TipoBarrasNegocios.cs" />
+    <Compile Include="Negocios\CostoNegocios.cs" />
+    <Compile Include="Negocios\TipoCateringNegocios.cs" />
+    <Compile Include="Negocios\TipoServiciosNegocios.cs" />
+    <Compile Include="Negocios\EventosNegocios.cs" />
+    <Compile Include="Negocios\JornadasNegocios.cs" />
+    <Compile Include="Negocios\LocacionesNegocios.cs" />
+    <Compile Include="Negocios\SectoresNegocios.cs" />
+    <Compile Include="Negocios\SegmentosNegocios.cs" />
+    <Compile Include="Negocios\TipoEventosNegocios.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad\Google.cs" />
+    <Compile Include="Seguridad\SeguridadServicios.cs" />
+    <Compile Include="Servicios\ClientesServicios.cs" />
+    <Compile Include="Servicios\AdministrativasServicios.cs" />
+    <Compile Include="Servicios\Comun.cs" />
+    <Compile Include="Servicios\HtmlHelpers.cs" />
+    <Compile Include="Servicios\Log.cs" />
+    <Compile Include="Servicios\Pipedrive.cs" />
+    <Compile Include="Servicios\Mail.cs" />
+    <Compile Include="Servicios\Post.cs" />
+    <Compile Include="Servicios\ReportesServicios.cs" />
+    <Compile Include="Servicios\EmpleadosServicios.cs" />
+    <Compile Include="Servicios\PresupuestosServicios.cs" />
+    <Compile Include="Servicios\ProveedoresServicios.cs" />
+    <Compile Include="Servicios\EventosServicios.cs" />
+    <Compile Include="Servicios\SubABMServicios.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Entidades\AmbientHouse.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AmbientHouse.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="Entidades\AmbientHouse.edmx.diagram">
+      <DependentUpon>AmbientHouse.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entidades\AmbientHouse.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AmbientHouse.edmx</DependentUpon>
+      <LastGenOutput>AmbientHouse.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entidades\AmbientHouse.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AmbientHouse.edmx</DependentUpon>
+      <LastGenOutput>AmbientHouse.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

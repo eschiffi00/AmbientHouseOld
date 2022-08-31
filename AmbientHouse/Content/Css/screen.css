@@ -1,0 +1,59 @@
+﻿@media screen {
+   body {
+        margin: 20px 30px 0px 20px;
+    }
+
+     .Titulo {
+        width: auto;
+        height: 30px;
+        font-weight: bold;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: red;
+        text-transform: uppercase;
+    }
+
+    .SubTitulo {
+        width: auto;
+         height: 30px;
+        font-weight: bold;
+        text-align:center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-style: italic;
+        color: red;
+        text-transform: capitalize;
+    }
+
+    .Items {
+        width: auto;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        text-transform: capitalize;
+    }
+
+     img {
+        display: block;
+        margin: auto;
+    }
+
+     #ImageButton1 {
+        display: none;
+    }
+
+    #encabezado {
+         width: auto;
+        height: 30px;
+        font-weight: bold;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: red;
+        text-transform: uppercase;
+
+    }
+    
+      
+}

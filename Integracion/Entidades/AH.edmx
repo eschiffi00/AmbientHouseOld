@@ -1,0 +1,1551 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AHModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="AHModelStoreContainer">
+          <EntitySet Name="Adicionales" EntityType="AHModel.Store.Adicionales" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Eventos" EntityType="AHModel.Store.Eventos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PresupuestoAdicionales" EntityType="AHModel.Store.PresupuestoAdicionales" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Presupuestos" EntityType="AHModel.Store.Presupuestos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Rubros" EntityType="AHModel.Store.Rubros" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ListarAdicionalesPorPresupuesto" EntityType="AHModel.Store.ListarAdicionalesPorPresupuesto" store:Type="Views" store:Schema="dbo" store:Name="ListarAdicionalesPorPresupuesto">
+            <DefiningQuery>SELECT 
+      [ListarAdicionalesPorPresupuesto].[Descripcion] AS [Descripcion], 
+      [ListarAdicionalesPorPresupuesto].[Cantidad] AS [Cantidad], 
+      [ListarAdicionalesPorPresupuesto].[ValorAdicional] AS [ValorAdicional], 
+      [ListarAdicionalesPorPresupuesto].[PresupuestoId] AS [PresupuestoId], 
+      [ListarAdicionalesPorPresupuesto].[AdicionalId] AS [AdicionalId], 
+      [ListarAdicionalesPorPresupuesto].[RubroDescripcion] AS [RubroDescripcion], 
+      [ListarAdicionalesPorPresupuesto].[Id] AS [Id]
+      FROM [dbo].[ListarAdicionalesPorPresupuesto] AS [ListarAdicionalesPorPresupuesto]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ObtenerDatosParaPresupuesto" EntityType="AHModel.Store.ObtenerDatosParaPresupuesto" store:Type="Views" store:Schema="dbo" store:Name="ObtenerDatosParaPresupuesto">
+            <DefiningQuery>SELECT 
+      [ObtenerDatosParaPresupuesto].[ClienteId] AS [ClienteId], 
+      [ObtenerDatosParaPresupuesto].[ApellidoNombre] AS [ApellidoNombre], 
+      [ObtenerDatosParaPresupuesto].[Mail] AS [Mail], 
+      [ObtenerDatosParaPresupuesto].[Celular] AS [Celular], 
+      [ObtenerDatosParaPresupuesto].[SegmentoId] AS [SegmentoId], 
+      [ObtenerDatosParaPresupuesto].[Segmento] AS [Segmento], 
+      [ObtenerDatosParaPresupuesto].[CaracteristicaId] AS [CaracteristicaId], 
+      [ObtenerDatosParaPresupuesto].[Caracteristica] AS [Caracteristica], 
+      [ObtenerDatosParaPresupuesto].[SectorId] AS [SectorId], 
+      [ObtenerDatosParaPresupuesto].[Sector] AS [Sector], 
+      [ObtenerDatosParaPresupuesto].[TipoEventoId] AS [TipoEventoId], 
+      [ObtenerDatosParaPresupuesto].[TipoEvento] AS [TipoEvento], 
+      [ObtenerDatosParaPresupuesto].[LocacionId] AS [LocacionId], 
+      [ObtenerDatosParaPresupuesto].[Locacion] AS [Locacion], 
+      [ObtenerDatosParaPresupuesto].[TipoLocacion] AS [TipoLocacion], 
+      [ObtenerDatosParaPresupuesto].[JornadaId] AS [JornadaId], 
+      [ObtenerDatosParaPresupuesto].[Jornada] AS [Jornada], 
+      [ObtenerDatosParaPresupuesto].[CantidadInicialInvitados] AS [CantidadInicialInvitados], 
+      [ObtenerDatosParaPresupuesto].[CantidadInvitadosMenores3] AS [CantidadInvitadosMenores3], 
+      [ObtenerDatosParaPresupuesto].[CantidadInvitadosMenores3y8] AS [CantidadInvitadosMenores3y8], 
+      [ObtenerDatosParaPresupuesto].[CantidadInvitadosAdolecentes] AS [CantidadInvitadosAdolecentes], 
+      [ObtenerDatosParaPresupuesto].[FechaEvento] AS [FechaEvento], 
+      [ObtenerDatosParaPresupuesto].[HorarioEvento] AS [HorarioEvento], 
+      [ObtenerDatosParaPresupuesto].[HorarioArmado] AS [HorarioArmado], 
+      [ObtenerDatosParaPresupuesto].[HoraFinalizado] AS [HoraFinalizado], 
+      [ObtenerDatosParaPresupuesto].[Comentario] AS [Comentario], 
+      [ObtenerDatosParaPresupuesto].[EventoId] AS [EventoId], 
+      [ObtenerDatosParaPresupuesto].[EmpleadoId] AS [EmpleadoId], 
+      [ObtenerDatosParaPresupuesto].[Ejecutivo] AS [Ejecutivo], 
+      [ObtenerDatosParaPresupuesto].[FechaContacto] AS [FechaContacto], 
+      [ObtenerDatosParaPresupuesto].[PresupuestoId] AS [PresupuestoId], 
+      [ObtenerDatosParaPresupuesto].[RazonSocial] AS [RazonSocial], 
+      [ObtenerDatosParaPresupuesto].[PrecioTotal] AS [PrecioTotal], 
+      [ObtenerDatosParaPresupuesto].[PrecioPorPersona] AS [PrecioPorPersona], 
+      [ObtenerDatosParaPresupuesto].[ComentarioPresupuesto] AS [ComentarioPresupuesto], 
+      [ObtenerDatosParaPresupuesto].[FechaPresupuesto] AS [FechaPresupuesto], 
+      [ObtenerDatosParaPresupuesto].[LocacionOtra] AS [LocacionOtra]
+      FROM [dbo].[ObtenerDatosParaPresupuesto] AS [ObtenerDatosParaPresupuesto]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ObtenerEventos" EntityType="AHModel.Store.ObtenerEventos" store:Type="Views" store:Schema="dbo" store:Name="ObtenerEventos">
+            <DefiningQuery>SELECT 
+      [ObtenerEventos].[ApellidoNombre] AS [ApellidoNombre], 
+      [ObtenerEventos].[CARACTERISTICA] AS [CARACTERISTICA], 
+      [ObtenerEventos].[LOCACION] AS [LOCACION], 
+      [ObtenerEventos].[SECTOR] AS [SECTOR], 
+      [ObtenerEventos].[JORNADA] AS [JORNADA], 
+      [ObtenerEventos].[HorarioEvento] AS [HorarioEvento], 
+      [ObtenerEventos].[CantidadInicialInvitados] AS [CantidadInicialInvitados], 
+      [ObtenerEventos].[FechaEvento] AS [FechaEvento], 
+      [ObtenerEventos].[Id] AS [Id], 
+      [ObtenerEventos].[Estado] AS [Estado], 
+      [ObtenerEventos].[Ejecutivo] AS [Ejecutivo], 
+      [ObtenerEventos].[EventoId] AS [EventoId], 
+      [ObtenerEventos].[ClienteId] AS [ClienteId], 
+      [ObtenerEventos].[EmpleadoId] AS [EmpleadoId], 
+      [ObtenerEventos].[EstadoId] AS [EstadoId], 
+      [ObtenerEventos].[RazonSocial] AS [RazonSocial], 
+      [ObtenerEventos].[Fecha] AS [Fecha], 
+      [ObtenerEventos].[PresupuestoId] AS [PresupuestoId], 
+      [ObtenerEventos].[PresupuestoEstadoId] AS [PresupuestoEstadoId], 
+      [ObtenerEventos].[EstadoPresupuesto] AS [EstadoPresupuesto], 
+      [ObtenerEventos].[PresupuestoIdAnterior] AS [PresupuestoIdAnterior], 
+      [ObtenerEventos].[LocacionId] AS [LocacionId], 
+      [ObtenerEventos].[EmpleadoCliente] AS [EmpleadoCliente]
+      FROM [dbo].[ObtenerEventos] AS [ObtenerEventos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ObtenerPresupuestoAmbientacion" EntityType="AHModel.Store.ObtenerPresupuestoAmbientacion" store:Type="Views" store:Schema="dbo" store:Name="ObtenerPresupuestoAmbientacion">
+            <DefiningQuery>SELECT 
+      [ObtenerPresupuestoAmbientacion].[Id] AS [Id], 
+      [ObtenerPresupuestoAmbientacion].[PresupuestoId] AS [PresupuestoId], 
+      [ObtenerPresupuestoAmbientacion].[SectorId] AS [SectorId], 
+      [ObtenerPresupuestoAmbientacion].[CaracteristicaId] AS [CaracteristicaId], 
+      [ObtenerPresupuestoAmbientacion].[SegmentoId] AS [SegmentoId], 
+      [ObtenerPresupuestoAmbientacion].[CategoriaId] AS [CategoriaId], 
+      [ObtenerPresupuestoAmbientacion].[ProveedorIr] AS [ProveedorIr], 
+      [ObtenerPresupuestoAmbientacion].[PrecioLista] AS [PrecioLista], 
+      [ObtenerPresupuestoAmbientacion].[PrecioMas5] AS [PrecioMas5], 
+      [ObtenerPresupuestoAmbientacion].[PrecioMenos5] AS [PrecioMenos5], 
+      [ObtenerPresupuestoAmbientacion].[PrecioMenos10] AS [PrecioMenos10], 
+      [ObtenerPresupuestoAmbientacion].[Adjunto] AS [Adjunto], 
+      [ObtenerPresupuestoAmbientacion].[AdjuntoExtension] AS [AdjuntoExtension], 
+      [ObtenerPresupuestoAmbientacion].[ValorSeleccionado] AS [ValorSeleccionado], 
+      [ObtenerPresupuestoAmbientacion].[Descuentos] AS [Descuentos], 
+      [ObtenerPresupuestoAmbientacion].[Segmento] AS [Segmento], 
+      [ObtenerPresupuestoAmbientacion].[Caracteristicas] AS [Caracteristicas], 
+      [ObtenerPresupuestoAmbientacion].[Sector] AS [Sector], 
+      [ObtenerPresupuestoAmbientacion].[Categoria] AS [Categoria], 
+      [ObtenerPresupuestoAmbientacion].[RazonSocial] AS [RazonSocial]
+      FROM [dbo].[ObtenerPresupuestoAmbientacion] AS [ObtenerPresupuestoAmbientacion]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ObtenerPresupuestoArtistica" EntityType="AHModel.Store.ObtenerPresupuestoArtistica" store:Type="Views" store:Schema="dbo" store:Name="ObtenerPresupuestoArtistica">
+            <DefiningQuery>SELECT 
+      [ObtenerPresupuestoArtistica].[Id] AS [Id], 
+      [ObtenerPresupuestoArtistica].[PresupuestoId] AS [PresupuestoId], 
+      [ObtenerPresupuestoArtistica].[ProveedorId] AS [ProveedorId], 
+      [ObtenerPresupuestoArtistica].[Costo] AS [Costo], 
+      [ObtenerPresupuestoArtistica].[PrecioLista] AS [PrecioLista], 
+      [ObtenerPresupuestoArtistica].[PrecioMas5] AS [PrecioMas5], 
+      [ObtenerPresupuestoArtistica].[PrecioMenos5] AS [PrecioMenos5], 
+      [ObtenerPresupuestoArtistica].[PrecioMenos10] AS [PrecioMenos10], 
+      [ObtenerPresupuestoArtistica].[Adjunto] AS [Adjunto], 
+      [ObtenerPresupuestoArtistica].[AdjuntoExtension] AS [AdjuntoExtension], 
+      [ObtenerPresupuestoArtistica].[ValorSeleccionado] AS [ValorSeleccionado], 
+      [ObtenerPresupuestoArtistica].[Descuentos] AS [Descuentos], 
+      [ObtenerPresupuestoArtistica].[RazonSocial] AS [RazonSocial]
+      FROM [dbo].[ObtenerPresupuestoArtistica] AS [ObtenerPresupuestoArtistica]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ObtenerPresupuestoAudiovisual" EntityType="AHModel.Store.ObtenerPresupuestoAudiovisual" store:Type="Views" store:Schema="dbo" store:Name="ObtenerPresupuestoAudiovisual">
+            <DefiningQuery>SELECT 
+      [ObtenerPresupuestoAudiovisual].[Id] AS [Id], 
+      [ObtenerPresupuestoAudiovisual].[PresupuestoId] AS [PresupuestoId], 
+      [ObtenerPresupuestoAudiovisual].[ProveedorId] AS [ProveedorId], 
+      [ObtenerPresupuestoAudiovisual].[Costo] AS [Costo], 
+      [ObtenerPresupuestoAudiovisual].[PrecioLista] AS [PrecioLista], 
+      [ObtenerPresupuestoAudiovisual].[PrecioMas5] AS [PrecioMas5], 
+      [ObtenerPresupuestoAudiovisual].[PrecioMenos5] AS [PrecioMenos5], 
+      [ObtenerPresupuestoAudiovisual].[PrecioMenos10] AS [PrecioMenos10], 
+      [ObtenerPresupuestoAudiovisual].[Adjunto] AS [Adjunto], 
+      [ObtenerPresupuestoAudiovisual].[AdjuntoExtension] AS [AdjuntoExtension], 
+      [ObtenerPresupuestoAudiovisual].[ValorSeleccionado] AS [ValorSeleccionado], 
+      [ObtenerPresupuestoAudiovisual].[Descuentos] AS [Descuentos], 
+      [ObtenerPresupuestoAudiovisual].[RazonSocial] AS [RazonSocial]
+      FROM [dbo].[ObtenerPresupuestoAudiovisual] AS [ObtenerPresupuestoAudiovisual]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ObtenerPresupuestoBarra" EntityType="AHModel.Store.ObtenerPresupuestoBarra" store:Type="Views" store:Schema="dbo" store:Name="ObtenerPresupuestoBarra">
+            <DefiningQuery>SELECT 
+      [ObtenerPresupuestoBarra].[Id] AS [Id], 
+      [ObtenerPresupuestoBarra].[PresupuestoId] AS [PresupuestoId], 
+      [ObtenerPresupuestoBarra].[TipoBarraId] AS [TipoBarraId], 
+      [ObtenerPresupuestoBarra].[SalonInOut] AS [SalonInOut], 
+      [ObtenerPresupuestoBarra].[ProveedorId] AS [ProveedorId], 
+      [ObtenerPresupuestoBarra].[PrecioLista] AS [PrecioLista], 
+      [ObtenerPresupuestoBarra].[PrecioMas5] AS [PrecioMas5], 
+      [ObtenerPresupuestoBarra].[PrecioMenos5] AS [PrecioMenos5], 
+      [ObtenerPresupuestoBarra].[PrecioMenos10] AS [PrecioMenos10], 
+      [ObtenerPresupuestoBarra].[Adjunto] AS [Adjunto], 
+      [ObtenerPresupuestoBarra].[AdjuntoExtension] AS [AdjuntoExtension], 
+      [ObtenerPresupuestoBarra].[ValorSeleccionado] AS [ValorSeleccionado], 
+      [ObtenerPresupuestoBarra].[Descuentos] AS [Descuentos], 
+      [ObtenerPresupuestoBarra].[Descripcion] AS [Descripcion], 
+      [ObtenerPresupuestoBarra].[RazonSocial] AS [RazonSocial], 
+      [ObtenerPresupuestoBarra].[CostoCanon] AS [CostoCanon], 
+      [ObtenerPresupuestoBarra].[CostoLogistica] AS [CostoLogistica]
+      FROM [dbo].[ObtenerPresupuestoBarra] AS [ObtenerPresupuestoBarra]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ObtenerPresupuestoCatering" EntityType="AHModel.Store.ObtenerPresupuestoCatering" store:Type="Views" store:Schema="dbo" store:Name="ObtenerPresupuestoCatering">
+            <DefiningQuery>SELECT 
+      [ObtenerPresupuestoCatering].[Id] AS [Id], 
+      [ObtenerPresupuestoCatering].[PresupuestoId] AS [PresupuestoId], 
+      [ObtenerPresupuestoCatering].[ExperienciaId] AS [ExperienciaId], 
+      [ObtenerPresupuestoCatering].[ProveedorId] AS [ProveedorId], 
+      [ObtenerPresupuestoCatering].[PrecioLista] AS [PrecioLista], 
+      [ObtenerPresupuestoCatering].[PrecioMas5] AS [PrecioMas5], 
+      [ObtenerPresupuestoCatering].[PrecioMenos5] AS [PrecioMenos5], 
+      [ObtenerPresupuestoCatering].[PrecioMenos10] AS [PrecioMenos10], 
+      [ObtenerPresupuestoCatering].[Adjunto] AS [Adjunto], 
+      [ObtenerPresupuestoCatering].[AdjuntoExtension] AS [AdjuntoExtension], 
+      [ObtenerPresupuestoCatering].[CostoLogistica] AS [CostoLogistica], 
+      [ObtenerPresupuestoCatering].[CostoCanon] AS [CostoCanon], 
+      [ObtenerPresupuestoCatering].[ValorSeleccionado] AS [ValorSeleccionado], 
+      [ObtenerPresupuestoCatering].[Descuentos] AS [Descuentos], 
+      [ObtenerPresupuestoCatering].[Descripcion] AS [Descripcion], 
+      [ObtenerPresupuestoCatering].[RazonSocial] AS [RazonSocial]
+      FROM [dbo].[ObtenerPresupuestoCatering] AS [ObtenerPresupuestoCatering]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ObtenerPresupuestoSalon" EntityType="AHModel.Store.ObtenerPresupuestoSalon" store:Type="Views" store:Schema="dbo" store:Name="ObtenerPresupuestoSalon">
+            <DefiningQuery>SELECT 
+      [ObtenerPresupuestoSalon].[Id] AS [Id], 
+      [ObtenerPresupuestoSalon].[PresupuestoId] AS [PresupuestoId], 
+      [ObtenerPresupuestoSalon].[LocacionId] AS [LocacionId], 
+      [ObtenerPresupuestoSalon].[PrecioLista] AS [PrecioLista], 
+      [ObtenerPresupuestoSalon].[PrecioMas5] AS [PrecioMas5], 
+      [ObtenerPresupuestoSalon].[PrecioMenos5] AS [PrecioMenos5], 
+      [ObtenerPresupuestoSalon].[PrecioMenos10] AS [PrecioMenos10], 
+      [ObtenerPresupuestoSalon].[Adjunto] AS [Adjunto], 
+      [ObtenerPresupuestoSalon].[AdjuntoExtension] AS [AdjuntoExtension], 
+      [ObtenerPresupuestoSalon].[ValorSeleccionado] AS [ValorSeleccionado], 
+      [ObtenerPresupuestoSalon].[Descuentos] AS [Descuentos], 
+      [ObtenerPresupuestoSalon].[Locacion] AS [Locacion]
+      FROM [dbo].[ObtenerPresupuestoSalon] AS [ObtenerPresupuestoSalon]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ObtenerPresupuestoTecnica" EntityType="AHModel.Store.ObtenerPresupuestoTecnica" store:Type="Views" store:Schema="dbo" store:Name="ObtenerPresupuestoTecnica">
+            <DefiningQuery>SELECT 
+      [ObtenerPresupuestoTecnica].[Id] AS [Id], 
+      [ObtenerPresupuestoTecnica].[PresupuestoId] AS [PresupuestoId], 
+      [ObtenerPresupuestoTecnica].[CanalId] AS [CanalId], 
+      [ObtenerPresupuestoTecnica].[TipoServicioId] AS [TipoServicioId], 
+      [ObtenerPresupuestoTecnica].[ProveedorId] AS [ProveedorId], 
+      [ObtenerPresupuestoTecnica].[PrecioLista] AS [PrecioLista], 
+      [ObtenerPresupuestoTecnica].[PrecioMas5] AS [PrecioMas5], 
+      [ObtenerPresupuestoTecnica].[PrecioMenos5] AS [PrecioMenos5], 
+      [ObtenerPresupuestoTecnica].[PrecioMenos10] AS [PrecioMenos10], 
+      [ObtenerPresupuestoTecnica].[Adjunto] AS [Adjunto], 
+      [ObtenerPresupuestoTecnica].[AdjuntoExtension] AS [AdjuntoExtension], 
+      [ObtenerPresupuestoTecnica].[ValorSeleccionado] AS [ValorSeleccionado], 
+      [ObtenerPresupuestoTecnica].[Descuentos] AS [Descuentos], 
+      [ObtenerPresupuestoTecnica].[Canal] AS [Canal], 
+      [ObtenerPresupuestoTecnica].[TipoServicio] AS [TipoServicio], 
+      [ObtenerPresupuestoTecnica].[RazonSocial] AS [RazonSocial]
+      FROM [dbo].[ObtenerPresupuestoTecnica] AS [ObtenerPresupuestoTecnica]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Adicionales_Rubros" Association="AHModel.Store.FK_Adicionales_Rubros">
+            <End Role="Rubros" EntitySet="Rubros" />
+            <End Role="Adicionales" EntitySet="Adicionales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PresupuestoAdicionales_Adicionales" Association="AHModel.Store.FK_PresupuestoAdicionales_Adicionales">
+            <End Role="Adicionales" EntitySet="Adicionales" />
+            <End Role="PresupuestoAdicionales" EntitySet="PresupuestoAdicionales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PresupuestoAdicionales_Presupuestos" Association="AHModel.Store.FK_PresupuestoAdicionales_Presupuestos">
+            <End Role="Presupuestos" EntitySet="Presupuestos" />
+            <End Role="PresupuestoAdicionales" EntitySet="PresupuestoAdicionales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presupuestos_Eventos" Association="AHModel.Store.FK_Presupuestos_Eventos">
+            <End Role="Eventos" EntitySet="Eventos" />
+            <End Role="Presupuestos" EntitySet="Presupuestos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Adicionales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="RubroId" Type="int" />
+          <Property Name="Precio" Type="float" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
+          <Property Name="RequiereCantidad" Type="char" MaxLength="1" />
+          <Property Name="ProveedorId" Type="int" />
+          <Property Name="Costo" Type="float" />
+        </EntityType>
+        <EntityType Name="Eventos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
+          <Property Name="EmpleadoId" Type="int" Nullable="false" />
+          <Property Name="Comentario" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="PresupuestoAdicionales">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="AdicionalId" />
+            <PropertyRef Name="PresupuestoId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AdicionalId" Type="int" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="ValorAdicional" Type="float" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Presupuestos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EventoId" Type="int" Nullable="false" />
+          <Property Name="FechaPresupuesto" Type="datetime" Nullable="false" />
+          <Property Name="PrecioTotal" Type="float" />
+          <Property Name="PrecioPorPersona" Type="float" />
+          <Property Name="Comentario" Type="varchar" MaxLength="1000" />
+          <Property Name="SegmentoId" Type="int" Nullable="false" />
+          <Property Name="CaracteristicaId" Type="int" Nullable="false" />
+          <Property Name="SectorId" Type="int" />
+          <Property Name="TipoEventoId" Type="int" Nullable="false" />
+          <Property Name="TipoEventoOtro" Type="varchar" MaxLength="100" />
+          <Property Name="LocacionId" Type="int" Nullable="false" />
+          <Property Name="LocacionOtra" Type="varchar" MaxLength="100" />
+          <Property Name="JornadaId" Type="int" Nullable="false" />
+          <Property Name="HorarioEvento" Type="varchar" MaxLength="50" />
+          <Property Name="HoraFinalizado" Type="varchar" MaxLength="50" />
+          <Property Name="HorarioArmado" Type="varchar" MaxLength="50" />
+          <Property Name="CantidadInicialInvitados" Type="int" />
+          <Property Name="FechaEvento" Type="datetime" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
+          <Property Name="CantidadInvitadosMenores3" Type="int" />
+          <Property Name="CantidadInvitadosMenores3y8" Type="int" />
+          <Property Name="CantidadInvitadosAdolecentes" Type="int" />
+          <Property Name="PresupuestoIdAnterior" Type="int" />
+        </EntityType>
+        <EntityType Name="Rubros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DepartamentoId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PruebaTest.dbo.ListarAdicionalesPorPresupuesto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ListarAdicionalesPorPresupuesto">
+          <Key>
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="Cantidad" />
+            <PropertyRef Name="ValorAdicional" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="AdicionalId" />
+            <PropertyRef Name="RubroDescripcion" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="ValorAdicional" Type="float" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="AdicionalId" Type="int" Nullable="false" />
+          <Property Name="RubroDescripcion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PruebaTest.dbo.ObtenerDatosParaPresupuesto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ObtenerDatosParaPresupuesto">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="SegmentoId" />
+            <PropertyRef Name="Segmento" />
+            <PropertyRef Name="CaracteristicaId" />
+            <PropertyRef Name="Caracteristica" />
+            <PropertyRef Name="TipoEventoId" />
+            <PropertyRef Name="TipoEvento" />
+            <PropertyRef Name="LocacionId" />
+            <PropertyRef Name="Locacion" />
+            <PropertyRef Name="TipoLocacion" />
+            <PropertyRef Name="JornadaId" />
+            <PropertyRef Name="Jornada" />
+            <PropertyRef Name="EventoId" />
+            <PropertyRef Name="EmpleadoId" />
+            <PropertyRef Name="FechaContacto" />
+          </Key>
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="ApellidoNombre" Type="varchar" MaxLength="100" />
+          <Property Name="Mail" Type="varchar" MaxLength="100" />
+          <Property Name="Celular" Type="varchar" MaxLength="50" />
+          <Property Name="SegmentoId" Type="int" Nullable="false" />
+          <Property Name="Segmento" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CaracteristicaId" Type="int" Nullable="false" />
+          <Property Name="Caracteristica" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="SectorId" Type="int" />
+          <Property Name="Sector" Type="varchar" MaxLength="50" />
+          <Property Name="TipoEventoId" Type="int" Nullable="false" />
+          <Property Name="TipoEvento" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LocacionId" Type="int" Nullable="false" />
+          <Property Name="Locacion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TipoLocacion" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="JornadaId" Type="int" Nullable="false" />
+          <Property Name="Jornada" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CantidadInicialInvitados" Type="int" />
+          <Property Name="CantidadInvitadosMenores3" Type="int" />
+          <Property Name="CantidadInvitadosMenores3y8" Type="int" />
+          <Property Name="CantidadInvitadosAdolecentes" Type="int" />
+          <Property Name="FechaEvento" Type="datetime" />
+          <Property Name="HorarioEvento" Type="varchar" MaxLength="50" />
+          <Property Name="HorarioArmado" Type="varchar" MaxLength="50" />
+          <Property Name="HoraFinalizado" Type="varchar" MaxLength="50" />
+          <Property Name="Comentario" Type="varchar" MaxLength="2000" />
+          <Property Name="EventoId" Type="int" Nullable="false" />
+          <Property Name="EmpleadoId" Type="int" Nullable="false" />
+          <Property Name="Ejecutivo" Type="varchar" MaxLength="50" />
+          <Property Name="FechaContacto" Type="datetime" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="200" />
+          <Property Name="PrecioTotal" Type="float" />
+          <Property Name="PrecioPorPersona" Type="float" />
+          <Property Name="ComentarioPresupuesto" Type="varchar" MaxLength="1000" />
+          <Property Name="FechaPresupuesto" Type="datetime" />
+          <Property Name="LocacionOtra" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PruebaTest.dbo.ObtenerEventos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ObtenerEventos">
+          <Key>
+            <PropertyRef Name="CARACTERISTICA" />
+            <PropertyRef Name="LOCACION" />
+            <PropertyRef Name="JORNADA" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="EventoId" />
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="EmpleadoId" />
+            <PropertyRef Name="EstadoId" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="PresupuestoEstadoId" />
+            <PropertyRef Name="EstadoPresupuesto" />
+            <PropertyRef Name="LocacionId" />
+          </Key>
+          <Property Name="ApellidoNombre" Type="varchar" MaxLength="100" />
+          <Property Name="CARACTERISTICA" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LOCACION" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="SECTOR" Type="varchar" MaxLength="50" />
+          <Property Name="JORNADA" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="HorarioEvento" Type="varchar" MaxLength="50" />
+          <Property Name="CantidadInicialInvitados" Type="int" />
+          <Property Name="FechaEvento" Type="datetime" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Ejecutivo" Type="varchar" MaxLength="50" />
+          <Property Name="EventoId" Type="int" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="EmpleadoId" Type="int" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="200" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="PresupuestoEstadoId" Type="int" Nullable="false" />
+          <Property Name="EstadoPresupuesto" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="PresupuestoIdAnterior" Type="int" />
+          <Property Name="LocacionId" Type="int" Nullable="false" />
+          <Property Name="EmpleadoCliente" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PruebaTest.dbo.ObtenerPresupuestoAmbientacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ObtenerPresupuestoAmbientacion">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="SectorId" />
+            <PropertyRef Name="CaracteristicaId" />
+            <PropertyRef Name="SegmentoId" />
+            <PropertyRef Name="CategoriaId" />
+            <PropertyRef Name="ProveedorIr" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="Segmento" />
+            <PropertyRef Name="Caracteristicas" />
+            <PropertyRef Name="Sector" />
+            <PropertyRef Name="Categoria" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="SectorId" Type="int" Nullable="false" />
+          <Property Name="CaracteristicaId" Type="int" Nullable="false" />
+          <Property Name="SegmentoId" Type="int" Nullable="false" />
+          <Property Name="CategoriaId" Type="int" Nullable="false" />
+          <Property Name="ProveedorIr" Type="int" Nullable="false" />
+          <Property Name="PrecioLista" Type="float" Nullable="false" />
+          <Property Name="PrecioMas5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="float" Nullable="false" />
+          <Property Name="Adjunto" Type="binary" MaxLength="5000" />
+          <Property Name="AdjuntoExtension" Type="varchar" MaxLength="50" />
+          <Property Name="ValorSeleccionado" Type="float" />
+          <Property Name="Descuentos" Type="float" />
+          <Property Name="Segmento" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Caracteristicas" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Sector" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Categoria" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="RazonSocial" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PruebaTest.dbo.ObtenerPresupuestoArtistica' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ObtenerPresupuestoArtistica">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="ProveedorId" />
+            <PropertyRef Name="Costo" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="ProveedorId" Type="int" Nullable="false" />
+          <Property Name="Costo" Type="float" Nullable="false" />
+          <Property Name="PrecioLista" Type="float" Nullable="false" />
+          <Property Name="PrecioMas5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="float" Nullable="false" />
+          <Property Name="Adjunto" Type="binary" MaxLength="5000" />
+          <Property Name="AdjuntoExtension" Type="varchar" MaxLength="50" />
+          <Property Name="ValorSeleccionado" Type="float" />
+          <Property Name="Descuentos" Type="float" />
+          <Property Name="RazonSocial" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PruebaTest.dbo.ObtenerPresupuestoAudiovisual' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ObtenerPresupuestoAudiovisual">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="ProveedorId" />
+            <PropertyRef Name="Costo" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="ProveedorId" Type="int" Nullable="false" />
+          <Property Name="Costo" Type="float" Nullable="false" />
+          <Property Name="PrecioLista" Type="float" Nullable="false" />
+          <Property Name="PrecioMas5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="float" Nullable="false" />
+          <Property Name="Adjunto" Type="binary" MaxLength="5000" />
+          <Property Name="AdjuntoExtension" Type="varchar" MaxLength="50" />
+          <Property Name="ValorSeleccionado" Type="float" />
+          <Property Name="Descuentos" Type="float" />
+          <Property Name="RazonSocial" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PruebaTest.dbo.ObtenerPresupuestoBarra' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ObtenerPresupuestoBarra">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="TipoBarraId" />
+            <PropertyRef Name="SalonInOut" />
+            <PropertyRef Name="ProveedorId" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="TipoBarraId" Type="int" Nullable="false" />
+          <Property Name="SalonInOut" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ProveedorId" Type="int" Nullable="false" />
+          <Property Name="PrecioLista" Type="float" Nullable="false" />
+          <Property Name="PrecioMas5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="float" Nullable="false" />
+          <Property Name="Adjunto" Type="binary" MaxLength="5000" />
+          <Property Name="AdjuntoExtension" Type="varchar" MaxLength="50" />
+          <Property Name="ValorSeleccionado" Type="float" />
+          <Property Name="Descuentos" Type="float" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="RazonSocial" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CostoCanon" Type="float" />
+          <Property Name="CostoLogistica" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PruebaTest.dbo.ObtenerPresupuestoCatering' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ObtenerPresupuestoCatering">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="ExperienciaId" />
+            <PropertyRef Name="ProveedorId" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="ExperienciaId" Type="int" Nullable="false" />
+          <Property Name="ProveedorId" Type="int" Nullable="false" />
+          <Property Name="PrecioLista" Type="float" Nullable="false" />
+          <Property Name="PrecioMas5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="float" Nullable="false" />
+          <Property Name="Adjunto" Type="binary" MaxLength="5000" />
+          <Property Name="AdjuntoExtension" Type="varchar" MaxLength="50" />
+          <Property Name="CostoLogistica" Type="float" />
+          <Property Name="CostoCanon" Type="float" />
+          <Property Name="ValorSeleccionado" Type="float" />
+          <Property Name="Descuentos" Type="float" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="RazonSocial" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PruebaTest.dbo.ObtenerPresupuestoSalon' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ObtenerPresupuestoSalon">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="LocacionId" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="Locacion" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="LocacionId" Type="int" Nullable="false" />
+          <Property Name="PrecioLista" Type="float" Nullable="false" />
+          <Property Name="PrecioMas5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="float" Nullable="false" />
+          <Property Name="Adjunto" Type="binary" MaxLength="5000" />
+          <Property Name="AdjuntoExtension" Type="varchar" MaxLength="50" />
+          <Property Name="ValorSeleccionado" Type="float" />
+          <Property Name="Descuentos" Type="float" />
+          <Property Name="Locacion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PruebaTest.dbo.ObtenerPresupuestoTecnica' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ObtenerPresupuestoTecnica">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="CanalId" />
+            <PropertyRef Name="TipoServicioId" />
+            <PropertyRef Name="ProveedorId" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="Canal" />
+            <PropertyRef Name="TipoServicio" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="CanalId" Type="int" Nullable="false" />
+          <Property Name="TipoServicioId" Type="int" Nullable="false" />
+          <Property Name="ProveedorId" Type="int" Nullable="false" />
+          <Property Name="PrecioLista" Type="float" Nullable="false" />
+          <Property Name="PrecioMas5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="float" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="float" Nullable="false" />
+          <Property Name="Adjunto" Type="binary" MaxLength="5000" />
+          <Property Name="AdjuntoExtension" Type="varchar" MaxLength="50" />
+          <Property Name="ValorSeleccionado" Type="float" />
+          <Property Name="Descuentos" Type="float" />
+          <Property Name="Canal" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TipoServicio" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="RazonSocial" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Adicionales_Rubros">
+          <End Role="Rubros" Type="AHModel.Store.Rubros" Multiplicity="0..1" />
+          <End Role="Adicionales" Type="AHModel.Store.Adicionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Adicionales">
+              <PropertyRef Name="RubroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PresupuestoAdicionales_Adicionales">
+          <End Role="Adicionales" Type="AHModel.Store.Adicionales" Multiplicity="1" />
+          <End Role="PresupuestoAdicionales" Type="AHModel.Store.PresupuestoAdicionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adicionales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PresupuestoAdicionales">
+              <PropertyRef Name="AdicionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PresupuestoAdicionales_Presupuestos">
+          <End Role="Presupuestos" Type="AHModel.Store.Presupuestos" Multiplicity="1" />
+          <End Role="PresupuestoAdicionales" Type="AHModel.Store.PresupuestoAdicionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presupuestos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PresupuestoAdicionales">
+              <PropertyRef Name="PresupuestoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presupuestos_Eventos">
+          <End Role="Eventos" Type="AHModel.Store.Eventos" Multiplicity="1" />
+          <End Role="Presupuestos" Type="AHModel.Store.Presupuestos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Eventos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Presupuestos">
+              <PropertyRef Name="EventoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AHModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adicionales" EntityType="AHModel.Adicionales" />
+          <EntitySet Name="Eventos" EntityType="AHModel.Eventos" />
+          <EntitySet Name="PresupuestoAdicionales" EntityType="AHModel.PresupuestoAdicionales" />
+          <EntitySet Name="Presupuestos" EntityType="AHModel.Presupuestos" />
+          <EntitySet Name="Rubros" EntityType="AHModel.Rubros" />
+          <EntitySet Name="ListarAdicionalesPorPresupuesto" EntityType="AHModel.ListarAdicionalesPorPresupuesto" />
+          <EntitySet Name="ObtenerDatosParaPresupuesto" EntityType="AHModel.ObtenerDatosParaPresupuesto" />
+          <EntitySet Name="ObtenerEventos" EntityType="AHModel.ObtenerEventos" />
+          <EntitySet Name="ObtenerPresupuestoAmbientacion" EntityType="AHModel.ObtenerPresupuestoAmbientacion" />
+          <EntitySet Name="ObtenerPresupuestoArtistica" EntityType="AHModel.ObtenerPresupuestoArtistica" />
+          <EntitySet Name="ObtenerPresupuestoAudiovisual" EntityType="AHModel.ObtenerPresupuestoAudiovisual" />
+          <EntitySet Name="ObtenerPresupuestoBarra" EntityType="AHModel.ObtenerPresupuestoBarra" />
+          <EntitySet Name="ObtenerPresupuestoCatering" EntityType="AHModel.ObtenerPresupuestoCatering" />
+          <EntitySet Name="ObtenerPresupuestoSalon" EntityType="AHModel.ObtenerPresupuestoSalon" />
+          <EntitySet Name="ObtenerPresupuestoTecnica" EntityType="AHModel.ObtenerPresupuestoTecnica" />
+          <AssociationSet Name="FK_Adicionales_Rubros" Association="AHModel.FK_Adicionales_Rubros">
+            <End Role="Rubros" EntitySet="Rubros" />
+            <End Role="Adicionales" EntitySet="Adicionales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PresupuestoAdicionales_Adicionales" Association="AHModel.FK_PresupuestoAdicionales_Adicionales">
+            <End Role="Adicionales" EntitySet="Adicionales" />
+            <End Role="PresupuestoAdicionales" EntitySet="PresupuestoAdicionales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presupuestos_Eventos" Association="AHModel.FK_Presupuestos_Eventos">
+            <End Role="Eventos" EntitySet="Eventos" />
+            <End Role="Presupuestos" EntitySet="Presupuestos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PresupuestoAdicionales_Presupuestos" Association="AHModel.FK_PresupuestoAdicionales_Presupuestos">
+            <End Role="Presupuestos" EntitySet="Presupuestos" />
+            <End Role="PresupuestoAdicionales" EntitySet="PresupuestoAdicionales" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Adicionales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="RubroId" Type="Int32" />
+          <Property Name="Precio" Type="Double" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <Property Name="RequiereCantidad" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="ProveedorId" Type="Int32" />
+          <Property Name="Costo" Type="Double" />
+          <NavigationProperty Name="Rubros" Relationship="AHModel.FK_Adicionales_Rubros" FromRole="Adicionales" ToRole="Rubros" />
+          <NavigationProperty Name="PresupuestoAdicionales" Relationship="AHModel.FK_PresupuestoAdicionales_Adicionales" FromRole="Adicionales" ToRole="PresupuestoAdicionales" />
+        </EntityType>
+        <EntityType Name="Eventos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <Property Name="EmpleadoId" Type="Int32" Nullable="false" />
+          <Property Name="Comentario" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Presupuestos" Relationship="AHModel.FK_Presupuestos_Eventos" FromRole="Eventos" ToRole="Presupuestos" />
+        </EntityType>
+        <EntityType Name="PresupuestoAdicionales">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="AdicionalId" />
+            <PropertyRef Name="PresupuestoId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdicionalId" Type="Int32" Nullable="false" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="ValorAdicional" Type="Double" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Adicionales" Relationship="AHModel.FK_PresupuestoAdicionales_Adicionales" FromRole="PresupuestoAdicionales" ToRole="Adicionales" />
+          <NavigationProperty Name="Presupuestos" Relationship="AHModel.FK_PresupuestoAdicionales_Presupuestos" FromRole="PresupuestoAdicionales" ToRole="Presupuestos" />
+        </EntityType>
+        <EntityType Name="Presupuestos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventoId" Type="Int32" Nullable="false" />
+          <Property Name="FechaPresupuesto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PrecioTotal" Type="Double" />
+          <Property Name="PrecioPorPersona" Type="Double" />
+          <Property Name="Comentario" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="SegmentoId" Type="Int32" Nullable="false" />
+          <Property Name="CaracteristicaId" Type="Int32" Nullable="false" />
+          <Property Name="SectorId" Type="Int32" />
+          <Property Name="TipoEventoId" Type="Int32" Nullable="false" />
+          <Property Name="TipoEventoOtro" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="LocacionId" Type="Int32" Nullable="false" />
+          <Property Name="LocacionOtra" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="JornadaId" Type="Int32" Nullable="false" />
+          <Property Name="HorarioEvento" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="HoraFinalizado" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="HorarioArmado" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CantidadInicialInvitados" Type="Int32" />
+          <Property Name="FechaEvento" Type="DateTime" Precision="3" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <Property Name="CantidadInvitadosMenores3" Type="Int32" />
+          <Property Name="CantidadInvitadosMenores3y8" Type="Int32" />
+          <Property Name="CantidadInvitadosAdolecentes" Type="Int32" />
+          <Property Name="PresupuestoIdAnterior" Type="Int32" />
+          <NavigationProperty Name="Eventos" Relationship="AHModel.FK_Presupuestos_Eventos" FromRole="Presupuestos" ToRole="Eventos" />
+          <NavigationProperty Name="PresupuestoAdicionales" Relationship="AHModel.FK_PresupuestoAdicionales_Presupuestos" FromRole="Presupuestos" ToRole="PresupuestoAdicionales" />
+        </EntityType>
+        <EntityType Name="Rubros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DepartamentoId" Type="Int32" />
+          <NavigationProperty Name="Adicionales" Relationship="AHModel.FK_Adicionales_Rubros" FromRole="Rubros" ToRole="Adicionales" />
+        </EntityType>
+        <EntityType Name="ListarAdicionalesPorPresupuesto">
+          <Key>
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="Cantidad" />
+            <PropertyRef Name="ValorAdicional" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="AdicionalId" />
+            <PropertyRef Name="RubroDescripcion" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="ValorAdicional" Type="Double" Nullable="false" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="AdicionalId" Type="Int32" Nullable="false" />
+          <Property Name="RubroDescripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ObtenerDatosParaPresupuesto">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="SegmentoId" />
+            <PropertyRef Name="Segmento" />
+            <PropertyRef Name="CaracteristicaId" />
+            <PropertyRef Name="Caracteristica" />
+            <PropertyRef Name="TipoEventoId" />
+            <PropertyRef Name="TipoEvento" />
+            <PropertyRef Name="LocacionId" />
+            <PropertyRef Name="Locacion" />
+            <PropertyRef Name="TipoLocacion" />
+            <PropertyRef Name="JornadaId" />
+            <PropertyRef Name="Jornada" />
+            <PropertyRef Name="EventoId" />
+            <PropertyRef Name="EmpleadoId" />
+            <PropertyRef Name="FechaContacto" />
+          </Key>
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="ApellidoNombre" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Mail" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Celular" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="SegmentoId" Type="Int32" Nullable="false" />
+          <Property Name="Segmento" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CaracteristicaId" Type="Int32" Nullable="false" />
+          <Property Name="Caracteristica" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="SectorId" Type="Int32" />
+          <Property Name="Sector" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TipoEventoId" Type="Int32" Nullable="false" />
+          <Property Name="TipoEvento" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LocacionId" Type="Int32" Nullable="false" />
+          <Property Name="Locacion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TipoLocacion" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="JornadaId" Type="Int32" Nullable="false" />
+          <Property Name="Jornada" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CantidadInicialInvitados" Type="Int32" />
+          <Property Name="CantidadInvitadosMenores3" Type="Int32" />
+          <Property Name="CantidadInvitadosMenores3y8" Type="Int32" />
+          <Property Name="CantidadInvitadosAdolecentes" Type="Int32" />
+          <Property Name="FechaEvento" Type="DateTime" Precision="3" />
+          <Property Name="HorarioEvento" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="HorarioArmado" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="HoraFinalizado" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Comentario" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+          <Property Name="EventoId" Type="Int32" Nullable="false" />
+          <Property Name="EmpleadoId" Type="Int32" Nullable="false" />
+          <Property Name="Ejecutivo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="FechaContacto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PresupuestoId" Type="Int32" />
+          <Property Name="RazonSocial" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="PrecioTotal" Type="Double" />
+          <Property Name="PrecioPorPersona" Type="Double" />
+          <Property Name="ComentarioPresupuesto" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="FechaPresupuesto" Type="DateTime" Precision="3" />
+          <Property Name="LocacionOtra" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ObtenerEventos">
+          <Key>
+            <PropertyRef Name="CARACTERISTICA" />
+            <PropertyRef Name="LOCACION" />
+            <PropertyRef Name="JORNADA" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="EventoId" />
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="EmpleadoId" />
+            <PropertyRef Name="EstadoId" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="PresupuestoEstadoId" />
+            <PropertyRef Name="EstadoPresupuesto" />
+            <PropertyRef Name="LocacionId" />
+          </Key>
+          <Property Name="ApellidoNombre" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CARACTERISTICA" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LOCACION" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="SECTOR" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="JORNADA" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="HorarioEvento" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CantidadInicialInvitados" Type="Int32" />
+          <Property Name="FechaEvento" Type="DateTime" Precision="3" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Ejecutivo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="EventoId" Type="Int32" Nullable="false" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="EmpleadoId" Type="Int32" Nullable="false" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="PresupuestoEstadoId" Type="Int32" Nullable="false" />
+          <Property Name="EstadoPresupuesto" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PresupuestoIdAnterior" Type="Int32" />
+          <Property Name="LocacionId" Type="Int32" Nullable="false" />
+          <Property Name="EmpleadoCliente" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ObtenerPresupuestoAmbientacion">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="SectorId" />
+            <PropertyRef Name="CaracteristicaId" />
+            <PropertyRef Name="SegmentoId" />
+            <PropertyRef Name="CategoriaId" />
+            <PropertyRef Name="ProveedorIr" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="Segmento" />
+            <PropertyRef Name="Caracteristicas" />
+            <PropertyRef Name="Sector" />
+            <PropertyRef Name="Categoria" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="SectorId" Type="Int32" Nullable="false" />
+          <Property Name="CaracteristicaId" Type="Int32" Nullable="false" />
+          <Property Name="SegmentoId" Type="Int32" Nullable="false" />
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" />
+          <Property Name="ProveedorIr" Type="Int32" Nullable="false" />
+          <Property Name="PrecioLista" Type="Double" Nullable="false" />
+          <Property Name="PrecioMas5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="Double" Nullable="false" />
+          <Property Name="Adjunto" Type="Binary" MaxLength="5000" FixedLength="true" />
+          <Property Name="AdjuntoExtension" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ValorSeleccionado" Type="Double" />
+          <Property Name="Descuentos" Type="Double" />
+          <Property Name="Segmento" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Caracteristicas" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Sector" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Categoria" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ObtenerPresupuestoArtistica">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="ProveedorId" />
+            <PropertyRef Name="Costo" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="ProveedorId" Type="Int32" Nullable="false" />
+          <Property Name="Costo" Type="Double" Nullable="false" />
+          <Property Name="PrecioLista" Type="Double" Nullable="false" />
+          <Property Name="PrecioMas5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="Double" Nullable="false" />
+          <Property Name="Adjunto" Type="Binary" MaxLength="5000" FixedLength="true" />
+          <Property Name="AdjuntoExtension" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ValorSeleccionado" Type="Double" />
+          <Property Name="Descuentos" Type="Double" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ObtenerPresupuestoAudiovisual">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="ProveedorId" />
+            <PropertyRef Name="Costo" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="ProveedorId" Type="Int32" Nullable="false" />
+          <Property Name="Costo" Type="Double" Nullable="false" />
+          <Property Name="PrecioLista" Type="Double" Nullable="false" />
+          <Property Name="PrecioMas5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="Double" Nullable="false" />
+          <Property Name="Adjunto" Type="Binary" MaxLength="5000" FixedLength="true" />
+          <Property Name="AdjuntoExtension" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ValorSeleccionado" Type="Double" />
+          <Property Name="Descuentos" Type="Double" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ObtenerPresupuestoBarra">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="TipoBarraId" />
+            <PropertyRef Name="SalonInOut" />
+            <PropertyRef Name="ProveedorId" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="TipoBarraId" Type="Int32" Nullable="false" />
+          <Property Name="SalonInOut" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ProveedorId" Type="Int32" Nullable="false" />
+          <Property Name="PrecioLista" Type="Double" Nullable="false" />
+          <Property Name="PrecioMas5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="Double" Nullable="false" />
+          <Property Name="Adjunto" Type="Binary" MaxLength="5000" FixedLength="true" />
+          <Property Name="AdjuntoExtension" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ValorSeleccionado" Type="Double" />
+          <Property Name="Descuentos" Type="Double" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CostoCanon" Type="Double" />
+          <Property Name="CostoLogistica" Type="Double" />
+        </EntityType>
+        <EntityType Name="ObtenerPresupuestoCatering">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="ExperienciaId" />
+            <PropertyRef Name="ProveedorId" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="ExperienciaId" Type="Int32" Nullable="false" />
+          <Property Name="ProveedorId" Type="Int32" Nullable="false" />
+          <Property Name="PrecioLista" Type="Double" Nullable="false" />
+          <Property Name="PrecioMas5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="Double" Nullable="false" />
+          <Property Name="Adjunto" Type="Binary" MaxLength="5000" FixedLength="true" />
+          <Property Name="AdjuntoExtension" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CostoLogistica" Type="Double" />
+          <Property Name="CostoCanon" Type="Double" />
+          <Property Name="ValorSeleccionado" Type="Double" />
+          <Property Name="Descuentos" Type="Double" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ObtenerPresupuestoSalon">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="LocacionId" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="Locacion" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="LocacionId" Type="Int32" Nullable="false" />
+          <Property Name="PrecioLista" Type="Double" Nullable="false" />
+          <Property Name="PrecioMas5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="Double" Nullable="false" />
+          <Property Name="Adjunto" Type="Binary" MaxLength="5000" FixedLength="true" />
+          <Property Name="AdjuntoExtension" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ValorSeleccionado" Type="Double" />
+          <Property Name="Descuentos" Type="Double" />
+          <Property Name="Locacion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ObtenerPresupuestoTecnica">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="CanalId" />
+            <PropertyRef Name="TipoServicioId" />
+            <PropertyRef Name="ProveedorId" />
+            <PropertyRef Name="PrecioLista" />
+            <PropertyRef Name="PrecioMas5" />
+            <PropertyRef Name="PrecioMenos5" />
+            <PropertyRef Name="PrecioMenos10" />
+            <PropertyRef Name="Canal" />
+            <PropertyRef Name="TipoServicio" />
+            <PropertyRef Name="RazonSocial" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="CanalId" Type="Int32" Nullable="false" />
+          <Property Name="TipoServicioId" Type="Int32" Nullable="false" />
+          <Property Name="ProveedorId" Type="Int32" Nullable="false" />
+          <Property Name="PrecioLista" Type="Double" Nullable="false" />
+          <Property Name="PrecioMas5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos5" Type="Double" Nullable="false" />
+          <Property Name="PrecioMenos10" Type="Double" Nullable="false" />
+          <Property Name="Adjunto" Type="Binary" MaxLength="5000" FixedLength="true" />
+          <Property Name="AdjuntoExtension" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ValorSeleccionado" Type="Double" />
+          <Property Name="Descuentos" Type="Double" />
+          <Property Name="Canal" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TipoServicio" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Adicionales_Rubros">
+          <End Role="Rubros" Type="AHModel.Rubros" Multiplicity="0..1" />
+          <End Role="Adicionales" Type="AHModel.Adicionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rubros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Adicionales">
+              <PropertyRef Name="RubroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PresupuestoAdicionales_Adicionales">
+          <End Role="Adicionales" Type="AHModel.Adicionales" Multiplicity="1" />
+          <End Role="PresupuestoAdicionales" Type="AHModel.PresupuestoAdicionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adicionales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PresupuestoAdicionales">
+              <PropertyRef Name="AdicionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presupuestos_Eventos">
+          <End Role="Eventos" Type="AHModel.Eventos" Multiplicity="1" />
+          <End Role="Presupuestos" Type="AHModel.Presupuestos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Eventos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Presupuestos">
+              <PropertyRef Name="EventoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PresupuestoAdicionales_Presupuestos">
+          <End Role="Presupuestos" Type="AHModel.Presupuestos" Multiplicity="1" />
+          <End Role="PresupuestoAdicionales" Type="AHModel.PresupuestoAdicionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presupuestos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PresupuestoAdicionales">
+              <PropertyRef Name="PresupuestoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AHModelStoreContainer" CdmEntityContainer="AHEntities">
+          <EntitySetMapping Name="Adicionales">
+            <EntityTypeMapping TypeName="AHModel.Adicionales">
+              <MappingFragment StoreEntitySet="Adicionales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="RubroId" ColumnName="RubroId" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="RequiereCantidad" ColumnName="RequiereCantidad" />
+                <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Eventos">
+            <EntityTypeMapping TypeName="AHModel.Eventos">
+              <MappingFragment StoreEntitySet="Eventos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PresupuestoAdicionales">
+            <EntityTypeMapping TypeName="AHModel.PresupuestoAdicionales">
+              <MappingFragment StoreEntitySet="PresupuestoAdicionales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AdicionalId" ColumnName="AdicionalId" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="ValorAdicional" ColumnName="ValorAdicional" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presupuestos">
+            <EntityTypeMapping TypeName="AHModel.Presupuestos">
+              <MappingFragment StoreEntitySet="Presupuestos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventoId" ColumnName="EventoId" />
+                <ScalarProperty Name="FechaPresupuesto" ColumnName="FechaPresupuesto" />
+                <ScalarProperty Name="PrecioTotal" ColumnName="PrecioTotal" />
+                <ScalarProperty Name="PrecioPorPersona" ColumnName="PrecioPorPersona" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="SegmentoId" ColumnName="SegmentoId" />
+                <ScalarProperty Name="CaracteristicaId" ColumnName="CaracteristicaId" />
+                <ScalarProperty Name="SectorId" ColumnName="SectorId" />
+                <ScalarProperty Name="TipoEventoId" ColumnName="TipoEventoId" />
+                <ScalarProperty Name="TipoEventoOtro" ColumnName="TipoEventoOtro" />
+                <ScalarProperty Name="LocacionId" ColumnName="LocacionId" />
+                <ScalarProperty Name="LocacionOtra" ColumnName="LocacionOtra" />
+                <ScalarProperty Name="JornadaId" ColumnName="JornadaId" />
+                <ScalarProperty Name="HorarioEvento" ColumnName="HorarioEvento" />
+                <ScalarProperty Name="HoraFinalizado" ColumnName="HoraFinalizado" />
+                <ScalarProperty Name="HorarioArmado" ColumnName="HorarioArmado" />
+                <ScalarProperty Name="CantidadInicialInvitados" ColumnName="CantidadInicialInvitados" />
+                <ScalarProperty Name="FechaEvento" ColumnName="FechaEvento" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="CantidadInvitadosMenores3" ColumnName="CantidadInvitadosMenores3" />
+                <ScalarProperty Name="CantidadInvitadosMenores3y8" ColumnName="CantidadInvitadosMenores3y8" />
+                <ScalarProperty Name="CantidadInvitadosAdolecentes" ColumnName="CantidadInvitadosAdolecentes" />
+                <ScalarProperty Name="PresupuestoIdAnterior" ColumnName="PresupuestoIdAnterior" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rubros">
+            <EntityTypeMapping TypeName="AHModel.Rubros">
+              <MappingFragment StoreEntitySet="Rubros">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListarAdicionalesPorPresupuesto">
+            <EntityTypeMapping TypeName="AHModel.ListarAdicionalesPorPresupuesto">
+              <MappingFragment StoreEntitySet="ListarAdicionalesPorPresupuesto">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="ValorAdicional" ColumnName="ValorAdicional" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="AdicionalId" ColumnName="AdicionalId" />
+                <ScalarProperty Name="RubroDescripcion" ColumnName="RubroDescripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObtenerDatosParaPresupuesto">
+            <EntityTypeMapping TypeName="AHModel.ObtenerDatosParaPresupuesto">
+              <MappingFragment StoreEntitySet="ObtenerDatosParaPresupuesto">
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="SegmentoId" ColumnName="SegmentoId" />
+                <ScalarProperty Name="Segmento" ColumnName="Segmento" />
+                <ScalarProperty Name="CaracteristicaId" ColumnName="CaracteristicaId" />
+                <ScalarProperty Name="Caracteristica" ColumnName="Caracteristica" />
+                <ScalarProperty Name="SectorId" ColumnName="SectorId" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="TipoEventoId" ColumnName="TipoEventoId" />
+                <ScalarProperty Name="TipoEvento" ColumnName="TipoEvento" />
+                <ScalarProperty Name="LocacionId" ColumnName="LocacionId" />
+                <ScalarProperty Name="Locacion" ColumnName="Locacion" />
+                <ScalarProperty Name="TipoLocacion" ColumnName="TipoLocacion" />
+                <ScalarProperty Name="JornadaId" ColumnName="JornadaId" />
+                <ScalarProperty Name="Jornada" ColumnName="Jornada" />
+                <ScalarProperty Name="CantidadInicialInvitados" ColumnName="CantidadInicialInvitados" />
+                <ScalarProperty Name="CantidadInvitadosMenores3" ColumnName="CantidadInvitadosMenores3" />
+                <ScalarProperty Name="CantidadInvitadosMenores3y8" ColumnName="CantidadInvitadosMenores3y8" />
+                <ScalarProperty Name="CantidadInvitadosAdolecentes" ColumnName="CantidadInvitadosAdolecentes" />
+                <ScalarProperty Name="FechaEvento" ColumnName="FechaEvento" />
+                <ScalarProperty Name="HorarioEvento" ColumnName="HorarioEvento" />
+                <ScalarProperty Name="HorarioArmado" ColumnName="HorarioArmado" />
+                <ScalarProperty Name="HoraFinalizado" ColumnName="HoraFinalizado" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="EventoId" ColumnName="EventoId" />
+                <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+                <ScalarProperty Name="Ejecutivo" ColumnName="Ejecutivo" />
+                <ScalarProperty Name="FechaContacto" ColumnName="FechaContacto" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="PrecioTotal" ColumnName="PrecioTotal" />
+                <ScalarProperty Name="PrecioPorPersona" ColumnName="PrecioPorPersona" />
+                <ScalarProperty Name="ComentarioPresupuesto" ColumnName="ComentarioPresupuesto" />
+                <ScalarProperty Name="FechaPresupuesto" ColumnName="FechaPresupuesto" />
+                <ScalarProperty Name="LocacionOtra" ColumnName="LocacionOtra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObtenerEventos">
+            <EntityTypeMapping TypeName="AHModel.ObtenerEventos">
+              <MappingFragment StoreEntitySet="ObtenerEventos">
+                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
+                <ScalarProperty Name="CARACTERISTICA" ColumnName="CARACTERISTICA" />
+                <ScalarProperty Name="LOCACION" ColumnName="LOCACION" />
+                <ScalarProperty Name="SECTOR" ColumnName="SECTOR" />
+                <ScalarProperty Name="JORNADA" ColumnName="JORNADA" />
+                <ScalarProperty Name="HorarioEvento" ColumnName="HorarioEvento" />
+                <ScalarProperty Name="CantidadInicialInvitados" ColumnName="CantidadInicialInvitados" />
+                <ScalarProperty Name="FechaEvento" ColumnName="FechaEvento" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Ejecutivo" ColumnName="Ejecutivo" />
+                <ScalarProperty Name="EventoId" ColumnName="EventoId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="PresupuestoEstadoId" ColumnName="PresupuestoEstadoId" />
+                <ScalarProperty Name="EstadoPresupuesto" ColumnName="EstadoPresupuesto" />
+                <ScalarProperty Name="PresupuestoIdAnterior" ColumnName="PresupuestoIdAnterior" />
+                <ScalarProperty Name="LocacionId" ColumnName="LocacionId" />
+                <ScalarProperty Name="EmpleadoCliente" ColumnName="EmpleadoCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObtenerPresupuestoAmbientacion">
+            <EntityTypeMapping TypeName="AHModel.ObtenerPresupuestoAmbientacion">
+              <MappingFragment StoreEntitySet="ObtenerPresupuestoAmbientacion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="SectorId" ColumnName="SectorId" />
+                <ScalarProperty Name="CaracteristicaId" ColumnName="CaracteristicaId" />
+                <ScalarProperty Name="SegmentoId" ColumnName="SegmentoId" />
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="ProveedorIr" ColumnName="ProveedorIr" />
+                <ScalarProperty Name="PrecioLista" ColumnName="PrecioLista" />
+                <ScalarProperty Name="PrecioMas5" ColumnName="PrecioMas5" />
+                <ScalarProperty Name="PrecioMenos5" ColumnName="PrecioMenos5" />
+                <ScalarProperty Name="PrecioMenos10" ColumnName="PrecioMenos10" />
+                <ScalarProperty Name="Adjunto" ColumnName="Adjunto" />
+                <ScalarProperty Name="AdjuntoExtension" ColumnName="AdjuntoExtension" />
+                <ScalarProperty Name="ValorSeleccionado" ColumnName="ValorSeleccionado" />
+                <ScalarProperty Name="Descuentos" ColumnName="Descuentos" />
+                <ScalarProperty Name="Segmento" ColumnName="Segmento" />
+                <ScalarProperty Name="Caracteristicas" ColumnName="Caracteristicas" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObtenerPresupuestoArtistica">
+            <EntityTypeMapping TypeName="AHModel.ObtenerPresupuestoArtistica">
+              <MappingFragment StoreEntitySet="ObtenerPresupuestoArtistica">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="PrecioLista" ColumnName="PrecioLista" />
+                <ScalarProperty Name="PrecioMas5" ColumnName="PrecioMas5" />
+                <ScalarProperty Name="PrecioMenos5" ColumnName="PrecioMenos5" />
+                <ScalarProperty Name="PrecioMenos10" ColumnName="PrecioMenos10" />
+                <ScalarProperty Name="Adjunto" ColumnName="Adjunto" />
+                <ScalarProperty Name="AdjuntoExtension" ColumnName="AdjuntoExtension" />
+                <ScalarProperty Name="ValorSeleccionado" ColumnName="ValorSeleccionado" />
+                <ScalarProperty Name="Descuentos" ColumnName="Descuentos" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObtenerPresupuestoAudiovisual">
+            <EntityTypeMapping TypeName="AHModel.ObtenerPresupuestoAudiovisual">
+              <MappingFragment StoreEntitySet="ObtenerPresupuestoAudiovisual">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="PrecioLista" ColumnName="PrecioLista" />
+                <ScalarProperty Name="PrecioMas5" ColumnName="PrecioMas5" />
+                <ScalarProperty Name="PrecioMenos5" ColumnName="PrecioMenos5" />
+                <ScalarProperty Name="PrecioMenos10" ColumnName="PrecioMenos10" />
+                <ScalarProperty Name="Adjunto" ColumnName="Adjunto" />
+                <ScalarProperty Name="AdjuntoExtension" ColumnName="AdjuntoExtension" />
+                <ScalarProperty Name="ValorSeleccionado" ColumnName="ValorSeleccionado" />
+                <ScalarProperty Name="Descuentos" ColumnName="Descuentos" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObtenerPresupuestoBarra">
+            <EntityTypeMapping TypeName="AHModel.ObtenerPresupuestoBarra">
+              <MappingFragment StoreEntitySet="ObtenerPresupuestoBarra">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="TipoBarraId" ColumnName="TipoBarraId" />
+                <ScalarProperty Name="SalonInOut" ColumnName="SalonInOut" />
+                <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+                <ScalarProperty Name="PrecioLista" ColumnName="PrecioLista" />
+                <ScalarProperty Name="PrecioMas5" ColumnName="PrecioMas5" />
+                <ScalarProperty Name="PrecioMenos5" ColumnName="PrecioMenos5" />
+                <ScalarProperty Name="PrecioMenos10" ColumnName="PrecioMenos10" />
+                <ScalarProperty Name="Adjunto" ColumnName="Adjunto" />
+                <ScalarProperty Name="AdjuntoExtension" ColumnName="AdjuntoExtension" />
+                <ScalarProperty Name="ValorSeleccionado" ColumnName="ValorSeleccionado" />
+                <ScalarProperty Name="Descuentos" ColumnName="Descuentos" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="CostoCanon" ColumnName="CostoCanon" />
+                <ScalarProperty Name="CostoLogistica" ColumnName="CostoLogistica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObtenerPresupuestoCatering">
+            <EntityTypeMapping TypeName="AHModel.ObtenerPresupuestoCatering">
+              <MappingFragment StoreEntitySet="ObtenerPresupuestoCatering">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="ExperienciaId" ColumnName="ExperienciaId" />
+                <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+                <ScalarProperty Name="PrecioLista" ColumnName="PrecioLista" />
+                <ScalarProperty Name="PrecioMas5" ColumnName="PrecioMas5" />
+                <ScalarProperty Name="PrecioMenos5" ColumnName="PrecioMenos5" />
+                <ScalarProperty Name="PrecioMenos10" ColumnName="PrecioMenos10" />
+                <ScalarProperty Name="Adjunto" ColumnName="Adjunto" />
+                <ScalarProperty Name="AdjuntoExtension" ColumnName="AdjuntoExtension" />
+                <ScalarProperty Name="CostoLogistica" ColumnName="CostoLogistica" />
+                <ScalarProperty Name="CostoCanon" ColumnName="CostoCanon" />
+                <ScalarProperty Name="ValorSeleccionado" ColumnName="ValorSeleccionado" />
+                <ScalarProperty Name="Descuentos" ColumnName="Descuentos" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObtenerPresupuestoSalon">
+            <EntityTypeMapping TypeName="AHModel.ObtenerPresupuestoSalon">
+              <MappingFragment StoreEntitySet="ObtenerPresupuestoSalon">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="LocacionId" ColumnName="LocacionId" />
+                <ScalarProperty Name="PrecioLista" ColumnName="PrecioLista" />
+                <ScalarProperty Name="PrecioMas5" ColumnName="PrecioMas5" />
+                <ScalarProperty Name="PrecioMenos5" ColumnName="PrecioMenos5" />
+                <ScalarProperty Name="PrecioMenos10" ColumnName="PrecioMenos10" />
+                <ScalarProperty Name="Adjunto" ColumnName="Adjunto" />
+                <ScalarProperty Name="AdjuntoExtension" ColumnName="AdjuntoExtension" />
+                <ScalarProperty Name="ValorSeleccionado" ColumnName="ValorSeleccionado" />
+                <ScalarProperty Name="Descuentos" ColumnName="Descuentos" />
+                <ScalarProperty Name="Locacion" ColumnName="Locacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObtenerPresupuestoTecnica">
+            <EntityTypeMapping TypeName="AHModel.ObtenerPresupuestoTecnica">
+              <MappingFragment StoreEntitySet="ObtenerPresupuestoTecnica">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="CanalId" ColumnName="CanalId" />
+                <ScalarProperty Name="TipoServicioId" ColumnName="TipoServicioId" />
+                <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+                <ScalarProperty Name="PrecioLista" ColumnName="PrecioLista" />
+                <ScalarProperty Name="PrecioMas5" ColumnName="PrecioMas5" />
+                <ScalarProperty Name="PrecioMenos5" ColumnName="PrecioMenos5" />
+                <ScalarProperty Name="PrecioMenos10" ColumnName="PrecioMenos10" />
+                <ScalarProperty Name="Adjunto" ColumnName="Adjunto" />
+                <ScalarProperty Name="AdjuntoExtension" ColumnName="AdjuntoExtension" />
+                <ScalarProperty Name="ValorSeleccionado" ColumnName="ValorSeleccionado" />
+                <ScalarProperty Name="Descuentos" ColumnName="Descuentos" />
+                <ScalarProperty Name="Canal" ColumnName="Canal" />
+                <ScalarProperty Name="TipoServicio" ColumnName="TipoServicio" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

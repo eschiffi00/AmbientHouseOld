@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a27d03f16bfe42bc93741283e4ac2fbe" Name="Diagram1">
+        <EntityTypeShape EntityType="AHModel.Adicionales" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.Eventos" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.PresupuestoAdicionales" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.Presupuestos" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.Rubros" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.ListarAdicionalesPorPresupuesto" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.ObtenerDatosParaPresupuesto" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.ObtenerEventos" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.ObtenerPresupuestoAmbientacion" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.ObtenerPresupuestoArtistica" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.ObtenerPresupuestoAudiovisual" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.ObtenerPresupuestoBarra" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.ObtenerPresupuestoCatering" Width="1.5" PointX="11.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.ObtenerPresupuestoSalon" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AHModel.ObtenerPresupuestoTecnica" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="AHModel.FK_Adicionales_Rubros" ManuallyRouted="false" />
+        <AssociationConnector Association="AHModel.FK_PresupuestoAdicionales_Adicionales" ManuallyRouted="false" />
+        <AssociationConnector Association="AHModel.FK_Presupuestos_Eventos" ManuallyRouted="false" />
+        <AssociationConnector Association="AHModel.FK_PresupuestoAdicionales_Presupuestos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,2489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5F974EF0-3C0D-4B08-B982-097D582B23B9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AmbientHouse</RootNamespace>
+    <AssemblyName>AmbientHouse</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\packages\AjaxControlToolkit.16.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\Archivos\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1537.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1537.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1537.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1537.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1537.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1537.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Administracion\Cheques\Editar.aspx" />
+    <Content Include="Administracion\Clientes\Editar.aspx" />
+    <Content Include="Administracion\Clientes\Index.aspx" />
+    <Content Include="Administracion\Cobranzas\Editar.aspx" />
+    <Content Include="Administracion\Cobranzas\Index.aspx" />
+    <Content Include="Administracion\Comprobantes\VerPago.aspx" />
+    <Content Include="Administracion\Costos\Salones.aspx" />
+    <Content Include="Administracion\Cuentas\Conciliar.aspx" />
+    <Content Include="Administracion\Cuentas\Editar.aspx" />
+    <Content Include="Administracion\Cuentas\Egreso.aspx" />
+    <Content Include="Administracion\Cuentas\Index.aspx" />
+    <Content Include="Administracion\Cuentas\Ingreso.aspx" />
+    <Content Include="Administracion\Cuentas\Movimientos.aspx" />
+    <Content Include="Administracion\Cuentas\Rectificatoria.aspx" />
+    <Content Include="Administracion\Cuentas\Transferencias.aspx" />
+    <Content Include="Administracion\Default.aspx" />
+    <Content Include="Administracion\FacturasClientes\Editar.aspx" />
+    <Content Include="Administracion\FacturasClientes\Index.aspx" />
+    <Content Include="Administracion\LiquidacionHoras\Editar.aspx" />
+    <Content Include="Administracion\LiquidacionHoras\Index.aspx" />
+    <Content Include="Administracion\NotaCreditos\Editar.aspx" />
+    <Content Include="Administracion\NotaCreditos\Index.aspx" />
+    <Content Include="Administracion\PagoProveedores\Pago.aspx" />
+    <Content Include="Administracion\PresupuestosAprobados\CargarComanda.aspx" />
+    <Content Include="Administracion\PresupuestosAprobados\Descuentos.aspx" />
+    <Content Include="Administracion\PresupuestosAprobados\Imprimir.aspx" />
+    <Content Include="Administracion\PresupuestosAprobados\PresupuestosARevisar.aspx" />
+    <Content Include="Administracion\PresupuestosAprobados\ProveedoresExternos.aspx" />
+    <Content Include="Administracion\PresupuestosAprobados\SeguirAprobados.aspx" />
+    <Content Include="Administracion\PresupuestosAprobados\VisualizarArchivo.aspx" />
+    <Content Include="Administracion\PresupuestosAprobados\VisualizarArchivoComanda.aspx" />
+    <Content Include="Administracion\ProveedoresExternos\Editar.aspx" />
+    <Content Include="Administracion\Recibos\Editar.aspx" />
+    <Content Include="Administracion\Recibos\EditarOLD.aspx" />
+    <Content Include="Administracion\Recibos\Index.aspx" />
+    <Content Include="Administracion\TipoMovimientos\Editar.aspx" />
+    <Content Include="Administracion\TipoMovimientos\Index.aspx" />
+    <Content Include="Administracion\Transferencias\Editar.aspx" />
+    <Content Include="Administracion\Transferencias\Index.aspx" />
+    <Content Include="Administracion\ValorHoras\Index.aspx" />
+    <Content Include="Boostrap4\css\bootstrap.min.css" />
+    <Content Include="Boostrap4\js\bootstrap.min.js" />
+    <Content Include="Boostrap4\js\jquery-3.3.1.slim.min.js" />
+    <Content Include="Boostrap4\js\popper.min.js" />
+    <Content Include="Configuracion\AdicionalesItems\Editar.aspx" />
+    <Content Include="Configuracion\AdicionalesItems\Index.aspx" />
+    <Content Include="Configuracion\AmbientacionCI\Editar.aspx" />
+    <Content Include="Configuracion\AmbientacionCI\Index.aspx" />
+    <Content Include="Configuracion\CategoriaItems\Editar.aspx" />
+    <Content Include="Configuracion\CategoriaItems\Index.aspx" />
+    <Content Include="Configuracion\Grupos\Editar.aspx" />
+    <Content Include="Configuracion\Grupos\Index.aspx" />
+    <Content Include="Configuracion\ItemDetalle\Editar.aspx" />
+    <Content Include="Configuracion\ItemDetalle\Index.aspx" />
+    <Content Include="Configuracion\Locaciones\AgregarAmbientacion.aspx" />
+    <Content Include="Configuracion\Organizacion\Editar.aspx" />
+    <Content Include="Configuracion\Organizacion\Index.aspx" />
+    <Content Include="Configuracion\ProductosCatering\Editar.aspx" />
+    <Content Include="Configuracion\ProductosCatering\Index.aspx" />
+    <Content Include="Configuracion\Tiempos\Editar.aspx" />
+    <Content Include="Configuracion\Tiempos\Index.aspx" />
+    <Content Include="Configuracion\TipoBarrasCategoriasItem\Editar.aspx" />
+    <Content Include="Configuracion\TipoBarrasCategoriasItem\Index.aspx" />
+    <Content Include="Configuracion\TipoBarras\ReporteBarras.aspx" />
+    <Content Include="Configuracion\TipoCateringTiempoProductoItem\Editar.aspx" />
+    <Content Include="Configuracion\TipoCateringTiempoProductoItem\Index.aspx" />
+    <Content Include="Configuracion\TipoCatering\ReporteExperiencias.aspx" />
+    <Content Include="Content\Black.css" />
+    <Content Include="Content\Css\Imprimir.css" />
+    <Content Include="Content\Css\Master.css" />
+    <Content Include="Content\Css\screen.css" />
+    <Content Include="Content\Css\print.css" />
+    <Content Include="Content\Css\Style.css" />
+    <Content Include="Content\Imagenes\Ajuste.png" />
+    <Content Include="Content\Imagenes\ambient.jpg" />
+    <Content Include="Content\Imagenes\aprobado.png" />
+    <Content Include="Content\Imagenes\barras.png" />
+    <Content Include="Content\Imagenes\bocados.jpg" />
+    <Content Include="Content\Imagenes\cucharas-portada-251x57px.png" />
+    <Content Include="Content\Imagenes\Detalle.png" />
+    <Content Include="Content\Imagenes\Diego capo.png" />
+    <Content Include="Content\Imagenes\empleados.png" />
+    <Content Include="Content\Imagenes\entradas.png" />
+    <Content Include="Content\Imagenes\Experiencias\aceitunas.png" />
+    <Content Include="Content\Imagenes\Experiencias\brindis.png" />
+    <Content Include="Content\Imagenes\Experiencias\coffe.png" />
+    <Content Include="Content\Imagenes\Experiencias\entradas.png" />
+    <Content Include="Content\Imagenes\Experiencias\frutas-secas.png" />
+    <Content Include="Content\Imagenes\Experiencias\mesa-dulce.png" />
+    <Content Include="Content\Imagenes\Experiencias\plato-principal.png" />
+    <Content Include="Content\Imagenes\Experiencias\platos-03.png" />
+    <Content Include="Content\Imagenes\Experiencias\postres.png" />
+    <Content Include="Content\Imagenes\Experiencias\todoelevento.png" />
+    <Content Include="Content\Imagenes\Experiencias\vegetales-hoja3-168x427px.png" />
+    <Content Include="Content\Imagenes\Experiencias\vegetales-hoja4-314x390px.png" />
+    <Content Include="Content\Imagenes\Exploto 1.png" />
+    <Content Include="Content\Imagenes\hoja01.jpg" />
+    <Content Include="Content\Imagenes\icono_ver.png" />
+    <Content Include="Content\Imagenes\imprimir.png" />
+    <Content Include="Content\Imagenes\loading.gif" />
+    <Content Include="Content\Imagenes\Logo Nuevo.jpeg" />
+    <Content Include="Content\Imagenes\logo-231x93px.png" />
+    <Content Include="Content\Imagenes\logo.png" />
+    <Content Include="Content\Imagenes\Mas.png" />
+    <Content Include="Content\Imagenes\Menos.jpg" />
+    <Content Include="Content\Imagenes\Menos.png" />
+    <Content Include="Content\Imagenes\noaprobado.png" />
+    <Content Include="Content\Imagenes\paltas-hoja02-246x311px.png" />
+    <Content Include="Content\Imagenes\plato-principal.png" />
+    <Content Include="Content\Imagenes\Experiencias\mesaDulce.png" />
+    <Content Include="Content\Imagenes\redes-136x21px.png" />
+    <Content Include="Content\Imagenes\refresh.png" />
+    <Content Include="Content\Imagenes\Sin Archivo.jpg" />
+    <Content Include="Content\Imagenes\spices-herbs.png" />
+    <Content Include="Content\Imagenes\Tiger.jpeg" />
+    <Content Include="Content\Imagenes\vegetales-hoja3-168x427px.png" />
+    <Content Include="Content\Imagenes\vegetales-hoja4-314x390px.png" />
+    <Content Include="Content\Imagenes\ver.jpg" />
+    <Content Include="Content\JS\jquery-3.0.0.min.js" />
+    <Content Include="Content\JS\presupuestosLoad.js" />
+    <Content Include="Content\select2\css\select2.css" />
+    <Content Include="Content\select2\css\select2.min.css" />
+    <Content Include="Content\select2\js\i18N\af.js" />
+    <Content Include="Content\select2\js\i18N\ar.js" />
+    <Content Include="Content\select2\js\i18N\az.js" />
+    <Content Include="Content\select2\js\i18N\bg.js" />
+    <Content Include="Content\select2\js\i18N\bn.js" />
+    <Content Include="Content\select2\js\i18N\bs.js" />
+    <Content Include="Content\select2\js\i18N\ca.js" />
+    <Content Include="Content\select2\js\i18N\cs.js" />
+    <Content Include="Content\select2\js\i18N\da.js" />
+    <Content Include="Content\select2\js\i18N\de.js" />
+    <Content Include="Content\select2\js\i18N\dsb.js" />
+    <Content Include="Content\select2\js\i18N\el.js" />
+    <Content Include="Content\select2\js\i18N\en.js" />
+    <Content Include="Content\select2\js\i18N\eo.js" />
+    <Content Include="Content\select2\js\i18N\es.js" />
+    <Content Include="Content\select2\js\i18N\et.js" />
+    <Content Include="Content\select2\js\i18N\eu.js" />
+    <Content Include="Content\select2\js\i18N\fa.js" />
+    <Content Include="Content\select2\js\i18N\fi.js" />
+    <Content Include="Content\select2\js\i18N\fr.js" />
+    <Content Include="Content\select2\js\i18N\gl.js" />
+    <Content Include="Content\select2\js\i18N\he.js" />
+    <Content Include="Content\select2\js\i18N\hi.js" />
+    <Content Include="Content\select2\js\i18N\hr.js" />
+    <Content Include="Content\select2\js\i18N\hsb.js" />
+    <Content Include="Content\select2\js\i18N\hu.js" />
+    <Content Include="Content\select2\js\i18N\hy.js" />
+    <Content Include="Content\select2\js\i18N\id.js" />
+    <Content Include="Content\select2\js\i18N\is.js" />
+    <Content Include="Content\select2\js\i18N\it.js" />
+    <Content Include="Content\select2\js\i18N\ja.js" />
+    <Content Include="Content\select2\js\i18N\ka.js" />
+    <Content Include="Content\select2\js\i18N\km.js" />
+    <Content Include="Content\select2\js\i18N\ko.js" />
+    <Content Include="Content\select2\js\i18N\lt.js" />
+    <Content Include="Content\select2\js\i18N\lv.js" />
+    <Content Include="Content\select2\js\i18N\mk.js" />
+    <Content Include="Content\select2\js\i18N\ms.js" />
+    <Content Include="Content\select2\js\i18N\nb.js" />
+    <Content Include="Content\select2\js\i18N\ne.js" />
+    <Content Include="Content\select2\js\i18N\nl.js" />
+    <Content Include="Content\select2\js\i18N\pa.js" />
+    <Content Include="Content\select2\js\i18N\pl.js" />
+    <Content Include="Content\select2\js\i18N\ps.js" />
+    <Content Include="Content\select2\js\i18N\pt-BR.js" />
+    <Content Include="Content\select2\js\i18N\pt.js" />
+    <Content Include="Content\select2\js\i18N\ro.js" />
+    <Content Include="Content\select2\js\i18N\ru.js" />
+    <Content Include="Content\select2\js\i18N\sk.js" />
+    <Content Include="Content\select2\js\i18N\sl.js" />
+    <Content Include="Content\select2\js\i18N\sq.js" />
+    <Content Include="Content\select2\js\i18N\sr-Cyrl.js" />
+    <Content Include="Content\select2\js\i18N\sr.js" />
+    <Content Include="Content\select2\js\i18N\sv.js" />
+    <Content Include="Content\select2\js\i18N\te.js" />
+    <Content Include="Content\select2\js\i18N\th.js" />
+    <Content Include="Content\select2\js\i18N\tk.js" />
+    <Content Include="Content\select2\js\i18N\tr.js" />
+    <Content Include="Content\select2\js\i18N\uk.js" />
+    <Content Include="Content\select2\js\i18N\vi.js" />
+    <Content Include="Content\select2\js\i18N\zh-CN.js" />
+    <Content Include="Content\select2\js\i18N\zh-TW.js" />
+    <Content Include="Content\select2\js\select2.full.js" />
+    <Content Include="Content\select2\js\select2.full.min.js" />
+    <Content Include="Content\select2\js\select2.js" />
+    <Content Include="Content\select2\js\select2.min.js" />
+    <Content Include="Costos\AmbientacionCI\Index.aspx" />
+    <Content Include="Costos\AmbientacionCI\Editar.aspx" />
+    <Content Include="Editar.aspx" />
+    <Content Include="Error\404.aspx" />
+    <Content Include="Error\500.aspx" />
+    <Content Include="Error\ErrorPage.aspx" />
+    <Content Include="Error\NoTienePermisos.aspx" />
+    <Content Include="Firma.html" />
+    <Content Include="Home\Index.aspx" />
+    <Content Include="ImagenesFirma\Cabecera.jpeg" />
+    <Content Include="ImagenesFirma\descarga.png" />
+    <Content Include="ImagenesFirma\Edificio Lahusen.jpeg" />
+    <Content Include="ImagenesFirma\facebook.png" />
+    <Content Include="ImagenesFirma\Galpon Milagros.jpeg" />
+    <Content Include="ImagenesFirma\Garden.jpeg" />
+    <Content Include="ImagenesFirma\Hipodromo.jpeg" />
+    <Content Include="ImagenesFirma\instagram.png" />
+    <Content Include="ImagenesFirma\logotipo-de-youtube.png" />
+    <Content Include="ImagenesFirma\Palacio San Miguel.jpeg" />
+    <Content Include="ImagenesFirma\Salon del Rio.jpeg" />
+    <Content Include="ImagenesFirma\Terrazas.jpeg" />
+    <Content Include="Index.html" />
+    <Content Include="Inicio\Calendario.aspx" />
+    <Content Include="Inicio\DegustacionDetalle\Editar.aspx" />
+    <Content Include="Inicio\DegustacionDetalle\Index.aspx" />
+    <Content Include="Inicio\Degustacion\Index.aspx" />
+    <Content Include="Inicio\ejemplo.aspx" />
+    <Content Include="Inicio\ExperienciasBarras\Index.aspx" />
+    <Content Include="Inicio\ExperienciasBarras\Reporte.aspx" />
+    <Content Include="Inicio\Experiencias\Index.aspx" />
+    <Content Include="Inicio\Experiencias\Reporte.aspx" />
+    <Content Include="Inicio\Index.aspx" />
+    <Content Include="Inicio\Inicio.aspx" />
+    <Content Include="Inicio\InicioOld.aspx" />
+    <Content Include="Inicio\Principal.aspx" />
+    <Content Include="Operacion\AgregarPersonal.aspx" />
+    <Content Include="Operacion\CalendarioOperacion.aspx" />
+    <Content Include="Operacion\Degustacion\Index.aspx" />
+    <Content Include="Operacion\DegustacionDetalle\Index.aspx" />
+    <Content Include="Operacion\Index.aspx" />
+    <Content Include="Operacion\Planificacion\Editar.aspx" />
+    <Content Include="Operacion\Planificacion\VisualizarArchivo.aspx" />
+    <Content Include="Operacion\ReporteEventos.aspx" />
+    <Content Include="Operacion\ReporteExperienciaOperaciones.aspx" />
+    <Content Include="Operacion\Ver.aspx" />
+    <Content Include="Organizador\CalendarioOrganizador.aspx" />
+    <Content Include="Organizador\Default.aspx" />
+    <Content Include="Organizador\DegustacionDetalle\Index.aspx" />
+    <Content Include="Organizador\Degustacion\Editar.aspx" />
+    <Content Include="Organizador\Degustacion\Index.aspx" />
+    <Content Include="Organizador\EventosRealizados\Index.aspx" />
+    <Content Include="Organizador\Imprimir.aspx" />
+    <Content Include="Organizador\Index.aspx" />
+    <Content Include="Organizador\Planificacion\Editar.aspx" />
+    <Content Include="Organizador\Planificacion\ImprimirEvento.aspx" />
+    <Content Include="Organizador\Planificacion\Ver.aspx" />
+    <Content Include="Organizador\Planificacion\VisualizarArchivo.aspx" />
+    <Content Include="Organizador\Presupuestos\Editar.aspx" />
+    <Content Include="Organizador\Prueba.aspx" />
+    <Content Include="Organizador\ReporteEventos.aspx" />
+    <Content Include="Organizador\ReporteExperienciaOrganizador.aspx" />
+    <Content Include="PedidosCotizacion\Editar.aspx" />
+    <Content Include="PedidosCotizacion\Index.aspx" />
+    <Content Include="PresupuestosEventos\Index.aspx" />
+    <Content Include="Presupuestos\DescargarArchivoAprobacion.aspx" />
+    <Content Include="Presupuestos\DescargarArchivoTransferencia.aspx" />
+    <Content Include="Presupuestos\Descuentos.aspx" />
+    <Content Include="Presupuestos\EditarPresupuestosGanados.aspx" />
+    <Content Include="Presupuestos\EstablecerCantidadInvitados.aspx" />
+    <Content Include="Presupuestos\Imprimir.aspx" />
+    <Content Include="Presupuestos\RePresupuestar.aspx" />
+    <Content Include="Presupuestos\ReservarPresupuesto.aspx" />
+    <Content Include="Presupuestos\Ver.aspx" />
+    <Content Include="RepExperiencias.aspx" />
+    <Content Include="Reportes\Indexacion.aspx" />
+    <Content Include="Reportes\ReporteCobranzas.aspx" />
+    <Content Include="Reportes\ReporteCobranzasVentas.aspx" />
+    <Content Include="Reportes\ReporteComprobantes.aspx" />
+    <Content Include="Reportes\ReporteDetalle.aspx" />
+    <Content Include="Reportes\ReporteEstadoProveedoresEventosCerrados.aspx" />
+    <Content Include="Reportes\ReporteEventosConfirmados.aspx" />
+    <Content Include="Reportes\ReporteGastosPorPresupuesto.aspx" />
+    <Content Include="Reportes\ReporteIvaCompra.aspx" />
+    <Content Include="Reportes\ReporteMovimientosporCuentas.aspx" />
+    <Content Include="Reportes\ReportePagos.aspx" />
+    <Content Include="Reportes\ReportePagosProveedores.aspx" />
+    <Content Include="Reportes\ReporteProductos.aspx" />
+    <Content Include="Reportes\ReporteProveedoresAsociados.aspx" />
+    <Content Include="Reportes\ReporteProveedoresEventosCerrados.aspx" />
+    <Content Include="Reportes\ReporteProveedoresExternos.aspx" />
+    <Content Include="Reportes\ReporteResponsables.aspx" />
+    <Content Include="Reportes\ReporteResultados.aspx" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\MultiSelect.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\src\index.js" />
+    <Content Include="Scripts\src\methods\defaults.js" />
+    <Content Include="Scripts\src\methods\destroy.js" />
+    <Content Include="Scripts\src\methods\disableEventListeners.js" />
+    <Content Include="Scripts\src\methods\enableEventListeners.js" />
+    <Content Include="Scripts\src\methods\placements.js" />
+    <Content Include="Scripts\src\methods\update.js" />
+    <Content Include="Scripts\src\modifiers\applyStyle.js" />
+    <Content Include="Scripts\src\modifiers\arrow.js" />
+    <Content Include="Scripts\src\modifiers\computeStyle.js" />
+    <Content Include="Scripts\src\modifiers\flip.js" />
+    <Content Include="Scripts\src\modifiers\hide.js" />
+    <Content Include="Scripts\src\modifiers\index.js" />
+    <Content Include="Scripts\src\modifiers\inner.js" />
+    <Content Include="Scripts\src\modifiers\keepTogether.js" />
+    <Content Include="Scripts\src\modifiers\offset.js" />
+    <Content Include="Scripts\src\modifiers\preventOverflow.js" />
+    <Content Include="Scripts\src\modifiers\shift.js" />
+    <Content Include="Scripts\src\utils\clockwise.js" />
+    <Content Include="Scripts\src\utils\computeAutoPlacement.js" />
+    <Content Include="Scripts\src\utils\debounce.js" />
+    <Content Include="Scripts\src\utils\find.js" />
+    <Content Include="Scripts\src\utils\findCommonOffsetParent.js" />
+    <Content Include="Scripts\src\utils\findIndex.js" />
+    <Content Include="Scripts\src\utils\getBordersSize.js" />
+    <Content Include="Scripts\src\utils\getBoundaries.js" />
+    <Content Include="Scripts\src\utils\getBoundingClientRect.js" />
+    <Content Include="Scripts\src\utils\getClientRect.js" />
+    <Content Include="Scripts\src\utils\getFixedPositionOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetRect.js" />
+    <Content Include="Scripts\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getOppositePlacement.js" />
+    <Content Include="Scripts\src\utils\getOppositeVariation.js" />
+    <Content Include="Scripts\src\utils\getOuterSizes.js" />
+    <Content Include="Scripts\src\utils\getParentNode.js" />
+    <Content Include="Scripts\src\utils\getPopperOffsets.js" />
+    <Content Include="Scripts\src\utils\getReferenceNode.js" />
+    <Content Include="Scripts\src\utils\getReferenceOffsets.js" />
+    <Content Include="Scripts\src\utils\getRoot.js" />
+    <Content Include="Scripts\src\utils\getRoundedOffsets.js" />
+    <Content Include="Scripts\src\utils\getScroll.js" />
+    <Content Include="Scripts\src\utils\getScrollParent.js" />
+    <Content Include="Scripts\src\utils\getStyleComputedProperty.js" />
+    <Content Include="Scripts\src\utils\getSupportedPropertyName.js" />
+    <Content Include="Scripts\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getWindow.js" />
+    <Content Include="Scripts\src\utils\getWindowSizes.js" />
+    <Content Include="Scripts\src\utils\includeScroll.js" />
+    <Content Include="Scripts\src\utils\index.js" />
+    <Content Include="Scripts\src\utils\isBrowser.js" />
+    <Content Include="Scripts\src\utils\isFixed.js" />
+    <Content Include="Scripts\src\utils\isFunction.js" />
+    <Content Include="Scripts\src\utils\isIE.js" />
+    <Content Include="Scripts\src\utils\isModifierEnabled.js" />
+    <Content Include="Scripts\src\utils\isModifierRequired.js" />
+    <Content Include="Scripts\src\utils\isNumeric.js" />
+    <Content Include="Scripts\src\utils\isOffsetContainer.js" />
+    <Content Include="Scripts\src\utils\removeEventListeners.js" />
+    <Content Include="Scripts\src\utils\runModifiers.js" />
+    <Content Include="Scripts\src\utils\setAttributes.js" />
+    <Content Include="Scripts\src\utils\setStyles.js" />
+    <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Seguridad\CambioPassword.aspx" />
+    <Content Include="Seguridad\Editar.aspx" />
+    <Content Include="Administracion\Cheques\Index.aspx" />
+    <Content Include="Administracion\Comprobantes\Editar.aspx" />
+    <Content Include="Administracion\Comprobantes\Index.aspx" />
+    <Content Include="Administracion\Impuestos\Editar.aspx" />
+    <Content Include="Administracion\Impuestos\Index.aspx" />
+    <Content Include="Administracion\Index.aspx" />
+    <Content Include="Administracion\PagoProveedores\Editar.aspx" />
+    <Content Include="Administracion\Productos\Editar.aspx" />
+    <Content Include="Administracion\TipoComprobantes\Editar.aspx" />
+    <Content Include="Administracion\TipoComprobantes\Index.aspx" />
+    <Content Include="AppShared\Controles\Footer.ascx" />
+    <Content Include="AppShared\Controles\Header.ascx" />
+    <Content Include="AppShared\Controles\Menu.ascx" />
+    <Content Include="Configuracion\Adicionales\Editar.aspx" />
+    <Content Include="Configuracion\Adicionales\Index.aspx" />
+    <Content Include="Configuracion\Categorias\Editar.aspx" />
+    <Content Include="Configuracion\Categorias\Index.aspx" />
+    <Content Include="Configuracion\Comisiones\Editar.aspx" />
+    <Content Include="Configuracion\Comisiones\Index.aspx" />
+    <Content Include="Configuracion\ConfiguracionCateringTecnicaCotizador\Editar.aspx" />
+    <Content Include="Configuracion\ConfiguracionCateringTecnicaCotizador\Index.aspx" />
+    <Content Include="Configuracion\Duracion\Editar.aspx" />
+    <Content Include="Configuracion\Duracion\Index.aspx" />
+    <Content Include="Configuracion\Familias\Editar.aspx" />
+    <Content Include="Configuracion\Familias\Index.aspx" />
+    <Content Include="Configuracion\Index.aspx" />
+    <Content Include="Configuracion\Items\Editar.aspx" />
+    <Content Include="Configuracion\Items\Index.aspx" />
+    <Content Include="Configuracion\Locaciones\AgregarAdicionales.aspx" />
+    <Content Include="Configuracion\Locaciones\AgregarTecnica.aspx" />
+    <Content Include="Configuracion\Locaciones\Editar.aspx" />
+    <Content Include="Configuracion\Locaciones\Index.aspx" />
+    <Content Include="Configuracion\Locaciones\IndexAdicionales.aspx" />
+    <Content Include="Configuracion\Localidades\Editar.aspx" />
+    <Content Include="Configuracion\Localidades\Index.aspx" />
+    <Content Include="Configuracion\MomentosDia\Editar.aspx" />
+    <Content Include="Configuracion\MomentosDia\Index.aspx" />
+    <Content Include="Configuracion\Parametros\Editar.aspx" />
+    <Content Include="Configuracion\Parametros\Index.aspx" />
+    <Content Include="Configuracion\PlanesDePagos\Editar.aspx" />
+    <Content Include="Configuracion\PlanesDePagos\Index.aspx" />
+    <Content Include="Administracion\Productos\Index.aspx" />
+    <Content Include="Configuracion\Proveedores\Editar.aspx" />
+    <Content Include="Configuracion\Proveedores\Index.aspx" />
+    <Content Include="Configuracion\Rubros\Editar.aspx" />
+    <Content Include="Configuracion\Rubros\Index.aspx" />
+    <Content Include="Configuracion\UnidadesNegocios\Editar.aspx" />
+    <Content Include="Configuracion\UnidadesNegocios\Index.aspx" />
+    <Content Include="Configuracion\TipoBarras\Editar.aspx" />
+    <Content Include="Configuracion\TipoBarras\Index.aspx" />
+    <Content Include="Configuracion\TipoCatering\Editar.aspx" />
+    <Content Include="Configuracion\TipoCatering\Index.aspx" />
+    <Content Include="Configuracion\TipoCatering\RelacionarAdicionales.aspx" />
+    <Content Include="Configuracion\TipoCatering\RelacionarTipoCatering.aspx" />
+    <Content Include="Configuracion\TipoLogistica\Editar.aspx" />
+    <Content Include="Configuracion\TipoLogistica\Index.aspx" />
+    <Content Include="Configuracion\TipoTecnica\Editar.aspx" />
+    <Content Include="Configuracion\TipoTecnica\Index.aspx" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Imagenes\GRUPO LAHUSEN LOGO-01.png" />
+    <Content Include="Content\Imagenes\GRUPO LAHUSEN.png" />
+    <Content Include="Content\Imagenes\verde.png" />
+    <Content Include="Content\Imagenes\rojo.png" />
+    <Content Include="Costos\Adicionales\Editar.aspx" />
+    <Content Include="Costos\Adicionales\Index.aspx" />
+    <Content Include="Costos\Ambientacion\Editar.aspx" />
+    <Content Include="Costos\Ambientacion\Index.aspx" />
+    <Content Include="Costos\Barras\Editar.aspx" />
+    <Content Include="Costos\Barras\Index.aspx" />
+    <Content Include="Costos\Canon\Editar.aspx" />
+    <Content Include="Costos\Canon\Index.aspx" />
+    <Content Include="Costos\Catering\Editar.aspx" />
+    <Content Include="Costos\Catering\Index.aspx" />
+    <Content Include="Costos\Logistica\Editar.aspx" />
+    <Content Include="Costos\Logistica\Index.aspx" />
+    <Content Include="Costos\Salones\Editar.aspx" />
+    <Content Include="Costos\Salones\EditarValoresAnuales.aspx" />
+    <Content Include="Costos\Salones\Index.aspx" />
+    <Content Include="Costos\Salones\IndexValoresAnuales.aspx" />
+    <Content Include="Costos\Tecnica\Editar.aspx" />
+    <Content Include="Costos\Tecnica\Index.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Eventos\Editar.aspx" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Imagenes\usuarios.png" />
+    <Content Include="Herramientas\Corporativos\Editar.aspx" />
+    <Content Include="Herramientas\Corporativos\Index.aspx" />
+    <Content Include="Herramientas\Corporativos\NuevaCarpeta.aspx" />
+    <Content Include="Herramientas\Corporativos\VisualizaArchivo.aspx" />
+    <Content Include="Inicio\Default.aspx" />
+    <Content Include="packages.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="AppShared\MasterPage\AmbientHouse.Master" />
+    <Content Include="Presupuestos\Nuevo.aspx" />
+    <Content Include="Presupuestos\GestionPorEvento.aspx" />
+    <Content Include="Presupuestos\PresupuestoCliente.ashx" />
+    <Content Include="Presupuestos\Presupuesto.ashx" />
+    <Content Include="Presupuestos\PipeDrivePost.ashx" />
+    <Content Include="Herramientas\Corporativos\ArchivosDescargas.ashx" />
+    <Content Include="Presupuestos\ImagenAprobacion.ashx" />
+    <Content Include="AppShared\Recibo Lahusen.pdf" />
+    <Content Include="Presupuestos\RecibosEventos.ashx" />
+    <Content Include="Administracion\PresupuestosAprobados\PresupuestosAprobados.ashx" />
+    <Content Include="Organizador\PresupuestosOrganizador.ashx" />
+    <Content Include="AppShared\prueba experiencia.pdf" />
+    <Content Include="Presupuestos\PresupuestoClienteCambios.ashx" />
+    <Content Include="Presupuestos\ComprobanteMail.ashx" />
+    <Content Include="Organizador\Planificacion\DescargarArchivos.ashx" />
+    <Content Include="Operacion\Planificacion\DescargarArchivos.ashx" />
+    <Content Include="Administracion\PresupuestosAprobados\DescargarArchivos.ashx" />
+    <Content Include="Presupuestos\ArchivoAprobacionEvento.ashx" />
+    <Content Include="Presupuestos\ArchivoTransferenciaEvento.ashx" />
+    <Content Include="Presupuestos\CateringExperiencias.ashx" />
+    <Content Include="AppShared\Plantillas Catering 5 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Catering 6 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Catering 7 hojas.pdf" />
+    <Content Include="Configuracion\TipoCatering\CateringExperiencias.ashx" />
+    <Content Include="Inicio\CateringExperiencias.ashx" />
+    <Content Include="AppShared\Plantillas Catering 8 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Catering 9 hojas.pdf" />
+    <Content Include="AppShared\MasterPage\Ambient.Master" />
+    <Content Include="AppShared\Plantilla Ambient House Cliente.pdf" />
+    <Content Include="AppShared\Plantilla Edificio Lahusen Cliente.pdf" />
+    <Content Include="AppShared\Plantilla Galpon Milagros.pdf" />
+    <Content Include="AppShared\Plantilla NH.pdf" />
+    <Content Include="AppShared\Plantilla Terrazas Cliente.pdf" />
+    <Content Include="AppShared\UNAHOJA.pdf" />
+    <Content Include="Inicio\PlantillaPrueba.ashx" />
+    <Content Include="AppShared\Plantillas Catering 4 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Catering Hasta 19 renglones 1 hoja.pdf" />
+    <Content Include="AppShared\Plantillas Catering Hasta 38 renglones 2 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Catering Hasta 56 renglones 3 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Catering Hasta 75 renglones 4 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Catering Hasta 94 renglones 5 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Catering Hasta 113 renglones 6 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Catering Hasta 132 renglones 7 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Catering Hasta 151 renglones 8 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Catering Hasta 169 renglones 9 hojas.pdf" />
+    <Content Include="Inicio\BarrasExperiencias.ashx" />
+    <Content Include="AppShared\Plantillas Barras Hasta 19 renglones 1 hoja.pdf" />
+    <Content Include="AppShared\Plantillas Barras Hasta 38 renglones 2 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Barras Hasta 56 renglones 3 hojas.pdf" />
+    <Content Include="AppShared\Plantillas Barras Hasta 75 renglones 4 hojas.pdf" />
+    <Content Include="AppShared\Pueba.pdf" />
+    <Content Include="AppShared\TASTING 2021.pdf" />
+    <None Include="Properties\PublishProfiles\Ambient.pubxml" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Reportes\Index.aspx" />
+    <Content Include="Reportes\ReporteEventosGeneral.aspx" />
+    <Content Include="RRHH\Empleados\Editar.aspx" />
+    <Content Include="RRHH\Empleados\Index.aspx" />
+    <Content Include="RRHH\Index.aspx" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-3.0.0.min.js" />
+    <Content Include="Scripts\Presupuestos\Load.js" />
+    <Content Include="Seguridad\Login.aspx" />
+    <Content Include="Seguridad\Usuarios\Index.aspx" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Stock\Default.aspx" />
+    <Content Include="Stock\Existencias\Editar.aspx" />
+    <Content Include="Stock\Existencias\Index.aspx" />
+    <Content Include="Stock\Ingresos.aspx" />
+    <Content Include="Stock\Productos\Editar.aspx" />
+    <Content Include="Stock\Productos\Index.aspx" />
+    <Content Include="Stock\Requerimientos\Editar.aspx" />
+    <Content Include="Stock\Requerimientos\Index.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administracion\Cheques\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cheques\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Clientes\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Clientes\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Clientes\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Clientes\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Cobranzas\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cobranzas\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Cobranzas\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cobranzas\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Comprobantes\VerPago.aspx.cs">
+      <DependentUpon>VerPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Comprobantes\VerPago.aspx.designer.cs">
+      <DependentUpon>VerPago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Costos\Salones.aspx.cs">
+      <DependentUpon>Salones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Costos\Salones.aspx.designer.cs">
+      <DependentUpon>Salones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Conciliar.aspx.cs">
+      <DependentUpon>Conciliar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Conciliar.aspx.designer.cs">
+      <DependentUpon>Conciliar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Egreso.aspx.cs">
+      <DependentUpon>Egreso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Egreso.aspx.designer.cs">
+      <DependentUpon>Egreso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Ingreso.aspx.cs">
+      <DependentUpon>Ingreso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Ingreso.aspx.designer.cs">
+      <DependentUpon>Ingreso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Movimientos.aspx.cs">
+      <DependentUpon>Movimientos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Movimientos.aspx.designer.cs">
+      <DependentUpon>Movimientos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Rectificatoria.aspx.cs">
+      <DependentUpon>Rectificatoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Rectificatoria.aspx.designer.cs">
+      <DependentUpon>Rectificatoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Transferencias.aspx.cs">
+      <DependentUpon>Transferencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cuentas\Transferencias.aspx.designer.cs">
+      <DependentUpon>Transferencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\FacturasClientes\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\FacturasClientes\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\FacturasClientes\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\FacturasClientes\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\LiquidacionHoras\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\LiquidacionHoras\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\LiquidacionHoras\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\LiquidacionHoras\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\NotaCreditos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\NotaCreditos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\NotaCreditos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\NotaCreditos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PagoProveedores\Pago.aspx.cs">
+      <DependentUpon>Pago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\PagoProveedores\Pago.aspx.designer.cs">
+      <DependentUpon>Pago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\CargarComanda.aspx.cs">
+      <DependentUpon>CargarComanda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\CargarComanda.aspx.designer.cs">
+      <DependentUpon>CargarComanda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\DescargarArchivos.ashx.cs">
+      <DependentUpon>DescargarArchivos.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\Descuentos.aspx.cs">
+      <DependentUpon>Descuentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\Descuentos.aspx.designer.cs">
+      <DependentUpon>Descuentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\Imprimir.aspx.cs">
+      <DependentUpon>Imprimir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\Imprimir.aspx.designer.cs">
+      <DependentUpon>Imprimir.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\PresupuestosAprobados.ashx.cs">
+      <DependentUpon>PresupuestosAprobados.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\PresupuestosARevisar.aspx.cs">
+      <DependentUpon>PresupuestosARevisar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\PresupuestosARevisar.aspx.designer.cs">
+      <DependentUpon>PresupuestosARevisar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\ProveedoresExternos.aspx.cs">
+      <DependentUpon>ProveedoresExternos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\ProveedoresExternos.aspx.designer.cs">
+      <DependentUpon>ProveedoresExternos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\SeguirAprobados.aspx.cs">
+      <DependentUpon>SeguirAprobados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\SeguirAprobados.aspx.designer.cs">
+      <DependentUpon>SeguirAprobados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\VisualizarArchivo.aspx.cs">
+      <DependentUpon>VisualizarArchivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\VisualizarArchivo.aspx.designer.cs">
+      <DependentUpon>VisualizarArchivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\VisualizarArchivoComanda.aspx.cs">
+      <DependentUpon>VisualizarArchivoComanda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\VisualizarArchivoComanda.aspx.designer.cs">
+      <DependentUpon>VisualizarArchivoComanda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\ProveedoresExternos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\ProveedoresExternos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Recibos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Recibos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Recibos\EditarOLD.aspx.cs">
+      <DependentUpon>EditarOLD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Recibos\EditarOLD.aspx.designer.cs">
+      <DependentUpon>EditarOLD.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Recibos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Recibos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\TipoMovimientos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\TipoMovimientos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\TipoMovimientos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\TipoMovimientos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Transferencias\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Transferencias\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Transferencias\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Transferencias\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\ValorHoras\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\ValorHoras\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AppShared\MasterPage\Ambient.Master.cs">
+      <DependentUpon>Ambient.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppShared\MasterPage\Ambient.Master.designer.cs">
+      <DependentUpon>Ambient.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\AdicionalesItems\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AdicionalesItems\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\AdicionalesItems\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AdicionalesItems\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\AmbientacionCI\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AmbientacionCI\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\AmbientacionCI\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AmbientacionCI\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\CategoriaItems\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\CategoriaItems\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\CategoriaItems\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\CategoriaItems\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Grupos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Grupos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Grupos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Grupos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\ItemDetalle\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\ItemDetalle\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\ItemDetalle\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\ItemDetalle\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\AgregarAmbientacion.aspx.cs">
+      <DependentUpon>AgregarAmbientacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\AgregarAmbientacion.aspx.designer.cs">
+      <DependentUpon>AgregarAmbientacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Organizacion\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Organizacion\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Organizacion\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Organizacion\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\ProductosCatering\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\ProductosCatering\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\ProductosCatering\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\ProductosCatering\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Tiempos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Tiempos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Tiempos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Tiempos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoBarrasCategoriasItem\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoBarrasCategoriasItem\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoBarrasCategoriasItem\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoBarrasCategoriasItem\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoBarras\ReporteBarras.aspx.cs">
+      <DependentUpon>ReporteBarras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoBarras\ReporteBarras.aspx.designer.cs">
+      <DependentUpon>ReporteBarras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoCateringTiempoProductoItem\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoCateringTiempoProductoItem\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoCateringTiempoProductoItem\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoCateringTiempoProductoItem\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoCatering\CateringExperiencias.ashx.cs">
+      <DependentUpon>CateringExperiencias.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoCatering\ReporteExperiencias.aspx.cs">
+      <DependentUpon>ReporteExperiencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoCatering\ReporteExperiencias.aspx.designer.cs">
+      <DependentUpon>ReporteExperiencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\AmbientacionCI\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\AmbientacionCI\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\AmbientacionCI\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\AmbientacionCI\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error\404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error\404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error\500.aspx.cs">
+      <DependentUpon>500.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error\500.aspx.designer.cs">
+      <DependentUpon>500.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error\ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error\ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error\NoTienePermisos.aspx.cs">
+      <DependentUpon>NoTienePermisos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error\NoTienePermisos.aspx.designer.cs">
+      <DependentUpon>NoTienePermisos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\Corporativos\ArchivosDescargas.ashx.cs">
+      <DependentUpon>ArchivosDescargas.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\BarrasExperiencias.ashx.cs">
+      <DependentUpon>BarrasExperiencias.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\Calendario.aspx.cs">
+      <DependentUpon>Calendario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\Calendario.aspx.designer.cs">
+      <DependentUpon>Calendario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\CateringExperiencias.ashx.cs">
+      <DependentUpon>CateringExperiencias.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\DegustacionDetalle\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\DegustacionDetalle\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\DegustacionDetalle\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\DegustacionDetalle\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\Degustacion\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\Degustacion\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\ejemplo.aspx.cs">
+      <DependentUpon>ejemplo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\ejemplo.aspx.designer.cs">
+      <DependentUpon>ejemplo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\ExperienciasBarras\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\ExperienciasBarras\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\ExperienciasBarras\Reporte.aspx.cs">
+      <DependentUpon>Reporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\ExperienciasBarras\Reporte.aspx.designer.cs">
+      <DependentUpon>Reporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\Experiencias\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\Experiencias\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\Experiencias\Reporte.aspx.cs">
+      <DependentUpon>Reporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\Experiencias\Reporte.aspx.designer.cs">
+      <DependentUpon>Reporte.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\InicioOld.aspx.cs">
+      <DependentUpon>InicioOld.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\InicioOld.aspx.designer.cs">
+      <DependentUpon>InicioOld.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\PlantillaPrueba.ashx.cs">
+      <DependentUpon>PlantillaPrueba.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\Principal.aspx.cs">
+      <DependentUpon>Principal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\Principal.aspx.designer.cs">
+      <DependentUpon>Principal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\AgregarPersonal.aspx.cs">
+      <DependentUpon>AgregarPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\AgregarPersonal.aspx.designer.cs">
+      <DependentUpon>AgregarPersonal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\CalendarioOperacion.aspx.cs">
+      <DependentUpon>CalendarioOperacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\CalendarioOperacion.aspx.designer.cs">
+      <DependentUpon>CalendarioOperacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Degustacion\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\Degustacion\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\DegustacionDetalle\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\DegustacionDetalle\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Planificacion\DescargarArchivos.ashx.cs">
+      <DependentUpon>DescargarArchivos.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Planificacion\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\Planificacion\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Planificacion\VisualizarArchivo.aspx.cs">
+      <DependentUpon>VisualizarArchivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\Planificacion\VisualizarArchivo.aspx.designer.cs">
+      <DependentUpon>VisualizarArchivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\ReporteEventos.aspx.cs">
+      <DependentUpon>ReporteEventos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\ReporteEventos.aspx.designer.cs">
+      <DependentUpon>ReporteEventos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\ReporteExperienciaOperaciones.aspx.cs">
+      <DependentUpon>ReporteExperienciaOperaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\ReporteExperienciaOperaciones.aspx.designer.cs">
+      <DependentUpon>ReporteExperienciaOperaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Ver.aspx.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\Ver.aspx.designer.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\CalendarioOrganizador.aspx.cs">
+      <DependentUpon>CalendarioOrganizador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\CalendarioOrganizador.aspx.designer.cs">
+      <DependentUpon>CalendarioOrganizador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\DegustacionDetalle\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\DegustacionDetalle\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Degustacion\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\Degustacion\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Degustacion\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\Degustacion\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\EventosRealizados\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\EventosRealizados\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Imprimir.aspx.cs">
+      <DependentUpon>Imprimir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\Imprimir.aspx.designer.cs">
+      <DependentUpon>Imprimir.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Planificacion\DescargarArchivos.ashx.cs">
+      <DependentUpon>DescargarArchivos.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Planificacion\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\Planificacion\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Planificacion\ImprimirEvento.aspx.cs">
+      <DependentUpon>ImprimirEvento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\Planificacion\ImprimirEvento.aspx.designer.cs">
+      <DependentUpon>ImprimirEvento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Planificacion\Ver.aspx.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\Planificacion\Ver.aspx.designer.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Planificacion\VisualizarArchivo.aspx.cs">
+      <DependentUpon>VisualizarArchivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\Planificacion\VisualizarArchivo.aspx.designer.cs">
+      <DependentUpon>VisualizarArchivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\PresupuestosOrganizador.ashx.cs">
+      <DependentUpon>PresupuestosOrganizador.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Presupuestos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\Presupuestos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\Prueba.aspx.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\Prueba.aspx.designer.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\ReporteEventos.aspx.cs">
+      <DependentUpon>ReporteEventos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\ReporteEventos.aspx.designer.cs">
+      <DependentUpon>ReporteEventos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Organizador\ReporteExperienciaOrganizador.aspx.cs">
+      <DependentUpon>ReporteExperienciaOrganizador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Organizador\ReporteExperienciaOrganizador.aspx.designer.cs">
+      <DependentUpon>ReporteExperienciaOrganizador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PedidosCotizacion\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PedidosCotizacion\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PedidosCotizacion\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PedidosCotizacion\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PresupuestosEventos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PresupuestosEventos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\ArchivoAprobacionEvento.ashx.cs">
+      <DependentUpon>ArchivoAprobacionEvento.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\ArchivoTransferenciaEvento.ashx.cs">
+      <DependentUpon>ArchivoTransferenciaEvento.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\CateringExperiencias.ashx.cs">
+      <DependentUpon>CateringExperiencias.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\ComprobanteMail.ashx.cs">
+      <DependentUpon>ComprobanteMail.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\DescargarArchivoAprobacion.aspx.cs">
+      <DependentUpon>DescargarArchivoAprobacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presupuestos\DescargarArchivoAprobacion.aspx.designer.cs">
+      <DependentUpon>DescargarArchivoAprobacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\DescargarArchivoTransferencia.aspx.cs">
+      <DependentUpon>DescargarArchivoTransferencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presupuestos\DescargarArchivoTransferencia.aspx.designer.cs">
+      <DependentUpon>DescargarArchivoTransferencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\EstablecerCantidadInvitados.aspx.cs">
+      <DependentUpon>EstablecerCantidadInvitados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presupuestos\EstablecerCantidadInvitados.aspx.designer.cs">
+      <DependentUpon>EstablecerCantidadInvitados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\PresupuestoClienteCambios.ashx.cs">
+      <DependentUpon>PresupuestoClienteCambios.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\Descuentos.aspx.cs">
+      <DependentUpon>Descuentos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presupuestos\Descuentos.aspx.designer.cs">
+      <DependentUpon>Descuentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\EditarPresupuestosGanados.aspx.cs">
+      <DependentUpon>EditarPresupuestosGanados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presupuestos\EditarPresupuestosGanados.aspx.designer.cs">
+      <DependentUpon>EditarPresupuestosGanados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\ImagenAprobacion.ashx.cs">
+      <DependentUpon>ImagenAprobacion.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\Imprimir.aspx.cs">
+      <DependentUpon>Imprimir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presupuestos\Imprimir.aspx.designer.cs">
+      <DependentUpon>Imprimir.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\PipeDrivePost.ashx.cs">
+      <DependentUpon>PipeDrivePost.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\RecibosEventos.ashx.cs">
+      <DependentUpon>RecibosEventos.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\RePresupuestar.aspx.cs">
+      <DependentUpon>RePresupuestar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presupuestos\RePresupuestar.aspx.designer.cs">
+      <DependentUpon>RePresupuestar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\ReservarPresupuesto.aspx.cs">
+      <DependentUpon>ReservarPresupuesto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presupuestos\ReservarPresupuesto.aspx.designer.cs">
+      <DependentUpon>ReservarPresupuesto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\Ver.aspx.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presupuestos\Ver.aspx.designer.cs">
+      <DependentUpon>Ver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RepExperiencias.aspx.cs">
+      <DependentUpon>RepExperiencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RepExperiencias.aspx.designer.cs">
+      <DependentUpon>RepExperiencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Indexacion.aspx.cs">
+      <DependentUpon>Indexacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\Indexacion.aspx.designer.cs">
+      <DependentUpon>Indexacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteCobranzas.aspx.cs">
+      <DependentUpon>ReporteCobranzas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteCobranzas.aspx.designer.cs">
+      <DependentUpon>ReporteCobranzas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteCobranzasVentas.aspx.cs">
+      <DependentUpon>ReporteCobranzasVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteCobranzasVentas.aspx.designer.cs">
+      <DependentUpon>ReporteCobranzasVentas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteComprobantes.aspx.cs">
+      <DependentUpon>ReporteComprobantes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteComprobantes.aspx.designer.cs">
+      <DependentUpon>ReporteComprobantes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteDetalle.aspx.cs">
+      <DependentUpon>ReporteDetalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteDetalle.aspx.designer.cs">
+      <DependentUpon>ReporteDetalle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteEstadoProveedoresEventosCerrados.aspx.cs">
+      <DependentUpon>ReporteEstadoProveedoresEventosCerrados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteEstadoProveedoresEventosCerrados.aspx.designer.cs">
+      <DependentUpon>ReporteEstadoProveedoresEventosCerrados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteEventosConfirmados.aspx.cs">
+      <DependentUpon>ReporteEventosConfirmados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteEventosConfirmados.aspx.designer.cs">
+      <DependentUpon>ReporteEventosConfirmados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteGastosPorPresupuesto.aspx.cs">
+      <DependentUpon>ReporteGastosPorPresupuesto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteGastosPorPresupuesto.aspx.designer.cs">
+      <DependentUpon>ReporteGastosPorPresupuesto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteIvaCompra.aspx.cs">
+      <DependentUpon>ReporteIvaCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteIvaCompra.aspx.designer.cs">
+      <DependentUpon>ReporteIvaCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteMovimientosporCuentas.aspx.cs">
+      <DependentUpon>ReporteMovimientosporCuentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteMovimientosporCuentas.aspx.designer.cs">
+      <DependentUpon>ReporteMovimientosporCuentas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReportePagos.aspx.cs">
+      <DependentUpon>ReportePagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReportePagos.aspx.designer.cs">
+      <DependentUpon>ReportePagos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReportePagosProveedores.aspx.cs">
+      <DependentUpon>ReportePagosProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReportePagosProveedores.aspx.designer.cs">
+      <DependentUpon>ReportePagosProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteProductos.aspx.cs">
+      <DependentUpon>ReporteProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteProductos.aspx.designer.cs">
+      <DependentUpon>ReporteProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteProveedoresAsociados.aspx.cs">
+      <DependentUpon>ReporteProveedoresAsociados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteProveedoresAsociados.aspx.designer.cs">
+      <DependentUpon>ReporteProveedoresAsociados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteProveedoresEventosCerrados.aspx.cs">
+      <DependentUpon>ReporteProveedoresEventosCerrados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteProveedoresEventosCerrados.aspx.designer.cs">
+      <DependentUpon>ReporteProveedoresEventosCerrados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteProveedoresExternos.aspx.cs">
+      <DependentUpon>ReporteProveedoresExternos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteProveedoresExternos.aspx.designer.cs">
+      <DependentUpon>ReporteProveedoresExternos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteResponsables.aspx.cs">
+      <DependentUpon>ReporteResponsables.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteResponsables.aspx.designer.cs">
+      <DependentUpon>ReporteResponsables.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteResultados.aspx.cs">
+      <DependentUpon>ReporteResultados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteResultados.aspx.designer.cs">
+      <DependentUpon>ReporteResultados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\CambioPassword.aspx.cs">
+      <DependentUpon>CambioPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\CambioPassword.aspx.designer.cs">
+      <DependentUpon>CambioPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Cheques\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Cheques\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Comprobantes\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Comprobantes\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Comprobantes\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Comprobantes\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Impuestos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Impuestos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Impuestos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Impuestos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PagoProveedores\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\PagoProveedores\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Productos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Productos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\TipoComprobantes\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\TipoComprobantes\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\TipoComprobantes\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\TipoComprobantes\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AppShared\Controles\Footer.ascx.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppShared\Controles\Footer.ascx.designer.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AppShared\Controles\Header.ascx.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppShared\Controles\Header.ascx.designer.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AppShared\Controles\Menu.ascx.cs">
+      <DependentUpon>Menu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppShared\Controles\Menu.ascx.designer.cs">
+      <DependentUpon>Menu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AppShared\MasterPage\AmbientHouse.Master.cs">
+      <DependentUpon>AmbientHouse.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppShared\MasterPage\AmbientHouse.Master.designer.cs">
+      <DependentUpon>AmbientHouse.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Adicionales\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Adicionales\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Adicionales\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Adicionales\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Categorias\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Categorias\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Categorias\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Categorias\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Comisiones\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Comisiones\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Comisiones\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Comisiones\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\ConfiguracionCateringTecnicaCotizador\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\ConfiguracionCateringTecnicaCotizador\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\ConfiguracionCateringTecnicaCotizador\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\ConfiguracionCateringTecnicaCotizador\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Duracion\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Duracion\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Duracion\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Duracion\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Familias\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Familias\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Familias\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Familias\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Items\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Items\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Items\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Items\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\AgregarAdicionales.aspx.cs">
+      <DependentUpon>AgregarAdicionales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\AgregarAdicionales.aspx.designer.cs">
+      <DependentUpon>AgregarAdicionales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\AgregarTecnica.aspx.cs">
+      <DependentUpon>AgregarTecnica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\AgregarTecnica.aspx.designer.cs">
+      <DependentUpon>AgregarTecnica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\IndexAdicionales.aspx.cs">
+      <DependentUpon>IndexAdicionales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Locaciones\IndexAdicionales.aspx.designer.cs">
+      <DependentUpon>IndexAdicionales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Localidades\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Localidades\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Localidades\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Localidades\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\MomentosDia\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\MomentosDia\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\MomentosDia\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\MomentosDia\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Parametros\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Parametros\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Parametros\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Parametros\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\PlanesDePagos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\PlanesDePagos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\PlanesDePagos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\PlanesDePagos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Productos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Productos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Proveedores\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Proveedores\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Proveedores\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Proveedores\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Rubros\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Rubros\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Rubros\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Rubros\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\UnidadesNegocios\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\UnidadesNegocios\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\UnidadesNegocios\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\UnidadesNegocios\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoBarras\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoBarras\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoBarras\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoBarras\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoCatering\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoCatering\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoCatering\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoCatering\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoCatering\RelacionarAdicionales.aspx.cs">
+      <DependentUpon>RelacionarAdicionales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoCatering\RelacionarAdicionales.aspx.designer.cs">
+      <DependentUpon>RelacionarAdicionales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoCatering\RelacionarTipoCatering.aspx.cs">
+      <DependentUpon>RelacionarTipoCatering.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoCatering\RelacionarTipoCatering.aspx.designer.cs">
+      <DependentUpon>RelacionarTipoCatering.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoLogistica\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoLogistica\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoLogistica\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoLogistica\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoTecnica\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoTecnica\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TipoTecnica\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\TipoTecnica\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Adicionales\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Adicionales\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Adicionales\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Adicionales\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Ambientacion\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Ambientacion\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Ambientacion\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Ambientacion\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Barras\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Barras\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Barras\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Barras\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Canon\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Canon\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Canon\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Canon\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Catering\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Catering\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Catering\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Catering\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Logistica\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Logistica\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Logistica\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Logistica\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Salones\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Salones\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Salones\EditarValoresAnuales.aspx.cs">
+      <DependentUpon>EditarValoresAnuales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Salones\EditarValoresAnuales.aspx.designer.cs">
+      <DependentUpon>EditarValoresAnuales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Salones\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Salones\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Salones\IndexValoresAnuales.aspx.cs">
+      <DependentUpon>IndexValoresAnuales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Salones\IndexValoresAnuales.aspx.designer.cs">
+      <DependentUpon>IndexValoresAnuales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Tecnica\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Tecnica\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Costos\Tecnica\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Costos\Tecnica\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Eventos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Eventos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\Corporativos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Herramientas\Corporativos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\Corporativos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Herramientas\Corporativos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\Corporativos\NuevaCarpeta.aspx.cs">
+      <DependentUpon>NuevaCarpeta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Herramientas\Corporativos\NuevaCarpeta.aspx.designer.cs">
+      <DependentUpon>NuevaCarpeta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\Corporativos\VisualizaArchivo.aspx.cs">
+      <DependentUpon>VisualizaArchivo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Herramientas\Corporativos\VisualizaArchivo.aspx.designer.cs">
+      <DependentUpon>VisualizaArchivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\Nuevo.aspx.cs">
+      <DependentUpon>Nuevo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presupuestos\Nuevo.aspx.designer.cs">
+      <DependentUpon>Nuevo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\GestionPorEvento.aspx.cs">
+      <DependentUpon>GestionPorEvento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presupuestos\GestionPorEvento.aspx.designer.cs">
+      <DependentUpon>GestionPorEvento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\Presupuesto.ashx.cs">
+      <DependentUpon>Presupuesto.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuestos\PresupuestoCliente.ashx.cs">
+      <DependentUpon>PresupuestoCliente.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteEventosGeneral.aspx.cs">
+      <DependentUpon>ReporteEventosGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteEventosGeneral.aspx.designer.cs">
+      <DependentUpon>ReporteEventosGeneral.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RRHH\Empleados\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RRHH\Empleados\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RRHH\Empleados\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RRHH\Empleados\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RRHH\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RRHH\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seguridad\Usuarios\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\Usuarios\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Stock\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stock\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\Existencias\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stock\Existencias\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\Existencias\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stock\Existencias\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\Ingresos.aspx.cs">
+      <DependentUpon>Ingresos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stock\Ingresos.aspx.designer.cs">
+      <DependentUpon>Ingresos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\Productos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stock\Productos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\Productos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stock\Productos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\Requerimientos\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stock\Requerimientos\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\Requerimientos\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stock\Requerimientos\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.flow" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DomainAmbientHouse\DomainAmbientHouse.csproj">
+      <Project>{3e39b56b-f529-470b-a244-cd4cef7972f4}</Project>
+      <Name>DomainAmbientHouse</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Administracion\Reportes\" />
+    <Folder Include="Herramientas\MisArchivos\" />
+    <Folder Include="logs\" />
+    <Folder Include="Scripts\Ventas\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2271</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1201/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

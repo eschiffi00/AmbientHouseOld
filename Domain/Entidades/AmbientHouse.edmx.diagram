@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="59802e1c80cf4b058fa9c90a4ace64d0" Name="Diagram1">
+        <EntityTypeShape EntityType="AmbientHouseModel.Adicionales" Width="1.5" PointX="3" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.AdicionalesItems" Width="1.5" PointX="5.25" PointY="58.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.AmbientacionCI" Width="1.5" PointX="24.25" PointY="73.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.AmbientacionSalon" Width="1.5" PointX="16.5" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Bancos" Width="1.5" PointX="3.75" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Caracteristicas" Width="1.5" PointX="14.25" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Categorias" Width="1.5" PointX="26.5" PointY="60" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CategoriasArchivos" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CategoriasItem" Width="1.5" PointX="0.75" PointY="62.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CentroCostos" Width="1.5" PointX="19.5" PointY="51.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Cheques" Width="1.5" PointX="6" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ChequesPagosProveedores" Width="1.5" PointX="14.25" PointY="54.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ClientesBis" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ClientesEventosMovimientos" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ClientesPrueba" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CodigoPorRubro" Width="1.5" PointX="19.5" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Comisiones" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ComprobantePagoProveedor" Width="1.5" PointX="16.25" PointY="57.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ComprobantesProveedores" Width="1.5" PointX="9" PointY="52.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ComprobantesProveedores_Detalles" Width="1.5" PointX="21.75" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ConfiguracionCateringTecnica" Width="1.5" PointX="16.5" PointY="60.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CostoAdicionales" Width="1.5" PointX="5.25" PointY="45.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CostoAmbientacion" Width="1.5" PointX="28.75" PointY="60" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CostoBarra" Width="1.5" PointX="25.75" PointY="69.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CostoCanon" Width="1.5" PointX="23.5" PointY="63" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CostoCatering" Width="1.5" PointX="8.25" PointY="76.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CostoLogistica" Width="1.5" PointX="3" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CostoSalones" Width="1.5" PointX="27.75" PointY="54.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CostosPaquetesCIAmbientacion" Width="1.5" PointX="26.5" PointY="64.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.CostoTecnica" Width="1.5" PointX="16.5" PointY="67" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Cuentas" Width="1.5" PointX="22.5" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Cuentas_Log" Width="1.5" PointX="24.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Degustacion" Width="1.5" PointX="3" PointY="71.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.DegustacionDetalle" Width="1.5" PointX="5.25" PointY="61.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Departamentos" Width="1.5" PointX="1.5" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.DuracionEvento" Width="1.5" PointX="14.25" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.EjecucionTareasProgramadas" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.EmpleadoDepartamentos" Width="1.5" PointX="8.25" PointY="47.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Empleados" Width="1.5" PointX="3" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.EmpleadosPresupuestosAprobados" Width="1.5" PointX="18.75" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Empresas" Width="1.5" PointX="22.5" PointY="59.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Estados" Width="1.5" PointX="0.75" PointY="54" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Eventos" Width="1.5" PointX="14.25" PointY="47.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.FacturasClientes" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Familias" Width="1.5" PointX="3" PointY="66.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.FechasBloqueadas" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Feriados" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.FormasdePago" Width="1.5" PointX="12" PointY="46.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.GruposItems" Width="1.5" PointX="0.75" PointY="66.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Herramientas" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Impuestos" Width="1.5" PointX="19.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Indexacion" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Intermediarios" Width="1.5" PointX="24.5" PointY="55.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.INVENTARIO_Depositos" Width="1.5" PointX="22.5" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.INVENTARIO_Movimiento_Producto" Width="1.5" PointX="21.75" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.INVENTARIO_Pedido" Width="1.5" PointX="19.5" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.INVENTARIO_Producto" Width="1.5" PointX="19.5" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.INVENTARIO_ProductoDeposito" Width="1.5" PointX="24.75" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.INVENTARIO_Recetas" Width="1.5" PointX="24.75" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.INVENTARIO_Requerimiento" Width="1.5" PointX="19.5" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.INVENTARIO_Requerimiento_Detalle" Width="1.5" PointX="21.75" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.INVENTARIO_Unidades" Width="1.5" PointX="17.25" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Items" Width="1.5" PointX="3" PointY="62.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Jornadas" Width="1.5" PointX="14.25" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Locaciones" Width="1.5" PointX="14.25" PointY="60.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.LocacionesValorAnio" Width="1.5" PointX="16.5" PointY="71.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Localidades" Width="1.5" PointX="0.75" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.MomentosDias" Width="1.5" PointX="14.25" PointY="68.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Movimientos" Width="1.5" PointX="24.75" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.NotaCredito_Detalle" Width="1.5" PointX="13.5" PointY="57.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.NotaCreditos" Width="1.5" PointX="11.25" PointY="57.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObjetivosEmpleados" Width="1.5" PointX="5.25" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObjetivosGrupos" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.OrganizacionCatering" Width="1.5" PointX="21" PointY="63.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.OrganizacionItems" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.OrganizacionPresupuestoDetalle" Width="1.5" PointX="18.75" PointY="57" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.OrganizacionPresupuestoProveedoresExternos" Width="1.5" PointX="18.75" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.OrganizacionPresupuestosArchivos" Width="1.5" PointX="21.75" PointY="55.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.OrganizacionPresupuestoTimming" Width="1.5" PointX="18.75" PointY="54.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.PagosClientes" Width="1.5" PointX="24.75" PointY="48.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.PagosProveedores" Width="1.5" PointX="24.75" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Parametros" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Perfiles" Width="1.5" PointX="9" PointY="44.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.PlanesDePago" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.PresupuestoDetalle" Width="1.5" PointX="18.75" PointY="81.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Presupuestos" Width="1.5" PointX="16.5" PointY="45.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ProcesoCierre" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Productos" Width="1.5" PointX="11.25" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ProductosCatering" Width="1.5" PointX="6" PointY="75.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ProductosCateringItems" Width="1.5" PointX="9.25" PointY="72" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Proveedores" Width="1.5" PointX="6.75" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ReciboEventoPresupuesto" Width="1.5" PointX="24.75" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Recibos" Width="1.5" PointX="22.5" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Retenciones" Width="1.5" PointX="27" PointY="49.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Rubros" Width="1.5" PointX="17.25" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Rubros_Proveedores" Width="1.5" PointX="25.5" PointY="39.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Sectores" Width="1.5" PointX="16.5" PointY="74.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.SectoresEmpresa" Width="1.5" PointX="0.75" PointY="47.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Segmentos" Width="1.5" PointX="14.25" PointY="71.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.sysdiagrams" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TecnicaSalon" Width="1.5" PointX="25.5" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Tiempos" Width="1.5" PointX="6" PointY="78.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoBarraCategoriaItem" Width="1.5" PointX="28.75" PointY="64.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoCatering" Width="1.5" PointX="6" PointY="68.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoCateringAdicional" Width="1.5" PointX="8.25" PointY="60.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoCateringFamilia" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoCateringTiempoProductoItem" Width="1.5" PointX="8.25" PointY="67.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoComprobante_Impuestos" Width="1.5" PointX="27.75" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoComprobantes" Width="1.5" PointX="6.75" PointY="72.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoEmpleados" Width="1.5" PointX="0.75" PointY="50.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoEventos" Width="1.5" PointX="14.25" PointY="75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoLogistica" Width="1.5" PointX="0.75" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoMovimientos" Width="1.5" PointX="22.5" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TiposBarras" Width="1.5" PointX="23.5" PointY="66.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoServicioAdicional" Width="1.5" PointX="11.25" PointY="53.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.TipoServicios" Width="1.5" PointX="9" PointY="63.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Transferencias" Width="1.5" PointX="6" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.UnidadesNegocios" Width="1.5" PointX="0.75" PointY="58.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.UnidadesNegocios_Proveedores" Width="1.5" PointX="9" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.UnidadesNegocios_TipoMovimientos" Width="1.5" PointX="27.75" PointY="46.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.UsuarioPipeDrive_Ambient" Width="1.5" PointX="11.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.Usuarios" Width="1.5" PointX="11.25" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.UsuariosGrupos" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.UsuariosLocaciones" Width="1.5" PointX="11.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.AvisosClientesPorFecha" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.EMPLEADODEPARTAMENTO" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.EventosConfirmadosReservadosTODOS" Width="1.5" PointX="8.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.EVENTOSTODOS" Width="1.5" PointX="10.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerAdiciones" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerArchivosPorCategorias" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerCantidadInvitadosBarras" Width="1.5" PointX="13.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerCantidadInvitadosCatering" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerCantidadPersonasAdicionalesCatering" Width="1.5" PointX="13.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerClientes" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerContactosClientes" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerDatosParaPresupuesto" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerEventos" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerEventosSeguimiento" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerFamilias" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerGruposconFamilias" Width="1.5" PointX="16.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPrecioCostoBarra" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPrecioCostoCatering" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPrecioCostoTecnica" Width="1.5" PointX="17.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoAmbientacion" Width="1.5" PointX="10.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoArtistica" Width="1.5" PointX="12.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoAudiovisual" Width="1.5" PointX="14.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoBarra" Width="1.5" PointX="16.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoCatering" Width="1.5" PointX="6.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoSalon" Width="1.5" PointX="18.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoTecnica" Width="1.5" PointX="18.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerUsuarios" Width="1.5" PointX="19.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.PresupuestosAVencer" Width="1.5" PointX="20.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ReporteAdiocionales" Width="1.5" PointX="18.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ReporteComprobantes" Width="1.5" PointX="20.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ReporteEventosPorUnidadesdeNegocios" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.SeguimientosEventosClientesEstados" Width="1.5" PointX="21.75" PointY="15.75" IsExpanded="true" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Adicionales_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Adicionales_Rubros" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_AdicionalesItems_Adicionales" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoAdicionales_Adicional" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoCateringAdicional_Adicionales" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoServicioAdicional_Adicionales" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_AdicionalesItems_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostosPaquetesCIAmbientacion_AmbientacionCI" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_AmbientacionSalon_Locaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_AmbientacionSalon_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Cheques_Bancos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Transferencias_Bancos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Categorias_Caracteristicas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ConfiguracionCatering_Caracteristicas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoCanon_Caracteristicas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostosPaquetesCIAmbientacion_Caracteristicas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_DegustacionDetalle_Caracteristicas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Presupuestos_Caracteristicas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Categorias_Locaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Categorias_Segmentos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoAmbientacion_Categorias" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Herramientas_CategoriasArchivos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Familias_CategoriasItem" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Items_CategoriasItem" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoBarraCategoriaItem_CategoriasItem" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoCateringTiempoProductoItem_CategoriasItem" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantesProveedores_Detalles_CentroCostos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Cheques_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ChequesPagosProveedores_Cheques" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Eventos_Cheques" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ChequesPagosProveedores_PagosProveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CodigoPorRubro_Rubros" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantePagoProveedor_ComprobantesProveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantePagoProveedor_PagosProveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantesProveedores_Cuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantesProveedores_Detalles_ComprobantesProveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantesProveedores_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantesProveedores_FormasdePago" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantesProveedores_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantesProveedores_TipoComprobantes" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_NotaCreditos_ComprobantesProveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantesProveedores_Detalles_Impuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantesProveedores_Detalles_Presupuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantesProveedores_Detalles_TipoMovimientos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ComprobantesProveedores_Detalles_UnidadesNegocios" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ConfiguracionCatering_MomentosDias" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ConfiguracionCatering_Segmentos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ConfiguracionCatering_TipoCatering" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ConfiguracionCatering_TipoServicios" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ConfiguracionCateringTecnica_DuracionEvento" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoBarra_TiposBarras" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoCanon_Segmentos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoCanon_TipoCatering" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoCatering_TipoCatering" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoLogistica_Localidades" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoLogistica_TipoLogistica" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoSalones_Jornadas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoSalones_Locaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoSalones_Sectores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostosPaquetesCIAmbientacion_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostosPaquetesCIAmbientacion_Segmentos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoTecnica_Segmentos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_CostoTecnica_TipoServicios" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Cuentas_Log_Cuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_PagosProveedores_Cuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Degustacion_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_DegustacionDetalle_Degustacion" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_DegustacionDetalle_Empleados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_DegustacionDetalle_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_DegustacionDetalle_Locaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_DegustacionDetalle_Segmentos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_DegustacionDetalle_TipoEventos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_EmpleadoDepartamentos_Departamentos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_SectoresEmpresa_Departamentos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Presupuestos_DuracionEvento" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TiposBarras_DuracionEvento" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_EmpleadoDepartamentos_Empleados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Empleados_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Empleados_Localidades" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Empleados_SectoresEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Empleados_TipoEmpleados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Eventos_Empleados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ObjetivosEmpleados_Empleados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_OrganizacionPresupuestosArchivos_Empleados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Usuarios_Empleados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_EmpleadosPresupuestosAprobados_Presupuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_PagosClientes_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Eventos_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Presupuestos_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Usuarios_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Eventos_FormasdePago" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Presupuestos_Eventos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ReciboEventoPresupuesto_Eventos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Familias_GruposItems" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_PagosClientes_FormasdePago" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Recibos_FormasdePago" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoComprobante_Impuestos_Impuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Intermediarios_Locaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Intermediarios_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Intermediarios_UnidadesNegocios" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_ProductoDeposito_INVENTARIO_Depositos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Movimiento_Producto_INVENTARIO_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Requerimiento_Detalle_Inventario_Pedido" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Producto_INVENTARIO_Unidades" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Producto_INVENTARIO_Unidades1" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Producto_Rubros" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_ProductoDeposito_INVENTARIO_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Recetas_INVENTARIO_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Recetas_INVENTARIO_Producto1" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Requerimiento_Detalle_INVENTARIO_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Recetas_INVENTARIO_Unidades" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Requerimiento_Detalle_INVENTARIO_Requerimiento" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Requerimiento_Detalle_INVENTARIO_Unidades" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_INVENTARIO_Requerimiento_Detalle_Presupuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ProductosCateringItems_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Presupuestos_Jornadas" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Locaciones_Localidades" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_LocacionesValorAnio_Locaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Presupuestos_Locaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Sectores_Locaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TecnicaSalon_Locaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Presupuestos_MomentosDias" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Movimientos_TipoMovimientos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_NotaCredito_Detalle_NotaCreditos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ObjetivosGrupos_UsuariosGrupos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_OrganizacionCatering_OrganizacionPresupuestoDetalle" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_OrganizacionPresupuestoDetalle_Presupuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_OrganizacionPresupuestoProveedoresExternos_Presupuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_OrganizacionPresupuestosArchivos_Presupuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_OrganizacionPresupuestoTimming_Presupuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_PagosClientes_Presupuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_PagosClientes_TipoMovimientos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Retenciones_PagosClientes" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Retenciones_PagosProveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Productos_Perfiles" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Usuarios_Perfiles" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_PresupuestoDetalle_Presupuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Presupuestos_Segmentos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Presupuestos_TipoEventos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ReciboEventoPresupuesto_Presupuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Productos_UnidadesNegocios" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ProductosCateringItems_ProductosCatering" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoCateringTiempoProductoItem_ProductosCatering" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Rubros_Proveedores_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TecnicaSalon_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_UnidadesNegocios_Proveedores_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_ReciboEventoPresupuesto_Recibos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Retenciones_TipoMovimientos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_Rubros_Proveedores_Rubros" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TiposBarras_Segmentos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoCateringTiempoProductoItem_Tiempos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoBarraCategoriaItem_TiposBarras" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoCatering_Rubros" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoCateringAdicional_TipoCatering" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoCateringTiempoProductoItem_TipoCatering" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoComprobante_Impuestos_TipoComprobantes" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_UnidadesNegocios_TipoMovimientos_TipoMovimientos" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoServicioAdicional_TipoServicios" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_TipoServicios_Rubros" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_UnidadesNegocios_Proveedores_UnidadesNegocios" ManuallyRouted="false" />
+        <AssociationConnector Association="AmbientHouseModel.FK_UnidadesNegocios_TipoMovimientos_UnidadesNegocios" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
