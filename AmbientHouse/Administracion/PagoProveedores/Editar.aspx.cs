@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DbEntidades.Entities;
 using DbEntidades.Operators;
+using NPOI.SS.Formula.Functions;
 
 namespace AmbientHouse.Administracion.PagoProveedores
 {
@@ -358,7 +359,31 @@ namespace AmbientHouse.Administracion.PagoProveedores
 
         protected void ButtonAceptar_Click(object sender, EventArgs e)
         {
-            Grabar();
+            var error = 0;
+            foreach (GridViewRow fila in GridViewPresupuestos.Rows)
+            {
+                TableCellCollection fila2;
+                fila2 = fila.Cells;
+                double costo = float.Parse(fila2[5].Text);//((TextBox)fila.FindControl("Costo")).Text);
+                double valorImpuesto = float.Parse(fila2[6].Text);
+                double montoPagado = 0;
+                if (((TextBox)fila.FindControl("MontoaPagar")).Text != ""){
+                    montoPagado = float.Parse(((TextBox)fila.FindControl("MontoaPagar")).Text);
+                }
+
+                
+                if ((costo + valorImpuesto) < montoPagado) { error++; }    
+            }
+            if(error == 0)
+            {
+                Grabar();
+            }
+            else
+            {
+                string message = "Monto a Pagar es mayor que el costo del item";
+                ScriptManager.RegisterStartupScript((sender as Control), this.GetType(), "Popup", "ShowPopup('" + message + "');", true);
+            }
+            
         }
 
         private void Grabar()
