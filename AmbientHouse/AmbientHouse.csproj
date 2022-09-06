@@ -224,6 +224,7 @@
     <Content Include="Content\Imagenes\vegetales-hoja3-168x427px.png" />
     <Content Include="Content\Imagenes\vegetales-hoja4-314x390px.png" />
     <Content Include="Content\Imagenes\ver.jpg" />
+    <Content Include="Content\JS\Funciones.js" />
     <Content Include="Content\JS\jquery-3.0.0.min.js" />
     <Content Include="Content\JS\presupuestosLoad.js" />
     <Content Include="Content\select2\css\select2.css" />

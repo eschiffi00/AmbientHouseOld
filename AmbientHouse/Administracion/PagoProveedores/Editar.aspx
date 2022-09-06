@@ -10,8 +10,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
     <script>
         $(document).ready(function () {
-            var chkdetalle = document.querySelectorAll('[id$="MontoaPagar"]');
-            chkdetalle.addEventListener('change', DeshabilitaAceptar);
+
+           
+
 
         });
     </script>
