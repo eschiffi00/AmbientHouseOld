@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DbEntidades.Entities;
+using DbEntidades.Operators;
 
 namespace AmbientHouse.Administracion.PagoProveedores
 {
@@ -165,6 +167,8 @@ namespace AmbientHouse.Administracion.PagoProveedores
             DropDownListTipoMoviminetos.DataValueField = "Id";
             DropDownListTipoMoviminetos.DataBind();
 
+
+
         }
 
         private void InicializarPagina()
@@ -183,6 +187,40 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 ProveedorId = Int32.Parse(Request["ProveedorId"]);
             }
 
+            if(ListComprobantesSeleccionados.Count > 0)
+            {
+                List<ComprobantesPagosDetalle> ListaPagos = new List<ComprobantesPagosDetalle>();
+                
+
+                    foreach(var comprobante in ListComprobantesSeleccionados)
+                    {
+                        List<ComprobantesProveedores_Detalles> ComprobanteDetalle = new List<ComprobantesProveedores_Detalles>();
+                        ComprobanteDetalle.AddRange(ComprobantesProveedores_DetallesOperator.GetAllByParameter("ComprobanteProveedorId", comprobante.Id));
+                        if (ComprobanteDetalle.Count > 1)
+                        {
+                            foreach (var detalle in ComprobanteDetalle)
+                            {
+                                ComprobantesPagosDetalle ComprobantePago = new ComprobantesPagosDetalle();
+                                ComprobantePago.NroComprobante = detalle.Id;
+                                ComprobantePago.NroPresupuesto = detalle.PresupuestoId is null ? 0: detalle.PresupuestoId.Value;
+                                ComprobantePago.Descripcion = detalle.Descripcion;
+                                ComprobantePago.TipoMovimiento = TipoMovimientosOperator.GetOneByParameter("Id", detalle.TipoMoviemientoId).Id;
+                                ComprobantePago.TMDescripcion = TipoMovimientosOperator.GetOneByParameter("Id",detalle.TipoMoviemientoId).Descripcion;
+                                ComprobantePago.Costo = detalle.Importe;
+                                ComprobantePago.ValorImpuesto = detalle.ValorImpuesto;
+                                ComprobantePago.MontoaPagar = detalle.Importe + detalle.ValorImpuesto;
+                                ListaPagos.Add(ComprobantePago);
+                            }
+                    
+                        }
+                    }
+                
+                
+                
+                GridViewPresupuestos.DataSource = ListaPagos;
+                GridViewPresupuestos.DataBind();
+            }
+
             if (ListComprobantesSeleccionados.Count > 1)
             {
                 GridViewComprobantes.DataSource = ListComprobantesSeleccionados.ToList();
@@ -191,12 +229,12 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 double totalImporteNotaCreditos = ObtenerImporteNotaCreditos(ListComprobantesSeleccionados);
                  
 
+
                 EmpresaId = (int) ListComprobantesSeleccionados.FirstOrDefault().EmpresaId;
 
                 TextBoxImporte.Text = (ListComprobantesSeleccionados.Sum(o => o.MontoFactura) - totalImporteNotaCreditos).ToString();
 
                 TextBoxImporte.ReadOnly = true;
-
 
                 TextBoxImportePagado.Text = TextBoxImporte.Text;
                 TextBoxImportePagado.ReadOnly = true;
@@ -352,6 +390,19 @@ namespace AmbientHouse.Administracion.PagoProveedores
             }
 
             servicios.GrabarPagoProveedores(pagos, ListComprobantesSeleccionados, ListChequesSeleccionados);
+
+            /////INICIA GRABACION DE ComprobantesPagados/////
+            ComprobantesPagados comprobante = new ComprobantesPagados();
+            foreach (GridViewRow fila in GridViewPresupuestos.Rows)
+            {
+                comprobante.NroComprobante  = Int32.Parse(((TextBox)fila.FindControl("NroComprobante")).Text);
+                comprobante.NroPresupuesto  = Int32.Parse(((TextBox)fila.FindControl("NroPresupuesto")).Text);
+                comprobante.TipoMovimiento  = Int32.Parse(((TextBox)fila.FindControl("TipoMovimiento")).Text);
+                comprobante.TMDescripcion   = ((TextBox)fila.FindControl("TMDescripcion")).Text;
+                comprobante.MontoPagado     = float.Parse(((TextBox)fila.FindControl("MontoPagado")).Text);
+                ComprobantesPagadosOperator.Save(comprobante);
+            }
+
             Response.Redirect("~/Administracion/Comprobantes/Index.aspx");
 
         }

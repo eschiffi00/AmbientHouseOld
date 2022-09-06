@@ -46,6 +46,12 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\packages\AjaxControlToolkit.16.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\..\..\Archivos\itextsharp.dll</HintPath>
     </Reference>
@@ -70,6 +76,18 @@
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
@@ -940,6 +958,7 @@
     <Compile Include="AppShared\MasterPage\Ambient.Master.designer.cs">
       <DependentUpon>Ambient.Master</DependentUpon>
     </Compile>
+    <Compile Include="CCLib.cs" />
     <Compile Include="Configuracion\AdicionalesItems\Editar.aspx.cs">
       <DependentUpon>Editar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1118,6 +1137,7 @@
     <Compile Include="Costos\AmbientacionCI\Editar.aspx.designer.cs">
       <DependentUpon>Editar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CryptorEngine.cs" />
     <Compile Include="Editar.aspx.cs">
       <DependentUpon>Editar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2443,9 +2463,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DBEntidades\DBEntidades.csproj">
+      <Project>{a97126b4-19b0-4d41-a3b1-32bb7fc0f1d2}</Project>
+      <Name>DBEntidades</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DomainAmbientHouse\DomainAmbientHouse.csproj">
       <Project>{3e39b56b-f529-470b-a244-cd4cef7972f4}</Project>
       <Name>DomainAmbientHouse</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibDB2\LibDB2.csproj">
+      <Project>{ef6b6312-625a-45ad-aa77-8c3fcf01f179}</Project>
+      <Name>LibDB2</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

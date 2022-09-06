@@ -8,6 +8,13 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
+    <script>
+        $(document).ready(function () {
+            var chkdetalle = document.querySelectorAll('[id$="MontoaPagar"]');
+            chkdetalle.addEventListener('change', DeshabilitaAceptar);
+
+        });
+    </script>
     <table style="width: 100%;">
         <tr>
             <td>&nbsp;</td>
@@ -51,6 +58,30 @@
                                                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" SortExpression="Fecha" />
                                                     <asp:BoundField DataField="MontoFactura" HeaderText="Monto Factura $" SortExpression="MontoFactura" />
 
+                                                </Columns>
+
+                                            </asp:GridView>
+                                            <asp:GridView ID="GridViewPresupuestos" runat="server" CssClass="table table-bordered bs-table" AutoGenerateColumns="False" CellPadding="4" EmptyDataText="No se Encontraron Registros" ForeColor="#333333" GridLines="None" Width="100%" PageSize="25">
+                                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                                <HeaderStyle BackColor="#2E64FE" Font-Bold="True" ForeColor="White" />
+                                                <EditRowStyle BackColor="#ffffcc" />
+                                                <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
+
+                                                <Columns>
+                                                    <asp:BoundField DataField="NroComprobante" HeaderText="Comprobante" />
+                                                    <asp:BoundField DataField="NroPresupuesto" HeaderText="Presupuesto" Visible="false"/>
+                                                    <asp:BoundField DataField="Descripcion" HeaderText="Descripcion"/>
+                                                    <asp:BoundField DataField="TipoMovimiento" HeaderText="TipoMovimiento" Visible="false"/>
+                                                    <asp:BoundField DataField="TMDescripcion" HeaderText="Tipo de Movimiento"/>
+                                                    <asp:BoundField DataField="Costo" HeaderText="Costo"/>
+                                                    <asp:BoundField DataField="ValorImpuesto" HeaderText="Impuesto"/>
+                                                    <asp:TemplateField HeaderText="Monto a Pagar">
+
+                                                        <ItemTemplate>
+                                                            <div class="float-left">&nbsp;$&nbsp;</div>
+                                                            <asp:TextBox id="MontoaPagar" runat="server" class="form-control" ></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                 </Columns>
 
                                             </asp:GridView>
