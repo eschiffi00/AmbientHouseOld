@@ -10,7 +10,7 @@ namespace DbEntidades.Entities
 {
     public partial class ComprobantesPagados
     {
-		public int Id { get; set; }
+		public int? Id { get; set; }
 		public int? NroComprobante { get; set; }
 		public int  NroPresupuesto { get; set; }
 		public int TipoMovimiento { get; set; }
@@ -44,10 +44,10 @@ namespace DbEntidades.Entities
 			switch (colName) 
 			{
 				case "Id": return false;
-				case "NroPresupuesto": return true;
+				case "NroPresupuesto": return false;
 				case "TipoMovimiento": return true;
 				case "TMDescripcion": return true;
-				case "MontoPagado": return true;
+				case "MontoPagado": return false;
 				default: return false;
 			}
 		}

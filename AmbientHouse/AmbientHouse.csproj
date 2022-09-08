@@ -175,6 +175,7 @@
     <Content Include="Configuracion\TipoCatering\ReporteExperiencias.aspx" />
     <Content Include="Content\Black.css" />
     <Content Include="Content\Css\Imprimir.css" />
+    <Content Include="Content\Css\Main.css" />
     <Content Include="Content\Css\Master.css" />
     <Content Include="Content\Css\screen.css" />
     <Content Include="Content\Css\print.css" />
@@ -224,6 +225,15 @@
     <Content Include="Content\Imagenes\vegetales-hoja3-168x427px.png" />
     <Content Include="Content\Imagenes\vegetales-hoja4-314x390px.png" />
     <Content Include="Content\Imagenes\ver.jpg" />
+    <Content Include="Content\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\JS\Funciones.js" />
     <Content Include="Content\JS\jquery-3.0.0.min.js" />
     <Content Include="Content\JS\presupuestosLoad.js" />
@@ -391,6 +401,12 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\MultiSelect.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -620,12 +636,12 @@
     <Content Include="AppShared\Plantillas Barras Hasta 75 renglones 4 hojas.pdf" />
     <Content Include="AppShared\Pueba.pdf" />
     <Content Include="AppShared\TASTING 2021.pdf" />
+    <Content Include="DialogContentHandler.ashx" />
     <None Include="Properties\PublishProfiles\Ambient.pubxml" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper.min.js.map" />
-    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Reportes\Index.aspx" />
     <Content Include="Reportes\ReporteEventosGeneral.aspx" />
     <Content Include="RRHH\Empleados\Editar.aspx" />
@@ -633,8 +649,6 @@
     <Content Include="RRHH\Index.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
     <Content Include="Scripts\Presupuestos\Load.js" />
     <Content Include="Seguridad\Login.aspx" />
@@ -663,7 +677,6 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administracion\Cheques\Editar.aspx.cs">
@@ -1173,6 +1186,9 @@
     </Compile>
     <Compile Include="Error\NoTienePermisos.aspx.designer.cs">
       <DependentUpon>NoTienePermisos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DialogContentHandler.ashx.cs">
+      <DependentUpon>DialogContentHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Herramientas\Corporativos\ArchivosDescargas.ashx.cs">
       <DependentUpon>ArchivosDescargas.ashx</DependentUpon>
@@ -2456,6 +2472,8 @@
     <Content Include="Scripts\umd\popper.js.flow" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

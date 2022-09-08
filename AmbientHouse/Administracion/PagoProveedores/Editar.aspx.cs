@@ -10,12 +10,14 @@ using System.Web.UI.WebControls;
 using DbEntidades.Entities;
 using DbEntidades.Operators;
 using NPOI.SS.Formula.Functions;
+using AmbientHouse.Reportes;
+using Microsoft.Reporting.Map.WebForms.BingMaps;
 
 namespace AmbientHouse.Administracion.PagoProveedores
 {
     public partial class Editar : System.Web.UI.Page
     {
-
+        
         AdministrativasServicios servicios = new AdministrativasServicios();
         Comun cmd = new Comun();
 
@@ -197,27 +199,37 @@ namespace AmbientHouse.Administracion.PagoProveedores
                     {
                         List<ComprobantesProveedores_Detalles> ComprobanteDetalle = new List<ComprobantesProveedores_Detalles>();
                         ComprobanteDetalle.AddRange(ComprobantesProveedores_DetallesOperator.GetAllByParameter("ComprobanteProveedorId", comprobante.Id));
-                        if (ComprobanteDetalle.Count > 1)
+                        if (ComprobanteDetalle.Count >= 1)
                         {
+                        var ind = 0;
                             foreach (var detalle in ComprobanteDetalle)
                             {
+                                var importes = ComprobantesPagadosOperator.GetAllByParameter("NroComprobante",detalle.Id);
+                            var importe = importes.Count > 0 ? importes[ind].MontoPagado : 0;
+                            if ((detalle.Importe+detalle.ValorImpuesto) > importe)
+                                {
                                 ComprobantesPagosDetalle ComprobantePago = new ComprobantesPagosDetalle();
                                 ComprobantePago.NroComprobante = detalle.Id;
-                                ComprobantePago.NroPresupuesto = detalle.PresupuestoId is null ? 0: detalle.PresupuestoId.Value;
+                                ComprobantePago.NroPresupuesto = detalle.PresupuestoId is null ? 0 : detalle.PresupuestoId.Value;
                                 ComprobantePago.Descripcion = detalle.Descripcion;
                                 ComprobantePago.TipoMovimiento = TipoMovimientosOperator.GetOneByParameter("Id", detalle.TipoMoviemientoId).Id;
-                                ComprobantePago.TMDescripcion = TipoMovimientosOperator.GetOneByParameter("Id",detalle.TipoMoviemientoId).Descripcion;
-                                ComprobantePago.Costo = detalle.Importe;
-                                ComprobantePago.ValorImpuesto = detalle.ValorImpuesto;
-                                ComprobantePago.MontoaPagar = detalle.Importe + detalle.ValorImpuesto;
+                                ComprobantePago.TMDescripcion = TipoMovimientosOperator.GetOneByParameter("Id", detalle.TipoMoviemientoId).Descripcion;
+                                
+                                ComprobantePago.Costo = (detalle.Importe - importe) < 0 ? 0 : (detalle.Importe - importe);
+                                if(ComprobantePago.Costo == 0)
+                                {
+                                    importe = importe - detalle.Importe;
+                                    ComprobantePago.ValorImpuesto = (detalle.ValorImpuesto - importe);
+                                }
+                                else {ComprobantePago.ValorImpuesto = detalle.ValorImpuesto;}
+
+                                ComprobantePago.MontoaPagar = ComprobantePago.Costo + ComprobantePago.ValorImpuesto;
                                 ListaPagos.Add(ComprobantePago);
+                                ind++;
+                                }   
                             }
-                    
                         }
                     }
-                
-                
-                
                 GridViewPresupuestos.DataSource = ListaPagos;
                 GridViewPresupuestos.DataBind();
             }
@@ -360,33 +372,69 @@ namespace AmbientHouse.Administracion.PagoProveedores
         protected void ButtonAceptar_Click(object sender, EventArgs e)
         {
             var error = 0;
+            double totalaPagar = 0;
             foreach (GridViewRow fila in GridViewPresupuestos.Rows)
             {
                 TableCellCollection fila2;
                 fila2 = fila.Cells;
-                double costo = float.Parse(fila2[5].Text);//((TextBox)fila.FindControl("Costo")).Text);
+                double costo = float.Parse(fila2[5].Text);
                 double valorImpuesto = float.Parse(fila2[6].Text);
                 double montoPagado = 0;
                 if (((TextBox)fila.FindControl("MontoaPagar")).Text != ""){
                     montoPagado = float.Parse(((TextBox)fila.FindControl("MontoaPagar")).Text);
+                    //var algo = Int32.Parse(((TextBox)fila.FindControl("NroComprobante")).Text);
                 }
-
+                if(costo + valorImpuesto < 0)
+                {totalaPagar = totalaPagar + montoPagado + costo + valorImpuesto;}
+                else 
+                { totalaPagar = totalaPagar + montoPagado; }
                 
-                if ((costo + valorImpuesto) < montoPagado) { error++; }    
+                if ((costo + valorImpuesto) < montoPagado && (costo+valorImpuesto) >=0) 
+                { error = 1; }    
             }
+            if(totalaPagar != float.Parse(TextBoxImporte.Text))
+            {
+                error = 2;
+            }
+
             if(error == 0)
             {
-                Grabar();
+                /////INICIA GRABACION DE ComprobantesPagados/////
+                ComprobantesPagados comprobante = new ComprobantesPagados();
+                var ind = 0;
+
+                foreach (GridViewRow fila in GridViewPresupuestos.Rows)
+                {
+                    TableCellCollection fila2;
+                    fila2 = fila.Cells;
+                    //comprobante.NroComprobante = Int32.Parse(((TextBox)fila.FindControl("NroComprobante")).Text);
+                    comprobante.NroComprobante = Int32.Parse(fila2[0].Text);
+                    var ids = ComprobantesPagadosOperator.GetAllByParameter("NroComprobante", comprobante.NroComprobante.Value);
+                    var id = ids.Count > 0 ? ids[ind].Id : -1;
+                    comprobante.Id = id;
+                    comprobante.NroPresupuesto  = fila2[1].Text != "" ? Int32.Parse(fila2[3].Text) : 0;
+                    comprobante.TipoMovimiento  = TipoMovimientosOperator.GetOneByStrParameter("Descripcion", fila2[4].Text).Id;
+                    comprobante.TMDescripcion   = fila2[4].Text;
+                    //comprobante.MontoPagado     = float.Parse(fila2[7].Text);
+                    //comprobante.NroPresupuesto = Int32.Parse(((TextBox)fila.FindControl("NroPresupuesto")).Text);
+                    //comprobante.TipoMovimiento = Int32.Parse(((TextBox)fila.FindControl("TipoMovimiento")).Text);
+                    //comprobante.TMDescripcion = ((TextBox)fila.FindControl("TMDescripcion")).Text;
+                    comprobante.MontoPagado = float.Parse(((TextBox)fila.FindControl("MontoaPagar")).Text);
+                    ComprobantesPagadosOperator.Save(comprobante);
+                    ind++;
+                }
+
+                Grabar(sender, e);
             }
             else
             {
-                string message = "Monto a Pagar es mayor que el costo del item";
-                ScriptManager.RegisterStartupScript((sender as Control), this.GetType(), "Popup", "ShowPopup('" + message + "');", true);
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "dlgOutOfRange",
+                    "ShowError('" + error+"');", true);
             }
             
         }
 
-        private void Grabar()
+        private void Grabar(object sender, EventArgs e)
         {
             int FormaRetenciones = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoRetenciones"].ToString());
             int FormaPagoTransferencias = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoTransferencia"].ToString());
@@ -413,20 +461,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 pagos.ProveedorId = ProveedorId;
                
             }
-
             servicios.GrabarPagoProveedores(pagos, ListComprobantesSeleccionados, ListChequesSeleccionados);
-
-            /////INICIA GRABACION DE ComprobantesPagados/////
-            ComprobantesPagados comprobante = new ComprobantesPagados();
-            foreach (GridViewRow fila in GridViewPresupuestos.Rows)
-            {
-                comprobante.NroComprobante  = Int32.Parse(((TextBox)fila.FindControl("NroComprobante")).Text);
-                comprobante.NroPresupuesto  = Int32.Parse(((TextBox)fila.FindControl("NroPresupuesto")).Text);
-                comprobante.TipoMovimiento  = Int32.Parse(((TextBox)fila.FindControl("TipoMovimiento")).Text);
-                comprobante.TMDescripcion   = ((TextBox)fila.FindControl("TMDescripcion")).Text;
-                comprobante.MontoPagado     = float.Parse(((TextBox)fila.FindControl("MontoPagado")).Text);
-                ComprobantesPagadosOperator.Save(comprobante);
-            }
 
             Response.Redirect("~/Administracion/Comprobantes/Index.aspx");
 
@@ -560,6 +595,10 @@ namespace AmbientHouse.Administracion.PagoProveedores
         {
 
         }
-
+        //protected virtual void OnErrorReached(EventArgs e)
+        //{
+        //    DialogContentHandler handler = "DialogContentHandler.ashx";
+        //    handler?.Invoke(this, e);
+        //}
     }
 }

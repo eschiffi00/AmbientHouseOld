@@ -1,29 +1,58 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="Editar.aspx.cs" Inherits="AmbientHouse.Administracion.PagoProveedores.Editar" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="../../Scripts/jquery-3.6.0.min.js"></script>
+    <link href="../../Content/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/bootstrap.min.js"></script>
+    <script src="../../Scripts/jquery-ui.js"></script>
+
+
     <style type="text/css">
         .auto-style1 {
             height: 39px;
         }
+
     </style>
+
+
+    <script>
+        var j = jQuery.noConflict();
+
+        function ShowError(error) {
+            var texto;
+            switch (error) {
+                case "1":
+                    texto = 'El Monto a Pagar es mayor que el Costo';
+                    break;
+                case "2":
+                    texto = 'El Monto a Pagar es distinto del Importe Saldo';
+                    break;
+            }
+            j(function () {
+                j('#dialog').dialog({
+                    modal: true,
+                    width: 'auto',
+                    resizable: false,
+                    draggable: false,
+                    close: function (event, ui) { j('body').find('#dialog').remove(); },
+                    closeText: "X",
+                    show: "fade",
+                    hide: "fade",
+                    open: function () {
+                        $(this).html(texto);
+                    },
+                    
+                })
+            });
+            
+            j("#dialog").dialog("open");
+            j('#dialog').html(texto).dialog({});
+            /*$("#dialog").html(texto);*/
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
-    <script>
-        function ShowPopup(message) {
-            $(function () {
-                $("#dialog").html(message);
-                $("#dialog").dialog({
-                    title: "Error",
-                    buttons: {
-                        Close: function () {
-                            $(this).dialog('close');
-                        }
-                    },
-                    modal: true
-                });
-            });
-        };
-    </script>
+    
     <table style="width: 100%;">
         <tr>
             <td>&nbsp;</td>
@@ -80,12 +109,11 @@
                                                     <asp:BoundField DataField="NroComprobante" HeaderText="Comprobante" />
                                                     <asp:BoundField DataField="NroPresupuesto" HeaderText="Presupuesto" Visible="false"/>
                                                     <asp:BoundField DataField="Descripcion" HeaderText="Descripcion"/>
-                                                    <asp:BoundField DataField="TipoMovimiento" HeaderText="TipoMovimiento" Visible="false"/>
+                                                    <asp:BoundField DataField="TipoMovimiento" HeaderText="CodTipoMovimiento" Visible="false"/>
                                                     <asp:BoundField DataField="TMDescripcion" HeaderText="Tipo de Movimiento"/>
                                                     <asp:BoundField DataField="Costo" HeaderText="Costo"/>
                                                     <asp:BoundField DataField="ValorImpuesto" HeaderText="Impuesto"/>
                                                     <asp:TemplateField HeaderText="Monto a Pagar">
-
                                                         <ItemTemplate>
                                                             <div class="float-left">&nbsp;$&nbsp;</div>
                                                             <asp:TextBox id="MontoaPagar" runat="server" class="form-control" ></asp:TextBox>
@@ -419,31 +447,12 @@
             <td>&nbsp;</td>
         </tr>
     </table>
-    <%--<asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>--%>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
-                <div id="dialog" style="display: none">
-                </div>
-            </ContentTemplate>
-    </asp:UpdatePanel>
-    <%--<div class="modal fade" id="ModalValidation" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
-          </div>
-          <div class="modal-body">
-            <p>Some text in the modal.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
+    <div id="dialog" style="display: none;" title="Monto Erroneo">
+      <%--<p>
+        El Monto a Pagar es mayor que el Costo
+      </p>--%>
+    </div>
 
-      </div>
-    </div>--%>
 
 </asp:Content>
 <%--<asp:Content ID="Content3" ContentPlaceHolderID="LinksContainer" runat="server">
