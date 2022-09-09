@@ -106,17 +106,18 @@
                                                 <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
 
                                                 <Columns>
-                                                    <asp:BoundField DataField="NroComprobante" HeaderText="Comprobante" />
+                                                    <asp:BoundField DataField="ComprobanteProveedorDetalleId" HeaderText="Nro. Comprobante"/>
                                                     <asp:BoundField DataField="NroPresupuesto" HeaderText="Presupuesto" Visible="false"/>
                                                     <asp:BoundField DataField="Descripcion" HeaderText="Descripcion"/>
                                                     <asp:BoundField DataField="TipoMovimiento" HeaderText="CodTipoMovimiento" Visible="false"/>
                                                     <asp:BoundField DataField="TMDescripcion" HeaderText="Tipo de Movimiento"/>
                                                     <asp:BoundField DataField="Costo" HeaderText="Costo"/>
                                                     <asp:BoundField DataField="ValorImpuesto" HeaderText="Impuesto"/>
+                                                    <asp:BoundField DataField="CostoTotal" HeaderText="Costo Total"/>
                                                     <asp:TemplateField HeaderText="Monto a Pagar">
                                                         <ItemTemplate>
                                                             <div class="float-left">&nbsp;$&nbsp;</div>
-                                                            <asp:TextBox id="MontoaPagar" runat="server" class="form-control" ></asp:TextBox>
+                                                            <asp:TextBox id="MontoaPagar" runat="server" class="form-control" Style="width:150px" ></asp:TextBox>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>

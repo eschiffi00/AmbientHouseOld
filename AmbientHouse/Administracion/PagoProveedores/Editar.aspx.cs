@@ -204,12 +204,12 @@ namespace AmbientHouse.Administracion.PagoProveedores
                         var ind = 0;
                             foreach (var detalle in ComprobanteDetalle)
                             {
-                                var importes = ComprobantesPagadosOperator.GetAllByParameter("NroComprobante",detalle.Id);
+                                var importes = ComprobantesPagadosOperator.GetAllByParameter("ComprobanteProveedorDetalleId", detalle.Id);
                             var importe = importes.Count > 0 ? importes[ind].MontoPagado : 0;
                             if ((detalle.Importe+detalle.ValorImpuesto) > importe)
                                 {
                                 ComprobantesPagosDetalle ComprobantePago = new ComprobantesPagosDetalle();
-                                ComprobantePago.NroComprobante = detalle.Id;
+                                ComprobantePago.ComprobanteProveedorDetalleId = detalle.Id;
                                 ComprobantePago.NroPresupuesto = detalle.PresupuestoId is null ? 0 : detalle.PresupuestoId.Value;
                                 ComprobantePago.Descripcion = detalle.Descripcion;
                                 ComprobantePago.TipoMovimiento = TipoMovimientosOperator.GetOneByParameter("Id", detalle.TipoMoviemientoId).Id;
@@ -223,7 +223,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
                                 }
                                 else {ComprobantePago.ValorImpuesto = detalle.ValorImpuesto;}
 
-                                ComprobantePago.MontoaPagar = ComprobantePago.Costo + ComprobantePago.ValorImpuesto;
+                                ComprobantePago.CostoTotal = ComprobantePago.Costo + ComprobantePago.ValorImpuesto;
                                 ListaPagos.Add(ComprobantePago);
                                 ind++;
                                 }   
@@ -408,8 +408,8 @@ namespace AmbientHouse.Administracion.PagoProveedores
                     TableCellCollection fila2;
                     fila2 = fila.Cells;
                     //comprobante.NroComprobante = Int32.Parse(((TextBox)fila.FindControl("NroComprobante")).Text);
-                    comprobante.NroComprobante = Int32.Parse(fila2[0].Text);
-                    var ids = ComprobantesPagadosOperator.GetAllByParameter("NroComprobante", comprobante.NroComprobante.Value);
+                    comprobante.ComprobanteProveedorDetalleId = Int32.Parse(fila2[0].Text);
+                    var ids = ComprobantesPagadosOperator.GetAllByParameter("NroComprobante", comprobante.ComprobanteProveedorDetalleId.Value);
                     var id = ids.Count > 0 ? ids[ind].Id : -1;
                     comprobante.Id = id;
                     comprobante.NroPresupuesto  = fila2[1].Text != "" ? Int32.Parse(fila2[3].Text) : 0;

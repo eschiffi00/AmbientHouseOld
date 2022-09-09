@@ -11,7 +11,7 @@ namespace DbEntidades.Entities
     public partial class ComprobantesPagados
     {
 		public int? Id { get; set; }
-		public int? NroComprobante { get; set; }
+		public int? ComprobanteProveedorDetalleId { get; set; }
 		public int  NroPresupuesto { get; set; }
 		public int TipoMovimiento { get; set; }
 		public string TMDescripcion { get; set;}
@@ -21,7 +21,7 @@ namespace DbEntidades.Entities
 		{
 			return "\r\n " + 
 			"Id: " + Id.ToString() + "\r\n " +
-            "NroComprobante: " + NroComprobante.ToString() + "\r\n " +  
+            "NroComprobante: " + ComprobanteProveedorDetalleId.ToString() + "\r\n " +  
 			"NroPresupuesto: " + NroPresupuesto.ToString() + "\r\n " +
             "TipoMovimiento: " + TipoMovimiento.ToString() + "\r\n " +
             "TMDescripcion: "  + TMDescripcion.ToString() + "\r\n " +
@@ -30,7 +30,7 @@ namespace DbEntidades.Entities
         public ComprobantesPagados()
         {
 			Id = -1;
-            NroComprobante = 0;
+            ComprobanteProveedorDetalleId = 0;
 			NroPresupuesto = 0;
             TipoMovimiento = 0;
             TMDescripcion = "";
