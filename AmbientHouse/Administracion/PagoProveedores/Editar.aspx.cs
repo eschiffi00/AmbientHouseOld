@@ -208,6 +208,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
                             var importe = importes.Count > 0 ? importes[ind].MontoPagado : 0;
                             if ((detalle.Importe+detalle.ValorImpuesto) > importe)
                                 {
+
                                 ComprobantesPagosDetalle ComprobantePago = new ComprobantesPagosDetalle();
                                 ComprobantePago.ComprobanteProveedorDetalleId = detalle.Id;
                                 ComprobantePago.NroPresupuesto = detalle.PresupuestoId is null ? 0 : detalle.PresupuestoId.Value;
@@ -216,14 +217,21 @@ namespace AmbientHouse.Administracion.PagoProveedores
                                 ComprobantePago.TMDescripcion = TipoMovimientosOperator.GetOneByParameter("Id", detalle.TipoMoviemientoId).Descripcion;
                                 
                                 ComprobantePago.Costo = (detalle.Importe - importe) < 0 ? 0 : (detalle.Importe - importe);
+                                ComprobantePago.Costo = Math.Round(ComprobantePago.Costo, 2);
                                 if(ComprobantePago.Costo == 0)
                                 {
                                     importe = importe - detalle.Importe;
                                     ComprobantePago.ValorImpuesto = (detalle.ValorImpuesto - importe);
                                 }
                                 else {ComprobantePago.ValorImpuesto = detalle.ValorImpuesto;}
-
-                                ComprobantePago.CostoTotal = ComprobantePago.Costo + ComprobantePago.ValorImpuesto;
+                                var iibbarba = comprobante.IIBBARBA is null ? 0 : comprobante.IIBBARBA.Value;
+                                var iva105 = comprobante.Iva105 is null ? 0 : comprobante.Iva105.Value;
+                                var iibbcaba = comprobante.IIBBCABA is null ? 0 : comprobante.IIBBCABA.Value;
+                                if (ind == 0)
+                                {
+                                    ComprobantePago.ValorImpuesto = Math.Round((ComprobantePago.ValorImpuesto + iibbarba + iva105 + iibbcaba),2);
+                                }
+                                ComprobantePago.CostoTotal = Math.Round((ComprobantePago.Costo + ComprobantePago.ValorImpuesto),2);
                                 ListaPagos.Add(ComprobantePago);
                                 ind++;
                                 }   
@@ -392,10 +400,14 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 if ((costo + valorImpuesto) < montoPagado && (costo+valorImpuesto) >=0) 
                 { error = 1; }    
             }
-            if(totalaPagar != float.Parse(TextBoxImporte.Text))
+            var totalInt = Math.Truncate(totalaPagar);
+            var ImporteInt = Math.Truncate(float.Parse(TextBoxImporte.Text));
+            //if (totalaPagar != float.Parse(TextBoxImporte.Text))
+            if (totalInt != ImporteInt)
             {
                 error = 2;
             }
+
 
             if(error == 0)
             {
