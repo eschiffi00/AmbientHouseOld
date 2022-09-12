@@ -389,16 +389,18 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 double valorImpuesto = float.Parse(fila2[6].Text);
                 double montoPagado = 0;
                 if (((TextBox)fila.FindControl("MontoaPagar")).Text != ""){
-                    montoPagado = float.Parse(((TextBox)fila.FindControl("MontoaPagar")).Text);
+                    var montoTemp = ((TextBox)fila.FindControl("MontoaPagar")).Text;
+                    montoTemp = montoTemp.Contains(".") ? montoTemp.Replace(".", ",") : montoTemp;
+                    montoPagado = float.Parse(montoTemp);
                     //var algo = Int32.Parse(((TextBox)fila.FindControl("NroComprobante")).Text);
                 }
                 if(costo + valorImpuesto < 0)
-                {totalaPagar = totalaPagar + montoPagado + costo + valorImpuesto;}
+                    {totalaPagar = totalaPagar + montoPagado + costo + valorImpuesto;}
                 else 
-                { totalaPagar = totalaPagar + montoPagado; }
+                    { totalaPagar = totalaPagar + montoPagado;}
                 
-                if ((costo + valorImpuesto) < montoPagado && (costo+valorImpuesto) >=0) 
-                { error = 1; }    
+                if ((costo + valorImpuesto) < montoPagado && (costo+valorImpuesto) >= 0) 
+                    { error = 1; }    
             }
             var totalInt = Math.Truncate(totalaPagar);
             var ImporteInt = Math.Truncate(float.Parse(TextBoxImporte.Text));
