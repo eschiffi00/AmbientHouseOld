@@ -398,8 +398,9 @@ namespace AmbientHouse.Administracion.PagoProveedores
                     {totalaPagar = totalaPagar + montoPagado + costo + valorImpuesto;}
                 else 
                     { totalaPagar = totalaPagar + montoPagado;}
-                
-                if ((costo + valorImpuesto) < montoPagado && (costo+valorImpuesto) >= 0) 
+                var costoFinal = Math.Truncate(costo + valorImpuesto);
+                var montoFinal = Math.Truncate(montoPagado);
+                if (costoFinal < montoFinal && costoFinal >= 0) 
                     { error = 1; }    
             }
             var totalInt = Math.Truncate(totalaPagar);
