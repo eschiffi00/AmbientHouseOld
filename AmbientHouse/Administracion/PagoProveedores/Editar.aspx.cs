@@ -409,7 +409,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
                     fila2 = fila.Cells;
                     //comprobante.NroComprobante = Int32.Parse(((TextBox)fila.FindControl("NroComprobante")).Text);
                     comprobante.ComprobanteProveedorDetalleId = Int32.Parse(fila2[0].Text);
-                    var ids = ComprobantesPagadosOperator.GetAllByParameter("NroComprobante", comprobante.ComprobanteProveedorDetalleId.Value);
+                    var ids = ComprobantesPagadosOperator.GetAllByParameter("ComprobanteProveedorDetalleId", comprobante.ComprobanteProveedorDetalleId.Value);
                     var id = ids.Count > 0 ? ids[ind].Id : -1;
                     comprobante.Id = id;
                     comprobante.NroPresupuesto  = fila2[1].Text != "" ? Int32.Parse(fila2[3].Text) : 0;
