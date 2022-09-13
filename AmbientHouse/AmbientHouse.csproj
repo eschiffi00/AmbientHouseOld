@@ -150,6 +150,8 @@
     <Content Include="Boostrap4\js\bootstrap.min.js" />
     <Content Include="Boostrap4\js\jquery-3.3.1.slim.min.js" />
     <Content Include="Boostrap4\js\popper.min.js" />
+    <Content Include="Configuracion\AbmItems\ItemsBrowse.aspx" />
+    <Content Include="Configuracion\AbmItems\ItemsEdit.aspx" />
     <Content Include="Configuracion\AdicionalesItems\Editar.aspx" />
     <Content Include="Configuracion\AdicionalesItems\Index.aspx" />
     <Content Include="Configuracion\AmbientacionCI\Editar.aspx" />
@@ -177,6 +179,7 @@
     <Content Include="Content\Css\Imprimir.css" />
     <Content Include="Content\Css\Main.css" />
     <Content Include="Content\Css\Master.css" />
+    <Content Include="Content\Css\NuevaArc.css" />
     <Content Include="Content\Css\screen.css" />
     <Content Include="Content\Css\print.css" />
     <Content Include="Content\Css\Style.css" />
@@ -973,6 +976,20 @@
       <DependentUpon>Ambient.Master</DependentUpon>
     </Compile>
     <Compile Include="CCLib.cs" />
+    <Compile Include="Configuracion\AbmItems\ItemsBrowse.aspx.cs">
+      <DependentUpon>ItemsBrowse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AbmItems\ItemsBrowse.aspx.designer.cs">
+      <DependentUpon>ItemsBrowse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\AbmItems\ItemsEdit.aspx.cs">
+      <DependentUpon>ItemsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AbmItems\ItemsEdit.aspx.designer.cs">
+      <DependentUpon>ItemsEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Configuracion\AdicionalesItems\Editar.aspx.cs">
       <DependentUpon>Editar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

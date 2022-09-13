@@ -242,6 +242,13 @@ namespace AmbientHouse.App_Shared.Controles
                 mnuItemDetalle.NavigateUrl = "~/Configuracion/ItemDetalle/Index.aspx";
 
                 mnuConfiguracion.ChildItems.Add(mnuItemDetalle);
+                MenuItem mnuAbmItems = new MenuItem();
+
+                mnuAbmItems.Text = "Items";
+                mnuAbmItems.Value = "ITB";
+                mnuAbmItems.NavigateUrl = "~/Configuracion/AbmItems/ItemsBrowse.aspx";
+
+                mnuConfiguracion.ChildItems.Add(mnuAbmItems);
 
                 #region Adicionales
 
