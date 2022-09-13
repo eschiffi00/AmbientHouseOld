@@ -53,8 +53,7 @@ namespace WebApplication.app.ItemsNS
             }
             if (e.CommandName == "CommandNameEdit")
             {
-                string url = GetRouteUrl("EditaItems", new { id = id.ToString() });
-                Response.Redirect(url);
+                Response.Redirect("../../Configuracion/ItemsEdit.aspx");
             }
         }
 

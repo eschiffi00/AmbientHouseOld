@@ -164,7 +164,7 @@
         <div class="form-group row">
             <label for="btnSubmit" class="col-sm-2 col-form-label text-sm-left text-md-right"></label>
             <div class="col-sm-4">
-                <a href="<%$RouteUrl:routename=ListaItems%>" class="btn btncancel mt-1" TabIndex="9" runat="server">Cancelar</a>
+                <a href="../../Configuracion/ItemsBrowse.aspx" rel="stylesheet" class="btn btncancel mt-1" TabIndex="9" runat="server">Cancelar</a>
                 <asp:Button Text="Crear Item" runat="server" ID="btnSubmit" ClientIDMode="Static" TabIndex="10" CssClass="btn btnsubmit mt-1" OnClick="btnSubmit_Click" />
             </div>
         </div>

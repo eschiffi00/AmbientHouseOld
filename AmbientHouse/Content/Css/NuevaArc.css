@@ -174,3 +174,18 @@ footer {
 .colSorteable a {
     color: green;
 }
+
+.fa-trash {
+    color: #ff1a1a
+}
+.fa-pencil {
+    color: #488000
+}
+
+
+.fa-trash:hover {
+    color: #ff7878
+}
+.fa-pencil:hover {
+    color: #96b369
+}

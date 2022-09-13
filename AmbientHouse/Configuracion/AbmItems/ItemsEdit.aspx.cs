@@ -207,8 +207,7 @@ namespace WebApplication.app.ItemsNS
                             ItemDetalleOperator.Save(detalle);
                         }
                     }
-                    string url = GetRouteUrl("ListaItems", null);
-                    Response.Redirect(url);
+                    Response.Redirect("../../Configuracion/ItemsBrowse.aspx");
                 }
                 ItemsOperator.Save(seItems);
             }
