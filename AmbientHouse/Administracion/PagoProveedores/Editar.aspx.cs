@@ -227,10 +227,12 @@ namespace AmbientHouse.Administracion.PagoProveedores
                                 var iibbarba = comprobante.IIBBARBA is null ? 0 : comprobante.IIBBARBA.Value;
                                 var iva105 = comprobante.Iva105 is null ? 0 : comprobante.Iva105.Value;
                                 var iibbcaba = comprobante.IIBBCABA is null ? 0 : comprobante.IIBBCABA.Value;
+                                //var impuestoint = detalle.ValorImpuestoInterno is null  ? 0 : detalle.ValorImpuestoInterno;
                                 if (ind == 0)
                                 {
                                     ComprobantePago.ValorImpuesto = Math.Round((ComprobantePago.ValorImpuesto + iibbarba + iva105 + iibbcaba),2);
                                 }
+                                ComprobantePago.ValorImpuesto += Math.Round(detalle.ValorImpuestoInterno, 2);
                                 ComprobantePago.CostoTotal = Math.Round((ComprobantePago.Costo + ComprobantePago.ValorImpuesto),2);
                                 ListaPagos.Add(ComprobantePago);
                                 ind++;
