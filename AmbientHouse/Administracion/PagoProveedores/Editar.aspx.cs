@@ -402,20 +402,20 @@ namespace AmbientHouse.Administracion.PagoProveedores
                     { totalaPagar = totalaPagar + montoPagado;}
                 var costoFinal = Math.Truncate(costo + valorImpuesto);
                 var montoFinal = Math.Truncate(montoPagado);
-                if (costoFinal < montoFinal && costoFinal >= 0) 
-                    { error = 1; }    
+                //if (costoFinal < montoFinal && costoFinal >= 0) 
+                //    { error = 1; }    
             }
             var totalInt = Math.Truncate(totalaPagar);
             var ImporteInt = Math.Truncate(float.Parse(TextBoxImporte.Text));
             //if (totalaPagar != float.Parse(TextBoxImporte.Text))
-            if (totalInt != ImporteInt)
-            {
-                error = 2;
-            }
+            //if (totalInt != ImporteInt)
+            //{
+            //    error = 2;
+            //}
 
 
-            if(error == 0)
-            {
+            //if(error == 0)
+            //{
                 /////INICIA GRABACION DE ComprobantesPagados/////
                 ComprobantesPagados comprobante = new ComprobantesPagados();
                 var ind = 0;
@@ -442,12 +442,12 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 }
 
                 Grabar(sender, e);
-            }
-            else
-            {
-                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "dlgOutOfRange",
-                    "ShowError('" + error+"');", true);
-            }
+            //}
+            //else
+            //{
+            //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "dlgOutOfRange",
+            //        "ShowError('" + error+"');", true);
+            //}
             
         }
 
