@@ -150,6 +150,8 @@
     <Content Include="Boostrap4\js\bootstrap.min.js" />
     <Content Include="Boostrap4\js\jquery-3.3.1.slim.min.js" />
     <Content Include="Boostrap4\js\popper.min.js" />
+    <Content Include="Configuracion\AbmItems\ItemsBrowse.aspx" />
+    <Content Include="Configuracion\AbmItems\ItemsEdit.aspx" />
     <Content Include="Configuracion\AdicionalesItems\Editar.aspx" />
     <Content Include="Configuracion\AdicionalesItems\Index.aspx" />
     <Content Include="Configuracion\AmbientacionCI\Editar.aspx" />
@@ -177,6 +179,7 @@
     <Content Include="Content\Css\Imprimir.css" />
     <Content Include="Content\Css\Main.css" />
     <Content Include="Content\Css\Master.css" />
+    <Content Include="Content\Css\NuevaArc.css" />
     <Content Include="Content\Css\screen.css" />
     <Content Include="Content\Css\print.css" />
     <Content Include="Content\Css\Style.css" />
@@ -390,6 +393,7 @@
     <Content Include="Reportes\ReporteIvaCompra.aspx" />
     <Content Include="Reportes\ReporteMovimientosporCuentas.aspx" />
     <Content Include="Reportes\ReportePagos.aspx" />
+    <Content Include="Reportes\ReporteCuentaCorrienteProv.aspx" />
     <Content Include="Reportes\ReportePagosProveedores.aspx" />
     <Content Include="Reportes\ReporteProductos.aspx" />
     <Content Include="Reportes\ReporteProveedoresAsociados.aspx" />
@@ -973,6 +977,20 @@
       <DependentUpon>Ambient.Master</DependentUpon>
     </Compile>
     <Compile Include="CCLib.cs" />
+    <Compile Include="Configuracion\AbmItems\ItemsBrowse.aspx.cs">
+      <DependentUpon>ItemsBrowse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AbmItems\ItemsBrowse.aspx.designer.cs">
+      <DependentUpon>ItemsBrowse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\AbmItems\ItemsEdit.aspx.cs">
+      <DependentUpon>ItemsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AbmItems\ItemsEdit.aspx.designer.cs">
+      <DependentUpon>ItemsEdit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Configuracion\AdicionalesItems\Editar.aspx.cs">
       <DependentUpon>Editar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1682,6 +1700,13 @@
     </Compile>
     <Compile Include="Reportes\ReportePagos.aspx.designer.cs">
       <DependentUpon>ReportePagos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteCuentaCorrienteProv.aspx.cs">
+      <DependentUpon>ReporteCuentaCorrienteProv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteCuentaCorrienteProv.aspx.designer.cs">
+      <DependentUpon>ReporteCuentaCorrienteProv.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\ReportePagosProveedores.aspx.cs">
       <DependentUpon>ReportePagosProveedores.aspx</DependentUpon>
