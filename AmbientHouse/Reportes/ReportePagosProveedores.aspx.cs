@@ -9,7 +9,7 @@ using DomainAmbientHouse.Servicios;
 
 namespace AmbientHouse.Reportes
 {
-    public partial class ReporteCuentaCorrienteProv : System.Web.UI.Page
+    public partial class ReportePagosProveedores : System.Web.UI.Page
     {
         AdministrativasServicios servicios = new AdministrativasServicios();
 

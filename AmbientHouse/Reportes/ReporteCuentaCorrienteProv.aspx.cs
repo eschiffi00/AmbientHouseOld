@@ -5,27 +5,98 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using DbEntidades.Operators;
+using DBEntidades.Entities;
+using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
+using NPOI.SS.Formula.Functions;
+
+using System.Text.RegularExpressions;
 
 namespace AmbientHouse.Reportes
 {
-    public partial class ReportePagosProveedores : System.Web.UI.Page
+    public partial class ReporteCuentaCorrienteProv : System.Web.UI.Page
     {
-        AdministrativasServicios servicios = new AdministrativasServicios();
-
+        DomainAmbientHouse.Servicios.AdministrativasServicios administrativas = new DomainAmbientHouse.Servicios.AdministrativasServicios();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
             {
-               GridViewReporte.DataSource = servicios.BuscarPagosProveedores();
-                GridViewReporte.DataBind();
+                CargarListas();
+                
             }
 
+        }
+        private void CargarListas()
+        {
+            DropDownListTipoMovimiento.DataSource = administrativas.ObtenerTipoMovimientosEgresos().OrderBy(x => x.Descripcion);
+            DropDownListTipoMovimiento.DataTextField = "Identificador";
+            DropDownListTipoMovimiento.DataValueField = "Id";
+            DropDownListTipoMovimiento.DataBind();
+        }
+        private void Buscar()
+        {
+            parametros Cuenta = new parametros();
+            Cuenta.FechaDesde = TextBoxNroFechaDesde.Text;
+            Cuenta.FechaHasta = TextBoxFechaHasta.Text;
+            //Cuenta.TipoMovimientoId = DropDownListTipoMovimiento.SelectedItem.Value;
+            Cuenta.NroPresupuesto = Int32.Parse(TextBoxPresupuesto.Text !="" ? TextBoxPresupuesto.Text: "0");
+            Cuenta.CuitProveedor = TextBoxNroCuit.Text;
+            Cuenta.TipoMovimiento = DropDownListTipoMovimiento.SelectedItem.Text;
+            if(Cuenta.TipoMovimiento == "<Todas>") 
+            { Cuenta.TipoMovimiento = string.Empty; }
+            else
+            {
+                Cuenta.TipoMovimiento = Cuenta.TipoMovimiento.Split(new string[] { " -" }, StringSplitOptions.RemoveEmptyEntries)[0];
+            }
+            List<CuentaCorrienteProveedores> list = CuentaCorrienteProveedoresOperator.FiltrarCuentaCorriente(Cuenta);
+     
+            GridViewReporte.DataSource = list;
+            GridViewReporte.DataBind();          
+
+            UpdatePanelGrillaReporte.Update();
+        }
+        double subtotal = 0.0;
+        protected void GridViewReporte_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if ((e.Row.RowType == DataControlRowType.DataRow))
+            {
+                var cadena = "";
+                cadena = e.Row.Cells[10].Text;
+                
+                subtotal += float.Parse(cadena.Replace("$ ", String.Empty));
+                cadena = e.Row.Cells[13].Text;
+                subtotal -= float.Parse(cadena.Replace("$ ", String.Empty));
+                for(var cell = 0; cell < e.Row.Cells.Count;cell ++)
+                {
+                    if(e.Row.Cells[cell].Text.Replace("$ ", String.Empty) == "0")
+                    {
+                        e.Row.Cells[cell].Text = string.Empty;
+                    }
+                }
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+
+                //e.Row.Cells[0].Text = "Total";
+                e.Row.Cells[14].Text = Convert.ToString(subtotal);
+            }
+        }
+
+        protected void ButtonBuscar_Click(object sender, EventArgs e)
+        {
+            Buscar();
+        }
+
+        protected void ButtonVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Reportes/Index.aspx");
         }
 
         protected void ButtonExportarExcel_Click(object sender, EventArgs e)
         {
-            List<DomainAmbientHouse.Entidades.EventosConfirmadosProveedores> list = servicios.BuscarPagosProveedores();
+            List<CuentaCorrienteProveedores> list = CuentaCorrienteProveedoresOperator.GetAll();
 
             GridView excel = new GridView();
 

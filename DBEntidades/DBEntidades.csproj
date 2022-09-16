@@ -217,6 +217,7 @@
     <Compile Include="Entities\Auto\Usuarios.cs" />
     <Compile Include="Entities\Auto\UsuariosGrupos.cs" />
     <Compile Include="Entities\Auto\UsuariosLocaciones.cs" />
+    <Compile Include="Entities\CuentaCorrienteProveedores.cs" />
     <Compile Include="Entities\ItemListado.cs" />
     <Compile Include="Entities\ComprobantesPagosDetalle.cs" />
     <Compile Include="Entities\RecetaDetalle.cs" />
@@ -392,6 +393,7 @@
     <Compile Include="Operators\Auto\UsuariosGruposOperator.cs" />
     <Compile Include="Operators\Auto\UsuariosLocacionesOperator.cs" />
     <Compile Include="Operators\Auto\UsuariosOperator.cs" />
+    <Compile Include="Operators\CuentaCorrienteProveedoresOperator.cs" />
     <Compile Include="Operators\ComprobantesPagadosOperator.cs" />
     <Compile Include="Operators\ComprobantesProveedoresOperator.cs" />
     <Compile Include="Operators\ComprobantesProveedores_DetallesOperator.cs" />
