@@ -52,11 +52,14 @@ namespace AmbientHouse.Reportes
             List<CuentaCorrienteProveedores> list = CuentaCorrienteProveedoresOperator.FiltrarCuentaCorriente(Cuenta);
      
             GridViewReporte.DataSource = list;
-            GridViewReporte.DataBind();          
+            GridViewReporte.DataBind();
 
             UpdatePanelGrillaReporte.Update();
         }
         double subtotal = 0.0;
+        double facturaTotal = 0.0;
+        double ImporteTotal = 0.0;
+
         protected void GridViewReporte_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
@@ -64,9 +67,10 @@ namespace AmbientHouse.Reportes
             {
                 var cadena = "";
                 cadena = e.Row.Cells[10].Text;
-                
+                facturaTotal += float.Parse(cadena.Replace("$ ", String.Empty));
                 subtotal += float.Parse(cadena.Replace("$ ", String.Empty));
                 cadena = e.Row.Cells[13].Text;
+                ImporteTotal += float.Parse(cadena.Replace("$ ", String.Empty));
                 subtotal -= float.Parse(cadena.Replace("$ ", String.Empty));
                 for(var cell = 0; cell < e.Row.Cells.Count;cell ++)
                 {
@@ -78,9 +82,10 @@ namespace AmbientHouse.Reportes
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-
-                //e.Row.Cells[0].Text = "Total";
-                e.Row.Cells[14].Text = Convert.ToString(subtotal);
+                //e.Row.Cells[10].Width = 200;
+                e.Row.Cells[10].Text = "$ " + Convert.ToString(facturaTotal);
+                e.Row.Cells[13].Text = "$ " + Convert.ToString(ImporteTotal);
+                e.Row.Cells[14].Text = "$ " + Convert.ToString(subtotal);
             }
         }
 

@@ -89,8 +89,9 @@
                         <td colspan="4">
                             <asp:UpdatePanel ID="UpdatePanelGrillaReporte" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
-                                    <asp:GridView ID="GridViewReporte" OnRowDataBound="GridViewReporte_RowDataBound" runat="server" CssClass="table table-bordered bs-table" CellPadding="4" EmptyDataText="No se Encontraron Registros" ForeColor="#333333" GridLines="None" Width="100%" AutoGenerateColumns="False" ShowFooter="true" >
+                                    <asp:GridView ID="GridViewReporte" OnRowDataBound="GridViewReporte_RowDataBound" runat="server" CssClass="table table-bordered bs-table" CellPadding="4" EmptyDataText="No se Encontraron Registros" ForeColor="#333333" GridLines="None" Width="100%" AutoGenerateColumns="False" ShowFooter="true" AutoSizeColumnsMode ="true" >
                                         <AlternatingRowStyle BackColor="#EBEBEB" ForeColor="#284775" />
+                                        <FooterStyle Wrap="False" />
                                         <HeaderStyle BackColor="#2E64FE" Font-Bold="True" ForeColor="White" />
                                         <EditRowStyle BackColor="#ffffcc" />
                                         <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
