@@ -1,5 +1,26 @@
 ﻿/*https://bootstrapcreative.com/bootstrap-text-sizes/*/
 
+
+@keyframes cancelar {
+    from {
+        background-color: black;
+    }
+
+    to {
+        background-color: red;
+    }
+}
+
+@keyframes submit {
+    from {
+        background-color: black;
+    }
+
+    to {
+        background-color: green;
+    }
+}
+
 html {
     /*font-size:14px;*/
     /*font-weight: 400;*/
@@ -10,6 +31,70 @@ body {
 
 .invisible {
     display: none;
+}
+
+#divCantidad #divPeso {
+    justify-content: space-around;
+}
+
+.inputStock {
+    width: auto;
+}
+/*#divGrid {
+    display: flex;
+    justify-content: center;
+}
+#grdRecetas{
+    margin-left:0 !important;
+}*/
+.btnblack {
+    background-color: black !important;
+    color: white !important;
+    border-color:white;
+}
+
+    .btnblack:hover {
+        /*box-shadow: 1px 1px 10px 2px black;*/
+        background-color: #313131 !important;
+        border-color:black;
+    }
+
+.btnsubmit {
+    background-color: black !important;
+    color: white !important;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-left: 20px !important;
+    border-radius: 2px;
+}
+
+    .btnsubmit:hover {
+        background-color: green !important;
+        /*transform: scale(1.1) !important;*/
+    }
+
+.btncancel {
+    background-color: black !important;
+    color: white !important;
+    transition: background-color 0.3s,transform 0.3s;
+    border-radius: 2px;
+}
+
+    .btncancel:hover {
+        background-color: #e40a0a !important;
+        /*transform: scale(1.1) !important;*/
+    }
+
+#divGrid {
+    padding-left: 15% !important;
+}
+
+.form-control:focus {
+    border-color: black !important;
+    box-shadow: 0 0 7px 1px black !important;
+}
+
+.btn:focus {
+    box-shadow: none;
 }
 
 .bg-rosa {

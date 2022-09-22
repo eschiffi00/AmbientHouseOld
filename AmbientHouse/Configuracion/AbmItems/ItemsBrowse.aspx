@@ -44,7 +44,7 @@
             </h4>
         </div>
         <div class="col-4 text-right">
-            <asp:Button ID="btnNuevoProducto" Text="Nuevo Producto" runat="server" CssClass="btn btn-primary" OnClick="btnNuevoItems_Click" />
+            <asp:Button ID="btnNuevoProducto" Text="Nuevo Producto" runat="server" CssClass="btn btnblack btn-primary" OnClick="btnNuevoItems_Click" />
         </div>
     </div>
     <div id="searchpanel" class="row invisible mb-2">

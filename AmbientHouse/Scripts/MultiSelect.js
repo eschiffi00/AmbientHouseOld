@@ -1841,7 +1841,7 @@
                     .not('.multiselect-filter-hidden')
                     .not('.disabled');
 
-                var checked = true;
+                var checked = false;
                 $options.each(function () {
                     var $input = $('input', this);
 
