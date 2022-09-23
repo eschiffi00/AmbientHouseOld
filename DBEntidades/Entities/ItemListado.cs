@@ -17,9 +17,9 @@ namespace DbEntidades.Entities
 		public string CategoriaDescripcion { get; set; }
 		public int? CuentaId { get; set; }
 		public string CuentaDescripcion { get; set; }
-		public decimal Costo { get; set; }
-		public decimal Margen { get; set; }
-		public decimal Precio { get; set; }
+		public double Costo { get; set; }
+		public double Margen { get; set; }
+		public double Precio { get; set; }
 		public int? DepositoId { get; set; }
 		public string Unidad{ get; set; }
 		public decimal? Cantidad { get; set; }

@@ -71,6 +71,10 @@ body {
         background-color: green !important;
         /*transform: scale(1.1) !important;*/
     }
+    .btnsubmit:focus {
+        background-color: green !important;
+        /*transform: scale(1.1) !important;*/
+    }
 
 .btncancel {
     background-color: black !important;
@@ -83,12 +87,20 @@ body {
         background-color: #e40a0a !important;
         /*transform: scale(1.1) !important;*/
     }
+    .btncancel:focus {
+        background-color: #e40a0a !important;
+        /*transform: scale(1.1) !important;*/
+    }
 
 #divGrid {
     padding-left: 15% !important;
 }
 
 .form-control:focus {
+    border-color: black !important;
+    box-shadow: 0 0 7px 1px black !important;
+}
+.multiselect:focus {
     border-color: black !important;
     box-shadow: 0 0 7px 1px black !important;
 }

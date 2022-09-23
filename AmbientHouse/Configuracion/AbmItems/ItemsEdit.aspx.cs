@@ -148,13 +148,15 @@ namespace WebApplication.app.ItemsNS
             try
             {
                 
-                seItems.ItemDetalleId = -1;
+                seItems.ItemDetalleId = 99;
                 seItems.Detalle = txtDescripcion.Text;
                 seItems.CuentaId = Int32.Parse(ddlCuenta.Text);
                 seItems.EstadoId = Int32.Parse(ddlEstado.Text);
-                seItems.CategoriaItemId = 0;
-                //INVENTARIO_Producto ItemsStock = new INVENTARIO_Producto();
-                seItems.DepositoId = 0;
+                seItems.CategoriaItemId = 76;
+                seItems.Costo = float.Parse(txtCosto.Text);
+                seItems.Margen = float.Parse(txtMargen.Text);
+                seItems.Precio = float.Parse(txtPrecio.Text);
+                seItems.DepositoId = 99;
                 seItems.EstadoId = EstadosOperator.GetHablitadoID();
                 
                 var newItemId = ItemsOperator.Save(seItems).Id;
@@ -173,7 +175,7 @@ namespace WebApplication.app.ItemsNS
                     }
                 }
 
-                Response.Redirect("../../Configuracion/ItemsBrowse.aspx");
+                Response.Redirect("~/Configuracion/AmbItems/ItemsBrowse.aspx");
                 //ItemsOperator.Save(seItems);
             }
             catch (Exception ex)

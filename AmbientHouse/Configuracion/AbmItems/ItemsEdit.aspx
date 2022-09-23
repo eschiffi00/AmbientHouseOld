@@ -17,14 +17,48 @@
                 enableCollapsibleOptGroups: true,
                 enableFiltering: true
             });
-            var multi = $('[id$=MultiselectCategorias]')[0];
-            //$('[id*=MultiselectCategorias]')[0].each(function () {
-            //    $(this).attr('checked', false);
+            //document.addEventListener("keydown", function (event) {
+            //    if (event.which == 9 && (document.activeElement.tabIndex == 9 || document.activeElement.tabIndex == -1 )) {
+            //        //document.activeElement.tabIndex = 1;
+            //        $('[tabindex=1]').activeElement = true;
+            //    }
             //});
-            for (var i = 0; i < multi.length; i++) {
-                multi[i].prop('checked', false);
+            document.addEventListener("keydown", function (event) {
+                if (event.which == 9 ) {
+                    focusNextElement();
+                }
+            });
+            function focusNextElement() {
+                //add all elements we want to include in our selection
+                var focussableElements = '[tabindex]:not([disabled]):not([tabindex="-1"])';
+                if (document.activeElement && document.activeElement.form) {
+                    var focussable = Array.prototype.filter.call(document.activeElement.form.querySelectorAll(focussableElements),
+                        function (element) {
+                            //check for visibility while always include the current activeElement 
+                            return element.offsetWidth > 0 || element.offsetHeight > 0 || element === document.activeElement
+                        });
+                    var index = focussable.indexOf(document.activeElement);
+                    if (index <= -1 || index > 8) {
+                        $('[Id$=txtDescripcion]').addClass("active");
+                        $('[Id$=txtDescripcion]').focus();
+                    }
+                }
             }
+
+            
+            $("form input:checkbox").checked = false;
+            //var multi = $('[id$=MultiselectCategorias]')[0];
+            ////$('[id*=MultiselectCategorias]')[0].each(function () {
+            ////    $(this).attr('checked', false);
+            ////});
+            //for (var i = 0; i < multi.length; i++) {
+            //    console.log(i);
+            //    if (multi[i].tagName == 'OPTION') {
+            //        multi[i].prop('checked', false);
+            //    }
                 
+            //}
+              
         });
         function GroupDropdownlist() {
             var selectControl = $('[id*=MultiselectCategorias]');
@@ -53,6 +87,7 @@
                 }
             }
         }
+        
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
@@ -74,7 +109,7 @@
         <div class="form-group row" id="categorias">
             <label for="MultiselectCategorias" class="col-sm-2 col-form-label text-sm-left text-md-right">Categoria</label>
             <div class="col-sm-4">
-                <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" class="form-control"></asp:ListBox>
+                <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="2" class="form-control"></asp:ListBox>
             </div>
         </div>
 
@@ -82,25 +117,25 @@
         <div class="form-group row" id="cuentas">
             <label for="ddlCuenta" class="col-sm-2 col-form-label text-sm-left text-md-right">Cuenta Contable</label>
             <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlCuenta" ClientIDMode="Static" TabIndex="2" CssClass="form-control mt-1"></asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddlCuenta" ClientIDMode="Static" TabIndex="3" CssClass="form-control mt-1"></asp:DropDownList>
             </div>
         </div>
         <div class="form-group row" id="costo">
             <label for="txtCosto" class="col-sm-2 col-form-label text-sm-left text-md-right">Costo</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtCosto" TabIndex="3" CssClass="form-control" placeholder="Ingrese el Costo" required="required" />        
+                <asp:TextBox runat="server" ID="txtCosto" TabIndex="4" CssClass="form-control" placeholder="Ingrese el Costo" required="required" />        
             </div>
         </div>
         <div class="form-group row"  id="margen">
             <label for="txtMargen" class="col-sm-2 col-form-label text-sm-left text-md-right">Margen</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtMargen" TabIndex="4" CssClass="form-control" placeholder="Ingrese el Margen" required="required" />        
+                <asp:TextBox runat="server" ID="txtMargen" TabIndex="5" CssClass="form-control" placeholder="Ingrese el Margen" required="required" />        
             </div>
         </div>
         <div class="form-group row"  id="precio">
             <label for="txtPrecio" class="col-sm-2 col-form-label text-sm-left text-md-right">Precio</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtPrecio" TabIndex="5" CssClass="form-control" placeholder="Ingrese el Precio" required="required" />        
+                <asp:TextBox runat="server" ID="txtPrecio" TabIndex="6" CssClass="form-control" placeholder="Ingrese el Precio" required="required" />        
             </div>
         </div>
      <%--   <div class="form-group row">
@@ -118,7 +153,7 @@
         <div class="form-group row">
             <label for="ddlEstado" class="col-sm-2 col-form-label text-sm-left text-md-right">Estado</label>
             <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlEstado" TabIndex="8" ClientIDMode="Static" CssClass="form-control mt-1">
+                <asp:DropDownList runat="server" ID="ddlEstado" TabIndex="7" ClientIDMode="Static" CssClass="form-control mt-1">
                     <asp:ListItem Text="Habilitado" Value="36" Selected="True" />
                     <asp:ListItem Text="Deshabilitado" Value="37" />
                 </asp:DropDownList>
@@ -128,8 +163,8 @@
         <div class="form-group row">
             <label for="btnSubmit" class="col-sm-2 col-form-label text-sm-left text-md-right"></label>
             <div class="col-sm-4">
-                <a href="../../Configuracion/ItemsBrowse.aspx" rel="stylesheet" class="btn btncancel mt-1" TabIndex="9" runat="server">Cancelar</a>
-                <asp:Button Text="Crear Item" runat="server" ID="btnSubmit" ClientIDMode="Static" TabIndex="10" CssClass="btn btnsubmit mt-1" OnClick="btnSubmit_Click" />
+                <a href="../../Configuracion/ItemsBrowse.aspx" rel="stylesheet" class="btn btncancel mt-1" tabindex="8" runat="server">Cancelar</a>
+                <asp:Button Text="Crear Item" runat="server" ID="btnSubmit" ClientIDMode="Static" TabIndex="9" CssClass="btn btnsubmit mt-1" OnClick="btnSubmit_Click" />
             </div>
         </div>
 
