@@ -20,7 +20,7 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
             List<CuentaCorrienteProveedores> lista = new List<CuentaCorrienteProveedores>();
-            DataTable dt = db.GetDataSet("select " + columnas + " from CuentaCorrienteProveedores()").Tables[0];
+            DataTable dt = db.GetDataSet("select " + columnas + " from CuentaCorrienteProveedoresGral()").Tables[0];
             foreach (DataRow dr in dt.AsEnumerable())
             {
                 CuentaCorrienteProveedores CuentaCorrienteProveedores = new CuentaCorrienteProveedores();
@@ -42,7 +42,7 @@ namespace DbEntidades.Operators
             foreach (PropertyInfo prop in typeof(CuentaCorrienteProveedores).GetProperties()) columnas += prop.Name + ", ";
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
-            DataTable dt = db.GetDataSet("select " + columnas + " from CuentaCorrienteProveedores() where " + campo + " = " + valor.ToString()).Tables[0];
+            DataTable dt = db.GetDataSet("select " + columnas + " from CuentaCorrienteProveedoresGral() where " + campo + " = " + valor.ToString()).Tables[0];
             CuentaCorrienteProveedores CuentaCorrienteProveedores = new CuentaCorrienteProveedores();
             foreach (PropertyInfo prop in typeof(CuentaCorrienteProveedores).GetProperties())
             {
