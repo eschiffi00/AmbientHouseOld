@@ -67,11 +67,21 @@ namespace AmbientHouse.Reportes
             {
                 var cadena = "";
                 cadena = e.Row.Cells[10].Text;
-                facturaTotal += float.Parse(cadena.Replace("$ ", String.Empty));
-                subtotal += float.Parse(cadena.Replace("$ ", String.Empty));
+                cadena = cadena.Replace("$ ", String.Empty);
+                cadena = cadena.Replace(".", String.Empty);
+                if (int.TryParse(cadena, out _)) 
+                { 
+                    subtotal += float.Parse(cadena);
+                    facturaTotal += float.Parse(cadena);
+                }
                 cadena = e.Row.Cells[13].Text;
-                ImporteTotal += float.Parse(cadena.Replace("$ ", String.Empty));
-                subtotal -= float.Parse(cadena.Replace("$ ", String.Empty));
+                cadena = cadena.Replace("$ ", String.Empty);
+                cadena = cadena.Replace(".", String.Empty);
+                if (int.TryParse(cadena, out _))
+                {
+                    ImporteTotal += float.Parse(cadena);
+                    subtotal -= float.Parse(cadena);
+                }
                 for(var cell = 0; cell < e.Row.Cells.Count;cell ++)
                 {
                     if(e.Row.Cells[cell].Text.Replace("$ ", String.Empty) == "0")
