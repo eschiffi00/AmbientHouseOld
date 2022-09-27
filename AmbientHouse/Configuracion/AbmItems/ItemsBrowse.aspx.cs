@@ -53,7 +53,8 @@ namespace WebApplication.app.ItemsNS
             }
             if (e.CommandName == "CommandNameEdit")
             {
-                Response.Redirect("../../Configuracion/ItemsEdit.aspx");
+
+                Response.Redirect("../../Configuracion/AbmItems/ItemsEdit.aspx?Id="+id);
             }
         }
 

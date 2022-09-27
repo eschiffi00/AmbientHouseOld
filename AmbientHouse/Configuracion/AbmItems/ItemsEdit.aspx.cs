@@ -30,20 +30,33 @@ namespace WebApplication.app.ItemsNS
                 object o = Page.RouteData.Values["id"];
                 if (o != null) s = Page.RouteData.Values["id"].ToString();
                 else s = Request.QueryString["id"];
+                int id = 0;
+                id = Int32.Parse(Request["Id"] != null ? Request["Id"] : "0");
+
                 CargaCategorias();
                 CargaCuentas();
                 //CargaUnidades();
                 //CargaItems();
-                if (s != null && s != string.Empty)
+                if (id != 0)
                 {
                     int uid = Convert.ToInt32(s);
                     seItems = ItemsOperator.GetOneByIdentity(uid);
                     //obtengo todas las categorias y utilizo descripcion y id
-                    if (seItems.CategoriaItemId > 0)
+
+
+                    var items = ItemDetalleOperator.GetAllByParameter("ItemId",id);
+                    if (items != null) 
+                    { 
+                        foreach(var item in items){
+                            var categoria = Int32.Parse(item.CategoriaId);
+                            MultiselectCategorias.SelectedValue = CategoriasOperator.GetOneByIdentity(categoria).Id.ToString();
+                        }
+                    }
+                    else
                     {
                         MultiselectCategorias.SelectedValue = CategoriasOperator.GetOneByIdentity((int)seItems.CategoriaItemId).Id.ToString();
                     }
-                    if(seItems.CuentaId > 0)
+                    if (seItems.CuentaId > 0)
                     {
                         ddlCuenta.SelectedValue = CuentasOperator.GetOneByIdentity((int)seItems.CuentaId).Id.ToString();
                     }
@@ -56,10 +69,10 @@ namespace WebApplication.app.ItemsNS
                     //INVENTARIO_Producto stockCant = new INVENTARIO_Producto();
                     //stockCant = INVENTARIO_ProductoOperator.GetOneByIdentity(seItems.DepositoId);
                     //txtCantidad.Text = stockCant.Cantidad.ToString();
+
                     txtMargen.Text = seItems.Margen.ToString();
                     txtCosto.Text = seItems.Costo.ToString();
                     txtPrecio.Text = seItems.Precio.ToString();
-                    btnSubmit.Text = "Grabar";
                     ddlEstado.SelectedValue = EstadosOperator.GetOneByIdentity(seItems.EstadoId).Id.ToString();
                 }
                 else
@@ -169,13 +182,14 @@ namespace WebApplication.app.ItemsNS
                 {
                     if (item.Selected)
                     {
+                        detalle.Id = -1;
                         detalle.ItemId = newItemId;
                         detalle.CategoriaId = item.Value;
                         ItemDetalleOperator.Save(detalle);
                     }
                 }
 
-                Response.Redirect("~/Configuracion/AmbItems/ItemsBrowse.aspx");
+                Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
                 //ItemsOperator.Save(seItems);
             }
             catch (Exception ex)

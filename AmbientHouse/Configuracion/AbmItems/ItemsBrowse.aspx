@@ -2,6 +2,40 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../Content/Css/NuevaArc.css" rel="stylesheet" type="text/css" />
     <script>
+        //var j = jQuery.noConflict();
+
+        //function ShowError(error) {
+        //    var texto;
+        //    switch (error) {
+        //        case "1":
+        //            texto = 'El Monto a Pagar es mayor que el Costo';
+        //            break;
+        //        case "2":
+        //            texto = 'El Monto a Pagar es distinto del Importe Saldo';
+        //            break;
+        //    }
+        //    j(function () {
+        //        j('#dialog').dialog({
+        //            modal: true,
+        //            width: 'auto',
+        //            resizable: false,
+        //            draggable: false,
+        //            close: function (event, ui) { j('body').find('#dialog').remove(); },
+        //            closeText: "X",
+        //            show: "fade",
+        //            hide: "fade",
+        //            open: function () {
+        //                $(this).html(texto);
+        //            },
+
+        //        })
+        //    });
+
+        //    j("#dialog").dialog("open");
+        //    j('#dialog').html(texto).dialog({});
+        //    /*$("#dialog").html(texto);*/
+        //}
+
         function ConfirmaBorrado(e) {
             //o = document.getElementById(e.id);
             anchor = "#" + e.id;
@@ -74,7 +108,7 @@
                         </div>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Id" HeaderText="ID" Visible="true" SortExpression="ColumName1" />
+                <asp:BoundField DataField="Id" HeaderText="ID" Visible="true" SortExpression="Id" />
                 <asp:BoundField DataField="Detalle" HeaderText="Detalle" Visible="true" />
                 <asp:BoundField DataField="CategoriaItemId" HeaderText="Categoria" Visible="false" />
                 <asp:BoundField DataField="CategoriaDescripcion" HeaderText="Categoria" Visible="true" />
@@ -95,5 +129,10 @@
             </EmptyDataTemplate>
         </asp:GridView>
     </div>
+    <%--<div id="dialog" style="display: none;" title="Eliminar">--%>
+      <%--<p>
+        El Monto a Pagar es mayor que el Costo
+      </p>--%>
+    <%--</div>--%>
 </asp:Content>
 

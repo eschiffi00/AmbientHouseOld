@@ -40,5 +40,29 @@ namespace DbEntidades.Operators
             }
             return itemDetalle.Id;
         }
+        public static List<ItemDetalle> GetAllByParameter(string campo, int valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoItemDetalleBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties()) columnas += prop.Name + ", ";
+            columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from ItemDetalle where " + campo + " = " + valor.ToString()).Tables[0];
+            List<ItemDetalle> lista = new List<ItemDetalle>();
+            foreach (DataRow dr in dt.AsEnumerable())
+            {
+
+                ItemDetalle comprobante = new ItemDetalle();
+                foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties())
+                {
+                    object value = dr[prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(comprobante, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+                lista.Add(comprobante);
+            }
+            return lista;
+        }
     }
 }
