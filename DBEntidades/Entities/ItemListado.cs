@@ -13,7 +13,9 @@ namespace DbEntidades.Entities
 		public int Id { get; set; }
 		public string Detalle { get; set; }
 		public int? ItemDetalleId { get; set; }
-		public int? CategoriaItemId { get; set; }
+		public int NombreFantasiaId { get; set; }
+        public string NombreFantasia { get; set; }
+        public int? CategoriaItemId { get; set; }
 		public string CategoriaDescripcion { get; set; }
 		public int? CuentaId { get; set; }
 		public string CuentaDescripcion { get; set; }

@@ -11,18 +11,13 @@
     <script>
 
         $(document).ready(function () {
+            // seteo como multiselect al listbox
             GroupDropdownlist();
             $('[id*=MultiselectCategorias]').multiselect({
                 enableClickableOptGroups: true,
                 enableCollapsibleOptGroups: true,
                 enableFiltering: true
             });
-            //document.addEventListener("keydown", function (event) {
-            //    if (event.which == 9 && (document.activeElement.tabIndex == 9 || document.activeElement.tabIndex == -1 )) {
-            //        //document.activeElement.tabIndex = 1;
-            //        $('[tabindex=1]').activeElement = true;
-            //    }
-            //});
             document.addEventListener("keydown", function (event) {
                 if (event.which == 9 ) {
                     focusNextElement();
@@ -46,18 +41,7 @@
             }
 
             
-            $("form input:checkbox").checked = false;
-            //var multi = $('[id$=MultiselectCategorias]')[0];
-            ////$('[id*=MultiselectCategorias]')[0].each(function () {
-            ////    $(this).attr('checked', false);
-            ////});
-            //for (var i = 0; i < multi.length; i++) {
-            //    console.log(i);
-            //    if (multi[i].tagName == 'OPTION') {
-            //        multi[i].prop('checked', false);
-            //    }
-                
-            //}
+            //$("form input:checkbox").checked = false;
               
         });
         function GroupDropdownlist() {
@@ -106,10 +90,28 @@
             </div>
         </div>
 
+        <div class="form-group row" id="Tipos">
+            <label for="ddlTipos" class="col-sm-2 col-form-label text-sm-left text-md-right">Tipo Item</label>
+            <div class="col-sm-4">
+                <asp:DropDownList runat="server" ID="ddlTipos" ClientIDMode="Static" TabIndex="2" CssClass="form-control mt-1">
+                    <asp:ListItem Text="Produccion" Value="1" Selected="True" />
+                    <asp:ListItem Text="Ventas" Value="2" />
+                    <asp:ListItem Text="Operaciones" Value="3" />
+                </asp:DropDownList>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="txtNombreFantasia" class="col-sm-2 col-form-label text-sm-left text-md-right">Nombre Fantasía</label>
+            <div class="col-sm-6">
+                <asp:TextBox runat="server" ID="txtNombreFantasia" CssClass="form-control" TabIndex="1" placeholder="Nombre de Fantasía" />
+            </div>
+        </div>
+
         <div class="form-group row" id="categorias">
             <label for="MultiselectCategorias" class="col-sm-2 col-form-label text-sm-left text-md-right">Categoria</label>
             <div class="col-sm-4">
-                <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="2" class="form-control"></asp:ListBox>
+                <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="3" class="form-control"></asp:ListBox>
             </div>
         </div>
 
@@ -117,25 +119,25 @@
         <div class="form-group row" id="cuentas">
             <label for="ddlCuenta" class="col-sm-2 col-form-label text-sm-left text-md-right">Cuenta Contable</label>
             <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlCuenta" ClientIDMode="Static" TabIndex="3" CssClass="form-control mt-1"></asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddlCuenta" ClientIDMode="Static" TabIndex="4" CssClass="form-control mt-1"></asp:DropDownList>
             </div>
         </div>
         <div class="form-group row" id="costo">
             <label for="txtCosto" class="col-sm-2 col-form-label text-sm-left text-md-right">Costo</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtCosto" TabIndex="4" CssClass="form-control" placeholder="Ingrese el Costo" required="required" />        
+                <asp:TextBox runat="server" ID="txtCosto" TabIndex="5" CssClass="form-control" placeholder="Ingrese el Costo" required="required" />        
             </div>
         </div>
         <div class="form-group row"  id="margen">
             <label for="txtMargen" class="col-sm-2 col-form-label text-sm-left text-md-right">Margen</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtMargen" TabIndex="5" CssClass="form-control" placeholder="Ingrese el Margen" required="required" />        
+                <asp:TextBox runat="server" ID="txtMargen" TabIndex="6" CssClass="form-control" placeholder="Ingrese el Margen" required="required" />        
             </div>
         </div>
         <div class="form-group row"  id="precio">
             <label for="txtPrecio" class="col-sm-2 col-form-label text-sm-left text-md-right">Precio</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtPrecio" TabIndex="6" CssClass="form-control" placeholder="Ingrese el Precio" required="required" />        
+                <asp:TextBox runat="server" ID="txtPrecio" TabIndex="7" CssClass="form-control" placeholder="Ingrese el Precio" required="required" />        
             </div>
         </div>
      <%--   <div class="form-group row">
@@ -153,7 +155,7 @@
         <div class="form-group row">
             <label for="ddlEstado" class="col-sm-2 col-form-label text-sm-left text-md-right">Estado</label>
             <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlEstado" TabIndex="7" ClientIDMode="Static" CssClass="form-control mt-1">
+                <asp:DropDownList runat="server" ID="ddlEstado" TabIndex="8" ClientIDMode="Static" CssClass="form-control mt-1">
                     <asp:ListItem Text="Habilitado" Value="36" Selected="True" />
                     <asp:ListItem Text="Deshabilitado" Value="37" />
                 </asp:DropDownList>

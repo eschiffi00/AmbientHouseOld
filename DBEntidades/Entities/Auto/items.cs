@@ -20,8 +20,10 @@ namespace DbEntidades.Entities
 		public int? ItemDetalleId { get; set; }
 		public int? CuentaId { get; set; }
 		public int? DepositoId { get; set; }
+        public string TipoItem { get; set; }
+        public int NombreFantasiaId { get; set; }
 
-		public override string ToString() 
+        public override string ToString() 
 		{
 			return "\r\n " + 
 			"Id: " + Id.ToString() + "\r\n " + 
@@ -33,7 +35,9 @@ namespace DbEntidades.Entities
 			"EstadoId: " + EstadoId.ToString() + "\r\n " + 
 			"ItemDetalleId: " + ItemDetalleId.ToString() + "\r\n " + 
 			"CuentaId: " + CuentaId.ToString() + "\r\n " + 
-			"DepositoId: " + DepositoId.ToString() + "\r\n " ;
+			"DepositoId: " + DepositoId.ToString() + "\r\n " +
+            "TipoItem: " + TipoItem.ToString() + "\r\n " +
+            "NombreFantasiaId: " + NombreFantasiaId.ToString() + "\r\n " ;
 		}
         public Items()
         {
@@ -73,6 +77,8 @@ namespace DbEntidades.Entities
 				case "ItemDetalleId": return true;
 				case "CuentaId": return true;
 				case "DepositoId": return true;
+				case "TipoItem": return true;
+				case "NombreFantasiaId": return true;
 				default: return false;
 			}
 		}

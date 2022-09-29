@@ -41,18 +41,30 @@ namespace WebApplication.app.ItemsNS
                 {
                     int uid = Convert.ToInt32(s);
                     seItems = ItemsOperator.GetOneByIdentity(uid);
-                    //obtengo todas las categorias y utilizo descripcion y id
-
-
-                    var items = ItemDetalleOperator.GetAllByParameter("ItemId",id);
-                    if (items != null) 
-                    { 
-                        foreach(var item in items){
-                            var categoria = Int32.Parse(item.CategoriaId);
-                            MultiselectCategorias.SelectedValue = CategoriasOperator.GetOneByIdentity(categoria).Id.ToString();
-                        }
+                    txtNombreFantasia.Text = seItems.NombreFantasiaId > 0 ? NombreFantasiaOperator.GetOneByIdentity(seItems.NombreFantasiaId).Descripcion: "";
+                    switch (seItems.TipoItem)
+                    {
+                        case "PRO": ddlTipos.SelectedValue = "1";
+                            break;
+                        case "VEN": ddlTipos.SelectedValue = "2";
+                            break;
+                        case "OPE": ddlTipos.SelectedValue = "3";
+                            break;
                     }
-                    else
+
+                    //obtengo todas las categorias y utilizo descripcion y id
+                    var categorias = ItemDetalleOperator.GetAllByParameter("ItemId", id);
+                    if (categorias.Count() > 0)
+                    {
+                        foreach (ListItem item in MultiselectCategorias.Items)
+                        {
+                            var categoria = categorias.Where(x => x.CategoriaId == Int32.Parse(item.Value)).ToList();
+                            if (categoria.Count() > 0)
+                            {
+                                item.Selected = true;
+                            }
+                        }
+                    }else
                     {
                         MultiselectCategorias.SelectedValue = CategoriasOperator.GetOneByIdentity((int)seItems.CategoriaItemId).Id.ToString();
                     }
@@ -60,11 +72,11 @@ namespace WebApplication.app.ItemsNS
                     {
                         ddlCuenta.SelectedValue = CuentasOperator.GetOneByIdentity((int)seItems.CuentaId).Id.ToString();
                     }
-                    if (seItems.DepositoId > 0)
-                    {
+                    //if (seItems.DepositoId > 0)
+                    //{
                         //ddlUnidad.SelectedValue = INVENTARIO_UnidadesOperator.GetOneByIdentity((INVENTARIO_ProductoOperator.GetOneByIdentity((int)seItems.DepositoId).Id)).Descripcion;
-                    }
-                        txtDescripcion.Text = seItems.Detalle;
+                    //}
+                    txtDescripcion.Text = seItems.Detalle;
                     //busco el stock para el StockID
                     //INVENTARIO_Producto stockCant = new INVENTARIO_Producto();
                     //stockCant = INVENTARIO_ProductoOperator.GetOneByIdentity(seItems.DepositoId);
@@ -90,7 +102,6 @@ namespace WebApplication.app.ItemsNS
         public void CargaCategorias()
         {
             DataTable dt = new DataTable();
-            //dt.Columns.AddRange(new DataColumn[3] { new DataColumn("Value"), new DataColumn("Text"), new DataColumn("Categoria") });
             dt = CategoriasItemOperator.GetAllWithGroups();
             foreach (DataRow row in dt.Rows)
             {
@@ -101,17 +112,7 @@ namespace WebApplication.app.ItemsNS
                 MultiselectCategorias.Items.Add(item);
             }
             MultiselectCategorias.DataBind();
-
-
         }
-        //public void CargaItems()
-        //{
-        //    List<ItemsCombo> ItemsList = ItemsOperator.GetAllForCombo();
-        //    ddlItems.DataSource = ItemsList;
-        //    ddlItems.DataTextField = "Detalle";
-        //    ddlItems.DataValueField = "Id";
-        //    ddlItems.DataBind();
-        //}
         public void CargaCuentas()
         {
             List<Cuentas> cuentasList = CuentasOperator.GetAll();
@@ -128,7 +129,6 @@ namespace WebApplication.app.ItemsNS
         //    ddlUnidad.DataValueField = "ID";
         //    ddlUnidad.DataBind();
         //}
-
         protected void SetMaximosTextBoxes()
         {
             txtDescripcion.MaxLength = ItemsOperator.MaxLength.Detalle;
@@ -157,10 +157,8 @@ namespace WebApplication.app.ItemsNS
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-
             try
-            {
-                
+            {   
                 seItems.ItemDetalleId = 99;
                 seItems.Detalle = txtDescripcion.Text;
                 seItems.CuentaId = Int32.Parse(ddlCuenta.Text);
@@ -171,7 +169,21 @@ namespace WebApplication.app.ItemsNS
                 seItems.Precio = float.Parse(txtPrecio.Text);
                 seItems.DepositoId = 99;
                 seItems.EstadoId = EstadosOperator.GetHablitadoID();
-                
+                NombreFantasia nombreFantasia = new NombreFantasia();
+                nombreFantasia.Descripcion = txtNombreFantasia.Text;
+                seItems.NombreFantasiaId = NombreFantasiaOperator.Save(nombreFantasia).Id;
+                switch (ddlTipos.SelectedValue)
+                {
+                    case "1":
+                        seItems.TipoItem = "PRO";
+                        break;
+                    case "2":
+                        seItems.TipoItem = "VEN";
+                        break;
+                    case "3":   
+                        seItems.TipoItem = "OPE";
+                        break;
+                }
                 var newItemId = ItemsOperator.Save(seItems).Id;
                 seItems.ItemDetalleId = newItemId;
                 seItems.Id = newItemId;
@@ -184,13 +196,12 @@ namespace WebApplication.app.ItemsNS
                     {
                         detalle.Id = -1;
                         detalle.ItemId = newItemId;
-                        detalle.CategoriaId = item.Value;
+                        detalle.CategoriaId = Int32.Parse(item.Value);
                         ItemDetalleOperator.Save(detalle);
                     }
                 }
 
                 Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
-                //ItemsOperator.Save(seItems);
             }
             catch (Exception ex)
             {
@@ -226,42 +237,6 @@ namespace WebApplication.app.ItemsNS
             Item = INVENTARIO_ProductoOperator.Save(Item);
             return Item.Id;
         }
-        //protected void RowDeleting(object sender, GridViewDeleteEventArgs e)
-        //{
-        //    tablagrid = (DataTable)Session["tablagrid"];
-        //    int id = Int32.Parse(((DropDownList)GridView1.Rows[e.RowIndex].FindControl("ddlItems")).Text);
-
-        //    var idborrar = ItemDetalleOperator.GetOneRelative(id, seItems.Id);
-        //    if (idborrar > 0)
-        //    {
-        //        ItemDetalleOperator.Delete(id);
-
-        //    }
-        //    tablagrid.Rows.RemoveAt(e.RowIndex);
-        //    //foreach (DataRow fila in tablagrid.Rows)
-        //    //{
-        //    //    if (fila["Id"].ToString() == id.ToString())
-        //    //    {
-        //    //        fila.Delete();
-        //    //    }
-        //    //}
-        //    tablagrid.AcceptChanges();
-        //    GridView1.DataSource = tablagrid;
-        //    GridView1.DataBind();
-            
-        //}
-            
-        //protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    if (e.Row.RowType == DataControlRowType.DataRow)
-        //    {
-        //        DropDownList mydrop = (DropDownList)e.Row.FindControl("ddlItems");
-        //        mydrop.DataSource = ItemsOperator.GetAllForCombo().OrderBy(x => x.Detalle).ToList(); ;
-        //        mydrop.DataTextField = "Detalle";
-        //        mydrop.DataValueField = "Id";
-        //        mydrop.DataBind();
-        //    }
-        //}
         
     }
 

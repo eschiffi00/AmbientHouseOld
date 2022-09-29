@@ -33,8 +33,28 @@ namespace DbEntidades.Operators
                 ItemsListado ItemsDetail = new ItemsListado();
                 ItemsDetail.Id = Items.Id;
                 ItemsDetail.Detalle = Items.Detalle;
+                ItemsDetail.NombreFantasiaId = Items.NombreFantasiaId;
                 ItemsDetail.CategoriaItemId = Items.CategoriaItemId;
-                ItemsDetail.CategoriaDescripcion = CategoriasOperator.GetOneByIdentity(Items.CategoriaItemId).Descripcion;
+                if(Items.ItemDetalleId > 0)
+                {
+                    var itemDetalle = ItemDetalleOperator.GetAllByParameter("ItemId", (int)Items.ItemDetalleId);
+                    var itemCategorias = "";
+                    foreach (var detalle in itemDetalle)
+                    {
+                        if (itemCategorias == "")
+                        {
+                            itemCategorias = CategoriasItemOperator.GetOneByIdentity(detalle.CategoriaId).Descripcion;
+
+                        }
+                        else
+                        {
+                            itemCategorias = itemCategorias + "/" + CategoriasItemOperator.GetOneByIdentity(detalle.CategoriaId).Descripcion;
+
+                        }
+                    }
+                    ItemsDetail.CategoriaDescripcion = itemCategorias;
+                }
+                
                 ItemsDetail.CuentaId = Items.CuentaId;
                 if (ItemsDetail.CuentaId == 0 || ItemsDetail.CuentaId == null)
                 {
@@ -42,7 +62,7 @@ namespace DbEntidades.Operators
                 }
                 else
                 {
-                    ItemsDetail.CuentaDescripcion = CuentasOperator.GetOneByIdentity((int)ItemsDetail.CuentaId).Descripcion;
+                    ItemsDetail.CuentaDescripcion = CuentasOperator.GetOneByIdentity((int)ItemsDetail.CuentaId).Nombre;
                 }
                 ItemsDetail.Costo = Items.Costo;
                 ItemsDetail.Margen = Items.Margen;
@@ -54,6 +74,11 @@ namespace DbEntidades.Operators
                 ItemsDetail.Unidad = "";
                 ItemsDetail.Cantidad = 0;
                 ItemsDetail.EstadoId = Items.EstadoId;
+                if(Items.EstadoId == 36)
+                {
+                    ItemsDetail.Estado = "Activo";
+                }
+                else { ItemsDetail.Estado = "Inactivo"; }
                 
                 lista.Add(ItemsDetail);
             }

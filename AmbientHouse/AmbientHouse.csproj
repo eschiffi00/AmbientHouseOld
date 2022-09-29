@@ -150,6 +150,7 @@
     <Content Include="Boostrap4\js\bootstrap.min.js" />
     <Content Include="Boostrap4\js\jquery-3.3.1.slim.min.js" />
     <Content Include="Boostrap4\js\popper.min.js" />
+    <Content Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsBrowse.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsEdit.aspx" />
     <Content Include="Configuracion\AdicionalesItems\Editar.aspx" />
@@ -162,6 +163,8 @@
     <Content Include="Configuracion\Grupos\Index.aspx" />
     <Content Include="Configuracion\ItemDetalle\Editar.aspx" />
     <Content Include="Configuracion\ItemDetalle\Index.aspx" />
+    <Content Include="Configuracion\Items\Editar.aspx" />
+    <Content Include="Configuracion\Items\Index.aspx" />
     <Content Include="Configuracion\Locaciones\AgregarAmbientacion.aspx" />
     <Content Include="Configuracion\Organizacion\Editar.aspx" />
     <Content Include="Configuracion\Organizacion\Index.aspx" />
@@ -180,6 +183,7 @@
     <Content Include="Content\Css\Main.css" />
     <Content Include="Content\Css\Master.css" />
     <Content Include="Content\Css\NuevaArc.css" />
+    <Content Include="Content\Css\Recursos\Botones\BotonSlide.css" />
     <Content Include="Content\Css\screen.css" />
     <Content Include="Content\Css\print.css" />
     <Content Include="Content\Css\Style.css" />
@@ -240,6 +244,9 @@
     <Content Include="Content\JS\Funciones.js" />
     <Content Include="Content\JS\jquery-3.0.0.min.js" />
     <Content Include="Content\JS\presupuestosLoad.js" />
+    <Content Include="Content\resizecolumns\jquery.resizableColumns.css" />
+    <Content Include="Content\resizecolumns\jquery.resizableColumns.js" />
+    <Content Include="Content\resizecolumns\jquery.resizableColumns.min.js" />
     <Content Include="Content\select2\css\select2.css" />
     <Content Include="Content\select2\css\select2.min.css" />
     <Content Include="Content\select2\js\i18N\af.js" />
@@ -404,6 +411,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Content\resizecolumns\jquery.resizableColumns.min.js.map" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -415,6 +423,8 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\resizecolumns\jquery.resizableColumns.js" />
+    <Content Include="Scripts\resizecolumns\jquery.resizableColumns.min.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -510,8 +520,6 @@
     <Content Include="Configuracion\Familias\Editar.aspx" />
     <Content Include="Configuracion\Familias\Index.aspx" />
     <Content Include="Configuracion\Index.aspx" />
-    <Content Include="Configuracion\Items\Editar.aspx" />
-    <Content Include="Configuracion\Items\Index.aspx" />
     <Content Include="Configuracion\Locaciones\AgregarAdicionales.aspx" />
     <Content Include="Configuracion\Locaciones\AgregarTecnica.aspx" />
     <Content Include="Configuracion\Locaciones\Editar.aspx" />
@@ -976,6 +984,13 @@
       <DependentUpon>Ambient.Master</DependentUpon>
     </Compile>
     <Compile Include="CCLib.cs" />
+    <Compile Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx.cs">
+      <DependentUpon>ItemsAltaMasiva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx.designer.cs">
+      <DependentUpon>ItemsAltaMasiva.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Configuracion\AbmItems\ItemsBrowse.aspx.cs">
       <DependentUpon>ItemsBrowse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1058,6 +1073,20 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Configuracion\ItemDetalle\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Items\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Items\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\Items\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\Items\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Configuracion\Locaciones\AgregarAmbientacion.aspx.cs">
@@ -1210,6 +1239,7 @@
     <Compile Include="Herramientas\Corporativos\ArchivosDescargas.ashx.cs">
       <DependentUpon>ArchivosDescargas.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Herramientas\UploadExcel\UploadExcel.cs" />
     <Compile Include="Home\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1952,20 +1982,6 @@
     <Compile Include="Configuracion\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Configuracion\Items\Editar.aspx.cs">
-      <DependentUpon>Editar.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Configuracion\Items\Editar.aspx.designer.cs">
-      <DependentUpon>Editar.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Configuracion\Items\Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Configuracion\Items\Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Configuracion\Locaciones\AgregarAdicionales.aspx.cs">
       <DependentUpon>AgregarAdicionales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2491,6 +2507,7 @@
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
+    <Content Include="Scripts\resizecolumns\jquery.resizableColumns.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2514,6 +2531,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Administracion\Reportes\" />
+    <Folder Include="FilesUpload\" />
     <Folder Include="Herramientas\MisArchivos\" />
     <Folder Include="logs\" />
     <Folder Include="Scripts\Ventas\" />

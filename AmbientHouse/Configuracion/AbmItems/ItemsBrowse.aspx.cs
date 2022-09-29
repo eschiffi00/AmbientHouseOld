@@ -8,8 +8,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Data;
-
-
 namespace WebApplication.app.ItemsNS
 {
     public partial class ItemsBrowse : System.Web.UI.Page
@@ -37,7 +35,6 @@ namespace WebApplication.app.ItemsNS
 
         protected void btnNuevoItems_Click(object sender, EventArgs e)
         {
-            //Response.Redirect(GetRouteUrl("NuevoItem", null));
             Response.Redirect("~/Configuracion/AbmItems/ItemsEdit.aspx");
         }
         protected void grdItems_RowCommand(object sender, GridViewCommandEventArgs e)
