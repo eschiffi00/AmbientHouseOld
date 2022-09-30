@@ -18,13 +18,13 @@ namespace WebApplication.app.ItemsNS
         {
             if (!IsPostBack)
             {
-                FileUploadToServer.Width = Unit.Pixel(178);
+                btnSubirArchivo.Width = Unit.Pixel(178);
             }
         }
 
         protected void btnImportar_Click(object sender, EventArgs e)
         {
-            DataSet ds = UploadExcel.UploadToExcel(FileUploadToServer);
+            DataSet ds = UploadExcel.UploadToExcel(btnSubirArchivo);
             GridView1.DataSource = ds;
             GridView1.DataBind();
         }

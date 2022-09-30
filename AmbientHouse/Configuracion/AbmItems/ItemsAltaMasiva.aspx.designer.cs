@@ -24,13 +24,13 @@ namespace WebApplication.app.ItemsNS
         protected global::System.Web.UI.WebControls.TextBox searchpanelstate;
 
         /// <summary>
-        /// Control FileUploadToServer.
+        /// Control btnSubirArchivo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUploadToServer;
+        protected global::System.Web.UI.WebControls.FileUpload btnSubirArchivo;
 
         /// <summary>
         /// Control btnImportar.

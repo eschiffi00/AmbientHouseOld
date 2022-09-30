@@ -7,26 +7,38 @@
     
 
     <script>
-       
+
+        //////////////////////////////////
+        //////IMPORTADOR DE ARCHIVOS/////
+        ////////////////////////////////
 
         $(document).ready(function () {
-            // seteo como multiselect al listbox
+            // 
+            $("#ov-container1").click(function () {
+                FakeClickUpload()
+                
+            });
+
+
             $("#ov-container2").click(function () {
                 FakeClickImportar()
 
             });
 
 
-            $("#ov-container1").click(function () {
-                FakeClickUpload()
-
-            });
         });
         function FakeClickImportar() {
             $('[Id$=btnImportar]')[0].click();
         }
         function FakeClickUpload() {
-            $('[Id$=FileUploadToServer]')[0].click();
+            $('[Id$=btnSubirArchivo]')[0].click();
+        }
+        function FakeTextBox() {
+            var texto = $('[Id$=btnSubirArchivo]')[0].value ? $('[Id$=btnSubirArchivo]')[0].value : "";
+            var texto2 = texto.split("\\");
+            texto = texto2[texto2.length - 1];
+            $('#ov-texto-archivo').html(texto);
+            
         }
 
 
@@ -74,26 +86,29 @@
             </h4>
         </div>
         <div class="col-8">
-            <div class ="FileUploadContainer">
+            <div class ="fileupload-container">
                 <a  class="ov-btn-slide-right" id="ov-container1">
-                    <asp:FileUpload ID="FileUploadToServer" style="display:none" Width="400px" runat="server" />Seleccione un Archivo
+                    <asp:FileUpload ID="btnSubirArchivo" style="display:none" Width="400px" runat="server" onchange="FakeTextBox()" />Seleccione un Archivo
                 </a>
-
+                <div class ="ov-texto-archivo">
+                    <p id="ov-texto-archivo"></p>
+                </div>
                 <a  class="ov-btn-slide-right" id="ov-container2">
-                    <asp:Button ID="btnImportar"  runat="server" class="ov-asp" Text="Subir Archivo" OnClick="btnImportar_Click"
+                    <asp:Button ID="btnImportar"  runat="server" class="ov-asp" Text="XXXXXXXXXXXXX" OnClick="btnImportar_Click"
                          style="width: auto" />Subir Archivo
                 </a>
             </div>
-            <br />
-            <br />
+            <div>
+
+            </div>
             <asp:Label ID="lblMsg" runat="server" ForeColor="Green" Text=""></asp:Label>
             <br />
-            <asp:GridView ID="GridView1" runat="server" EmptyDataText="No record found!" 
+            <asp:GridView ID="GridView1" runat="server" EmptyDataText="No hay registros!" 
                 Height="25px">
-                <RowStyle Width="175px" />
+                <RowStyle Width="200px" />
                 <EmptyDataRowStyle BackColor="Silver" BorderColor="#999999" BorderStyle="Solid" 
                     BorderWidth="1px" ForeColor="#003300" />
-                <HeaderStyle BackColor="#6699FF" BorderColor="#333333" BorderStyle="Solid" 
+                <HeaderStyle BackColor="#47B449" ForeColor="#000000" BorderColor="#333333" BorderStyle="Solid" 
                     BorderWidth="1px" VerticalAlign="Top" Width="200px"  Wrap="True" />
               
             </asp:GridView>
