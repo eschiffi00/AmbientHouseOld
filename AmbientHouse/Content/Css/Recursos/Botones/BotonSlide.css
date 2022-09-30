@@ -69,15 +69,19 @@
     width: 200px;
     color: black !important;
     border: 1.5px dashed #000000;
-    height: 35px;
+    /*height: 35px;*/
     font-weight: 500 !important;
     text-align: center;
+    height: auto;
+    min-height: 35px;
 }
 
 #ov-texto-archivo {
     width: 200px;
     color: black !important;
-    height: 35px;
+    height: auto;
+    min-height: 35px;
+    display: contents;
     font-weight: 400 !important;
 }
 

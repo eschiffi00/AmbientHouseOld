@@ -89,7 +89,10 @@ namespace WebApplication.app.ItemsNS
                         ItemDetalleOperator.Save(detalle);
                     }
                 }
-                else { fila.ControlStyle.BackColor = Color.Red; }
+                else { 
+                    fila.ControlStyle.BackColor = Color.Red;
+                    fila.ControlStyle.ForeColor = Color.White;
+                }
             }
             if (err == 0)
             {
