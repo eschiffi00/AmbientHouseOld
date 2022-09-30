@@ -413,6 +413,7 @@
     <Compile Include="Operators\ComprobantesPagadosOperator.cs" />
     <Compile Include="Operators\ComprobantesProveedoresOperator.cs" />
     <Compile Include="Operators\ComprobantesProveedores_DetallesOperator.cs" />
+    <Compile Include="Operators\CuentasOperator.cs" />
     <Compile Include="Operators\EstadoOperator.cs" />
     <Compile Include="Operators\ItemDetalleOperator.cs" />
     <Compile Include="Operators\ParametroOperator.cs" />

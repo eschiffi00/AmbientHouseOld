@@ -242,14 +242,25 @@ namespace AmbientHouse.App_Shared.Controles
                 mnuItemDetalle.NavigateUrl = "~/Configuracion/ItemDetalle/Index.aspx";
 
                 mnuConfiguracion.ChildItems.Add(mnuItemDetalle);
+                #region Items
+
                 MenuItem mnuAbmItems = new MenuItem();
 
-                mnuAbmItems.Text = "Items";
-                mnuAbmItems.Value = "ITB";
+                mnuAbmItems.Text = "Administracion de Items";
+                mnuAbmItems.Value = "ADI";
                 mnuAbmItems.NavigateUrl = "~/Configuracion/AbmItems/ItemsBrowse.aspx";
 
                 mnuConfiguracion.ChildItems.Add(mnuAbmItems);
 
+                MenuItem mnuItemsMasiva = new MenuItem();
+
+                mnuAbmItems.Text = "Alta Masiva de Items";
+                mnuAbmItems.Value = "AMT";
+                mnuAbmItems.NavigateUrl = "~/Configuracion/AbmItems/ItemsAltaMasiva.aspx";
+
+                mnuConfiguracion.ChildItems.Add(mnuItemsMasiva);
+
+                #endregion
                 #region Adicionales
 
                 MenuItem mnuAdicionales = new MenuItem();

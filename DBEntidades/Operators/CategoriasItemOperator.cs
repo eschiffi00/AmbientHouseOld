@@ -51,7 +51,27 @@ namespace DbEntidades.Operators
             return dt2;
         }
 
-
+        public static CategoriasItem GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoCategoriasItemBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            foreach (PropertyInfo prop in typeof(CategoriasItem).GetProperties()) columnas += prop.Name + ", ";
+            columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from CategoriasItem where  " + campo + " = \'" + valor + "\'").Tables[0];
+            CategoriasItem CategoriasItem = new CategoriasItem();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(CategoriasItem).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(CategoriasItem, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return CategoriasItem;
+        }
 
     }
 }

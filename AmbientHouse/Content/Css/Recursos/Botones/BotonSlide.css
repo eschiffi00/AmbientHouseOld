@@ -8,7 +8,6 @@
     width: 600px;
     align-items: center;
 }
-
 .ov-btn-slide-right {
     background: #fff; /* color de fondo */
     color: #000000 !important;
@@ -22,6 +21,8 @@
     display: inline-block;
     pointer-events: auto;
     height: 35px;
+    user-select: none;
+    cursor:pointer;
 }
 
 .ov-btn-slide-right:hover {
@@ -78,6 +79,20 @@
     color: black !important;
     height: 35px;
     font-weight: 400 !important;
+}
+
+.ov-confirmar{
+
+}
+#ov-container3::after {
+    content: "";
+    background: #03A335 !important;
+    border-color: #03A335 !important;
+    cursor:pointer;
+}
+
+#ov-container3:hover {
+    border-color: #03A335 !important;
 }
 
 

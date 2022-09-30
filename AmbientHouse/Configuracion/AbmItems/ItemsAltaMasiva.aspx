@@ -15,14 +15,15 @@
         $(document).ready(function () {
             // 
             $("#ov-container1").click(function () {
-                FakeClickUpload()
-                
+                FakeClickUpload()  
             });
 
 
             $("#ov-container2").click(function () {
                 FakeClickImportar()
-
+            });
+            $("#ov-container3").click(function () {
+                FakeClickConfirmar()
             });
 
 
@@ -32,6 +33,9 @@
         }
         function FakeClickUpload() {
             $('[Id$=btnSubirArchivo]')[0].click();
+        }
+        function FakeClickConfirmar() {
+            $('[Id$=btnConfirmar]')[0].click();
         }
         function FakeTextBox() {
             var texto = $('[Id$=btnSubirArchivo]')[0].value ? $('[Id$=btnSubirArchivo]')[0].value : "";
@@ -99,7 +103,10 @@
                 </a>
             </div>
             <div>
-
+                <a  class="ov-btn-slide-right" id="ov-container3">
+                    <asp:Button ID="btnConfirmar"  runat="server" class="ov-asp" Text="XXXXXXXXXXXXX" OnClick="btnConfirmar_Click"
+                         style="width: auto" />Confirmar
+                </a>
             </div>
             <asp:Label ID="lblMsg" runat="server" ForeColor="Green" Text=""></asp:Label>
             <br />
