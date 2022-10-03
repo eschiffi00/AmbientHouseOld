@@ -140,6 +140,7 @@
     <Compile Include="Entities\Auto\Monedas.cs" />
     <Compile Include="Entities\Auto\Movimientos.cs" />
     <Compile Include="Entities\Auto\Negocios.cs" />
+    <Compile Include="Entities\NewEventosConfirmados.cs" />
     <Compile Include="Entities\Auto\NotaCreditos.cs" />
     <Compile Include="Entities\Auto\ObjetivosEmpleados.cs" />
     <Compile Include="Entities\Auto\ObjetivosGrupos.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="Entities\Auto\Usuarios.cs" />
     <Compile Include="Entities\Auto\UsuariosGrupos.cs" />
     <Compile Include="Entities\Auto\UsuariosLocaciones.cs" />
+    <Compile Include="Entities\EventosConfirmadosNew.cs" />
     <Compile Include="Entities\CuentaCorrienteProveedores.cs" />
     <Compile Include="Entities\ItemListado.cs" />
     <Compile Include="Entities\ComprobantesPagosDetalle.cs" />
