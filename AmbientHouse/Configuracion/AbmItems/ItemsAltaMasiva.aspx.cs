@@ -29,6 +29,7 @@ namespace WebApplication.app.ItemsNS
         protected void btnImportar_Click(object sender, EventArgs e)
         {
             DataSet ds = UploadExcel.UploadToExcel(btnSubirArchivo);
+            Session["filename"] = btnSubirArchivo.FileName;
             GridView1.DataSource = ds;
             GridView1.DataBind();
         }
@@ -94,6 +95,8 @@ namespace WebApplication.app.ItemsNS
                     fila.ControlStyle.ForeColor = Color.White;
                 }
             }
+            string filename = (string)Session["filename"];
+            UploadExcel.DeleteUploads(filename);
             if (err == 0)
             {
                 Response.Redirect("~/Configuracion/AbmItems/ItemsAltaMasiva.aspx");

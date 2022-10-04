@@ -6,6 +6,12 @@ using System.Linq;
 using System.Data.OleDb;
 using System.Web.UI.WebControls;
 using System.Web;
+using DbEntidades.Entities;
+using DbEntidades.Operators;
+using System.Collections.Generic;
+using System.Web.UI;
+using DomainAmbientHouse.Servicios;
+using System.Web.SessionState;
 
 namespace AmbientHouse.Herramientas.UploadExcel
 {
@@ -86,5 +92,27 @@ namespace AmbientHouse.Herramientas.UploadExcel
             return ExcelDataSet2;
 
         }
+        public static void DeleteUploads(string filename)
+        {
+            string FilePath = ConfigurationManager.AppSettings["FilePath"].ToString();
+            
+            string path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(FilePath), filename);
+            DirectoryInfo di = new DirectoryInfo(path);
+
+            if (File.Exists(path))
+            {
+                try
+                {
+                    File.Delete(path);
+                }
+                catch (IOException ev)
+                {
+                    //Console.WriteLine(ev.Message);
+                    return;
+                }
+            }
+            Console.WriteLine("Files deleted successfully");
+        }
     }
+    
 }

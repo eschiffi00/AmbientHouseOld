@@ -245,8 +245,6 @@
     <Content Include="Content\JS\jquery-3.0.0.min.js" />
     <Content Include="Content\JS\presupuestosLoad.js" />
     <Content Include="Content\resizecolumns\jquery.resizableColumns.css" />
-    <Content Include="Content\resizecolumns\jquery.resizableColumns.js" />
-    <Content Include="Content\resizecolumns\jquery.resizableColumns.min.js" />
     <Content Include="Content\select2\css\select2.css" />
     <Content Include="Content\select2\css\select2.min.css" />
     <Content Include="Content\select2\js\i18N\af.js" />
@@ -411,7 +409,6 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Content\resizecolumns\jquery.resizableColumns.min.js.map" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

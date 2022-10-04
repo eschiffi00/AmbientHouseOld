@@ -1058,6 +1058,7 @@ namespace DomainAmbientHouse.Servicios
             //Organizadoras
             mails.Add("georginap@edificiolahusen.com.ar");
             mails.Add("roxana@edificiolahusen.com.ar");
+            mails.Add("ayelenmendoza@grupoambient.com.ar");
 
         }
 
@@ -1105,5 +1106,7 @@ namespace DomainAmbientHouse.Servicios
             mails.Add("diegostrevezza@hotmail.com");
 
         }
+
+
     }
 }
