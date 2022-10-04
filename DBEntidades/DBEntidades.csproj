@@ -32,10 +32,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus, Version=6.0.8.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.6.0.8\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.0.0\lib\net452\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.0.0.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.0.0\lib\net452\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -140,7 +155,6 @@
     <Compile Include="Entities\Auto\Monedas.cs" />
     <Compile Include="Entities\Auto\Movimientos.cs" />
     <Compile Include="Entities\Auto\Negocios.cs" />
-    <Compile Include="Entities\NewEventosConfirmados.cs" />
     <Compile Include="Entities\Auto\NotaCreditos.cs" />
     <Compile Include="Entities\Auto\ObjetivosEmpleados.cs" />
     <Compile Include="Entities\Auto\ObjetivosGrupos.cs" />
@@ -218,10 +232,9 @@
     <Compile Include="Entities\Auto\Usuarios.cs" />
     <Compile Include="Entities\Auto\UsuariosGrupos.cs" />
     <Compile Include="Entities\Auto\UsuariosLocaciones.cs" />
-    <Compile Include="Entities\EventosConfirmadosNew.cs" />
-    <Compile Include="Entities\CuentaCorrienteProveedores.cs" />
     <Compile Include="Entities\ItemListado.cs" />
     <Compile Include="Entities\ComprobantesPagosDetalle.cs" />
+    <Compile Include="Entities\Auto\NombreFantasia.cs" />
     <Compile Include="Entities\RecetaDetalle.cs" />
     <Compile Include="Operators\Auto\AdicionalesItemsOperator.cs" />
     <Compile Include="Operators\Auto\AdicionalesOperator.cs" />
@@ -318,6 +331,7 @@
     <Compile Include="Operators\Auto\MonedasOperator.cs" />
     <Compile Include="Operators\Auto\MovimientosOperator.cs" />
     <Compile Include="Operators\Auto\NegociosOperator.cs" />
+    <Compile Include="Operators\Auto\NombreFantasiaOperator.cs" />
     <Compile Include="Operators\Auto\NotaCreditosOperator.cs" />
     <Compile Include="Operators\Auto\ObjetivosEmpleadosOperator.cs" />
     <Compile Include="Operators\Auto\ObjetivosGruposOperator.cs" />
@@ -395,10 +409,11 @@
     <Compile Include="Operators\Auto\UsuariosGruposOperator.cs" />
     <Compile Include="Operators\Auto\UsuariosLocacionesOperator.cs" />
     <Compile Include="Operators\Auto\UsuariosOperator.cs" />
-    <Compile Include="Operators\CuentaCorrienteProveedoresOperator.cs" />
+    <Compile Include="Operators\CategoriasItemOperator.cs" />
     <Compile Include="Operators\ComprobantesPagadosOperator.cs" />
     <Compile Include="Operators\ComprobantesProveedoresOperator.cs" />
     <Compile Include="Operators\ComprobantesProveedores_DetallesOperator.cs" />
+    <Compile Include="Operators\CuentasOperator.cs" />
     <Compile Include="Operators\EstadoOperator.cs" />
     <Compile Include="Operators\ItemDetalleOperator.cs" />
     <Compile Include="Operators\ParametroOperator.cs" />
@@ -422,6 +437,8 @@
       <Name>LibDB2</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

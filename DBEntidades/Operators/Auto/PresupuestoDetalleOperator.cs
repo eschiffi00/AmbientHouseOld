@@ -55,32 +55,7 @@ namespace DbEntidades.Operators
             return lista;
         }
 
-        public static List<PresupuestoDetalle> GetAllByParameter(string campo, int valor)
-        {
-            if (!DbEntidades.Seguridad.Permiso("PermisoPresupuestoDetalleBrowse")) throw new PermisoException();
-            string columnas = string.Empty;
-            foreach (PropertyInfo prop in typeof(PresupuestoDetalle).GetProperties()) columnas += prop.Name + ", ";
-            columnas = columnas.Substring(0, columnas.Length - 2);
-            DB db = new DB();
-            DataTable dt = db.GetDataSet("select " + columnas + " from PresupuestoDetalle where " + campo + " = " + valor.ToString()).Tables[0];
-            List<PresupuestoDetalle> lista = new List<PresupuestoDetalle>();
-            foreach (DataRow dr in dt.AsEnumerable())
-            {
-
-                PresupuestoDetalle comprobante = new PresupuestoDetalle();
-                foreach (PropertyInfo prop in typeof(PresupuestoDetalle).GetProperties())
-                {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(comprobante, value, null); }
-                    catch (System.ArgumentException) { }
-                }
-                lista.Add(comprobante);
-            }
-            return lista;
-        }
-
-        public static List<PresupuestoDetalle> GetAllEstado1()
+		public static List<PresupuestoDetalle> GetAllEstado1()
 		{
 			return GetAll().Where(x => x.EstadoId == 1).ToList();
 		}
