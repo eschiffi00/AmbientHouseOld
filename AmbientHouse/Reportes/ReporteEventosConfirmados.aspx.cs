@@ -87,9 +87,21 @@ namespace AmbientHouse.Reportes
                 e.Cliente = evento.Cliente;
                 e.FechaSena = evento.FechaSena;
                 e.TipoEventoId = evento.TipoEventoId;
-                var producto = ProductosOperator.GetOneByIdentity(PresupuestoDetalleOperator.GetOneByIdentity(e.PresupuestoId).ProductoId);
-                e.TipoExperiencia = TipoCateringOperator.GetOneByIdentity(producto.TipoCateringId.Value).Descripcion == null ? " " : TipoCateringOperator.GetOneByIdentity(producto.TipoCateringId.Value).Descripcion;
-                e.TipoBarra = TiposBarrasOperator.GetOneByIdentity(producto.TipoBarraId.Value).Descripcion == null ? " " : TiposBarrasOperator.GetOneByIdentity(producto.TipoBarraId.Value).Descripcion;
+                var detalles = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId",e.PresupuestoId);
+                if(detalles.Find(x => x.UnidadNegocioId == 3) !=null){
+                    var productoEx = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 3).ProductoId);
+                    e.TipoExperiencia = TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion == null ? " " : TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion;
+                }
+                else { e.TipoExperiencia = ""; }
+                if (detalles.Find(x => x.UnidadNegocioId == 6) != null)
+                {
+                    var productoBa = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 6).ProductoId);
+                    e.TipoBarra = TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion == null ? " " : TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion;
+                }
+                else
+                {
+                    e.TipoBarra = "";
+                }
                 EventosConfirmadosNew.Add(e);
             }
             return EventosConfirmadosNew.ToList();
