@@ -8,21 +8,20 @@ using DbEntidades.Operators;
 
 namespace DbEntidades.Entities
 {
-    public partial class ItemDetalle
+    public partial class NombreFantasia
     {
 		public int Id { get; set; }
-		public int ItemId { get; set; }
-		public int CategoriaId { get; set; }
+		public string Descripcion { get; set; }
 
 		public override string ToString() 
 		{
 			return "\r\n " + 
 			"Id: " + Id.ToString() + "\r\n " + 
-			"ItemId: " + ItemId.ToString() + "\r\n " ;
+			"Descripcion: " + Descripcion.ToString() + "\r\n " ;
 		}
-        public ItemDetalle()
+        public NombreFantasia()
         {
-			Id = -1;
+            Id = -1;
 
         }
 
@@ -35,9 +34,7 @@ namespace DbEntidades.Entities
 			switch (colName) 
 			{
 				case "Id": return false;
-				case "ItemId": return false;
-				case "CategoriaId": return false;
-
+				case "Descripcion": return true;
 				default: return false;
 			}
 		}

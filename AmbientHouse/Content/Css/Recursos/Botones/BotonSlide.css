@@ -1,0 +1,103 @@
+﻿/*** ESTILOS BOTÓN SLIDE RIGHT ***/
+.fileupload-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    /*border: 1px dotted #000000;*/
+    height: 100px;
+    width: 600px;
+    align-items: center;
+}
+.ov-btn-slide-right {
+    background: #fff; /* color de fondo */
+    color: #000000 !important;
+    font-weight: 500;
+    border: 2px solid #000000; /* tamaño y color de borde */
+    padding: 4px 8px;
+    border-radius: 3px; /* redondear bordes */
+    position: relative;
+    z-index: 900;
+    overflow: hidden;
+    display: inline-block;
+    pointer-events: auto;
+    height: 35px;
+    user-select: none;
+    cursor:pointer;
+}
+
+.ov-btn-slide-right:hover {
+    color: #fff !important; /* color de fuente hover */
+}
+
+.ov-btn-slide-right::after {
+    content: "";
+    background: #000000; /* color de fondo hover */
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    right: -100%;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+.ov-btn-slide-right:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+.ov-asp {
+    color:white;
+    position: fixed;
+    z-index:-1;
+    width: auto;
+    opacity: 0;
+}
+
+#ov-container1{
+    padding-right: 10px;
+}
+
+.ov-texto-archivo {
+    width: 200px;
+    color: black !important;
+    border: 1.5px dashed #000000;
+    /*height: 35px;*/
+    font-weight: 500 !important;
+    text-align: center;
+    height: auto;
+    min-height: 35px;
+}
+
+#ov-texto-archivo {
+    width: 200px;
+    color: black !important;
+    height: auto;
+    min-height: 35px;
+    display: contents;
+    font-weight: 400 !important;
+}
+
+.ov-confirmar{
+
+}
+#ov-container3::after {
+    content: "";
+    background: #03A335 !important;
+    border-color: #03A335 !important;
+    cursor:pointer;
+}
+
+#ov-container3:hover {
+    border-color: #03A335 !important;
+}
+
+
+/*** ESTILOS BOTÓN SLIDE RIGHT ***/

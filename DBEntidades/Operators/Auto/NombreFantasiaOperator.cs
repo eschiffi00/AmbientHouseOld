@@ -9,48 +9,48 @@ using LibDB2;
 
 namespace DbEntidades.Operators
 {
-    public partial class ItemDetalleOperator
+    public partial class NombreFantasiaOperator
     {
 
-        public static ItemDetalle GetOneByIdentity(int Id)
+        public static NombreFantasia GetOneByIdentity(int Id)
         {
-            if (!DbEntidades.Seguridad.Permiso("PermisoItemDetalleBrowse")) throw new PermisoException();
+            if (!DbEntidades.Seguridad.Permiso("PermisoNombreFantasiaBrowse")) throw new PermisoException();
             string columnas = string.Empty;
-            foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties()) columnas += prop.Name + ", ";
+            foreach (PropertyInfo prop in typeof(NombreFantasia).GetProperties()) columnas += prop.Name + ", ";
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
-            DataTable dt = db.GetDataSet("select " + columnas + " from ItemDetalle where Id = " + Id.ToString()).Tables[0];
-            ItemDetalle itemDetalle = new ItemDetalle();
-            foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties())
+            DataTable dt = db.GetDataSet("select " + columnas + " from NombreFantasia where Id = " + Id.ToString()).Tables[0];
+            NombreFantasia nombreFantasia = new NombreFantasia();
+            foreach (PropertyInfo prop in typeof(NombreFantasia).GetProperties())
             {
 				object value = dt.Rows[0][prop.Name];
 				if (value == DBNull.Value) value = null;
-                try { prop.SetValue(itemDetalle, value, null); }
+                try { prop.SetValue(nombreFantasia, value, null); }
                 catch (System.ArgumentException) { }
             }
-            return itemDetalle;
+            return nombreFantasia;
         }
 
-        public static List<ItemDetalle> GetAll()
+        public static List<NombreFantasia> GetAll()
         {
-            if (!DbEntidades.Seguridad.Permiso("PermisoItemDetalleBrowse")) throw new PermisoException();
+            if (!DbEntidades.Seguridad.Permiso("PermisoNombreFantasiaBrowse")) throw new PermisoException();
             string columnas = string.Empty;
-            foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties()) columnas += prop.Name + ", ";
+            foreach (PropertyInfo prop in typeof(NombreFantasia).GetProperties()) columnas += prop.Name + ", ";
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
-            List<ItemDetalle> lista = new List<ItemDetalle>();
-            DataTable dt = db.GetDataSet("select " + columnas + " from ItemDetalle").Tables[0];
+            List<NombreFantasia> lista = new List<NombreFantasia>();
+            DataTable dt = db.GetDataSet("select " + columnas + " from NombreFantasia").Tables[0];
             foreach (DataRow dr in dt.AsEnumerable())
             {
-                ItemDetalle itemDetalle = new ItemDetalle();
-                foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties())
+                NombreFantasia nombreFantasia = new NombreFantasia();
+                foreach (PropertyInfo prop in typeof(NombreFantasia).GetProperties())
                 {
 					object value = dr[prop.Name];
 					if (value == DBNull.Value) value = null;
-					try { prop.SetValue(itemDetalle, value, null); }
+					try { prop.SetValue(nombreFantasia, value, null); }
 					catch (System.ArgumentException) { }
                 }
-                lista.Add(itemDetalle);
+                lista.Add(nombreFantasia);
             }
             return lista;
         }
@@ -59,34 +59,35 @@ namespace DbEntidades.Operators
 
         public class MaxLength
         {
+			public static int Descripcion { get; set; } = 100;
 
 
         }
 
-        public static ItemDetalle Save(ItemDetalle itemDetalle)
+        public static NombreFantasia Save(NombreFantasia nombreFantasia)
         {
-            if (!DbEntidades.Seguridad.Permiso("PermisoItemDetalleSave")) throw new PermisoException();
-            if (itemDetalle.Id == -1) return Insert(itemDetalle);
-            else return Update(itemDetalle);
+            if (!DbEntidades.Seguridad.Permiso("PermisoNombreFantasiaSave")) throw new PermisoException();
+            if (nombreFantasia.Id == -1) return Insert(nombreFantasia);
+            else return Update(nombreFantasia);
         }
 
-        public static ItemDetalle Insert(ItemDetalle itemDetalle)
+        public static NombreFantasia Insert(NombreFantasia nombreFantasia)
         {
-            if (!DbEntidades.Seguridad.Permiso("PermisoItemDetalleSave")) throw new PermisoException();
-            string sql = "insert into ItemDetalle(";
+            if (!DbEntidades.Seguridad.Permiso("PermisoNombreFantasiaSave")) throw new PermisoException();
+            string sql = "insert into NombreFantasia(";
             string columnas = string.Empty;
             string valores = string.Empty;
             List<object> param = new List<object>();
             List<object> valor = new List<object>();
             List<SqlParameter> sqlParams = new List<SqlParameter>();
 
-            foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties())
+            foreach (PropertyInfo prop in typeof(NombreFantasia).GetProperties())
             {
                 if (prop.Name == "Id") continue; //es identity
                 columnas += prop.Name + ", ";
                 valores += "@" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
-                valor.Add(prop.GetValue(itemDetalle, null));
+                valor.Add(prop.GetValue(nombreFantasia, null));
             }
             columnas = columnas.Substring(0, columnas.Length - 2);
             valores = valores.Substring(0, valores.Length - 2);
@@ -102,25 +103,25 @@ namespace DbEntidades.Operators
             }
             //object resp = db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
-            itemDetalle.Id = Convert.ToInt32(resp);
-            return itemDetalle;
+            nombreFantasia.Id = Convert.ToInt32(resp);
+            return nombreFantasia;
         }
 
-        public static ItemDetalle Update(ItemDetalle itemDetalle)
+        public static NombreFantasia Update(NombreFantasia nombreFantasia)
         {
-            if (!DbEntidades.Seguridad.Permiso("PermisoItemDetalleSave")) throw new PermisoException();
-            string sql = "update ItemDetalle set ";
+            if (!DbEntidades.Seguridad.Permiso("PermisoNombreFantasiaSave")) throw new PermisoException();
+            string sql = "update NombreFantasia set ";
             string columnas = string.Empty;
             List<object> param = new List<object>();
             List<object> valor = new List<object>();
             List<SqlParameter> sqlParams = new List<SqlParameter>();
 
-            foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties())
+            foreach (PropertyInfo prop in typeof(NombreFantasia).GetProperties())
             {
                 if (prop.Name == "Id") continue; //es identity
                 columnas += prop.Name + " = @" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
-                valor.Add(prop.GetValue(itemDetalle, null));
+                valor.Add(prop.GetValue(nombreFantasia, null));
             }
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
@@ -132,11 +133,11 @@ namespace DbEntidades.Operators
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
         }
-            sql += " where Id = " + itemDetalle.Id;
+            sql += " where Id = " + nombreFantasia.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
-            return itemDetalle;
+            return nombreFantasia;
     }
 
         private static string GetComilla(string tipo)

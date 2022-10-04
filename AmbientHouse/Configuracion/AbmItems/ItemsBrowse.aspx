@@ -1,7 +1,44 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="ItemsBrowse.aspx.cs" Inherits="WebApplication.app.ItemsNS.ItemsBrowse" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../Content/Css/NuevaArc.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/resizecolumns/jquery.resizableColumns.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/resizecolumns/jquery.resizableColumns.min.js" type="text/javascript"></script>
+    
+
     <script>
+        //var j = jQuery.noConflict();
+
+        //function ShowError(error) {
+        //    var texto;
+        //    switch (error) {
+        //        case "1":
+        //            texto = 'El Monto a Pagar es mayor que el Costo';
+        //            break;
+        //        case "2":
+        //            texto = 'El Monto a Pagar es distinto del Importe Saldo';
+        //            break;
+        //    }
+        //    j(function () {
+        //        j('#dialog').dialog({
+        //            modal: true,
+        //            width: 'auto',
+        //            resizable: false,
+        //            draggable: false,
+        //            close: function (event, ui) { j('body').find('#dialog').remove(); },
+        //            closeText: "X",
+        //            show: "fade",
+        //            hide: "fade",
+        //            open: function () {
+        //                $(this).html(texto);
+        //            },
+
+        //        })
+        //    });
+
+        //    j("#dialog").dialog("open");
+        //    j('#dialog').html(texto).dialog({});
+        //    /*$("#dialog").html(texto);*/
+        //}
         function ConfirmaBorrado(e) {
             //o = document.getElementById(e.id);
             anchor = "#" + e.id;
@@ -15,8 +52,11 @@
             }
             else return false;
         }
-
+        $(function () {
+            $("table").resizableColumns();
+        });
         $(document).ready(function () {
+            
             if ($("#searchpanelstate").val() == "invisible") $("#searchpanel").addClass('invisible');
             else $("#searchpanel").removeClass('invisible');
 
@@ -43,8 +83,9 @@
                 <asp:LinkButton CssClass="LnkBtnExportar" runat="server" ID="btnExportar" OnClick="btnExportar_Click"><i class="fa fa-download exporticon faborde" title="Exportar Productos"></i></asp:LinkButton>
             </h4>
         </div>
+        
         <div class="col-4 text-right">
-            <asp:Button ID="btnNuevoProducto" Text="Nuevo Producto" runat="server" CssClass="btn btn-primary" OnClick="btnNuevoItems_Click" />
+            <asp:Button ID="btnNuevoProducto" Text="Nuevo Producto" runat="server" CssClass="btn btnblack btn-primary" OnClick="btnNuevoItems_Click" />
         </div>
     </div>
     <div id="searchpanel" class="row invisible mb-2">
@@ -74,19 +115,24 @@
                         </div>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Id" HeaderText="ID" Visible="true" SortExpression="ColumName1" />
+                <asp:BoundField DataField="Id" HeaderText="ID" Visible="true" SortExpression="Id" />
                 <asp:BoundField DataField="Detalle" HeaderText="Detalle" Visible="true" />
                 <asp:BoundField DataField="CategoriaItemId" HeaderText="Categoria" Visible="false" />
                 <asp:BoundField DataField="CategoriaDescripcion" HeaderText="Categoria" Visible="true" />
+                <asp:BoundField DataField="NombreFantasiaId" HeaderText="NombreFantasiaId" Visible="false" />
+                <asp:BoundField DataField="NombreFantasia" HeaderText="Nombre Fantasía" Visible="true" />
                 <asp:BoundField DataField="CuentaId" HeaderText="CuentaId" Visible="false" />
                 <asp:BoundField DataField="CuentaDescripcion" HeaderText="Cuenta" Visible="true" />
                 <asp:BoundField DataField="Costo" HeaderText="Costo" Visible="true" />
                 <asp:BoundField DataField="Margen" HeaderText="Margen" Visible="true" />
                 <asp:BoundField DataField="Precio" HeaderText="Precio" Visible="true" />
-                <%--<asp:BoundField DataField="DepositoId" HeaderText="Stock" Visible="false" />--%>
-                <asp:BoundField DataField="Unidad" HeaderText="Unidad" Visible="true" />
-                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" Visible="true" />
+                <asp:BoundField DataField="DepositoId" HeaderText="Stock" Visible="false" />
+                <asp:BoundField DataField="Unidad" HeaderText="Unidad" Visible="false" />
+                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" Visible="false" />
                 <asp:BoundField DataField="Estado" HeaderText="Habilitado" Visible="true" />
+                <asp:BoundField DataField="TipoItem" HeaderText="Tipo Item" Visible="false" />
+                
+
                
               
             </Columns>
@@ -95,5 +141,10 @@
             </EmptyDataTemplate>
         </asp:GridView>
     </div>
+    <%--<div id="dialog" style="display: none;" title="Eliminar">--%>
+      <%--<p>
+        El Monto a Pagar es mayor que el Costo
+      </p>--%>
+    <%--</div>--%>
 </asp:Content>
 

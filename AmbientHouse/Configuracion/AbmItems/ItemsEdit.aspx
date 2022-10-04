@@ -1,53 +1,81 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="ItemsEdit.aspx.cs" Inherits="WebApplication.app.ItemsNS.ItemsEdit"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="<%=ResolveUrl("~")%>Scripts/umd/popper.min.js"></script>
+    <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+	    rel="stylesheet" type="text/css" />
+    
+ <%--   <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+	    type="text/javascript"></script>
+    <script>--%>
+        <script src="../../Scripts/MultiSelect.js" type="text/javascript"></script>
     <script>
-        window.onload = function () {
-            document.getElementById("Itemcoleccion").style.display = 'none';
-            var chkdetalle = document.querySelector('[id$="chkDetalle"]');
-            chkdetalle.addEventListener('change', CheckDetalle);
-                
-            CheckDetalle();
-            //if (document.querySelector('#divPeso input').value != "") {
-            //    document.getElementById("divPeso").style.display = 'flex';
-            //    document.getElementById("Peso").checked = true;
-            //} else if (document.querySelector('#divCantidad input').value != "") {
-            //    document.getElementById("divCantidad").style.display = 'flex';
-            //    document.getElementById("Cantidad").checked = true;
-            //}
-        };
-        function CheckDetalle() {
-            var chkboxid = document.querySelector('[id$="chkDetalle"]').id;
-            if (document.getElementById(chkboxid).checked) {
-                document.getElementById("Itemcoleccion").style.display = 'flex';
-                document.getElementById("Itemcoleccion").style.flexDirection = 'column';
-                document.getElementById("costo").style.display = 'none';
-                document.getElementById("margen").style.display = 'none';
-                document.getElementById("precio").style.display = 'none';
 
-            } else {
-                document.getElementById("Itemcoleccion").style.display = 'none';
-                document.getElementById("costo").style.display = 'flex';
-                document.getElementById("margen").style.display = 'flex';
-                document.getElementById("precio").style.display = 'flex';
+        $(document).ready(function () {
+            // seteo como multiselect al listbox
+            GroupDropdownlist();
+            $('[id*=MultiselectCategorias]').multiselect({
+                enableClickableOptGroups: true,
+                enableCollapsibleOptGroups: true,
+                enableFiltering: true
+            });
+            document.addEventListener("keydown", function (event) {
+                if (event.which == 9 ) {
+                    focusNextElement();
+                }
+            });
+            function focusNextElement() {
+                //add all elements we want to include in our selection
+                var focussableElements = '[tabindex]:not([disabled]):not([tabindex="-1"])';
+                if (document.activeElement && document.activeElement.form) {
+                    var focussable = Array.prototype.filter.call(document.activeElement.form.querySelectorAll(focussableElements),
+                        function (element) {
+                            //check for visibility while always include the current activeElement 
+                            return element.offsetWidth > 0 || element.offsetHeight > 0 || element === document.activeElement
+                        });
+                    var index = focussable.indexOf(document.activeElement);
+                    if (index <= -1 || index > 8) {
+                        $('[Id$=txtDescripcion]').addClass("active");
+                        $('[Id$=txtDescripcion]').focus();
+                    }
+                }
+            }
+
+            
+            //$("form input:checkbox").checked = false;
+              
+        });
+        function GroupDropdownlist() {
+            var selectControl = $('[id*=MultiselectCategorias]');
+            var groups = [];
+            $(selectControl).find('option').each(function () {
+                groups.push($(this).attr('data-group'));
+            });
+            var uniqueGroup = groups.filter(function (itm, i, a) {
+                return i == a.indexOf(itm);
+            });
+            for (var i = 0; i < uniqueGroup.length; i++) {
+
+                var Group = jQuery('<optgroup/>', {
+                    label: uniqueGroup[i]
+                }).appendTo(selectControl);
+                var grpItems = $(selectControl).find('option[data-group="' + uniqueGroup[i] + '"]');
+                for (var x = 0; x < grpItems.length; x++)
+                {
+                    var item = grpItems[x];
+                    if (item.text != uniqueGroup[i]) {
+                        //item.appendTo(Group);
+                        Group.append(item);
+                    } else {
+                        grpItems[x].remove();
+                    } 
+                }
             }
         }
+        
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
     
-
-  <!--#region Alterta -->
-    <%--<div runat="server" id="divAlerta" class="row alert alert-danger invisible">
-        <div class="col-md-11">
-            <asp:Label ID="lblAlerta" runat="server" Text=""></asp:Label>
-        </div>
-        <div class="col-md-1 text-right mb-5">
-            <asp:LinkButton ID="btnCloseAlerta" CssClass="close" runat="server" OnClick="btnCloseAlerta_Click">x</asp:LinkButton>
-        </div>
-    </div>--%>
-    <!--#endregion Alerta -->
-
-
     <!--#region divPpal -->
     <div runat="server" id="divPpal">
         <div class="row">
@@ -61,85 +89,58 @@
                 <div class="invalid-feedback">Debe ingresar una descripcion para el Item</div>
             </div>
         </div>
-        <div>
-            <div class="form-group row">
-                <label for="chkDetalle" class="col-sm-2 col-form-label text-sm-left text-md-right">Collección</label>
-                <div class="col-sm-4 customchkCon">
-                     <asp:CheckBox ID="chkDetalle" CssClass="customCheck" runat="server" Enabled="true" Checked='<%# (int)Eval("ItemDetalleId") > 0 %>'></asp:CheckBox>        
-                </div>
-            </div>
-            <%--<div class="form-group row" id="Itemcoleccion">
-                <label for="ddlItems" class="col-sm-2 col-form-label text-sm-left text-md-right">Item Collección</label>
-                <div class="col-sm-4">
-                    <asp:DropDownList  id="ddlItems" runat="server" ClientIDMode="Static" TabIndex="2" CssClass="form-control mt-1" ></asp:DropDownList>
-                </div>
-            </div>--%>
-        <div id="Itemcoleccion" CssClass="contGrid">
-            <div class="col-sm-2 col-form-label text-sm-left text-md-right">
-            <asp:Button id="ButtonAdd" runat="server" class="btnblack btn col-form-label text-sm-left text-md-right" Text="Nuevo Item" OnClick="ButtonAdd_Click" />
-            </div>
-            <div id="divGrid" class="form-group row col-sm-3 col-form-label text-sm-left text-md-right">
-            <asp:GridView id="GridView1" runat="server" AutoGenerateColumns="False" 
-                        AutoGenerateDeleteButton="True" CellPadding="4" ForeColor="#000000" GridLines="None"
-                    onrowdatabound="GridView1_RowDataBound" OnRowDeleting="RowDeleting">
-                <RowStyle BackColor="#EFF3FB" />
-                <Columns>
-                    <asp:TemplateField HeaderText="Item">
-                        <ItemTemplate>
-                            <asp:DropDownList id="ddlItems" runat="server" datatextfield="Descripcion" datavaluefield="Descripcion" style="height:30px;max-width:500px" ></asp:DropDownList>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <%--<asp:TemplateField HeaderText="Cantidad">
-                        <ItemTemplate>
-                            <asp:TextBox id="Cantidad" runat="server"></asp:TextBox>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Peso">
-                        <ItemTemplate>
-                            <asp:TextBox id="Peso" runat="server"></asp:TextBox>
-                        </ItemTemplate>
-                    </asp:TemplateField>--%>
-                </Columns>
-                <PagerStyle BackColor="Black" ForeColor="White" HorizontalAlign="Center" />
-                <SelectedRowStyle BackColor="Black" Font-Bold="True" ForeColor="#D1DDF1" />
-                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" HorizontalAlign="Center"/>
-                <EditRowStyle BackColor="#0076ff" />
-                <AlternatingRowStyle BackColor="White" />
-                </asp:GridView>
-            </div>
-            </div>
-        </div>
-        <div class="form-group row" id="categorias">
-            <label for="ddlCategoriaId" class="col-sm-2 col-form-label text-sm-left text-md-right">Categoria</label>
+
+        <div class="form-group row" id="Tipos">
+            <label for="ddlTipos" class="col-sm-2 col-form-label text-sm-left text-md-right">Tipo Item</label>
             <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlCategoriaId" ClientIDMode="Static" TabIndex="2" CssClass="form-control mt-1"></asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddlTipos" ClientIDMode="Static" TabIndex="2" CssClass="form-control mt-1">
+                    <asp:ListItem Text="Produccion" Value="1" Selected="True" />
+                    <asp:ListItem Text="Ventas" Value="2" />
+                    <asp:ListItem Text="Operaciones" Value="3" />
+                </asp:DropDownList>
             </div>
         </div>
+
+        <div class="form-group row">
+            <label for="txtNombreFantasia" class="col-sm-2 col-form-label text-sm-left text-md-right">Nombre Fantasía</label>
+            <div class="col-sm-6">
+                <asp:TextBox runat="server" ID="txtNombreFantasia" CssClass="form-control" TabIndex="1" placeholder="Nombre de Fantasía" />
+            </div>
+        </div>
+
+        <div class="form-group row" id="categorias">
+            <label for="MultiselectCategorias" class="col-sm-2 col-form-label text-sm-left text-md-right">Categoria</label>
+            <div class="col-sm-4">
+                <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="3" class="form-control"></asp:ListBox>
+            </div>
+        </div>
+
+
         <div class="form-group row" id="cuentas">
             <label for="ddlCuenta" class="col-sm-2 col-form-label text-sm-left text-md-right">Cuenta Contable</label>
             <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlCuenta" ClientIDMode="Static" TabIndex="2" CssClass="form-control mt-1"></asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddlCuenta" ClientIDMode="Static" TabIndex="4" CssClass="form-control mt-1"></asp:DropDownList>
             </div>
         </div>
         <div class="form-group row" id="costo">
             <label for="txtCosto" class="col-sm-2 col-form-label text-sm-left text-md-right">Costo</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtCosto" TabIndex="3" CssClass="form-control" placeholder="Ingrese el Costo" required="required" />        
+                <asp:TextBox runat="server" ID="txtCosto" TabIndex="5" CssClass="form-control" placeholder="Ingrese el Costo" required="required" />        
             </div>
         </div>
         <div class="form-group row"  id="margen">
             <label for="txtMargen" class="col-sm-2 col-form-label text-sm-left text-md-right">Margen</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtMargen" TabIndex="4" CssClass="form-control" placeholder="Ingrese el Margen" required="required" />        
+                <asp:TextBox runat="server" ID="txtMargen" TabIndex="6" CssClass="form-control" placeholder="Ingrese el Margen" required="required" />        
             </div>
         </div>
         <div class="form-group row"  id="precio">
             <label for="txtPrecio" class="col-sm-2 col-form-label text-sm-left text-md-right">Precio</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtPrecio" TabIndex="5" CssClass="form-control" placeholder="Ingrese el Precio" required="required" />        
+                <asp:TextBox runat="server" ID="txtPrecio" TabIndex="7" CssClass="form-control" placeholder="Ingrese el Precio" required="required" />        
             </div>
         </div>
-        <div class="form-group row">
+     <%--   <div class="form-group row">
             <label for="ddlUnidad" class="col-sm-2 col-form-label text-sm-left text-md-right">Unidad</label>
             <div class="col-sm-4">
                 <asp:DropDownList runat="server" ID="ddlUnidad" TabIndex="6" ClientIDMode="Static" CssClass="form-control mt-1"></asp:DropDownList>
@@ -150,7 +151,7 @@
             <div class="col-sm-6">
                 <asp:TextBox runat="server" ID="txtCantidad" TabIndex="7" CssClass="form-control" placeholder="Ingrese el Stock" required="required" />        
             </div>
-        </div>
+        </div>--%>
         <div class="form-group row">
             <label for="ddlEstado" class="col-sm-2 col-form-label text-sm-left text-md-right">Estado</label>
             <div class="col-sm-4">
@@ -164,8 +165,8 @@
         <div class="form-group row">
             <label for="btnSubmit" class="col-sm-2 col-form-label text-sm-left text-md-right"></label>
             <div class="col-sm-4">
-                <a href="../../Configuracion/ItemsBrowse.aspx" rel="stylesheet" class="btn btncancel mt-1" TabIndex="9" runat="server">Cancelar</a>
-                <asp:Button Text="Crear Item" runat="server" ID="btnSubmit" ClientIDMode="Static" TabIndex="10" CssClass="btn btnsubmit mt-1" OnClick="btnSubmit_Click" />
+                <a href="../../Configuracion/AbmItems/ItemsBrowse.aspx" rel="stylesheet" class="btn btncancel mt-1" tabindex="8" runat="server">Cancelar</a>
+                <asp:Button Text="Crear Item" runat="server" ID="btnSubmit" ClientIDMode="Static" TabIndex="9" CssClass="btn btnsubmit mt-1" OnClick="btnSubmit_Click" />
             </div>
         </div>
 
