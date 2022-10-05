@@ -80,7 +80,7 @@ namespace AmbientHouse.Configuracion.ItemDetalle
 
                 DomainAmbientHouse.Entidades.ItemDetalle item = servicio.BuscarItemDetalle(ItemId);
 
-                Descripcion.Text = item.Descripcion.ToString();
+                //Descripcion.Text = item.Descripcion.ToString();
                
             }
         }

@@ -102,7 +102,7 @@ namespace AmbientHouse.Configuracion.ItemDetalle
             ItemDetalleSeleccionado = item;
 
 
-            TextBoxDescripcion.Text = item.Descripcion;
+            //TextBoxDescripcion.Text = item.Descripcion;
            
         }
 
@@ -122,7 +122,7 @@ namespace AmbientHouse.Configuracion.ItemDetalle
             
             DomainAmbientHouse.Entidades.ItemDetalle item = ItemDetalleSeleccionado;
 
-            item.Descripcion = TextBoxDescripcion.Text;
+            //item.Descripcion = TextBoxDescripcion.Text;
            
             servicios.NuevoItemDetalle(item);
             Response.Redirect("~/Configuracion/ItemDetalle/Index.aspx");

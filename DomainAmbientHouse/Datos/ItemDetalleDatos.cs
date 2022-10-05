@@ -24,8 +24,8 @@ namespace DomainAmbientHouse.Datos
             var query = from Id in SqlContext.ItemDetalle
                         select Id;
 
-            if (!string.IsNullOrEmpty(searcher.Descripcion))
-                query = query.Where(o => o.Descripcion.Contains(searcher.Descripcion));
+            //if (!string.IsNullOrEmpty(searcher.Descripcion))
+            //    query = query.Where(o => o.Descripcion.Contains(searcher.Descripcion));
 
             return query.ToList();
 
@@ -44,7 +44,7 @@ namespace DomainAmbientHouse.Datos
 
                 ItemDetalle itemEdit = SqlContext.ItemDetalle.Where(o => o.Id == item.Id).First();
 
-                itemEdit.Descripcion = item.Descripcion;
+                //itemEdit.Descripcion = item.Descripcion;
 
                 SqlContext.SaveChanges();
             }

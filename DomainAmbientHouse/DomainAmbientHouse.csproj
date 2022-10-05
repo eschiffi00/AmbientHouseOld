@@ -197,6 +197,9 @@
     <Compile Include="Entidades\Bancos.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\Bloqueo.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\BuscarItemsporTipoCatering_Result.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
@@ -251,6 +254,9 @@
     <Compile Include="Entidades\ComprobantePagoProveedor.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\ComprobantesPagados.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\ComprobantesProveedores.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
@@ -261,6 +267,9 @@
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\ConfiguracionCateringTecnica.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\ControlEventosConfirmados.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\ConversionMonedas.cs">
@@ -291,6 +300,12 @@
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\CostoTecnica.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CuentaCorrienteProveedoresGral_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\CuentaCorrienteProveedores_Result.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Cuentas.cs">
@@ -365,6 +380,9 @@
     <Compile Include="Entidades\Feriados.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\Form.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\FormasdePago.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
@@ -381,6 +399,9 @@
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Indexacion.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\informeCorrienteProveedor_Result.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\InformeResultados_Result.cs">
@@ -422,10 +443,7 @@
     <Compile Include="Entidades\ItemDetalle.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entidades\ItemDetalleProveedor.cs">
-      <DependentUpon>AmbientHouse.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entidades\ItemDetalleRatio.cs">
+    <Compile Include="Entidades\ItemFinal.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Items.cs">
@@ -460,6 +478,9 @@
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Movimientos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\NombreFantasia.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\NotaCreditos.cs">
@@ -561,10 +582,16 @@
     <Compile Include="Entidades\PagosProveedores.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\Parametro.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\Parametros.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Perfiles.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Permiso.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\PlanesDePago.cs">
@@ -600,6 +627,9 @@
     <Compile Include="Entidades\ProveedoresFormasdePago.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\ProveedoresPagos.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\ProveedoresRetenciones.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
@@ -633,6 +663,9 @@
     <Compile Include="Entidades\Retenciones.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\Rol.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\Rubros.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
@@ -649,12 +682,6 @@
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\SeguimientosEventosClientesEstados.cs">
-      <DependentUpon>AmbientHouse.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entidades\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>AmbientHouse.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entidades\sp_helpdiagrams_Result.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\sysdiagrams.cs">
@@ -726,7 +753,13 @@
     <Compile Include="Entidades\UnidadesNegocios_TipoMovimientos.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\Usuario.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\UsuarioPipeDrive_Ambient.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\UsuarioRol.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Usuarios.cs">
