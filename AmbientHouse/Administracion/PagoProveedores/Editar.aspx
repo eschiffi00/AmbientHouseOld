@@ -16,39 +16,39 @@
 
 
     <script>
-        var j = jQuery.noConflict();
+        //var j = jQuery.noConflict();
 
-        function ShowError(error) {
-            var texto;
-            switch (error) {
-                case "1":
-                    texto = 'El Monto a Pagar es mayor que el Costo';
-                    break;
-                case "2":
-                    texto = 'El Monto a Pagar es distinto del Importe Saldo';
-                    break;
-            }
-            j(function () {
-                j('#dialog').dialog({
-                    modal: true,
-                    width: 'auto',
-                    resizable: false,
-                    draggable: false,
-                    close: function (event, ui) { j('body').find('#dialog').remove(); },
-                    closeText: "X",
-                    show: "fade",
-                    hide: "fade",
-                    open: function () {
-                        $(this).html(texto);
-                    },
+        //function ShowError(error) {
+        //    var texto;
+        //    switch (error) {
+        //        case "1":
+        //            texto = 'El Monto a Pagar es mayor que el Costo';
+        //            break;
+        //        case "2":
+        //            texto = 'El Monto a Pagar es distinto del Importe Saldo';
+        //            break;
+        //    }
+        //    j(function () {
+        //        j('#dialog').dialog({
+        //            modal: true,
+        //            width: 'auto',
+        //            resizable: false,
+        //            draggable: false,
+        //            close: function (event, ui) { j('body').find('#dialog').remove(); },
+        //            closeText: "X",
+        //            show: "fade",
+        //            hide: "fade",
+        //            open: function () {
+        //                $(this).html(texto);
+        //            },
                     
-                })
-            });
+        //        })
+        //    });
             
-            j("#dialog").dialog("open");
-            j('#dialog').html(texto).dialog({});
-            /*$("#dialog").html(texto);*/
-        }
+        //    j("#dialog").dialog("open");
+        //    j('#dialog').html(texto).dialog({});
+        //    /*$("#dialog").html(texto);*/
+       /* }*/
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
