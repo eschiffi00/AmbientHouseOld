@@ -320,6 +320,7 @@
     <Content Include="Error\500.aspx" />
     <Content Include="Error\ErrorPage.aspx" />
     <Content Include="Error\NoTienePermisos.aspx" />
+    <Content Include="FilesUpload\TextFile1.txt" />
     <Content Include="Firma.html" />
     <Content Include="Home\Index.aspx" />
     <Content Include="ImagenesFirma\Cabecera.jpeg" />
@@ -1234,7 +1235,6 @@
     <Compile Include="DialogContentHandler.ashx.cs">
       <DependentUpon>DialogContentHandler.ashx</DependentUpon>
     </Compile>
-    <Compile Include="FilesUpload\dummy.cs" />
     <Compile Include="Herramientas\Corporativos\ArchivosDescargas.ashx.cs">
       <DependentUpon>ArchivosDescargas.ashx</DependentUpon>
     </Compile>
