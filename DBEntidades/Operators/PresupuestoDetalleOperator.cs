@@ -31,13 +31,55 @@ namespace DbEntidades.Operators
             return presupuestoDetalle;
         }
 
-        public static List<PresupuestoDetalle> GetAllByParameter(string campo, int valor)
+        public static List<PresupuestoDetalle> GetAllByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoPresupuestoDetalleBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            var tipo = string.Empty;
+            foreach (PropertyInfo prop in typeof(PresupuestoDetalle).GetProperties())
+            {
+                if(prop.Name == campo)
+                {
+                    tipo = prop.PropertyType.Name.ToString();
+                }
+                columnas += prop.Name + ", ";
+            }
+            columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            var queryStr = string.Empty;
+            if(tipo == "String")
+            {
+                queryStr = "select " + columnas + " from PresupuestoDetalle where " + campo + " = \'" + valor.ToString() + "\'";
+            }
+            else
+            {
+                queryStr = "select " + columnas + " from PresupuestoDetalle where " + campo + " = " + valor.ToString();
+            }
+            DataTable dt = db.GetDataSet(queryStr).Tables[0];
+            List<PresupuestoDetalle> lista = new List<PresupuestoDetalle>();
+            foreach (DataRow dr in dt.AsEnumerable())
+            {
+
+                PresupuestoDetalle comprobante = new PresupuestoDetalle();
+                foreach (PropertyInfo prop in typeof(PresupuestoDetalle).GetProperties())
+                {
+                    object value = dr[prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(comprobante, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+                lista.Add(comprobante);
+            }
+            return lista;
+        }
+        public static List<PresupuestoDetalle> GetAllByParameter2(string campo, string valor)
         {
             if (!DbEntidades.Seguridad.Permiso("PermisoPresupuestoDetalleBrowse")) throw new PermisoException();
             string columnas = string.Empty;
             foreach (PropertyInfo prop in typeof(PresupuestoDetalle).GetProperties()) columnas += prop.Name + ", ";
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
+        
             DataTable dt = db.GetDataSet("select " + columnas + " from PresupuestoDetalle where " + campo + " = " + valor.ToString()).Tables[0];
             List<PresupuestoDetalle> lista = new List<PresupuestoDetalle>();
             foreach (DataRow dr in dt.AsEnumerable())

@@ -24,15 +24,6 @@ namespace WebApplication.app.ItemsNS
         protected global::System.Web.UI.WebControls.TextBox searchpanelstate;
 
         /// <summary>
-        /// Control btnExportar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnExportar;
-
-        /// <summary>
         /// Control btnNuevoProducto.
         /// </summary>
         /// <remarks>

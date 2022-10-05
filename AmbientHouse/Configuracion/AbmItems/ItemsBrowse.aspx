@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="ItemsBrowse.aspx.cs" Inherits="WebApplication.app.ItemsNS.ItemsBrowse" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../Content/Css/NuevaArc.css" rel="stylesheet" type="text/css" />
-    <link href="../../Content/resizecolumns/jquery.resizableColumns.css" rel="stylesheet" type="text/css" />
-    <script src="../../Scripts/resizecolumns/jquery.resizableColumns.min.js" type="text/javascript"></script>
+    <%--<link href="../../Content/resizecolumns/jquery.resizableColumns.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/resizecolumns/jquery.resizableColumns.min.js" type="text/javascript"></script>--%>
     
 
     <script>
@@ -79,8 +79,8 @@
     <div class="row">
         <div class="col-8">
             <h4 class="ml-3 mb-4">Listado de Productos &nbsp;
-                <i class="fa fa-search searchicon faborde"></i>
-                <asp:LinkButton CssClass="LnkBtnExportar" runat="server" ID="btnExportar" OnClick="btnExportar_Click"><i class="fa fa-download exporticon faborde" title="Exportar Productos"></i></asp:LinkButton>
+                <%--<i class="fa fa-search searchicon faborde"></i>
+                <asp:LinkButton CssClass="LnkBtnExportar" runat="server" ID="btnExportar" OnClick="btnExportar_Click"><i class="fa fa-download exporticon faborde" title="Exportar Productos"></i></asp:LinkButton>--%>
             </h4>
         </div>
         

@@ -87,7 +87,7 @@ namespace AmbientHouse.Reportes
                 e.Cliente = evento.Cliente;
                 e.FechaSena = evento.FechaSena;
                 e.TipoEventoId = evento.TipoEventoId;
-                var detalles = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId",e.PresupuestoId);
+                var detalles = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId",e.PresupuestoId.ToString());
                 if(detalles.Find(x => x.UnidadNegocioId == 3) !=null){
                     var productoEx = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 3).ProductoId);
                     e.TipoExperiencia = TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion == null ? " " : TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion;
