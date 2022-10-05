@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DBEntidades.Entities
+namespace DbEntidades.Entities
 {
     public partial class CuentaCorrienteProveedores
     {
@@ -26,14 +26,14 @@ namespace DBEntidades.Entities
         public double SaldoPendiente        { get; set; }
 
     }
-    public partial class parametros
+    public partial class parametros2
     {
         public string CuitProveedor { get; set; }
         public int NroPresupuesto { get; set; }
         public string FechaDesde { get; set; }
         public string FechaHasta { get; set; }
         public string TipoMovimiento { get; set; }
-        public parametros()
+        public parametros2()
         {
             CuitProveedor = "";
             NroPresupuesto = 0;

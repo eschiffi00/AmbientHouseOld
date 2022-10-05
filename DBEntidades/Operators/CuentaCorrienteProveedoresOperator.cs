@@ -6,7 +6,7 @@ using System.Linq;
 using DbEntidades.Entities;
 using System.Data.SqlClient;
 using LibDB2;
-using DBEntidades.Entities;
+using DbEntidades.Entities;
 
 namespace DbEntidades.Operators
 {
@@ -77,7 +77,7 @@ namespace DbEntidades.Operators
             }
             return lista;
         }
-        public static List<CuentaCorrienteProveedores> FiltrarCuentaCorriente(parametros parametros)
+        public static List<CuentaCorrienteProveedores> FiltrarCuentaCorriente(parametros2 parametros)
         {
             List<CuentaCorrienteProveedores> list = GetAll();
             if (parametros.CuitProveedor != "")

@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using DbEntidades.Operators;
-using DBEntidades.Entities;
+using DbEntidades.Entities;
 using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
 using NPOI.SS.Formula.Functions;
@@ -36,7 +36,7 @@ namespace AmbientHouse.Reportes
         }
         private void Buscar()
         {
-            parametros Cuenta = new parametros();
+            parametros2 Cuenta = new parametros2();
             Cuenta.FechaDesde = TextBoxNroFechaDesde.Text;
             Cuenta.FechaHasta = TextBoxFechaHasta.Text;
             //Cuenta.TipoMovimientoId = DropDownListTipoMovimiento.SelectedItem.Value;
