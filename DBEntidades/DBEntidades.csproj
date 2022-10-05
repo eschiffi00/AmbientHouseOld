@@ -236,6 +236,7 @@
     <Compile Include="Entities\ItemListado.cs" />
     <Compile Include="Entities\ComprobantesPagosDetalle.cs" />
     <Compile Include="Entities\Auto\NombreFantasia.cs" />
+    <Compile Include="Entities\NewEventosConfirmados2.cs" />
     <Compile Include="Entities\NewEventosConfirmados.cs" />
     <Compile Include="Entities\RecetaDetalle.cs" />
     <Compile Include="Operators\Auto\AdicionalesItemsOperator.cs" />
