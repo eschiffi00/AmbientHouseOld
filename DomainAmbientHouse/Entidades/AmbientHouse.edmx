@@ -1349,7 +1349,7 @@ advertencia 6002: La tabla o vista 'Ambient_GROUP.dbo.NombreFantasia' no tiene d
           <Property Name="AnuloCanon" Type="bit" Nullable="false" />
           <Property Name="FechaCreate" Type="datetime" />
           <Property Name="FechaUpdate" Type="datetime" />
-          <Property Name="Eliminado" Type="bit" />
+          <Property Name="Delete" Type="bit" />
           <Property Name="FechaDelete" Type="datetime" />
           <Property Name="Royalty" Type="float" Nullable="false" />
         </EntityType>
@@ -8590,7 +8590,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="AnuloCanon" Type="Boolean" Nullable="false" />
           <Property Name="FechaCreate" Type="DateTime" Precision="3" />
           <Property Name="FechaUpdate" Type="DateTime" Precision="3" />
-          <Property Name="Eliminado" Type="Boolean" />
+          <Property Name="Delete" Type="Boolean" />
           <Property Name="FechaDelete" Type="DateTime" Precision="3" />
           <Property Name="Royalty" Type="Double" Nullable="false" />
           <NavigationProperty Name="Presupuestos" Relationship="Self.FK_PresupuestoDetalle_Presupuestos" FromRole="PresupuestoDetalle" ToRole="Presupuestos" />
@@ -15046,7 +15046,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="AnuloCanon" ColumnName="AnuloCanon" />
                 <ScalarProperty Name="FechaCreate" ColumnName="FechaCreate" />
                 <ScalarProperty Name="FechaUpdate" ColumnName="FechaUpdate" />
-                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
                 <ScalarProperty Name="FechaDelete" ColumnName="FechaDelete" />
                 <ScalarProperty Name="Royalty" ColumnName="Royalty" />
               </MappingFragment>
