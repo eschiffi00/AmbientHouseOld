@@ -52,7 +52,7 @@ namespace DbEntidades.Entities
 		public int AnuloCanon { get; set; }
 		public DateTime? FechaCreate { get; set; }
 		public DateTime? FechaUpdate { get; set; }
-		public int? Eliminado { get; set; }
+		public int? Delete { get; set; }
 		public DateTime? FechaDelete { get; set; }
 
 		public override string ToString() 
@@ -100,7 +100,7 @@ namespace DbEntidades.Entities
 			"AnuloCanon: " + AnuloCanon.ToString() + "\r\n " + 
 			"FechaCreate: " + FechaCreate.ToString() + "\r\n " + 
 			"FechaUpdate: " + FechaUpdate.ToString() + "\r\n " +
-            "Eliminado: " + Eliminado.ToString() + "\r\n " + 
+            "Delete: " + Delete.ToString() + "\r\n " + 
 			"FechaDelete: " + FechaDelete.ToString() + "\r\n " ;
 		}
         public PresupuestoDetalle()
@@ -109,7 +109,7 @@ namespace DbEntidades.Entities
 
 			AnuloCanon = 0;
 			FechaCreate = DateTime.Now;
-            Eliminado = 0;
+            Delete = 0;
         }
 
 		public Presupuestos GetRelatedPresupuestoId()
@@ -168,7 +168,7 @@ namespace DbEntidades.Entities
 				case "AnuloCanon": return false;
 				case "FechaCreate": return true;
 				case "FechaUpdate": return true;
-				case "Eliminado": return true;
+				case "Delete": return true;
 				case "FechaDelete": return true;
 				default: return false;
 			}

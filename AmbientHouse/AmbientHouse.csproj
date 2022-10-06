@@ -1276,7 +1276,6 @@
     <Compile Include="Herramientas\Corporativos\ArchivosDescargas.ashx.cs">
       <DependentUpon>ArchivosDescargas.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Herramientas\UploadExcel\UploadExcel.cs" />
     <Compile Include="Home\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

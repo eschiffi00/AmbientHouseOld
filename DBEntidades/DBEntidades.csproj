@@ -425,6 +425,7 @@
     <Compile Include="Operators\RecetaOperator.cs" />
     <Compile Include="Operators\REC_detalleOperator.cs" />
     <Compile Include="Operators\TipoMovimientosOperator.cs" />
+    <Compile Include="Operators\UploadExcel.cs" />
     <Compile Include="PermisoException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguridad.cs" />

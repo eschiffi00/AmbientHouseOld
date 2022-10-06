@@ -6,7 +6,6 @@ using System.Linq;
 using DbEntidades.Entities;
 using System.Data.SqlClient;
 using LibDB2;
-using DbEntidades.Entities;
 
 namespace DbEntidades.Operators
 {

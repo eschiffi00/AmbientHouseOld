@@ -381,7 +381,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
 
         protected void ButtonAceptar_Click(object sender, EventArgs e)
         {
-            var error = 0;
+            //var error = 0;
             double totalaPagar = 0;
             foreach (GridViewRow fila in GridViewPresupuestos.Rows)
             {
