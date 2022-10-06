@@ -56,7 +56,7 @@ namespace DomainAmbientHouse.Entidades
         public bool AnuloCanon { get; set; }
         public Nullable<System.DateTime> FechaCreate { get; set; }
         public Nullable<System.DateTime> FechaUpdate { get; set; }
-        public Nullable<bool> Eliminado { get; set; }
+        public Nullable<bool> Delete { get; set; }
         public Nullable<System.DateTime> FechaDelete { get; set; }
         public double Royalty { get; set; }
     
