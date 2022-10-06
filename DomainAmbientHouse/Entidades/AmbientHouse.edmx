@@ -5216,6 +5216,19 @@ advertencia 6002: La tabla o vista 'Ambient_GROUP.dbo.SeguimientosEventosCliente
           <Parameter Name="Precio" Type="float" Mode="In" />
           <Parameter Name="Royalty" Type="float" Mode="In" />
         </Function>
+        <Function Name="CargarCostosTecnica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocacionId" Type="int" Mode="In" />
+          <Parameter Name="SectorId" Type="int" Mode="In" />
+          <Parameter Name="TipoServicioId" Type="int" Mode="In" />
+          <Parameter Name="SegmentoId" Type="int" Mode="In" />
+          <Parameter Name="ProveedorId" Type="int" Mode="In" />
+          <Parameter Name="Anio" Type="int" Mode="In" />
+          <Parameter Name="Mes" Type="int" Mode="In" />
+          <Parameter Name="Dia" Type="varchar" Mode="In" />
+          <Parameter Name="Costo" Type="float" Mode="In" />
+          <Parameter Name="Precio" Type="float" Mode="In" />
+          <Parameter Name="Royalty" Type="float" Mode="In" />
+        </Function>
         <Function Name="CuentaCorrienteProveedores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
@@ -13458,6 +13471,19 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <Parameter Name="Precio" Mode="In" Type="Double" />
             <Parameter Name="Royalty" Mode="In" Type="Double" />
           </FunctionImport>
+          <FunctionImport Name="CargarCostosTecnica" ReturnType="Collection(AmbientHouseModel.CargarCostosTecnica_Result)">
+            <Parameter Name="LocacionId" Mode="In" Type="Int32" />
+            <Parameter Name="SectorId" Mode="In" Type="Int32" />
+            <Parameter Name="TipoServicioId" Mode="In" Type="Int32" />
+            <Parameter Name="SegmentoId" Mode="In" Type="Int32" />
+            <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
+            <Parameter Name="Anio" Mode="In" Type="Int32" />
+            <Parameter Name="Mes" Mode="In" Type="Int32" />
+            <Parameter Name="Dia" Mode="In" Type="String" />
+            <Parameter Name="Costo" Mode="In" Type="Double" />
+            <Parameter Name="Precio" Mode="In" Type="Double" />
+            <Parameter Name="Royalty" Mode="In" Type="Double" />
+          </FunctionImport>
           <FunctionImport Name="DetalleInformeResultados" ReturnType="Collection(AmbientHouseModel.DetalleInformeResultados_Result)">
             <Parameter Name="TipoMovimiento" Mode="In" Type="String" />
             <Parameter Name="TipoMovimientoId" Mode="In" Type="Int32" />
@@ -13552,6 +13578,15 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="UN" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1000" />
+          <Property Type="Double" Name="Costo" Nullable="false" />
+          <Property Type="Double" Name="Margen" Nullable="true" />
+          <Property Type="Double" Name="Precio" Nullable="false" />
+          <Property Type="Double" Name="Royalty" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CargarCostosTecnica_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1000" />
           <Property Type="Double" Name="Costo" Nullable="false" />
           <Property Type="Double" Name="Margen" Nullable="true" />
@@ -16512,6 +16547,19 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="UN" ColumnName="UN" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Margen" ColumnName="Margen" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Royalty" ColumnName="Royalty" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CargarCostosTecnica" FunctionName="AmbientHouseModel.Store.CargarCostosTecnica">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AmbientHouseModel.CargarCostosTecnica_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Costo" ColumnName="Costo" />
                 <ScalarProperty Name="Margen" ColumnName="Margen" />

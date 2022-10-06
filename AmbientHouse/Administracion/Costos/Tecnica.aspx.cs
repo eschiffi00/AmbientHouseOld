@@ -76,41 +76,51 @@ namespace AmbientHouse.Administracion.Costos
                 
         }
 
-        private List<DomainAmbientHouse.Entidades.CargarCostosSalones_Result> GrabarCostos()
+        private List<DomainAmbientHouse.Entidades.CargarCostosTecnica_Result> GrabarCostos()
         {
-            DomainAmbientHouse.Entidades.ParametrosCostoSalones param = new DomainAmbientHouse.Entidades.ParametrosCostoSalones();
-            List<DomainAmbientHouse.Entidades.CargarCostosSalones_Result> fechas = new List<DomainAmbientHouse.Entidades.CargarCostosSalones_Result>();
+            DomainAmbientHouse.Entidades.ParametrosCostoTecnica param = new DomainAmbientHouse.Entidades.ParametrosCostoTecnica();
+            List<DomainAmbientHouse.Entidades.CargarCostosTecnica_Result> fechas = new List<DomainAmbientHouse.Entidades.CargarCostosTecnica_Result>();
 
             param.LocacionId = Int32.Parse(DropDownListLocacion.SelectedItem.Value);
             param.SectorId = Int32.Parse(DropDownListSector.SelectedItem.Value);
-            param.JornadaId = Int32.Parse(DropDownListJornada.SelectedItem.Value);
-            foreach (ListItem anio in MultiSelectAnual.Items)
+            param.TipoServicioId = Int32.Parse(MultiSelectServicios.SelectedItem.Value);
+            param.SegmentoId = Int32.Parse(DropDownListSegmentos.SelectedItem.Value);
+            param.ProveedorId = Int32.Parse(DropDownListProveedores.SelectedItem.Value);
+            foreach (ListItem servicio in MultiSelectServicios.Items)
             {
-                if (anio.Selected)
+                if (servicio.Selected)
                 {
-                    param.Anio = Int32.Parse(anio.Value);
-                    foreach (ListItem mes in MultiSelectMes.Items)
+                    param.TipoServicioId = Int32.Parse(servicio.Value);
+                    foreach (ListItem anio in MultiSelectAnual.Items)
                     {
-                        
-                        if (mes.Selected)
+
+                        if (anio.Selected)
                         {
-                            param.Mes = Int32.Parse(mes.Value);
-                            foreach (ListItem dia in MultiSelectDia.Items)
+                            param.Anio = Int32.Parse(anio.Value);
+                            foreach (ListItem mes in MultiSelectMes.Items)
                             {
-                                
-                                if (dia.Selected)
+
+                                if (mes.Selected)
                                 {
-                                    param.Dia = dia.Value;
-                                    param.Costo = double.Parse(TextBoxCosto.Text);
-                                    param.Precio = double.Parse(TextBoxPrecio.Text);
-                                    param.Royalty = double.Parse(TextBoxRoyalty.Text);
-                                    fechas.AddRange(administracion.CargarPrecioCostosSalon(param));
+                                    param.Mes = Int32.Parse(mes.Value);
+                                    foreach (ListItem dia in MultiSelectDia.Items)
+                                    {
+
+                                        if (dia.Selected)
+                                        {
+                                            param.Dia = dia.Value;
+                                            param.Costo = double.Parse(TextBoxCosto.Text);
+                                            param.Precio = double.Parse(TextBoxPrecio.Text);
+                                            param.Royalty = double.Parse(TextBoxRoyalty.Text);
+                                            fechas.AddRange(administracion.CargarPrecioCostosTecnica(param));
+                                        }
+                                    }
+
                                 }
                             }
 
                         }
                     }
-
                 }
             }
 

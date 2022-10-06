@@ -323,6 +323,55 @@ namespace DomainAmbientHouse.Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CargarCostosSalones_Result>("CargarCostosSalones", locacionIdParameter, sectorIdParameter, anioParameter, mesParameter, jornadaIdParameter, diaParameter, costoParameter, precioParameter, royaltyParameter);
         }
     
+        public virtual ObjectResult<CargarCostosTecnica_Result> CargarCostosTecnica(Nullable<int> locacionId, Nullable<int> sectorId, Nullable<int> tipoServicioId, Nullable<int> segmentoId, Nullable<int> proveedorId, Nullable<int> anio, Nullable<int> mes, string dia, Nullable<double> costo, Nullable<double> precio, Nullable<double> royalty)
+        {
+            var locacionIdParameter = locacionId.HasValue ?
+                new ObjectParameter("LocacionId", locacionId) :
+                new ObjectParameter("LocacionId", typeof(int));
+    
+            var sectorIdParameter = sectorId.HasValue ?
+                new ObjectParameter("SectorId", sectorId) :
+                new ObjectParameter("SectorId", typeof(int));
+    
+            var tipoServicioIdParameter = tipoServicioId.HasValue ?
+                new ObjectParameter("TipoServicioId", tipoServicioId) :
+                new ObjectParameter("TipoServicioId", typeof(int));
+    
+            var segmentoIdParameter = segmentoId.HasValue ?
+                new ObjectParameter("SegmentoId", segmentoId) :
+                new ObjectParameter("SegmentoId", typeof(int));
+    
+            var proveedorIdParameter = proveedorId.HasValue ?
+                new ObjectParameter("ProveedorId", proveedorId) :
+                new ObjectParameter("ProveedorId", typeof(int));
+    
+            var anioParameter = anio.HasValue ?
+                new ObjectParameter("Anio", anio) :
+                new ObjectParameter("Anio", typeof(int));
+    
+            var mesParameter = mes.HasValue ?
+                new ObjectParameter("Mes", mes) :
+                new ObjectParameter("Mes", typeof(int));
+    
+            var diaParameter = dia != null ?
+                new ObjectParameter("Dia", dia) :
+                new ObjectParameter("Dia", typeof(string));
+    
+            var costoParameter = costo.HasValue ?
+                new ObjectParameter("Costo", costo) :
+                new ObjectParameter("Costo", typeof(double));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(double));
+    
+            var royaltyParameter = royalty.HasValue ?
+                new ObjectParameter("Royalty", royalty) :
+                new ObjectParameter("Royalty", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CargarCostosTecnica_Result>("CargarCostosTecnica", locacionIdParameter, sectorIdParameter, tipoServicioIdParameter, segmentoIdParameter, proveedorIdParameter, anioParameter, mesParameter, diaParameter, costoParameter, precioParameter, royaltyParameter);
+        }
+    
         public virtual ObjectResult<DetalleInformeResultados_Result> DetalleInformeResultados(string tipoMovimiento, Nullable<int> tipoMovimientoId, Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta)
         {
             var tipoMovimientoParameter = tipoMovimiento != null ?

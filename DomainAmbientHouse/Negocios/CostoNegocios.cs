@@ -512,5 +512,9 @@ namespace DomainAmbientHouse.Negocios
         {
             Datos.NuevoCostoCanon(cc);
         }
+        internal List<CargarCostosTecnica_Result> CargarPrecioCostostecnica(ParametrosCostoTecnica param)
+        {
+            return Datos.CargarPrecioCostosTecnica(param);
+        }
     }
 }

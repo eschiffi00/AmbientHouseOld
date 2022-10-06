@@ -199,7 +199,6 @@
                                        
                                         <asp:BoundField DataField="Id" HeaderText="Nro. Item" SortExpression="Id" />
                                         <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
-                                        <asp:BoundField DataField="UN" HeaderText="Unidad de Negocio" SortExpression="UN" />
                                         <asp:BoundField DataField="Codigo" HeaderText="Codigo" SortExpression="Codigo" />
                                         <asp:BoundField DataField="Costo" HeaderText="Costo" SortExpression="Costo" />
                                         <asp:BoundField DataField="Margen" HeaderText="Margen" SortExpression="Margen" />
