@@ -67,12 +67,12 @@ namespace AmbientHouse.Administracion.Costos
 
         protected void ButtonAceptar_Click(object sender, EventArgs e)
         {
-            if (GrabarCostos().Count() > 0)
-            {
+            //if (GrabarCostos().Count() > 0)
+            //{
                 GridViewProductos.DataSource = GrabarCostos().ToList();
                 GridViewProductos.DataBind();
                 UpdatePanelTecnica.Update();
-            }
+            //}
                 
         }
 
