@@ -155,7 +155,7 @@
         <div class="form-group row">
             <label for="ddlEstado" class="col-sm-2 col-form-label text-sm-left text-md-right">Estado</label>
             <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlEstado" TabIndex="8" ClientIDMode="Static" CssClass="form-control mt-1">
+                <asp:DropDownList runat="server" ID="ddlEstado" TabIndex="" ClientIDMode="Static" CssClass="form-control mt-1">
                     <asp:ListItem Text="Habilitado" Value="36" Selected="True" />
                     <asp:ListItem Text="Deshabilitado" Value="37" />
                 </asp:DropDownList>
