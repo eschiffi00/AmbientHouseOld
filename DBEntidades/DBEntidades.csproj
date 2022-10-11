@@ -187,6 +187,7 @@
     <Compile Include="Entities\Auto\Provincia.cs" />
     <Compile Include="Entities\Auto\Provincias.cs" />
     <Compile Include="Entities\Auto\PRO_items.cs" />
+    <Compile Include="Entities\Auto\Ratios.cs" />
     <Compile Include="Entities\Auto\Receta.cs" />
     <Compile Include="Entities\Auto\ReciboEventoPresupuesto.cs" />
     <Compile Include="Entities\Auto\Recibos.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Entities\Auto\UsuariosGrupos.cs" />
     <Compile Include="Entities\Auto\UsuariosLocaciones.cs" />
     <Compile Include="Entities\CuentaCorrienteProveedores.cs" />
+    <Compile Include="Entities\RatiosListado.cs" />
     <Compile Include="Entities\ItemListado.cs" />
     <Compile Include="Entities\ComprobantesPagosDetalle.cs" />
     <Compile Include="Entities\Auto\NombreFantasia.cs" />
@@ -366,6 +368,7 @@
     <Compile Include="Operators\Auto\ProvinciaOperator.cs" />
     <Compile Include="Operators\Auto\ProvinciasOperator.cs" />
     <Compile Include="Operators\Auto\PRO_itemsOperator.cs" />
+    <Compile Include="Operators\Auto\RatiosOperator.cs" />
     <Compile Include="Operators\Auto\RecetaOperator.cs" />
     <Compile Include="Operators\Auto\ReciboEventoPresupuestoOperator.cs" />
     <Compile Include="Operators\Auto\RecibosOperator.cs" />
@@ -422,6 +425,7 @@
     <Compile Include="Operators\ItemsOperator.cs" />
     <Compile Include="Operators\ParametroOperator.cs" />
     <Compile Include="Operators\PresupuestoDetalleOperator.cs" />
+    <Compile Include="Operators\RatiosOperator.cs" />
     <Compile Include="Operators\RecetaOperator.cs" />
     <Compile Include="Operators\REC_detalleOperator.cs" />
     <Compile Include="Operators\TipoMovimientosOperator.cs" />

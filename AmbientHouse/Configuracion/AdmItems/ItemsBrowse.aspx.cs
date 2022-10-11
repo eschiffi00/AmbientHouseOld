@@ -35,7 +35,7 @@ namespace WebApplication.app.ItemsNS
 
         protected void btnNuevoItems_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Configuracion/AbmItems/ItemsEdit.aspx");
+            Response.Redirect("~/Configuracion/AdmItems/ItemsEdit.aspx");
         }
         protected void grdItems_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -51,7 +51,7 @@ namespace WebApplication.app.ItemsNS
             if (e.CommandName == "CommandNameEdit")
             {
 
-                Response.Redirect("../../Configuracion/AbmItems/ItemsEdit.aspx?Id="+id);
+                Response.Redirect("../../Configuracion/AdmItems/ItemsEdit.aspx?Id="+id);
             }
         }
 

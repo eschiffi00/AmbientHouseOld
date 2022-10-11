@@ -168,7 +168,7 @@ namespace WebApplication.app.ItemsNS
                 seItems.Margen = float.Parse(txtMargen.Text);
                 seItems.Precio = float.Parse(txtPrecio.Text);
                 seItems.DepositoId = 99;
-                seItems.EstadoId = EstadosOperator.GetHablitadoID();
+                seItems.EstadoId = EstadosOperator.GetHablitadoID("Items");
                 NombreFantasia nombreFantasia = new NombreFantasia();
                 nombreFantasia.Descripcion = txtNombreFantasia.Text;
                 seItems.NombreFantasiaId = NombreFantasiaOperator.Save(nombreFantasia).Id;
@@ -201,7 +201,7 @@ namespace WebApplication.app.ItemsNS
                     }
                 }
 
-                Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
+                Response.Redirect("~/Configuracion/AdmItems/ItemsBrowse.aspx");
             }
             catch (Exception ex)
             {

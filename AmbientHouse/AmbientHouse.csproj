@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.4.8.4\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.4.8.4\build\Microsoft.TypeScript.MSBuild.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -22,6 +23,8 @@
     <TargetFrameworkProfile />
     <UseGlobalApplicationHostFile />
     <Use64BitIISExpress />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -188,9 +191,10 @@
     <Content Include="Boostrap4\js\bootstrap.min.js" />
     <Content Include="Boostrap4\js\jquery-3.3.1.slim.min.js" />
     <Content Include="Boostrap4\js\popper.min.js" />
-    <Content Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx" />
-    <Content Include="Configuracion\AbmItems\ItemsBrowse.aspx" />
-    <Content Include="Configuracion\AbmItems\ItemsEdit.aspx" />
+    <Content Include="Configuracion\AdmItems\ItemsAltaMasiva.aspx" />
+    <Content Include="Configuracion\AdmItems\RatiosBrowse.aspx" />
+    <Content Include="Configuracion\AdmItems\ItemsBrowse.aspx" />
+    <Content Include="Configuracion\AdmItems\ItemsEdit.aspx" />
     <Content Include="Configuracion\AdicionalesItems\Editar.aspx" />
     <Content Include="Configuracion\AdicionalesItems\Index.aspx" />
     <Content Include="Configuracion\AmbientacionCI\Editar.aspx" />
@@ -449,6 +453,11 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\index.js.flow" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -686,10 +695,6 @@
     <Content Include="AppShared\TASTING 2021.pdf" />
     <Content Include="DialogContentHandler.ashx" />
     <None Include="Properties\PublishProfiles\Ambient.pubxml" />
-    <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\esm\popper-utils.min.js.map" />
-    <Content Include="Scripts\esm\popper.js.map" />
-    <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Reportes\Index.aspx" />
     <Content Include="Reportes\ReporteEventosGeneral.aspx" />
     <Content Include="RRHH\Empleados\Editar.aspx" />
@@ -1021,25 +1026,32 @@
       <DependentUpon>Ambient.Master</DependentUpon>
     </Compile>
     <Compile Include="CCLib.cs" />
-    <Compile Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx.cs">
+    <Compile Include="Configuracion\AdmItems\ItemsAltaMasiva.aspx.cs">
       <DependentUpon>ItemsAltaMasiva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx.designer.cs">
+    <Compile Include="Configuracion\AdmItems\ItemsAltaMasiva.aspx.designer.cs">
       <DependentUpon>ItemsAltaMasiva.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Configuracion\AbmItems\ItemsBrowse.aspx.cs">
+    <Compile Include="Configuracion\AdmItems\RatiosBrowse.aspx.cs">
+      <DependentUpon>RatiosBrowse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AdmItems\RatiosBrowse.aspx.designer.cs">
+      <DependentUpon>RatiosBrowse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\AdmItems\ItemsBrowse.aspx.cs">
       <DependentUpon>ItemsBrowse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Configuracion\AbmItems\ItemsBrowse.aspx.designer.cs">
+    <Compile Include="Configuracion\AdmItems\ItemsBrowse.aspx.designer.cs">
       <DependentUpon>ItemsBrowse.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Configuracion\AbmItems\ItemsEdit.aspx.cs">
+    <Compile Include="Configuracion\AdmItems\ItemsEdit.aspx.cs">
       <DependentUpon>ItemsEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Configuracion\AbmItems\ItemsEdit.aspx.designer.cs">
+    <Compile Include="Configuracion\AdmItems\ItemsEdit.aspx.designer.cs">
       <DependentUpon>ItemsEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Configuracion\AdicionalesItems\Editar.aspx.cs">
@@ -2539,18 +2551,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Scripts\popper-utils.min.js.map" />
-    <Content Include="Scripts\popper.js.map" />
-    <Content Include="Scripts\popper.min.js.map" />
-    <Content Include="Scripts\umd\popper-utils.js.map" />
-    <Content Include="Scripts\umd\popper-utils.min.js.map" />
-    <Content Include="Scripts\umd\popper.js.flow" />
-    <Content Include="Scripts\umd\popper.js.map" />
-    <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Scripts\resizecolumns\jquery.resizableColumns.min.js.map" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper.js.flow" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2578,6 +2591,12 @@
     <Folder Include="logs\" />
     <Folder Include="Scripts\Ventas\" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -2603,6 +2622,14 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.4.8.4\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.4.8.4\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.4.8.4\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.4.8.4\build\Microsoft.TypeScript.MSBuild.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.4.8.4\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.4.8.4\build\Microsoft.TypeScript.MSBuild.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

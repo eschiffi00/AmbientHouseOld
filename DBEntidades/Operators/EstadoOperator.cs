@@ -11,14 +11,14 @@ namespace DbEntidades.Operators
 {
     public partial class EstadosOperator
     {
-        public static int GetHablitadoID()
+        public static int GetHablitadoID(string entidad)
         {
-            int u = GetAll().Where(x => x.Descripcion == "Activo" && x.Entidad == "Items").FirstOrDefault().Id;
+            int u = GetAll().Where(x => x.Descripcion == "Activo" && x.Entidad == entidad).FirstOrDefault().Id;
             return u;
         }
-        public static int GetDeshabilitadoID()
+        public static int GetDeshabilitadoID(string entidad)
         {
-            int u = GetAll().Where(x => x.Descripcion == "Inactivo" && x.Entidad == "Items").FirstOrDefault().Id;
+            int u = GetAll().Where(x => x.Descripcion == "Inactivo" && x.Entidad == entidad).FirstOrDefault().Id;
             return u;
         }
     }
