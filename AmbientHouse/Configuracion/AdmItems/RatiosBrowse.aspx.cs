@@ -12,6 +12,7 @@ namespace WebApplication.app.ItemsNS
 {
     public partial class RatiosBrowse : System.Web.UI.Page
     {
+        List<RatiosListado> ratiosListado = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -58,13 +59,43 @@ namespace WebApplication.app.ItemsNS
         }
         protected void grdRatiosBind()
         {
-            List<Ratios> ent = RatiosOperator.GetAll().ToList();
-            grdRatios.DataSource = ent;
+            ratiosListado = RatiosOperator.GetAllWithDetails().ToList();
+            grdRatios.DataSource = ratiosListado;
             grdRatios.DataBind();
         }
         protected void btnExportar_Click(object sender, EventArgs e)
         {
 
+        }
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            RatiosListado listadoRatios = new RatiosListado();
+            foreach (ListItem item in MultiselectItems.Items)
+            {
+                if (item.Selected)
+                {
+                    var ItemDet = ItemsOperator.GetOneByParameter("Detalle", item.Value);
+                    List<ItemDetalle> lista = new List<ItemDetalle>();
+                    if (ItemDet.ItemDetalleId != null && ItemDet.ItemDetalleId > 0)
+                    {
+                        lista = ItemDetalleOperator.GetAllByParameter("ItemId", ItemDet.ItemDetalleId.ToString());
+                    }
+                    foreach (var idCategoria in lista)
+                    {
+
+                        foreach (ListItem categoria in MultiselectCategorias.Items)
+                        {
+
+                            var descripcion = CategoriasItemOperator.GetOneByIdentity(idCategoria.CategoriaId).Descripcion;
+                            if (descripcion == categoria.Text)
+                            {
+                                //listadoRatios.add();
+                            }
+                        }
+                    }
+                }
+
+            }
         }
 
         protected void btnNuevoRatio_Click(object sender, EventArgs e)
@@ -126,15 +157,15 @@ namespace WebApplication.app.ItemsNS
                             }
                         }
                     }
+                }
 
-                    foreach(ListItem Categoria in MultiselectCategorias.Items)
-                    {
-                        if (!Categoria.Selected)
-                        {
-                            Categoria.Selected = false;
-                            Categoria.Enabled = false;
-                        }
-                    }
+            }
+            foreach (ListItem Categoria in MultiselectCategorias.Items)
+            {
+                if (!Categoria.Selected)
+                {
+                    Categoria.Selected = false;
+                    Categoria.Enabled = false;
                 }
             }
         }

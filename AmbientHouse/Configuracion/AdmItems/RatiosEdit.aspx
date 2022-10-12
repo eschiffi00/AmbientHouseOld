@@ -17,7 +17,8 @@
                 enableClickableOptGroups: true,
                 enableCollapsibleOptGroups: true,
                 enableFiltering: true
-            }); $('[id*=MultiselectItems]').multiselect({
+            });
+            $('[id*=MultiselectItems]').multiselect({
                 includeSelectAllOption: true,
                 dropRight: true,
                 enableFiltering: true,
@@ -106,7 +107,7 @@
          <div class="form-group row" id="Dependencia">
             <label for="ddlDependencia" class="col-sm-2 col-form-label text-sm-left text-md-right">Tipo de Ratio</label>
             <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlDependencia" ClientIDMode="Static" TabIndex="3" CssClass="form-control mt-1" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged">
+                <asp:DropDownList runat="server" ID="ddlDependencia" ClientIDMode="Static" TabIndex="3" CssClass="form-control mt-1" AutoPostBack="true" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged">
                     <asp:ListItem Text="PAX" Value="1" Selected="True" />
                     <asp:ListItem Text="ITEM" Value="2" />
                 </asp:DropDownList>

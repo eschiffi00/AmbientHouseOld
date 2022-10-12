@@ -174,7 +174,9 @@
                 <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="2" class="form-control"></asp:ListBox>
             </div>
         </div>
-        
+        <div class="col-4 text-right">
+            <asp:Button ID="btnFiltrar" Text="Filtrar" runat="server" CssClass="btn btnblack btn-primary" OnClick="btnFiltrar_Click" />
+        </div>
         <div class="col-4 text-right">
             <asp:Button ID="btnNuevoRatio" Text="Nuevo Producto" runat="server" CssClass="btn btnblack btn-primary" OnClick="btnNuevoRatio_Click" />
         </div>
@@ -206,7 +208,8 @@
                 <asp:BoundField DataField="CategoriaDetalle" HeaderText="Categoria Detalle" Visible="true" />
                 <asp:BoundField DataField="TipoDependencia" HeaderText="Dependencia" Visible="true" />
                 <asp:BoundField DataField="DetalleDependencia" HeaderText="Detalle Dependencia" Visible="true" />
-                <asp:BoundField DataField="TopeRatio" HeaderText="Tope Ratio" Visible="false" />
+                <asp:BoundField DataField="ValorRatio" HeaderText="Tope Ratio" Visible="true" />
+                <asp:BoundField DataField="TopeRatio" HeaderText="Tope Ratio" Visible="true" />
                 <asp:BoundField DataField="Menores" HeaderText="Tiene Menores" Visible="true" />
                 <asp:BoundField DataField="AdicionalRatio" HeaderText="Es Adicional" Visible="true" />       
                 <asp:BoundField DataField="EstadoId" HeaderText="EstadoId" Visible="false" />       
