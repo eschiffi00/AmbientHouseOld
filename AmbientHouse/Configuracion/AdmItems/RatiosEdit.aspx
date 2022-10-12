@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="ItemsEdit.aspx.cs" Inherits="WebApplication.app.ItemsNS.ItemsEdit"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="RatiosEdit.aspx.cs" Inherits="WebApplication.app.ItemsNS.RatiosEdit"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="<%=ResolveUrl("~")%>Scripts/umd/popper.min.js"></script>
     <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
@@ -17,6 +17,13 @@
                 enableClickableOptGroups: true,
                 enableCollapsibleOptGroups: true,
                 enableFiltering: true
+            }); $('[id*=MultiselectItems]').multiselect({
+                includeSelectAllOption: true,
+                dropRight: true,
+                enableFiltering: true,
+                onDropdownHide: function (event) {
+                    __doPostBack();//__doPostBack($(event.target).parent().children('#DropDownList_ExportCountry').attr('id'), '')
+                }
             });
             document.addEventListener("keydown", function (event) {
                 if (event.which == 9 ) {
@@ -79,32 +86,13 @@
     <!--#region divPpal -->
     <div runat="server" id="divPpal">
         <div class="row">
-            <h4 runat="server" id="h4Titulo" class="ml-3 mb-4">Modificación de Items</h4>
+            <h4 runat="server" id="h4Titulo" class="ml-3 mb-4">Modificación de Ratios</h4>
         </div>
 
-        <div class="form-group row">
-            <label for="txtDescripcion" class="col-sm-2 col-form-label text-sm-left text-md-right">Descripcion</label>
-            <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" TabIndex="1" placeholder="Descripcion del Producto" required="required" />
-                <div class="invalid-feedback">Debe ingresar una descripcion para el Item</div>
-            </div>
-        </div>
-
-        <div class="form-group row" id="Tipos">
-            <label for="ddlTipos" class="col-sm-2 col-form-label text-sm-left text-md-right">Tipo Item</label>
+         <div class="form-group row" id="MultiItems">
+            <label for="MultiselectItems" class="col-sm-2 col-form-label text-sm-left text-md-right">Items</label>
             <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlTipos" ClientIDMode="Static" TabIndex="2" CssClass="form-control mt-1">
-                    <asp:ListItem Text="Produccion" Value="1" Selected="True" />
-                    <asp:ListItem Text="Ventas" Value="2" />
-                    <asp:ListItem Text="Operaciones" Value="3" />
-                </asp:DropDownList>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="txtNombreFantasia" class="col-sm-2 col-form-label text-sm-left text-md-right">Nombre Fantasía</label>
-            <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtNombreFantasia" CssClass="form-control" TabIndex="1" placeholder="Nombre de Fantasía" />
+                <asp:ListBox ID="MultiselectItems" runat="server" SelectionMode="Multiple"  OnSelectedIndexChanged="MultiselectItems_SelectedIndexChanged" TabIndex="1" class="form-control" ></asp:ListBox>
             </div>
         </div>
 
@@ -115,43 +103,48 @@
             </div>
         </div>
 
+         <div class="form-group row" id="Dependencia">
+            <label for="ddlDependencia" class="col-sm-2 col-form-label text-sm-left text-md-right">Tipo de Ratio</label>
+            <div class="col-sm-4">
+                <asp:DropDownList runat="server" ID="ddlDependencia" ClientIDMode="Static" TabIndex="3" CssClass="form-control mt-1" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged">
+                    <asp:ListItem Text="PAX" Value="1" Selected="True" />
+                    <asp:ListItem Text="ITEM" Value="2" />
+                </asp:DropDownList>
+            </div>
+        </div>
+        <div class="form-group row" id="Detalle">
+            <label for="txtDetalle" class="col-sm-2 col-form-label text-sm-left text-md-right">Detalle Ratio</label>
+            <div class="col-sm-6">
+                <asp:TextBox runat="server" ID="txtDetalle" TabIndex="4" CssClass="form-control" required="required" />        
+            </div>
+        </div>
+        <div class="form-group row" id="Valor">
+            <label for="txtValor" class="col-sm-2 col-form-label text-sm-left text-md-right">Valor Ratio</label>
+            <div class="col-sm-6">
+                <asp:TextBox runat="server" ID="txtValor" TabIndex="5" CssClass="form-control" required="required" />        
+            </div>
+        </div>
+        <div class="form-group row" id="Tope">
+            <label for="txtTope" class="col-sm-2 col-form-label text-sm-left text-md-right">Tope</label>
+            <div class="col-sm-6">
+                <asp:TextBox runat="server" ID="txtTope" TabIndex="5" CssClass="form-control" required="required" />        
+            </div>
+        </div>
 
-        <div class="form-group row" id="cuentas">
-            <label for="ddlCuenta" class="col-sm-2 col-form-label text-sm-left text-md-right">Cuenta Contable</label>
-            <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlCuenta" ClientIDMode="Static" TabIndex="3" CssClass="form-control mt-1"></asp:DropDownList>
-            </div>
-        </div>
-        <div class="form-group row" id="costo">
-            <label for="txtCosto" class="col-sm-2 col-form-label text-sm-left text-md-right">Costo</label>
+        <div class="form-group row" id="Menores">
+            <label for="chkMenores" class="col-sm-2 col-form-label text-sm-left text-md-right">Ratio para Menores</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtCosto" TabIndex="4" CssClass="form-control" placeholder="Ingrese el Costo" required="required" />        
+               <asp:CheckBox ID="chkMenores" runat="server" class="form-check" Checked="False" TabIndex="6" />        
             </div>
         </div>
-        <div class="form-group row"  id="margen">
-            <label for="txtMargen" class="col-sm-2 col-form-label text-sm-left text-md-right">Margen</label>
+
+        <div class="form-group row" id="Adicional">
+            <label for="chkAdicional" class="col-sm-2 col-form-label text-sm-left text-md-right">Es Adicional al Ratio?</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtMargen" TabIndex="5" CssClass="form-control" placeholder="Ingrese el Margen" required="required" />        
+               <asp:CheckBox ID="chkAdicional" runat="server" class="form-check" Checked="False"  TabIndex="7"  />        
             </div>
         </div>
-        <div class="form-group row"  id="precio">
-            <label for="txtPrecio" class="col-sm-2 col-form-label text-sm-left text-md-right">Precio</label>
-            <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtPrecio" TabIndex="6" CssClass="form-control" placeholder="Ingrese el Precio" required="required" />        
-            </div>
-        </div>
-     <%--   <div class="form-group row">
-            <label for="ddlUnidad" class="col-sm-2 col-form-label text-sm-left text-md-right">Unidad</label>
-            <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlUnidad" TabIndex="6" ClientIDMode="Static" CssClass="form-control mt-1"></asp:DropDownList>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="txtCantidad" class="col-sm-2 col-form-label text-sm-left text-md-right">Cantidad</label>
-            <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtCantidad" TabIndex="7" CssClass="form-control" placeholder="Ingrese el Stock" required="required" />        
-            </div>
-        </div>--%>
+
         <div class="form-group row">
             <label for="ddlEstado" class="col-sm-2 col-form-label text-sm-left text-md-right">Estado</label>
             <div class="col-sm-4">

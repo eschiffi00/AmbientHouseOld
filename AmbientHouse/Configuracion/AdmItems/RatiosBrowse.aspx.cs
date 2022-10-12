@@ -18,12 +18,14 @@ namespace WebApplication.app.ItemsNS
             {
                 //if (string.IsNullOrEmpty(Convert.ToString(Session["UsuarioId"]))) Response.Redirect("~/app/Seguridad/UsuarioLogin.aspx?url=" + Server.UrlEncode(Request.Url.AbsoluteUri));
                 //if (!PermisoOperator.TienePermiso(Convert.ToInt32(Session["UsuarioId"]), GetType().BaseType.FullName)) throw new PermisoException();
+                InicializaCategorias();
+                InicializaItems();
                 CargaItems();
                 CargaCategorias();
-                
                 grdRatiosBind();
 
             }
+            
         }
 
         public void CargaCategorias()
@@ -56,7 +58,6 @@ namespace WebApplication.app.ItemsNS
         }
         protected void grdRatiosBind()
         {
-            //List<Ratios> ent = RatiosOperator.GetAll().ToList();
             List<Ratios> ent = RatiosOperator.GetAll().ToList();
             grdRatios.DataSource = ent;
             grdRatios.DataBind();
@@ -100,19 +101,57 @@ namespace WebApplication.app.ItemsNS
 
         protected void MultiselectItems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            InicializaCategorias();
             foreach (ListItem item in MultiselectItems.Items)
             {
                 if (item.Selected)
                 {
-                    var ItemDet =  ItemsOperator.GetOneByIdentity(Convert.ToInt32(item.Value));
-                    foreach(ListItem categoria in MultiselectCategorias.Items)
+                    var ItemDet = ItemsOperator.GetOneByParameter("Detalle", item.Value);
+                    List<ItemDetalle> lista = new List<ItemDetalle>();
+                    if (ItemDet.ItemDetalleId != null && ItemDet.ItemDetalleId > 0)
                     {
-                        categoria.Selected = true;
+                        lista = ItemDetalleOperator.GetAllByParameter("ItemId", ItemDet.ItemDetalleId.ToString());
+                    }
+                    foreach (var idCategoria in lista)
+                    {
+                        
+                        foreach(ListItem categoria in MultiselectCategorias.Items)
+                        {
+                        
+                            var descripcion = CategoriasItemOperator.GetOneByIdentity(idCategoria.CategoriaId).Descripcion;
+                            if ( descripcion == categoria.Text)
+                            {
+                                categoria.Selected = true;
+                                categoria.Enabled  = true;
+                            }
+                        }
                     }
 
-
+                    foreach(ListItem Categoria in MultiselectCategorias.Items)
+                    {
+                        if (!Categoria.Selected)
+                        {
+                            Categoria.Selected = false;
+                            Categoria.Enabled = false;
+                        }
+                    }
                 }
+            }
+        }
+        protected void InicializaCategorias()
+        {
+            foreach (ListItem Categoria in MultiselectCategorias.Items)
+            {
+                    Categoria.Selected = false;
+                    Categoria.Enabled = true;
+            }
+        }
+        protected void InicializaItems()
+        {
+            foreach (ListItem Item in MultiselectItems.Items)
+            {
+                Item.Selected = false;
+                Item.Enabled = true;
             }
         }
     }

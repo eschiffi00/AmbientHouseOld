@@ -23,7 +23,10 @@
             }); $('[id*=MultiselectItems]').multiselect({
                 includeSelectAllOption: true,
                 dropRight: true,
-                enableFiltering: true
+                enableFiltering: true,
+                onDropdownHide: function (event) {
+                    __doPostBack();//__doPostBack($(event.target).parent().children('#DropDownList_ExportCountry').attr('id'), '')
+                }
             });
             document.addEventListener("keydown", function (event) {
                 if (event.which == 9) {
@@ -51,6 +54,7 @@
             //$("form input:checkbox").checked = false;
 
         });
+
         function GroupDropdownlist() {
             var selectControl = $('[id*=MultiselectCategorias]');
             var groups = [];
@@ -78,7 +82,7 @@
             }
         }
 
-    </script>
+      </script>
     <script>
         //var j = jQuery.noConflict();
 
@@ -160,7 +164,7 @@
         <div class="form-group row" id="MultiItems">
             <label for="MultiselectItems" class="col-sm-2 col-form-label text-sm-left text-md-right">Items</label>
             <div class="col-sm-4">
-                <asp:ListBox ID="MultiselectItems" runat="server" SelectionMode="Multiple" TabIndex="1" class="form-control"></asp:ListBox>
+                <asp:ListBox ID="MultiselectItems" runat="server" SelectionMode="Multiple" OnSelectedIndexChanged="MultiselectItems_SelectedIndexChanged" TabIndex="1" class="form-control" ></asp:ListBox>
             </div>
         </div>
 

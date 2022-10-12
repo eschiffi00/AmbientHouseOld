@@ -37,7 +37,7 @@ namespace DbEntidades.Operators
                 ItemsDetail.CategoriaItemId = Items.CategoriaItemId;
                 if(Items.ItemDetalleId > 0)
                 {
-                    var itemDetalle = ItemDetalleOperator.GetAllByParameter("ItemId", (int)Items.ItemDetalleId);
+                    var itemDetalle = ItemDetalleOperator.GetAllByParameter("ItemId", Items.ItemDetalleId.ToString());
                     var itemCategorias = "";
                     foreach (var detalle in itemDetalle)
                     {
@@ -115,6 +115,49 @@ namespace DbEntidades.Operators
             Items u = ItemsOperator.GetOneByIdentity(id);
             u.EstadoId = EstadosOperator.GetDeshabilitadoID("Items");
             Update(u);
+        }
+
+        public static Items GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoItemsBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            var tipo = string.Empty;
+            foreach (PropertyInfo prop in typeof(Items).GetProperties())
+            {
+                if (prop.Name == campo)
+                {
+                    tipo = prop.PropertyType.Name.ToString();
+                }
+                if (prop.Name == "Delete")
+                {
+                    columnas += "[" + prop.Name + "]" + ", ";
+                }
+                else
+                {
+                    columnas += prop.Name + ", ";
+                }
+            }
+            columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            var queryStr = string.Empty;
+            if (tipo == "String")
+            {
+                queryStr = "select " + columnas + " from Items where " + campo + " = \'" + valor.ToString() + "\'";
+            }
+            else
+            {
+                queryStr = "select " + columnas + " from Items where " + campo + " = " + valor.ToString();
+            }
+            DataTable dt = db.GetDataSet(queryStr).Tables[0];
+            Items Items = new Items();
+            foreach (PropertyInfo prop in typeof(Items).GetProperties())
+            {
+                object value = dt.Rows[0][prop.Name];
+                if (value == DBNull.Value) value = null;
+                try { prop.SetValue(Items, value, null); }
+                catch (System.ArgumentException) { }
+            }
+            return Items;
         }
     }
 }

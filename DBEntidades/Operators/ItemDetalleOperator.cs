@@ -40,14 +40,39 @@ namespace DbEntidades.Operators
             }
             return itemDetalle.Id;
         }
-        public static List<ItemDetalle> GetAllByParameter(string campo, int valor)
+        public static List<ItemDetalle> GetAllByParameter(string campo, string valor)
         {
             if (!DbEntidades.Seguridad.Permiso("PermisoItemDetalleBrowse")) throw new PermisoException();
             string columnas = string.Empty;
-            foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties()) columnas += prop.Name + ", ";
+            var tipo = string.Empty;
+            foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties())
+            {
+                if (prop.Name == campo)
+                {
+                    tipo = prop.PropertyType.Name.ToString();
+                }
+                if (prop.Name == "Delete")
+                {
+                    columnas += "[" + prop.Name + "]" + ", ";
+                }
+                else
+                {
+                    columnas += prop.Name + ", ";
+                }
+
+            }
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
-            DataTable dt = db.GetDataSet("select " + columnas + " from ItemDetalle where " + campo + " = " + valor.ToString()).Tables[0];
+            var queryStr = string.Empty;
+            if (tipo == "String")
+            {
+                queryStr = "select " + columnas + " from ItemDetalle where " + campo + " = \'" + valor.ToString() + "\'";
+            }
+            else
+            {
+                queryStr = "select " + columnas + " from ItemDetalle where " + campo + " = " + valor.ToString();
+            }
+            DataTable dt = db.GetDataSet(queryStr).Tables[0];
             List<ItemDetalle> lista = new List<ItemDetalle>();
             foreach (DataRow dr in dt.AsEnumerable())
             {

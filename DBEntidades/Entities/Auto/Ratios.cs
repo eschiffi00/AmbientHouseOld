@@ -15,7 +15,8 @@ namespace DbEntidades.Entities
 		public int CategoriaId { get; set; }
 		public string TipoDependencia { get; set; }
 		public string DetalleDependencia { get; set; }
-		public int TopeRatio { get; set; }
+		public double ValorRatio { get; set; }
+		public double TopeRatio { get; set; }
 		public int Menores { get; set; }
 		public int AdicionalRatio { get; set; }
 		public int EstadoId { get; set; }
@@ -28,6 +29,7 @@ namespace DbEntidades.Entities
 			"CategoriaId: " + CategoriaId.ToString() + "\r\n " + 
 			"TipoDependencia: " + TipoDependencia.ToString() + "\r\n " + 
 			"DetalleDependencia: " + DetalleDependencia.ToString() + "\r\n " + 
+			"ValorRatio: " + ValorRatio.ToString() + "\r\n " + 
 			"TopeRatio: " + TopeRatio.ToString() + "\r\n " + 
 			"Menores: " + Menores.ToString() + "\r\n " + 
 			"AdicionalRatio: " + AdicionalRatio.ToString() + "\r\n " +
@@ -52,6 +54,7 @@ namespace DbEntidades.Entities
 				case "CategoriaId": return false;
 				case "TipoDependencia": return false;
 				case "DetalleDependencia": return false;
+				case "ValorRatio": return false;
 				case "TopeRatio": return false;
 				case "Menores": return false;
 				case "AdicionalRatio": return false;

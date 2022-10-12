@@ -17,7 +17,8 @@ namespace DbEntidades.Entities
 		public string CategoriaDetalle { get; set; }
 		public string TipoDependencia { get; set; }
         public string DetalleDependencia { get; set; }
-        public int TopeRatio { get; set; }
+        public double ValorRatio { get; set; }
+        public double TopeRatio { get; set; }
 		public int Menores { get; set; }
 		public int AdicionalRatio { get; set; }
 		public int EstadoId { get; set; }

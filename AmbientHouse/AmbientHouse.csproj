@@ -192,6 +192,7 @@
     <Content Include="Boostrap4\js\jquery-3.3.1.slim.min.js" />
     <Content Include="Boostrap4\js\popper.min.js" />
     <Content Include="Configuracion\AdmItems\ItemsAltaMasiva.aspx" />
+    <Content Include="Configuracion\AdmItems\RatiosEdit.aspx" />
     <Content Include="Configuracion\AdmItems\RatiosBrowse.aspx" />
     <Content Include="Configuracion\AdmItems\ItemsBrowse.aspx" />
     <Content Include="Configuracion\AdmItems\ItemsEdit.aspx" />
@@ -1032,6 +1033,13 @@
     </Compile>
     <Compile Include="Configuracion\AdmItems\ItemsAltaMasiva.aspx.designer.cs">
       <DependentUpon>ItemsAltaMasiva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\AdmItems\RatiosEdit.aspx.cs">
+      <DependentUpon>RatiosEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AdmItems\RatiosEdit.aspx.designer.cs">
+      <DependentUpon>RatiosEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Configuracion\AdmItems\RatiosBrowse.aspx.cs">
       <DependentUpon>RatiosBrowse.aspx</DependentUpon>

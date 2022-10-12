@@ -53,7 +53,7 @@ namespace WebApplication.app.ItemsNS
                     }
 
                     //obtengo todas las categorias y utilizo descripcion y id
-                    var categorias = ItemDetalleOperator.GetAllByParameter("ItemId", id);
+                    var categorias = ItemDetalleOperator.GetAllByParameter("ItemId", id.ToString());
                     if (categorias.Count() > 0)
                     {
                         foreach (ListItem item in MultiselectCategorias.Items)
