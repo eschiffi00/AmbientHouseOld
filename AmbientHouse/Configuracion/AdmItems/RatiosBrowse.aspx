@@ -174,11 +174,13 @@
                 <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="2" class="form-control"></asp:ListBox>
             </div>
         </div>
-        <div class="col-4 text-right">
-            <asp:Button ID="btnFiltrar" Text="Filtrar" runat="server" CssClass="btn btnblack btn-primary" OnClick="btnFiltrar_Click" />
-        </div>
-        <div class="col-4 text-right">
-            <asp:Button ID="btnNuevoRatio" Text="Nuevo Producto" runat="server" CssClass="btn btnblack btn-primary" OnClick="btnNuevoRatio_Click" />
+        <div class="contenedorbtn form-group row">
+            <div class="col-4 text-right">
+                <asp:Button ID="btnFiltrar" Text="Filtrar" runat="server" CssClass="btn btnblack btn-primary" OnClick="btnFiltrar_Click" />
+            </div>
+            <div class="col-4 text-right">
+                <asp:Button ID="btnNuevoRatio" Text="Nuevo Producto" runat="server" CssClass="btn btnblack btn-primary" OnClick="btnNuevoRatio_Click" />
+            </div>
         </div>
     </div>
     <br />
