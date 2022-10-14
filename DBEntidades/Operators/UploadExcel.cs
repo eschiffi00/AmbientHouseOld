@@ -38,6 +38,7 @@ namespace AmbientHouse.Herramientas.UploadExcel
                 {
                     // Get size of uploaded file, here restricting size of file
                     int FileSize = fileUpload.PostedFile.ContentLength;
+                    Console.WriteLine("este es el peso" + FileSize);
                     if (FileSize <= 1048576)//1048576 byte = 1MB
                     {
                         //Get file name of selected file
@@ -49,15 +50,15 @@ namespace AmbientHouse.Herramientas.UploadExcel
                         string filePath = System.Web.HttpContext.Current.Server.MapPath(FilePath) + filename;
                         //Open the connection with excel file based on excel version
                         OleDbConnection con = null;
-                        if (FileExt == ".xls")
-                        {
+                        //if (FileExt == ".xls")
+                        //{
                             con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties=Excel 8.0;");
 
-                        }
-                        else if (FileExt == ".xlsx")
-                        {
-                            con = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=Excel 12.0;");
-                        }
+                        //}
+                        //else if (FileExt == ".xlsx")
+                        //{
+                        //    con = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=Excel 12.0;");
+                        //}
                         con.Open();
                         //Get the list of sheet available in excel sheet
                         DataTable dt = con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
