@@ -29,6 +29,7 @@ namespace WebApplication.app.ItemsNS
         protected void btnImportar_Click(object sender, EventArgs e)
         {
             DataSet ds = UploadExcel.UploadToExcel(btnSubirArchivo);
+            Console.WriteLine("se va a subir esto" + btnSubirArchivo.FileName);
             Session["filename"] = btnSubirArchivo.FileName;
             GridView1.DataSource = ds;
             GridView1.DataBind();
