@@ -1035,8 +1035,8 @@ namespace AmbientHouse.Presupuestos
             LabelErrores.Visible = false;
             LabelMensajeCliente.Visible = false;
 
-            CalendarExtenderFechaEvento.StartDate = System.DateTime.Today;
-
+            //CalendarExtenderFechaEvento.StartDate = System.DateTime.Today;
+            //ema00
             LabelRentaPorcentaje.Visible = false;
             LabelRentaValor.Visible = false;
             LabelRoyalty.Visible = false;
@@ -2931,8 +2931,11 @@ namespace AmbientHouse.Presupuestos
 
             DateTime fechaBloqueada = DateTime.ParseExact("07/12/2018", "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime fechaBloqueada1 = DateTime.ParseExact("14/12/2018", "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            DateTime fechaSeleccionada = DateTime.ParseExact(TextBoxFechaDesdeEvento.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-
+            //
+            //fecha.Replace("-", "/");
+            DateTime fecha = DateTime.ParseExact(TextBoxFechaDesdeEvento.Text.Replace("-", "/"), "yyyy/MM/dd", CultureInfo.InvariantCulture);
+            var fecha2 = fecha.ToString("dd/MM/yyyy");
+            DateTime fechaSeleccionada = DateTime.ParseExact(fecha2, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             //List<FechasBloqueadas> fechas = serviciosPresupuestos.ObtenerFechasBloqueadas(fechaSeleccionada);
 
@@ -3053,7 +3056,9 @@ namespace AmbientHouse.Presupuestos
         {
             if (TextBoxFechaDesdeEvento.Text != "")
             {
-                DateTime fechaSeleccionada = DateTime.ParseExact(TextBoxFechaDesdeEvento.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime fecha = DateTime.ParseExact(TextBoxFechaDesdeEvento.Text.Replace("-", "/"), "yyyy/MM/dd", CultureInfo.InvariantCulture);
+                var fecha2 = fecha.ToString("dd/MM/yyyy");
+                DateTime fechaSeleccionada = DateTime.ParseExact(fecha2, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
                 List<DomainAmbientHouse.Entidades.ObtenerEventos> eventos = servicios.BuscarEventosPorFechaVista(DateTime.Parse(fechaSeleccionada.ToShortDateString()));
 

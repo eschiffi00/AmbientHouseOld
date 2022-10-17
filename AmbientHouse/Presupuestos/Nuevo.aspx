@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="Nuevo.aspx.cs" Inherits="AmbientHouse.Presupuestos.Editar" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
     <script> 
       $(document).ready(function () {
             $("#datetimepickerRemito").datetimepicker({
@@ -174,9 +175,11 @@
                                                                     AutoPostBack="True"
                                                                     class="form-control"
                                                                     Width="700px"
+                                                                    TextMode ="Date"
+                                                                    Format="dd/MM/yyyy" 
                                                                     OnTextChanged="TextBoxFechaDesdeEvento_TextChanged" CssClass="black"></asp:TextBox>
 
-                                                                <ajaxToolkit:CalendarExtender ID="CalendarExtenderFechaEvento" runat="server" DefaultView="Years" Format="dd/MM/yyyy" TargetControlID="TextBoxFechaDesdeEvento" TodaysDateFormat="" CssClass="black" />
+                                                                <%--<ajaxToolkit:CalendarExtender ID="CalendarExtenderFechaEvento" runat="server" DefaultView="Years" Format="dd/MM/yyyy" TargetControlID="TextBoxFechaDesdeEvento" TodaysDateFormat="" CssClass="black" />--%>
                                                                 <asp:RequiredFieldValidator ID="FechaEventoRequiredFieldValidator" runat="server" ControlToValidate="TextBoxFechaDesdeEvento" Display="Dynamic" ErrorMessage="Fecha Evento es requerido." ForeColor="Red" SetFocusOnError="True" ValidationGroup="Eventos"></asp:RequiredFieldValidator>
 
                                                             </th>
