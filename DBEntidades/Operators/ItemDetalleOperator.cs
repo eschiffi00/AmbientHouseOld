@@ -89,5 +89,27 @@ namespace DbEntidades.Operators
             }
             return lista;
         }
+
+        public static ItemDetalle GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoItemDetalleBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties()) columnas += prop.Name + ", ";
+            columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from ItemDetalle where  " + campo + " = \'" + valor + "\'").Tables[0];
+            ItemDetalle ItemDetalle = new ItemDetalle();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(ItemDetalle, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return ItemDetalle;
+        }
     }
 }

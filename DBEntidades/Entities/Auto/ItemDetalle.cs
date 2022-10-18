@@ -13,6 +13,7 @@ namespace DbEntidades.Entities
 		public int Id { get; set; }
 		public int ItemId { get; set; }
 		public int CategoriaId { get; set; }
+		public int EstadoId { get; set; }
 
 		public override string ToString() 
 		{
@@ -37,6 +38,7 @@ namespace DbEntidades.Entities
 				case "Id": return false;
 				case "ItemId": return false;
 				case "CategoriaId": return false;
+				case "EstadoId": return false;
 
 				default: return false;
 			}

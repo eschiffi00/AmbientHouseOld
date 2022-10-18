@@ -446,6 +446,16 @@ namespace AmbientHouse.App_Shared.Controles
 
                 mnuTecnicas.ChildItems.Add(mnuTipoServicios);
 
+                MenuItem mnuCostoTecnica = new MenuItem();
+
+                mnuCostoTecnica.Text = "Precio/Costo Tecnica";
+                mnuCostoTecnica.Value = "TTE";
+                mnuCostoTecnica.NavigateUrl = "~/Administracion/Costos/Tecnica.aspx";
+
+
+
+                mnuTecnicas.ChildItems.Add(mnuCostoTecnica);
+
                 mnuConfiguracion.ChildItems.Add(mnuTecnicas);
 
 

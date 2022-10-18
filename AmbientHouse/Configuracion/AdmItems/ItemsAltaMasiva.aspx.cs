@@ -11,7 +11,6 @@ using System.Data;
 using static System.Net.WebRequestMethods;
 using NPOI.SS.Formula.Functions;
 using System.Drawing;
-using AmbientHouse.Herramientas.UploadExcel;
 
 namespace WebApplication.app.ItemsNS
 {
@@ -79,6 +78,7 @@ namespace WebApplication.app.ItemsNS
                         seItems.NombreFantasiaId = 0;
                     }
                     newItemId = ItemsOperator.Save(seItems).Id;
+                    Console.WriteLine("Esto posta:" + seItems.Id);
                     seItems.ItemDetalleId = newItemId;
                     seItems.Id = newItemId;
                     ItemsOperator.Save(seItems);

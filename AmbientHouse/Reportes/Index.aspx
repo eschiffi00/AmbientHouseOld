@@ -210,19 +210,10 @@
                                         </td>
                                        
                                     </tr>
-                                   
                                     <tr>
                                         <td class="auto-style5">&nbsp;</td>
                                         <td class="auto-style6">&nbsp;</td>
                                         <td>&nbsp;</td>
-                                    </tr>
-                                    <tr>
-
-                                        <td class="auto-style5">
-                                            <asp:Button ID="Button1" runat="server" Width="100%" class="btn btn-warning btn-lg btn-block" Text="Cuenta Corriente Proveedores" OnClick="ButtonCuentaCorriente_Click"  /></td>
-                                         <td class="auto-style6">&nbsp;</td>
-        
-                                       
                                     </tr>
                                 </table>
                             </asp:Panel>

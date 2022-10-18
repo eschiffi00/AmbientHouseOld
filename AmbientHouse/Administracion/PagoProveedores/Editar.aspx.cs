@@ -11,7 +11,7 @@ using DbEntidades.Entities;
 using DbEntidades.Operators;
 using NPOI.SS.Formula.Functions;
 using AmbientHouse.Reportes;
-using Microsoft.Reporting.Map.WebForms.BingMaps;
+//using Microsoft.Reporting.Map.WebForms.BingMaps;
 
 namespace AmbientHouse.Administracion.PagoProveedores
 {

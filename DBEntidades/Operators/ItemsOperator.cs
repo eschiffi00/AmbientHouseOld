@@ -41,15 +41,20 @@ namespace DbEntidades.Operators
                     var itemCategorias = "";
                     foreach (var detalle in itemDetalle)
                     {
-                        if (itemCategorias == "")
+                        if (detalle.EstadoId == 36)
                         {
-                            itemCategorias = CategoriasItemOperator.GetOneByIdentity(detalle.CategoriaId).Descripcion;
 
-                        }
-                        else
-                        {
-                            itemCategorias = itemCategorias + "/" + CategoriasItemOperator.GetOneByIdentity(detalle.CategoriaId).Descripcion;
 
+                            if (itemCategorias == "")
+                            {
+                                itemCategorias = CategoriasItemOperator.GetOneByIdentity(detalle.CategoriaId).Descripcion;
+
+                            }
+                            else
+                            {
+                                itemCategorias = itemCategorias + "/" + CategoriasItemOperator.GetOneByIdentity(detalle.CategoriaId).Descripcion;
+
+                            }
                         }
                     }
                     ItemsDetail.CategoriaDescripcion = itemCategorias;
