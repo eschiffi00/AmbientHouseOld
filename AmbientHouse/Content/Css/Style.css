@@ -27,22 +27,23 @@ a, a:hover, a:focus {
 }
 
 #header {
-   
 }
+
 .Footer1 {
-    background-color:black;
+    background-color: black;
 }
 
 #sidebar {
     /* don't forget to add all the previously mentioned styles here too */
     max-width: 180px;
-    background: #1D1D1D;
-    color: #fff;
+    background: #EDEDED;
+    color: #0a0a0a;
     transition: all 0.3s;
 }
 
     #sidebar .sidebar-header {
         padding: 20px;
+        color: #fff;
         background: #000000;
     }
 
@@ -63,17 +64,20 @@ a, a:hover, a:focus {
     }
 
         #sidebar ul li a:hover {
-            color: #13141B;
-            background: #fff;
+            color: #fff;
+            background: #000000;
         }
 
     #sidebar ul li.active > a, a[aria-expanded="true"] {
         color: #fff;
         background: #000000;
+        
     }
+
 
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
+    color: #fff;
     background: #000000;
 }

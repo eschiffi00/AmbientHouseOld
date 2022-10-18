@@ -101,10 +101,6 @@ namespace AmbientHouse.Reportes
         {
             Response.Redirect("~/Reportes/ReporteMovimientosporCuentas.aspx");
         }
-         protected void ButtonCuentaCorriente_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Reportes/ReporteCuentaCorrienteProv.aspx");
-        }
 
         protected void ButtonReporteProductos_Click(object sender, EventArgs e)
         {

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.SessionState;
 
-namespace AmbientHouse.Herramientas.UploadExcel
+namespace DbEntidades.Operators
 {
     public partial class UploadExcel
     {

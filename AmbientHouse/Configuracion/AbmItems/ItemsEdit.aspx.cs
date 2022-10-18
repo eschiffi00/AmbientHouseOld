@@ -9,6 +9,9 @@ using DbEntidades.Operators;
 using System.Globalization;
 using System.Data;
 using System.Text.RegularExpressions;
+using static iTextSharp.text.pdf.AcroFields;
+
+
 
 namespace WebApplication.app.ItemsNS
 {
@@ -58,7 +61,7 @@ namespace WebApplication.app.ItemsNS
                     {
                         foreach (ListItem item in MultiselectCategorias.Items)
                         {
-                            var categoria = categorias.Where(x => x.CategoriaId == Int32.Parse(item.Value)).ToList();
+                            var categoria = categorias.Where(x => x.CategoriaId == Int32.Parse(item.Value)&& x.EstadoId == 36).ToList();
                             if (categoria.Count() > 0)
                             {
                                 item.Selected = true;
@@ -188,18 +191,41 @@ namespace WebApplication.app.ItemsNS
                 seItems.ItemDetalleId = newItemId;
                 seItems.Id = newItemId;
                 ItemsOperator.Save(seItems);
-
-                ItemDetalle detalle = new ItemDetalle();
-                foreach (ListItem item in MultiselectCategorias.Items)
+                List<int> idcategorias = new List<int>();
+                foreach (ListItem categoria in MultiselectCategorias.Items)
                 {
-                    if (item.Selected)
+                    if (categoria.Selected)
                     {
-                        detalle.Id = -1;
-                        detalle.ItemId = newItemId;
-                        detalle.CategoriaId = Int32.Parse(item.Value);
-                        ItemDetalleOperator.Save(detalle);
+                        idcategorias.Add(Int32.Parse(categoria.Value));
                     }
                 }
+                
+                List<ItemDetalle> temp = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.ItemDetalleId.Value);
+                List<int> contadorCategorias = new List<int>();
+                foreach(ItemDetalle itemDetalle in temp)
+                {
+                    itemDetalle.EstadoId = 37;
+                    if (idcategorias.Contains(itemDetalle.CategoriaId))
+                    {
+                        itemDetalle.EstadoId = 36;
+                        contadorCategorias.Add(itemDetalle.CategoriaId);
+                    }
+                    ItemDetalleOperator.Save(itemDetalle);
+                }
+                if(contadorCategorias.Count < idcategorias.Count)
+                {
+                    foreach(var categoria in idcategorias)
+                    {
+                        if (!contadorCategorias.Contains(categoria))
+                        {
+                            ItemDetalle itemNuevo = new ItemDetalle();
+                            itemNuevo.CategoriaId = categoria;
+                            itemNuevo.EstadoId = 36;
+                            ItemDetalleOperator.Save(itemNuevo);
+                        }
+                    }
+                }
+
 
                 Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
             }

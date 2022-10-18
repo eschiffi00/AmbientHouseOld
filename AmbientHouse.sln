@@ -4,10 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmbientHouse", "AmbientHouse\AmbientHouse.csproj", "{5F974EF0-3C0D-4B08-B982-097D582B23B9}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A97126B4-19B0-4D41-A3B1-32BB7FC0F1D2} = {A97126B4-19B0-4D41-A3B1-32BB7FC0F1D2}
-		{F2F20E52-552C-4AA1-99CD-E9A1CFF3511E} = {F2F20E52-552C-4AA1-99CD-E9A1CFF3511E}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainAmbientHouse", "DomainAmbientHouse\DomainAmbientHouse.csproj", "{3E39B56B-F529-470B-A244-CD4CEF7972F4}"
 EndProject
@@ -59,6 +55,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3565CD48-4C4E-41CC-96F0-690CEADE1FF4}
+		SolutionGuid = {53BDD3C7-CAF3-43A5-8568-34E1D6AD2DF6}
 	EndGlobalSection
 EndGlobal

@@ -47,8 +47,6 @@
                                         <asp:BoundField DataField="FechaSena" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Fec. Reserva" SortExpression="FechaSena" />
                                          <asp:BoundField DataField="TipoEvento" HeaderText="Tipo Evento" SortExpression="TipoEvento" />
                                           <asp:BoundField DataField="LOCACION" HeaderText="Locacion" SortExpression="LOCACION" />
-                                          <asp:BoundField DataField="TipoExperiencia" HeaderText="Tipo Experiencia" SortExpression="TipoExperiencia" />
-                                          <asp:BoundField DataField="TipoBarra" HeaderText="Tipo Barra" SortExpression="TipoBarra" />
                                       
                                     </Columns>
 

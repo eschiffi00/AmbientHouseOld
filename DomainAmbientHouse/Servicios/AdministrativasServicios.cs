@@ -33,6 +33,7 @@ namespace DomainAmbientHouse.Servicios
       
 
         LocacionesNegocios NegociosLocaciones;
+        CostoNegocios NegociosCosto;
         ConceptosLogisticaNegocios NegociosConceptosLogistica;
         LocalidadesNegocios NegociosLocalidades;
         CategoriasNegocios NegociosCategorias;
@@ -80,6 +81,7 @@ namespace DomainAmbientHouse.Servicios
             NegocioCostos = new CostoNegocios();
             NegocioProcesoCierre = new ProcesoCierreNegocios();
             NegociosLocaciones = new LocacionesNegocios();
+            NegociosCosto = new CostoNegocios();
             NegociosConceptosLogistica = new ConceptosLogisticaNegocios();
             NegociosLocalidades = new LocalidadesNegocios();
             NegociosCategorias = new CategoriasNegocios();
@@ -1959,6 +1961,10 @@ namespace DomainAmbientHouse.Servicios
         {
             return NegociosLocaciones.CargarPrecioCostosSalon(param);
         }
+        //public List<CargarCostosTecnica_Result> CargarPrecioCostosTecnica(ParametrosCostoTecnica param)
+        //{
+        //    return NegociosCosto.CargarPrecioCostostecnica(param);
+        //}
 
         public List<LiquidacionHorasPersonal> ObtenerLiquidaciones()
         {
