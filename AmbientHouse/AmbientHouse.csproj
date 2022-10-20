@@ -156,6 +156,7 @@
     <Content Include="Administracion\Cobranzas\Index.aspx" />
     <Content Include="Administracion\Comprobantes\VerPago.aspx" />
     <Content Include="Administracion\Costos\Salones.aspx" />
+    <Content Include="Administracion\Costos\Tecnica.aspx" />
     <Content Include="Administracion\Cuentas\Conciliar.aspx" />
     <Content Include="Administracion\Cuentas\Editar.aspx" />
     <Content Include="Administracion\Cuentas\Egreso.aspx" />
@@ -783,6 +784,13 @@
     </Compile>
     <Compile Include="Administracion\Costos\Salones.aspx.designer.cs">
       <DependentUpon>Salones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Costos\Tecnica.aspx.cs">
+      <DependentUpon>Tecnica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Costos\Tecnica.aspx.designer.cs">
+      <DependentUpon>Tecnica.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administracion\Cuentas\Conciliar.aspx.cs">
       <DependentUpon>Conciliar.aspx</DependentUpon>
