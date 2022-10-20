@@ -21,12 +21,17 @@ namespace DbEntidades.Operators
             DB db = new DB();
             DataTable dt = db.GetDataSet("select " + columnas + " from NombreFantasia where Id = " + Id.ToString()).Tables[0];
             NombreFantasia nombreFantasia = new NombreFantasia();
-            foreach (PropertyInfo prop in typeof(NombreFantasia).GetProperties())
+            if(dt.Rows.Count > 0)
             {
-				object value = dt.Rows[0][prop.Name];
-				if (value == DBNull.Value) value = null;
-                try { prop.SetValue(nombreFantasia, value, null); }
-                catch (System.ArgumentException) { }
+
+            
+                foreach (PropertyInfo prop in typeof(NombreFantasia).GetProperties())
+                {
+				    object value = dt.Rows[0][prop.Name];
+				    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(nombreFantasia, value, null); }
+                    catch (System.ArgumentException) { }
+                }
             }
             return nombreFantasia;
         }

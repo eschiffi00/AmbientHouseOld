@@ -37,12 +37,22 @@ namespace WebApplication.app.ItemsNS
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             var err = 0;
+            var insertados = 0;
+            var actualizados = 0;
+            var erroneos = 0;
+            var flagActualiza = false;
             foreach (GridViewRow fila in GridView1.Rows)
             {
+                flagActualiza = false;
                 TableCellCollection fila2;
                 fila2 = fila.Cells;
                 var newItemId = -1;
-                seItems.Id = -1;
+
+                seItems.Id = ItemsOperator.GetOneByParameter("Detalle", fila2[0].Text).Id;
+                if(seItems.Id > -1)
+                {
+                    flagActualiza = true;
+                }
                 seItems.ItemDetalleId = 99;
                 seItems.Detalle = fila2[0].Text;
                 seItems.TipoItem = fila2[1].Text;
@@ -82,14 +92,6 @@ namespace WebApplication.app.ItemsNS
                     seItems.ItemDetalleId = newItemId;
                     seItems.Id = newItemId;
                     ItemsOperator.Save(seItems);
-                    //ItemDetalle detalle = new ItemDetalle();
-                    //foreach (var text in arrText)
-                    //{
-                    //    detalle.Id = -1;
-                    //    detalle.ItemId = newItemId;
-                    //    detalle.CategoriaId = CategoriasItemOperator.GetOneByParameter("Descripcion", text).Id;
-                    //    ItemDetalleOperator.Save(detalle);
-                    //}
                     List<ItemDetalle> temp = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.ItemDetalleId.Value);
                     List<int> contadorCategorias = new List<int>();
                     foreach (ItemDetalle itemDetalle in temp)
@@ -119,17 +121,30 @@ namespace WebApplication.app.ItemsNS
                             }
                         }
                     }
+                    if (flagActualiza)
+                    {
+                        actualizados++;
+                    }
+                    else
+                    {
+                        insertados++;
+                    }  
                 }
-                else { 
+                else {
+                    erroneos++;
                     fila.ControlStyle.BackColor = Color.Red;
                     fila.ControlStyle.ForeColor = Color.White;
                 }
             }
             string filename = (string)Session["filename"];
             UploadExcel.DeleteUploads(filename);
+            lblMsg.Text = "Insertados: " + insertados + "<br/>" +
+                          "Actualizados: " + actualizados + "<br/>" +
+                           "Erroneos: " + erroneos + "<br/>";
             if (err == 0)
             {
-                Response.Redirect("~/Configuracion/AbmItems/ItemsAltaMasiva.aspx");
+
+                Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
             }
         }
 
