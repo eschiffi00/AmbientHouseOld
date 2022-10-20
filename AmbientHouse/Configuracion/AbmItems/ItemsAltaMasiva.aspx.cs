@@ -11,6 +11,7 @@ using System.Data;
 using static System.Net.WebRequestMethods;
 using NPOI.SS.Formula.Functions;
 using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebApplication.app.ItemsNS
 {
@@ -78,17 +79,45 @@ namespace WebApplication.app.ItemsNS
                         seItems.NombreFantasiaId = 0;
                     }
                     newItemId = ItemsOperator.Save(seItems).Id;
-                    Console.WriteLine("Esto posta:" + seItems.Id);
                     seItems.ItemDetalleId = newItemId;
                     seItems.Id = newItemId;
                     ItemsOperator.Save(seItems);
-                    ItemDetalle detalle = new ItemDetalle();
-                    foreach (var text in arrText)
+                    //ItemDetalle detalle = new ItemDetalle();
+                    //foreach (var text in arrText)
+                    //{
+                    //    detalle.Id = -1;
+                    //    detalle.ItemId = newItemId;
+                    //    detalle.CategoriaId = CategoriasItemOperator.GetOneByParameter("Descripcion", text).Id;
+                    //    ItemDetalleOperator.Save(detalle);
+                    //}
+                    List<ItemDetalle> temp = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.ItemDetalleId.Value);
+                    List<int> contadorCategorias = new List<int>();
+                    foreach (ItemDetalle itemDetalle in temp)
                     {
-                        detalle.Id = -1;
-                        detalle.ItemId = newItemId;
-                        detalle.CategoriaId = CategoriasItemOperator.GetOneByParameter("Descripcion", text).Id;
-                        ItemDetalleOperator.Save(detalle);
+                        itemDetalle.EstadoId = 37;
+                        var Categoria = Array.Find(arrText, 
+                       element => element.Contains(CategoriasItemOperator.GetOneByParameter("Id",itemDetalle.CategoriaId.ToString()).Descripcion));
+                        if (Categoria != null && Categoria != "")
+                        {
+                            itemDetalle.EstadoId = 36;
+                            contadorCategorias.Add(itemDetalle.CategoriaId);
+                        }
+                        ItemDetalleOperator.Save(itemDetalle);
+                    }
+                    if (contadorCategorias.Count < arrText.ToList().Count)
+                    {
+                        foreach (var categoria in arrText)
+                        {
+                            var categoriaid = CategoriasItemOperator.GetOneByParameter("Descripcion", categoria).Id;
+                            if (!contadorCategorias.Contains(categoriaid))
+                            {
+                                ItemDetalle itemNuevo = new ItemDetalle();
+                                itemNuevo.ItemId = seItems.ItemDetalleId.Value;
+                                itemNuevo.CategoriaId = categoriaid;
+                                itemNuevo.EstadoId = 36;
+                                ItemDetalleOperator.Save(itemNuevo);
+                            }
+                        }
                     }
                 }
                 else { 
