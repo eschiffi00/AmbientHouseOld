@@ -307,6 +307,7 @@
     <Content Include="Error\500.aspx" />
     <Content Include="Error\ErrorPage.aspx" />
     <Content Include="Error\NoTienePermisos.aspx" />
+    <Content Include="FilesUpload\dummy.txt" />
     <Content Include="Firma.html" />
     <Content Include="Home\Index.aspx" />
     <Content Include="ImagenesFirma\Cabecera.jpeg" />
@@ -2516,7 +2517,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Administracion\Reportes\" />
-    <Folder Include="FilesUpload\" />
     <Folder Include="Herramientas\MisArchivos\" />
     <Folder Include="logs\" />
     <Folder Include="Scripts\Ventas\" />
