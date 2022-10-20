@@ -108,7 +108,10 @@
                          style="width: auto" />Confirmar
                 </a>
             </div>
-            <asp:Label ID="lblMsg" runat="server" ForeColor="Green" Text=""></asp:Label>
+            <br />
+            <div class="mensaje">
+                <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
+            </div>
             <br />
             <asp:GridView ID="GridView1" runat="server" EmptyDataText="No hay registros!" 
                 Height="25px">

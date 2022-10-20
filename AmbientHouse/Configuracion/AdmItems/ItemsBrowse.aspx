@@ -96,9 +96,9 @@
         </div>
     </div>
     <div class="table-responsive">
-        <asp:GridView ID="grdItems" CssClass="table table-striped table-bordered table-hover table-sm" runat="server" AutoGenerateColumns="false" onrowcommand="grdItems_RowCommand">
+        <asp:GridView ID="grdItems" CssClass="table table-bordered table-hover table-sm" runat="server" AutoGenerateColumns="false" onrowcommand="grdItems_RowCommand">
             <Columns>
-                <asp:TemplateField HeaderText="" HeaderStyle-CssClass="text-center columna-iconos-th">
+                <asp:TemplateField HeaderText="" HeaderStyle-CssClass="text-center columna-iconos-th header-black">
                     <ItemStyle HorizontalAlign="Center" CssClass="verticalMiddle columna-iconos-td" />
                     <ItemTemplate>
                         <%--<div class="d-flex justify-content-between w-75 text-center mr-1">--%>
@@ -115,22 +115,22 @@
                         </div>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Id" HeaderText="ID" Visible="true" SortExpression="Id" />
-                <asp:BoundField DataField="Detalle" HeaderText="Detalle" Visible="true" />
-                <asp:BoundField DataField="CategoriaItemId" HeaderText="Categoria" Visible="false" />
-                <asp:BoundField DataField="CategoriaDescripcion" HeaderText="Categoria" Visible="true" />
-                <asp:BoundField DataField="NombreFantasiaId" HeaderText="NombreFantasiaId" Visible="false" />
-                <asp:BoundField DataField="NombreFantasia" HeaderText="Nombre Fantasía" Visible="true" />
-                <asp:BoundField DataField="CuentaId" HeaderText="CuentaId" Visible="false" />
-                <asp:BoundField DataField="CuentaDescripcion" HeaderText="Cuenta" Visible="true" />
-                <asp:BoundField DataField="Costo" HeaderText="Costo" Visible="true" />
-                <asp:BoundField DataField="Margen" HeaderText="Margen" Visible="true" />
-                <asp:BoundField DataField="Precio" HeaderText="Precio" Visible="true" />
-                <asp:BoundField DataField="DepositoId" HeaderText="Stock" Visible="false" />
-                <asp:BoundField DataField="Unidad" HeaderText="Unidad" Visible="false" />
-                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" Visible="false" />
-                <asp:BoundField DataField="Estado" HeaderText="Habilitado" Visible="true" />
-                <asp:BoundField DataField="TipoItem" HeaderText="Tipo Item" Visible="false" />
+                <asp:BoundField DataField="Id" HeaderText="ID" Visible="true" SortExpression="Id" HeaderStyle-CssClass="header-black" />
+                <asp:BoundField DataField="Detalle" HeaderText="Detalle" Visible="true" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="CategoriaItemId" HeaderText="Categoria" Visible="false" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="CategoriaDescripcion" HeaderText="Categoria" Visible="true" HeaderStyle-CssClass="header-black" />
+                <asp:BoundField DataField="NombreFantasiaId" HeaderText="NombreFantasiaId" Visible="false" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="NombreFantasia" HeaderText="Nombre Fantasía" Visible="true" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="CuentaId" HeaderText="CuentaId" Visible="false" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="CuentaDescripcion" HeaderText="Cuenta" Visible="true" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="Costo" HeaderText="Costo" Visible="true" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="Margen" HeaderText="Margen" Visible="true" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="Precio" HeaderText="Precio" Visible="true" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="DepositoId" HeaderText="Stock" Visible="false" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="Unidad" HeaderText="Unidad" Visible="false" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" Visible="false" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="Estado" HeaderText="Habilitado" Visible="true" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="TipoItem" HeaderText="Tipo Item" Visible="false" HeaderStyle-CssClass="header-black"/>
                 
 
                

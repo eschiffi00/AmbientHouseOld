@@ -8,6 +8,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Data;
+using NPOI.SS.Formula.Functions;
+using NPOI.XSSF.UserModel.Helpers;
+using Org.BouncyCastle.X509;
+using static System.Net.WebRequestMethods;
+using System.Drawing;
+
 namespace WebApplication.app.ItemsNS
 {
     public partial class ItemsBrowse : System.Web.UI.Page
@@ -26,7 +32,19 @@ namespace WebApplication.app.ItemsNS
         {
             List<ItemsListado> ent = ItemsOperator.GetAllWithDetails().ToList();
             grdItems.DataSource = ent;
+            
             grdItems.DataBind();
+            foreach (GridViewRow fila in grdItems.Rows)
+            {
+                TableCellCollection fila2;
+                fila2 = fila.Cells;
+                if (fila2[15].Text == "Inactivo")
+                {
+                    fila.ControlStyle.BackColor = Color.LightSalmon;
+                    fila.ControlStyle.ForeColor = Color.White;
+                }
+            }
+            //grdItems.DataBind();
         }
         protected void btnExportar_Click(object sender, EventArgs e)
         {

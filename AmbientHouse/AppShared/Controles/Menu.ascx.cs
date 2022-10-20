@@ -247,6 +247,7 @@ namespace AmbientHouse.App_Shared.Controles
 
                 mnuItems.Text = "Items";
                 mnuItems.Value = "ITE";
+                mnuItems.NavigateUrl = "~/Configuracion/AbmItems/ItemsBrowse.aspx";
 
                 MenuItem mnuAdmItems = new MenuItem();
 
