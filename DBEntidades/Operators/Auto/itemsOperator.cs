@@ -80,6 +80,17 @@ namespace DbEntidades.Operators
 
         }
 
+        public static int GetLastId()
+        {
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select max(Id) from Items").Tables[0];
+            Items items = new Items();
+            DataRow row = dt.Rows[0];
+            object id = row.ItemArray[0];
+            var valor = id.ToString();
+            return Int32.Parse(valor);
+        }
+
         public static Items Save(Items items)
         {
             if (!DbEntidades.Seguridad.Permiso("PermisoItemsSave")) throw new PermisoException();
@@ -90,6 +101,8 @@ namespace DbEntidades.Operators
         public static Items Insert(Items items)
         {
             if (!DbEntidades.Seguridad.Permiso("PermisoItemsSave")) throw new PermisoException();
+            var id = GetLastId();
+            items.Id = id+1;
             string sql = "insert into Items(";
             string columnas = string.Empty;
             string valores = string.Empty;
@@ -99,7 +112,6 @@ namespace DbEntidades.Operators
 
             foreach (PropertyInfo prop in typeof(Items).GetProperties())
             {
-                if (prop.Name == "Id") continue; //es identity
                 columnas += prop.Name + ", ";
                 valores += "@" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
@@ -134,7 +146,7 @@ namespace DbEntidades.Operators
 
             foreach (PropertyInfo prop in typeof(Items).GetProperties())
             {
-                if (prop.Name == "Id") continue; //es identity
+                //if (prop.Name == "Id") continue; //es identity
                 columnas += prop.Name + " = @" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
                 valor.Add(prop.GetValue(items, null));
