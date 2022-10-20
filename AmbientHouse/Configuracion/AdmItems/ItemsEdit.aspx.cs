@@ -219,6 +219,7 @@ namespace WebApplication.app.ItemsNS
                         if (!contadorCategorias.Contains(categoria))
                         {
                             ItemDetalle itemNuevo = new ItemDetalle();
+                            itemNuevo.ItemId = seItems.ItemDetalleId.Value;
                             itemNuevo.CategoriaId = categoria;
                             itemNuevo.EstadoId = 36;
                             ItemDetalleOperator.Save(itemNuevo);
