@@ -1961,10 +1961,10 @@ namespace DomainAmbientHouse.Servicios
         {
             return NegociosLocaciones.CargarPrecioCostosSalon(param);
         }
-        //public List<CargarCostosTecnica_Result> CargarPrecioCostosTecnica(ParametrosCostoTecnica param)
-        //{
-        //    return NegociosCosto.CargarPrecioCostostecnica(param);
-        //}
+        public List<CargarCostosTecnica_Result> CargarPrecioCostosTecnica(ParametrosCostoTecnica param)
+        {
+            return NegociosCosto.CargarPrecioCostostecnica(param);
+        }
 
         public List<LiquidacionHorasPersonal> ObtenerLiquidaciones()
         {
@@ -2231,27 +2231,6 @@ namespace DomainAmbientHouse.Servicios
             ComprobanteProveedoresNegocios negocios = new ComprobanteProveedoresNegocios();
 
             return negocios.BuscarPagosProveedores();
-        }
-
-        public List<ItemDetalle> ObtenerItemDetalle(ItemDetalleSearcher searcher)
-        {
-            ItemDetalleNegocios negocios = new ItemDetalleNegocios();
-
-            return negocios.ObtenerItemDetalle(searcher);
-        }
-
-        public ItemDetalle BuscarItemDetalle(int itemId)
-        {
-           ItemDetalleNegocios negocios = new ItemDetalleNegocios();
-
-            return negocios.BuscarItemDetalle(itemId);
-        }
-
-        public void NuevoItemDetalle(ItemDetalle item)
-        {
-            ItemDetalleNegocios negocios = new ItemDetalleNegocios();
-
-            negocios.NuevoItems(item);
         }
 
         public List<BuscarItemsporTipoCatering_Result> BuscarItemsPorTipoCatering(int TipoCateringId)

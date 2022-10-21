@@ -162,8 +162,6 @@
     <Content Include="Configuracion\CategoriaItems\Index.aspx" />
     <Content Include="Configuracion\Grupos\Editar.aspx" />
     <Content Include="Configuracion\Grupos\Index.aspx" />
-    <Content Include="Configuracion\ItemDetalle\Editar.aspx" />
-    <Content Include="Configuracion\ItemDetalle\Index.aspx" />
     <Content Include="Configuracion\Locaciones\AgregarAmbientacion.aspx" />
     <Content Include="Configuracion\Organizacion\Editar.aspx" />
     <Content Include="Configuracion\Organizacion\Index.aspx" />
@@ -1050,20 +1048,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Configuracion\Grupos\Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Configuracion\ItemDetalle\Editar.aspx.cs">
-      <DependentUpon>Editar.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Configuracion\ItemDetalle\Editar.aspx.designer.cs">
-      <DependentUpon>Editar.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Configuracion\ItemDetalle\Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Configuracion\ItemDetalle\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Configuracion\Locaciones\AgregarAmbientacion.aspx.cs">
