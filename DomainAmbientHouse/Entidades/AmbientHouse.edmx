@@ -5,11 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="AmbientHouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="6132306">
-          <Property Name="0100613SEPSA               202206232022062300460000000149064040600000000000000000000000000000000000000000000070             RBCO" Type="varchar" MaxLength="300" />
-        </EntityType>-->
         <EntityType Name="Adicionales">
           <Key>
             <PropertyRef Name="Id" />
@@ -59,6 +54,16 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bloqueo">
+          <Key>
+            <PropertyRef Name="BloqueoId" />
+          </Key>
+          <Property Name="BloqueoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RolId" Type="int" Nullable="false" />
+          <Property Name="FormId" Type="int" Nullable="false" />
+          <Property Name="Control" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Caracteristicas">
           <Key>
@@ -208,6 +213,17 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ComprobanteProveedorId" Type="int" Nullable="false" />
           <Property Name="PagoProveedorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ComprobantesPagados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComprobanteProveedorDetalleId" Type="int" Nullable="false" />
+          <Property Name="NroPresupuesto" Type="int" />
+          <Property Name="TipoMovimiento" Type="int" />
+          <Property Name="TMDescripcion" Type="varchar" MaxLength="50" />
+          <Property Name="MontoPagado" Type="float" />
         </EntityType>
         <EntityType Name="ComprobantesProveedores">
           <Key>
@@ -544,7 +560,6 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="UsaPc" Type="bit" Nullable="false" />
           <Property Name="NroPc" Type="varchar" MaxLength="50" />
           <Property Name="EstadoId" Type="int" />
-          <Property Name="DepartamentoId" Type="int" Nullable="false" />
           <Property Name="SectorEmpresaId" Type="int" Nullable="false" />
           <Property Name="TipoEmpleadoId" Type="int" Nullable="false" />
           <Property Name="HorarioDesde" Type="varchar" MaxLength="5" />
@@ -553,6 +568,7 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="Premio" Type="float" />
           <Property Name="SAC" Type="float" />
           <Property Name="Observaciones" Type="varchar" MaxLength="2000" />
+          <Property Name="DepartamentoId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="EmpleadosPresupuestosAprobados">
           <Key>
@@ -646,12 +662,12 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="Fecha" Type="datetime" Nullable="false" />
           <Property Name="Importe" Type="float" Nullable="false" />
           <Property Name="NroFactura" Type="int" Nullable="false" />
-          <Property Name="PresupuestoId" Type="int" Nullable="false" />
           <Property Name="EstadoId" Type="int" Nullable="false" />
           <Property Name="CreateFecha" Type="datetime" Nullable="false" />
           <Property Name="UpdateFecha" Type="datetime" />
           <Property Name="Delete" Type="bit" Nullable="false" />
           <Property Name="FechaDelete" Type="datetime" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Familias">
           <Key>
@@ -683,6 +699,14 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="Descripcion" Type="varchar" MaxLength="500" />
           <Property Name="Anio" Type="int" Nullable="false" />
           <Property Name="SePasaA" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Form">
+          <Key>
+            <PropertyRef Name="FormId" />
+          </Key>
+          <Property Name="FormId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FormasdePago">
           <Key>
@@ -866,30 +890,16 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="UnidadDestinoId" Type="int" Nullable="false" />
           <Property Name="Cantidad" Type="float" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ItemDetalle' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ItemDetalle">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ItemDetalleProveedor">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="ItemDetalleId" Type="int" Nullable="false" />
-          <Property Name="ProveedorId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ItemDetalleRatio">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TipoCateringId" Type="int" Nullable="false" />
-          <Property Name="ItemId" Type="int" Nullable="false" />
-          <Property Name="ItemDetalleId" Type="int" Nullable="false" />
-          <Property Name="Ratio" Type="float" Nullable="false" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="CategoriaId" Type="int" />
+          <Property Name="EstadoId" Type="int" />
         </EntityType>
         <EntityType Name="Items">
           <Key>
@@ -901,7 +911,12 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="Costo" Type="float" Nullable="false" />
           <Property Name="Margen" Type="float" Nullable="false" />
           <Property Name="Precio" Type="float" Nullable="false" />
-          <Property Name="EstadoId" Type="int" Nullable="false" />
+          <Property Name="EstadoId" Type="int" />
+          <Property Name="ItemDetalleId" Type="int" />
+          <Property Name="CuentaId" Type="int" />
+          <Property Name="DepositoId" Type="int" />
+          <Property Name="TipoItem" Type="varchar" MaxLength="10" />
+          <Property Name="NombreFantasiaId" Type="int" />
         </EntityType>
         <EntityType Name="Jornadas">
           <Key>
@@ -1018,6 +1033,15 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.NombreFantasia' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="NombreFantasia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="NotaCreditos">
           <Key>
             <PropertyRef Name="Id" />
@@ -1085,7 +1109,7 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="PrincipalChicos" Type="varchar" MaxLength="600" />
           <Property Name="PostreChicos" Type="varchar" MaxLength="600" />
           <Property Name="MesaDulce" Type="varchar" MaxLength="600" />
-          <Property Name="FinFiesta" Type="varchar" MaxLength="600" />
+          <Property Name="FinFiesta" Type="varchar" MaxLength="2000" />
           <Property Name="MesaPrincipal" Type="varchar" MaxLength="200" />
           <Property Name="Manteleria" Type="varchar" MaxLength="200" />
           <Property Name="Servilletas" Type="varchar" MaxLength="200" />
@@ -1230,6 +1254,14 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="NroComprobanteTransferencia" Type="varchar" MaxLength="50" />
           <Property Name="FechaTransferencia" Type="datetime" />
         </EntityType>
+        <EntityType Name="Parametro">
+          <Key>
+            <PropertyRef Name="ParametroId" />
+          </Key>
+          <Property Name="ParametroId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Parametros">
           <Key>
             <PropertyRef Name="Id" />
@@ -1244,6 +1276,15 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="PermisoId" />
+          </Key>
+          <Property Name="PermisoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RolId" Type="int" Nullable="false" />
+          <Property Name="FormId" Type="int" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PlanesDePago">
           <Key>
@@ -1289,7 +1330,6 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="CostoMesas" Type="float" />
           <Property Name="PrecioSillas" Type="float" />
           <Property Name="PrecioMesas" Type="float" />
-          <Property Name="Royalty" Type="float" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="EstadoId" Type="int" />
           <Property Name="FechaAprobacion" Type="datetime" />
@@ -1302,6 +1342,7 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="FechaUpdate" Type="datetime" />
           <Property Name="Delete" Type="bit" />
           <Property Name="FechaDelete" Type="datetime" />
+          <Property Name="Royalty" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Presupuestos">
           <Key>
@@ -1337,12 +1378,12 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="ImporteOrganizador" Type="float" />
           <Property Name="PorcentajeOrganizador" Type="float" />
           <Property Name="ValorOrganizador" Type="float" />
-          <Property Name="ValorRoyaltyOrganizador" Type="float" />
           <Property Name="FechaCaducidad" Type="datetime" />
           <Property Name="CantidadAdultosFinal" Type="int" />
           <Property Name="CantidadAdolescentesFinal" Type="int" />
           <Property Name="CantidadMenores3Final" Type="int" />
           <Property Name="CantidadMenoresEntre3y8Final" Type="int" />
+          <Property Name="ValorRoyaltyOrganizador" Type="float" />
         </EntityType>
         <EntityType Name="ProcesoCierre">
           <Key>
@@ -1362,7 +1403,6 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="Precio" Type="float" Nullable="false" />
           <Property Name="Margen" Type="float" />
           <Property Name="Costo" Type="float" Nullable="false" />
-          <Property Name="Royalty" Type="float" Nullable="false" />
           <Property Name="UnidadNegocioId" Type="int" Nullable="false" />
           <Property Name="Estado" Type="int" Nullable="false" />
           <Property Name="FechaVendimiento" Type="datetime" />
@@ -1384,6 +1424,9 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="CaracteristicaId" Type="int" />
           <Property Name="OrganizacionItemId" Type="int" />
           <Property Name="Semestre" Type="int" />
+          <Property Name="MargenAjuste" Type="float" />
+          <Property Name="Royalty" Type="float" Nullable="false" />
+          <Property Name="Margen2" Type="float" />
         </EntityType>
         <EntityType Name="ProductosCatering">
           <Key>
@@ -1442,8 +1485,8 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.6132306' does not have 
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.Prueba' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'w230092_AmbientHouse.dbo.Prueba' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="Prueba">
           <Property Name="presupuestoId" Type="varchar" MaxLength="200" />
           <Property Name="fecha" Type="varchar" MaxLength="200" />
@@ -1488,6 +1531,14 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.Prueba' does not have a
           <Property Name="UpdateFecha" Type="datetime" />
           <Property Name="Delete" Type="bit" Nullable="false" />
           <Property Name="DeleteFecha" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Rubros">
           <Key>
@@ -1557,8 +1608,8 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.Prueba' does not have a
           <Property Name="LocacionId" Type="int" Nullable="false" />
           <Property Name="SectorId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.temp' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'w230092_AmbientHouse.dbo.temp' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="temp">
           <Property Name="campo1" Type="varchar" MaxLength="50" />
         </EntityType>-->
@@ -1747,6 +1798,21 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.temp' does not have a p
           <Property Name="UnidadNegocioId" Type="int" Nullable="false" />
           <Property Name="TipoMovimientoId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="60" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="40" />
+          <Property Name="FeCreacion" Type="datetime" Nullable="false" />
+          <Property Name="NroDeFallos" Type="int" Nullable="false" />
+          <Property Name="EsAdmin" Type="int" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
+          <Property Name="UsuarioIdCreador" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="UsuarioPipeDrive_Ambient">
           <Key>
             <PropertyRef Name="Id" />
@@ -1754,6 +1820,15 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.temp' does not have a p
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserPipeDriveId" Type="int" Nullable="false" />
           <Property Name="UserAmbientId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioRol">
+          <Key>
+            <PropertyRef Name="UsuarioRolId" />
+          </Key>
+          <Property Name="UsuarioRolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioId" Type="int" Nullable="false" />
+          <Property Name="RolId" Type="int" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -1783,8 +1858,8 @@ warning 6013: The table/view 'w1081835_Ambient_GROUP.dbo.temp' does not have a p
           <Property Name="EmpleadoId" Type="int" />
           <Property Name="LocacionId" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.AvisosClientesPorFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.AvisosClientesPorFecha' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="AvisosClientesPorFecha">
           <Key>
             <PropertyRef Name="Id" />
@@ -1800,8 +1875,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.AvisosClientesPorFecha'
           <Property Name="EmpleadoId" Type="int" Nullable="false" />
           <Property Name="ClienteId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.CobranzasVentas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.CobranzasVentas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="CobranzasVentas">
           <Key>
             <PropertyRef Name="PresupuestoId" />
@@ -1822,8 +1897,18 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.CobranzasVentas' does n
           <Property Name="Indexacion" Type="float" />
           <Property Name="TipoIndexacion" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.EMPLEADODEPARTAMENTO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ControlEventosConfirmados' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ControlEventosConfirmados">
+          <Key>
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="EventoId" />
+          </Key>
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="EventoId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.EMPLEADODEPARTAMENTO' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="EMPLEADODEPARTAMENTO">
           <Key>
             <PropertyRef Name="EmpleadoId" />
@@ -1833,8 +1918,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.EMPLEADODEPARTAMENTO' d
           <Property Name="DepartamentoId" Type="int" Nullable="false" />
           <Property Name="ApellidoNombre" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.EventosConfirmadosProveedores' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.EventosConfirmadosProveedores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="EventosConfirmadosProveedores">
           <Key>
             <PropertyRef Name="NROPRESUPUESTO" />
@@ -1855,8 +1940,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.EventosConfirmadosProve
           <Property Name="IMPORTEPAGADO" Type="float" />
           <Property Name="COSTOS" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.EventosConfirmadosReservadosTODOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.EventosConfirmadosReservadosTODOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="EventosConfirmadosReservadosTODOS">
           <Key>
             <PropertyRef Name="Id" />
@@ -1889,8 +1974,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.EventosConfirmadosReser
           <Property Name="Coordinador2" Type="int" />
           <Property Name="TipoEventoId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.EVENTOSTODOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.EVENTOSTODOS' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="EVENTOSTODOS">
           <Key>
             <PropertyRef Name="Id" />
@@ -1909,8 +1994,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.EVENTOSTODOS' does not 
           <Property Name="Estado" Type="varchar" MaxLength="50" />
           <Property Name="NROPRESUPUESTO" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.GastosporPresupuestos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.GastosporPresupuestos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="GastosporPresupuestos">
           <Key>
             <PropertyRef Name="NroComprobante" />
@@ -1937,8 +2022,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.GastosporPresupuestos' 
           <Property Name="ESTADO" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerAdiciones' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerAdiciones' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerAdiciones">
           <Key>
             <PropertyRef Name="Id" />
@@ -1959,8 +2044,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerAdiciones' does 
           <Property Name="ProveedorId" Type="int" />
           <Property Name="Costo" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerArchivosPorCategorias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerArchivosPorCategorias' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerArchivosPorCategorias">
           <Key>
             <PropertyRef Name="Id" />
@@ -1974,32 +2059,32 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerArchivosPorCateg
           <Property Name="CarpetaId" Type="int" />
           <Property Name="Carpeta" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerCantidadInvitadosBarras' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerCantidadInvitadosBarras' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerCantidadInvitadosBarras">
           <Key>
             <PropertyRef Name="CantidadPersonas" />
           </Key>
           <Property Name="CantidadPersonas" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerCantidadInvitadosCatering' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerCantidadInvitadosCatering' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerCantidadInvitadosCatering">
           <Key>
             <PropertyRef Name="CantidadPersonas" />
           </Key>
           <Property Name="CantidadPersonas" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerCantidadPersonasAdicionalesCatering' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerCantidadPersonasAdicionalesCatering' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerCantidadPersonasAdicionalesCatering">
           <Key>
             <PropertyRef Name="CantidadPersonas" />
           </Key>
           <Property Name="CantidadPersonas" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerClientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerClientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerClientes">
           <Key>
             <PropertyRef Name="Id" />
@@ -2019,8 +2104,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerClientes' does n
           <Property Name="Ejecutivo" Type="varchar" MaxLength="50" />
           <Property Name="EmpleadoId" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerContactosClientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerContactosClientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerContactosClientes">
           <Key>
             <PropertyRef Name="Id" />
@@ -2035,8 +2120,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerContactosCliente
           <Property Name="Celular" Type="varchar" MaxLength="50" />
           <Property Name="Mail" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerDatosParaPresupuesto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerDatosParaPresupuesto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerDatosParaPresupuesto">
           <Key>
             <PropertyRef Name="ClienteId" />
@@ -2093,8 +2178,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerDatosParaPresupu
           <Property Name="FechaPresupuesto" Type="datetime" />
           <Property Name="LocacionOtra" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerEventos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerEventos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerEventos">
           <Key>
             <PropertyRef Name="CARACTERISTICA" />
@@ -2145,8 +2230,62 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerEventos' does no
           <Property Name="FechaSena" Type="datetime" />
           <Property Name="TipoEventoId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerEventosSeguimiento' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerEventosNew' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ObtenerEventosNew">
+          <Key>
+            <PropertyRef Name="CARACTERISTICA" />
+            <PropertyRef Name="LOCACION" />
+            <PropertyRef Name="JORNADA" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="EventoId" />
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="EmpleadoId" />
+            <PropertyRef Name="EstadoId" />
+            <PropertyRef Name="RazonSocial" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="PresupuestoEstadoId" />
+            <PropertyRef Name="EstadoPresupuesto" />
+            <PropertyRef Name="LocacionId" />
+            <PropertyRef Name="EmpleadoCliente" />
+            <PropertyRef Name="TipoEvento" />
+            <PropertyRef Name="TipoEventoId" />
+          </Key>
+          <Property Name="ApellidoNombre" Type="varchar" MaxLength="300" />
+          <Property Name="CARACTERISTICA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LOCACION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SECTOR" Type="varchar" MaxLength="200" />
+          <Property Name="JORNADA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HorarioEvento" Type="varchar" MaxLength="50" />
+          <Property Name="CantidadInicialInvitados" Type="int" />
+          <Property Name="FechaEvento" Type="datetime" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ejecutivo" Type="varchar" MaxLength="100" />
+          <Property Name="EventoId" Type="int" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="EmpleadoId" Type="int" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="PresupuestoEstadoId" Type="int" Nullable="false" />
+          <Property Name="EstadoPresupuesto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PresupuestoIdAnterior" Type="int" />
+          <Property Name="LocacionId" Type="int" Nullable="false" />
+          <Property Name="EmpleadoCliente" Type="int" Nullable="false" />
+          <Property Name="TipoEvento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClienteBisId" Type="int" />
+          <Property Name="Cliente" Type="varchar" MaxLength="401" />
+          <Property Name="FechaSena" Type="datetime" />
+          <Property Name="TipoEventoId" Type="int" Nullable="false" />
+          <Property Name="TipoExperiencia" Type="varchar" MaxLength="400" />
+          <Property Name="TipoBarra" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerEventosSeguimiento' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerEventosSeguimiento">
           <Key>
             <PropertyRef Name="EventoId" />
@@ -2169,8 +2308,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerEventosSeguimien
           <Property Name="EmpleadoId" Type="int" Nullable="false" />
           <Property Name="Comentario" Type="varchar" MaxLength="2000" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerFamilias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerFamilias' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerFamilias">
           <Key>
             <PropertyRef Name="GrupoId" />
@@ -2191,8 +2330,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerFamilias' does n
           <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerGruposconFamilias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerGruposconFamilias' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerGruposconFamilias">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -2201,8 +2340,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerGruposconFamilia
           <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="GrupoId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPrecioCostoBarra' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerPrecioCostoBarra' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerPrecioCostoBarra">
           <Key>
             <PropertyRef Name="Id" />
@@ -2216,8 +2355,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPrecioCostoBarra
           <Property Name="Precios" Type="float" Nullable="false" />
           <Property Name="Costo" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPrecioCostoCatering' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerPrecioCostoCatering' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerPrecioCostoCatering">
           <Key>
             <PropertyRef Name="Id" />
@@ -2231,8 +2370,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPrecioCostoCater
           <Property Name="Precio" Type="float" Nullable="false" />
           <Property Name="Costo" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPrecioCostoTecnica' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerPrecioCostoTecnica' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerPrecioCostoTecnica">
           <Key>
             <PropertyRef Name="Id" />
@@ -2254,8 +2393,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPrecioCostoTecni
           <Property Name="Precio" Type="float" Nullable="false" />
           <Property Name="Costo" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoAmbientacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerPresupuestoAmbientacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerPresupuestoAmbientacion">
           <Key>
             <PropertyRef Name="Id" />
@@ -2296,8 +2435,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoAmbie
           <Property Name="Categoria" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoArtistica' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerPresupuestoArtistica' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerPresupuestoArtistica">
           <Key>
             <PropertyRef Name="Id" />
@@ -2324,8 +2463,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoArtis
           <Property Name="Descuentos" Type="float" />
           <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoAudiovisual' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerPresupuestoAudiovisual' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerPresupuestoAudiovisual">
           <Key>
             <PropertyRef Name="Id" />
@@ -2352,8 +2491,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoAudio
           <Property Name="Descuentos" Type="float" />
           <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoBarra' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerPresupuestoBarra' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerPresupuestoBarra">
           <Key>
             <PropertyRef Name="Id" />
@@ -2386,8 +2525,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoBarra
           <Property Name="CostoCanon" Type="float" />
           <Property Name="CostoLogistica" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoCatering' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerPresupuestoCatering' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerPresupuestoCatering">
           <Key>
             <PropertyRef Name="Id" />
@@ -2418,8 +2557,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoCater
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoSalon' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerPresupuestoSalon' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerPresupuestoSalon">
           <Key>
             <PropertyRef Name="Id" />
@@ -2444,8 +2583,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoSalon
           <Property Name="Descuentos" Type="float" />
           <Property Name="Locacion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoTecnica' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerPresupuestoTecnica' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerPresupuestoTecnica">
           <Key>
             <PropertyRef Name="Id" />
@@ -2478,8 +2617,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerPresupuestoTecni
           <Property Name="TipoServicio" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerUsuarios' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ObtenerUsuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ObtenerUsuarios">
           <Key>
             <PropertyRef Name="UserName" />
@@ -2498,8 +2637,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ObtenerUsuarios' does n
           <Property Name="EmpleadoId" Type="int" Nullable="false" />
           <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.PresupuestosAVencer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.PresupuestosAVencer' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="PresupuestosAVencer">
           <Key>
             <PropertyRef Name="CARACTERISTICA" />
@@ -2541,8 +2680,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.PresupuestosAVencer' do
           <Property Name="Vencimiento" Type="varchar" MaxLength="18" Nullable="false" />
           <Property Name="FechaPresupuesto" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ProveedoresExternos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ProveedoresExternos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ProveedoresExternos">
           <Key>
             <PropertyRef Name="Id" />
@@ -2563,8 +2702,40 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ProveedoresExternos' do
           <Property Name="Correo" Type="varchar" MaxLength="200" />
           <Property Name="FechaEvento" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ReporteAdiocionales' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ProveedoresPagos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ProveedoresPagos">
+          <Key>
+            <PropertyRef Name="NroPresupuesto" />
+            <PropertyRef Name="NroFactura" />
+            <PropertyRef Name="FechaFactura" />
+            <PropertyRef Name="TipoComprobante" />
+            <PropertyRef Name="CuentaContable" />
+            <PropertyRef Name="UnidadNegocio" />
+            <PropertyRef Name="ValorNetoFactura" />
+            <PropertyRef Name="ValorDetalleFactura" />
+            <PropertyRef Name="Proveedor" />
+            <PropertyRef Name="FechaPago" />
+          </Key>
+          <Property Name="NroPresupuesto" Type="int" Nullable="false" />
+          <Property Name="NroFactura" Type="bigint" Nullable="false" />
+          <Property Name="FechaFactura" Type="datetime" Nullable="false" />
+          <Property Name="FechaSena" Type="datetime" />
+          <Property Name="TipoComprobante" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CuentaContable" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="FechaEvento" Type="datetime" />
+          <Property Name="UnidadNegocio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Costo" Type="float" />
+          <Property Name="ValorNetoFactura" Type="float" Nullable="false" />
+          <Property Name="ValorDetalleFactura" Type="float" Nullable="false" />
+          <Property Name="ImportePago" Type="float" />
+          <Property Name="Cuit" Type="varchar" MaxLength="50" />
+          <Property Name="Proveedor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaPago" Type="datetime" Nullable="false" />
+          <Property Name="FormaPago" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ReporteAdiocionales' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ReporteAdiocionales">
           <Key>
             <PropertyRef Name="NROEVENTO" />
@@ -2580,8 +2751,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ReporteAdiocionales' do
           <Property Name="Cantidad" Type="int" />
           <Property Name="ValorAdicional" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ReporteComprobantes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ReporteComprobantes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ReporteComprobantes">
           <Key>
             <PropertyRef Name="Id" />
@@ -2616,8 +2787,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ReporteComprobantes' do
           <Property Name="TipoMoviemientoId" Type="int" Nullable="false" />
           <Property Name="PresupuestoId" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ReporteEventosCobranzas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ReporteEventosCobranzas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ReporteEventosCobranzas">
           <Key>
             <PropertyRef Name="PresupuestoId" />
@@ -2660,8 +2831,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ReporteEventosCobranzas
           <Property Name="TOTAL PAGADO" Type="float" Nullable="false" />
           <Property Name="VALOR COMISIONABLE" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ReporteEventosPorUnidadesdeNegocios' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ReporteEventosPorUnidadesdeNegocios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ReporteEventosPorUnidadesdeNegocios">
           <Key>
             <PropertyRef Name="NroCliente" />
@@ -2735,8 +2906,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ReporteEventosPorUnidad
           <Property Name="PrecioPorPersona" Type="float" />
           <Property Name="FechaAprobacion" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ResponsablesEventos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ResponsablesEventos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="ResponsablesEventos">
           <Key>
             <PropertyRef Name="PresupuestoId" />
@@ -2767,8 +2938,8 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.ResponsablesEventos' do
           <Property Name="HoraIngresoCoordinador1" Type="varchar" MaxLength="5" />
           <Property Name="HoraIngresoCoordinador2" Type="varchar" MaxLength="5" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClientesEstados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.SeguimientosEventosClientesEstados' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="SeguimientosEventosClientesEstados">
           <Key>
             <PropertyRef Name="ClienteId" />
@@ -4032,66 +4203,6 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ItemDetalleProveedor_ItemDetalle">
-          <End Role="ItemDetalle" Type="Self.ItemDetalle" Multiplicity="1" />
-          <End Role="ItemDetalleProveedor" Type="Self.ItemDetalleProveedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ItemDetalle">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ItemDetalleProveedor">
-              <PropertyRef Name="ItemDetalleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ItemDetalleProveedor_Proveedores">
-          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
-          <End Role="ItemDetalleProveedor" Type="Self.ItemDetalleProveedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proveedores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ItemDetalleProveedor">
-              <PropertyRef Name="ProveedorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ItemDetalleRatio_ItemDetalle">
-          <End Role="ItemDetalle" Type="Self.ItemDetalle" Multiplicity="1" />
-          <End Role="ItemDetalleRatio" Type="Self.ItemDetalleRatio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ItemDetalle">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ItemDetalleRatio">
-              <PropertyRef Name="ItemDetalleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ItemDetalleRatio_Items">
-          <End Role="Items" Type="Self.Items" Multiplicity="1" />
-          <End Role="ItemDetalleRatio" Type="Self.ItemDetalleRatio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ItemDetalleRatio">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ItemDetalleRatio_TipoCatering">
-          <End Role="TipoCatering" Type="Self.TipoCatering" Multiplicity="1" />
-          <End Role="ItemDetalleRatio" Type="Self.ItemDetalleRatio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoCatering">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ItemDetalleRatio">
-              <PropertyRef Name="TipoCateringId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Items_CategoriasItem">
           <End Role="CategoriasItem" Type="Self.CategoriasItem" Multiplicity="1" />
           <End Role="Items" Type="Self.Items" Multiplicity="*" />
@@ -5028,6 +5139,78 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClie
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Relation_Form_Bloqueo">
+          <End Role="Form" Type="Self.Form" Multiplicity="1" />
+          <End Role="Bloqueo" Type="Self.Bloqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Form">
+              <PropertyRef Name="FormId" />
+            </Principal>
+            <Dependent Role="Bloqueo">
+              <PropertyRef Name="FormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relation_Form_Permiso">
+          <End Role="Form" Type="Self.Form" Multiplicity="1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Form">
+              <PropertyRef Name="FormId" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="FormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relation_Rol_Bloqueo">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Bloqueo" Type="Self.Bloqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="Bloqueo">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relation_Rol_Permiso">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relation_Rol_UsuarioRol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="UsuarioRol">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relation_Usuario_UsuarioRol">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="UsuarioRol">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="ActualizarPresupuestosRealizados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ActualizarPresupuestosVencidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="BuscarItemsporTipoCatering" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -5052,10 +5235,64 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClie
           <Parameter Name="Precio" Type="float" Mode="In" />
           <Parameter Name="Royalty" Type="float" Mode="In" />
         </Function>
-        <Function Name="CorrecionMovimientosPorCuentas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="CuentaId" Type="int" Mode="In" />
-          <Parameter Name="MovimientoId" Type="int" Mode="In" />
-          <Parameter Name="Correccion" Type="decimal" Mode="In" />
+        <Function Name="CargarCostosTecnica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocacionId" Type="int" Mode="In" />
+          <Parameter Name="SectorId" Type="int" Mode="In" />
+          <Parameter Name="TipoServicioId" Type="int" Mode="In" />
+          <Parameter Name="SegmentoId" Type="int" Mode="In" />
+          <Parameter Name="ProveedorId" Type="int" Mode="In" />
+          <Parameter Name="Anio" Type="int" Mode="In" />
+          <Parameter Name="Mes" Type="int" Mode="In" />
+          <Parameter Name="Dia" Type="varchar" Mode="In" />
+          <Parameter Name="Costo" Type="float" Mode="In" />
+          <Parameter Name="Precio" Type="float" Mode="In" />
+          <Parameter Name="Royalty" Type="float" Mode="In" />
+        </Function>
+        <Function Name="CuentaCorrienteProveedores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="NroComprobante" Type="nvarchar" MaxLength="50" />
+                <Property Name="CuitProveedor" Type="nvarchar" MaxLength="50" />
+                <Property Name="NombreProveedor" Type="nvarchar" MaxLength="50" />
+                <Property Name="NroPresupuesto" Type="int" />
+                <Property Name="FechaPresupuesto" Type="datetime" />
+                <Property Name="FechaEvento" Type="datetime" />
+                <Property Name="TipoMovimiento" Type="nvarchar" MaxLength="50" />
+                <Property Name="TipoTransaccion" Type="nvarchar" MaxLength="50" />
+                <Property Name="FechaTransaccion" Type="datetime" />
+                <Property Name="NroTransaccion" Type="nvarchar" MaxLength="50" />
+                <Property Name="ValorNetoFactura" Type="float" />
+                <Property Name="ValorImpuesto" Type="float" />
+                <Property Name="ValorImpuestoInterno" Type="float" />
+                <Property Name="ImporteSinIVA" Type="float" />
+                <Property Name="SaldoPendiente" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="CuentaCorrienteProveedoresGral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="NroComprobante" Type="nvarchar" MaxLength="50" />
+                <Property Name="CuitProveedor" Type="nvarchar" MaxLength="50" />
+                <Property Name="NombreProveedor" Type="nvarchar" MaxLength="50" />
+                <Property Name="NroPresupuesto" Type="int" />
+                <Property Name="FechaPresupuesto" Type="datetime" />
+                <Property Name="FechaEvento" Type="datetime" />
+                <Property Name="TipoMovimiento" Type="nvarchar" MaxLength="50" />
+                <Property Name="TipoTransaccion" Type="nvarchar" MaxLength="50" />
+                <Property Name="FechaTransaccion" Type="datetime" />
+                <Property Name="NroTransaccion" Type="nvarchar" MaxLength="50" />
+                <Property Name="ValorNetoFactura" Type="float" />
+                <Property Name="ValorImpuesto" Type="float" />
+                <Property Name="ValorImpuestoInterno" Type="float" />
+                <Property Name="ImporteSinIVA" Type="float" />
+                <Property Name="SaldoPendiente" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
         </Function>
         <Function Name="DetalleInformeResultados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TipoMovimiento" Type="varchar" Mode="In" />
@@ -5070,10 +5307,33 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClie
           <Parameter Name="EndDate" Type="datetime" Mode="In" />
         </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="fn_ValidarCUIT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="cuit" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Indexa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
           <Parameter Name="PresupuestoId" Type="int" Mode="In" />
           <Parameter Name="Coeficiente" Type="float" Mode="In" />
           <Parameter Name="TipoIndexacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="informeCorrienteProveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Unidad" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="CuitProveedor" Type="nvarchar" MaxLength="50" />
+                <Property Name="NombreProveedor" Type="nvarchar" MaxLength="50" />
+                <Property Name="NroPresupuesto" Type="int" />
+                <Property Name="FechaPresupuesto" Type="datetime" />
+                <Property Name="FechaEvento" Type="datetime" />
+                <Property Name="TipoTransaccion" Type="nvarchar" MaxLength="50" />
+                <Property Name="FechaTransaccion" Type="datetime" />
+                <Property Name="NroTransaccion" Type="nvarchar" MaxLength="50" />
+                <Property Name="Costo" Type="float" />
+                <Property Name="ImporteSinIVA" Type="float" />
+                <Property Name="SaldoPendiente" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
         </Function>
         <Function Name="InformeResultados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FechaDesde" Type="datetime" Mode="In" />
@@ -5084,56 +5344,23 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClie
           <Parameter Name="FechaDesde" Type="datetime" Mode="In" />
           <Parameter Name="FechaHasta" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="PreciosCatering" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipoCateringId" Type="int" Mode="In" />
+          <Parameter Name="Costo" Type="float" Mode="In" />
+          <Parameter Name="Precio" Type="float" Mode="In" />
+        </Function>
         <Function Name="ReporteIva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Empresa" Type="int" Mode="In" />
           <Parameter Name="StartDate" Type="datetime" Mode="In" />
           <Parameter Name="EndDate" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="sp_AltaSalones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="LocacionId" Type="int" Mode="In" />
-          <Parameter Name="SectorId" Type="int" Mode="In" />
-          <Parameter Name="Anio" Type="int" Mode="In" />
-          <Parameter Name="CantidadInvitados" Type="int" Mode="In" />
-          <Parameter Name="Dia" Type="varchar" Mode="In" />
-          <Parameter Name="Costo" Type="float" Mode="In" />
-          <Parameter Name="Margen" Type="float" Mode="In" />
-        </Function>
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="AmbientHouseModelStoreContainer">
           <EntitySet Name="Adicionales" EntityType="Self.Adicionales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdicionalesItems" EntityType="Self.AdicionalesItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AmbientacionCI" EntityType="Self.AmbientacionCI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AmbientacionSalon" EntityType="Self.AmbientacionSalon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bancos" EntityType="Self.Bancos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bloqueo" EntityType="Self.Bloqueo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Caracteristicas" EntityType="Self.Caracteristicas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoriasArchivos" EntityType="Self.CategoriasArchivos" Schema="dbo" store:Type="Tables" />
@@ -5148,6 +5375,7 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClie
           <EntitySet Name="CodigoPorRubro" EntityType="Self.CodigoPorRubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comisiones" EntityType="Self.Comisiones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComprobantePagoProveedor" EntityType="Self.ComprobantePagoProveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComprobantesPagados" EntityType="Self.ComprobantesPagados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComprobantesProveedores" EntityType="Self.ComprobantesProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComprobantesProveedores_Detalles" EntityType="Self.ComprobantesProveedores_Detalles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CondicionIva" EntityType="Self.CondicionIva" Schema="dbo" store:Type="Tables" />
@@ -5180,6 +5408,7 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClie
           <EntitySet Name="Familias" EntityType="Self.Familias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FechasBloqueadas" EntityType="Self.FechasBloqueadas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feriados" EntityType="Self.Feriados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Form" EntityType="Self.Form" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormasdePago" EntityType="Self.FormasdePago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GruposItems" EntityType="Self.GruposItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Herramientas" EntityType="Self.Herramientas" Schema="dbo" store:Type="Tables" />
@@ -5196,9 +5425,6 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClie
           <EntitySet Name="INVENTARIO_Requerimiento_Detalle" EntityType="Self.INVENTARIO_Requerimiento_Detalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INVENTARIO_Unidades" EntityType="Self.INVENTARIO_Unidades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INVENTARIO_UnidadesConversion" EntityType="Self.INVENTARIO_UnidadesConversion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ItemDetalle" EntityType="Self.ItemDetalle" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ItemDetalleProveedor" EntityType="Self.ItemDetalleProveedor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ItemDetalleRatio" EntityType="Self.ItemDetalleRatio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Jornadas" EntityType="Self.Jornadas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LiquidacionHorasPersonal" EntityType="Self.LiquidacionHorasPersonal" Schema="dbo" store:Type="Tables" />
@@ -5219,8 +5445,10 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClie
           <EntitySet Name="OrganizacionPresupuestoTimming" EntityType="Self.OrganizacionPresupuestoTimming" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PagosClientes" EntityType="Self.PagosClientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PagosProveedores" EntityType="Self.PagosProveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametro" EntityType="Self.Parametro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlanesDePago" EntityType="Self.PlanesDePago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PresupuestoDetalle" EntityType="Self.PresupuestoDetalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Presupuestos" EntityType="Self.Presupuestos" Schema="dbo" store:Type="Tables" />
@@ -5235,6 +5463,7 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClie
           <EntitySet Name="ReciboEventoPresupuesto" EntityType="Self.ReciboEventoPresupuesto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recibos" EntityType="Self.Recibos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Retenciones" EntityType="Self.Retenciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubros" EntityType="Self.Rubros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubros_Proveedores" EntityType="Self.Rubros_Proveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sectores" EntityType="Self.Sectores" Schema="dbo" store:Type="Tables" />
@@ -5263,10 +5492,26 @@ warning 6002: The table/view 'w1081835_Ambient_GROUP.dbo.SeguimientosEventosClie
           <EntitySet Name="UnidadesNegocios" EntityType="Self.UnidadesNegocios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnidadesNegocios_Proveedores" EntityType="Self.UnidadesNegocios_Proveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnidadesNegocios_TipoMovimientos" EntityType="Self.UnidadesNegocios_TipoMovimientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioPipeDrive_Ambient" EntityType="Self.UsuarioPipeDrive_Ambient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioRol" EntityType="Self.UsuarioRol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuariosGrupos" EntityType="Self.UsuariosGrupos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuariosLocaciones" EntityType="Self.UsuariosLocaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemDetalle" EntityType="Self.ItemDetalle" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ItemDetalle].[Id] AS [Id], 
+[ItemDetalle].[ItemId] AS [ItemId], 
+[ItemDetalle].[CategoriaId] AS [CategoriaId], 
+[ItemDetalle].[EstadoId] AS [EstadoId]
+FROM [dbo].[ItemDetalle] AS [ItemDetalle]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NombreFantasia" EntityType="Self.NombreFantasia" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[NombreFantasia].[Id] AS [Id], 
+[NombreFantasia].[Descripcion] AS [Descripcion]
+FROM [dbo].[NombreFantasia] AS [NombreFantasia]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="AvisosClientesPorFecha" EntityType="Self.AvisosClientesPorFecha" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [AvisosClientesPorFecha].[Id] AS [Id], 
@@ -5293,6 +5538,12 @@ FROM [dbo].[AvisosClientesPorFecha] AS [AvisosClientesPorFecha]</DefiningQuery>
 [CobranzasVentas].[Indexacion] AS [Indexacion], 
 [CobranzasVentas].[TipoIndexacion] AS [TipoIndexacion]
 FROM [dbo].[CobranzasVentas] AS [CobranzasVentas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ControlEventosConfirmados" EntityType="Self.ControlEventosConfirmados" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ControlEventosConfirmados].[PresupuestoId] AS [PresupuestoId], 
+[ControlEventosConfirmados].[EventoId] AS [EventoId]
+FROM [dbo].[ControlEventosConfirmados] AS [ControlEventosConfirmados]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="EMPLEADODEPARTAMENTO" EntityType="Self.EMPLEADODEPARTAMENTO" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -5512,6 +5763,40 @@ FROM [dbo].[ObtenerDatosParaPresupuesto] AS [ObtenerDatosParaPresupuesto]</Defin
 [ObtenerEventos].[FechaSena] AS [FechaSena], 
 [ObtenerEventos].[TipoEventoId] AS [TipoEventoId]
 FROM [dbo].[ObtenerEventos] AS [ObtenerEventos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ObtenerEventosNew" EntityType="Self.ObtenerEventosNew" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ObtenerEventosNew].[ApellidoNombre] AS [ApellidoNombre], 
+[ObtenerEventosNew].[CARACTERISTICA] AS [CARACTERISTICA], 
+[ObtenerEventosNew].[LOCACION] AS [LOCACION], 
+[ObtenerEventosNew].[SECTOR] AS [SECTOR], 
+[ObtenerEventosNew].[JORNADA] AS [JORNADA], 
+[ObtenerEventosNew].[HorarioEvento] AS [HorarioEvento], 
+[ObtenerEventosNew].[CantidadInicialInvitados] AS [CantidadInicialInvitados], 
+[ObtenerEventosNew].[FechaEvento] AS [FechaEvento], 
+[ObtenerEventosNew].[Id] AS [Id], 
+[ObtenerEventosNew].[Estado] AS [Estado], 
+[ObtenerEventosNew].[Ejecutivo] AS [Ejecutivo], 
+[ObtenerEventosNew].[EventoId] AS [EventoId], 
+[ObtenerEventosNew].[ClienteId] AS [ClienteId], 
+[ObtenerEventosNew].[EmpleadoId] AS [EmpleadoId], 
+[ObtenerEventosNew].[EstadoId] AS [EstadoId], 
+[ObtenerEventosNew].[RazonSocial] AS [RazonSocial], 
+[ObtenerEventosNew].[Fecha] AS [Fecha], 
+[ObtenerEventosNew].[PresupuestoId] AS [PresupuestoId], 
+[ObtenerEventosNew].[PresupuestoEstadoId] AS [PresupuestoEstadoId], 
+[ObtenerEventosNew].[EstadoPresupuesto] AS [EstadoPresupuesto], 
+[ObtenerEventosNew].[PresupuestoIdAnterior] AS [PresupuestoIdAnterior], 
+[ObtenerEventosNew].[LocacionId] AS [LocacionId], 
+[ObtenerEventosNew].[EmpleadoCliente] AS [EmpleadoCliente], 
+[ObtenerEventosNew].[TipoEvento] AS [TipoEvento], 
+[ObtenerEventosNew].[ClienteBisId] AS [ClienteBisId], 
+[ObtenerEventosNew].[Cliente] AS [Cliente], 
+[ObtenerEventosNew].[FechaSena] AS [FechaSena], 
+[ObtenerEventosNew].[TipoEventoId] AS [TipoEventoId], 
+[ObtenerEventosNew].[TipoExperiencia] AS [TipoExperiencia], 
+[ObtenerEventosNew].[TipoBarra] AS [TipoBarra]
+FROM [dbo].[ObtenerEventosNew] AS [ObtenerEventosNew]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ObtenerEventosSeguimiento" EntityType="Self.ObtenerEventosSeguimiento" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -5770,6 +6055,26 @@ FROM [dbo].[PresupuestosAVencer] AS [PresupuestosAVencer]</DefiningQuery>
 [ProveedoresExternos].[Correo] AS [Correo], 
 [ProveedoresExternos].[FechaEvento] AS [FechaEvento]
 FROM [dbo].[ProveedoresExternos] AS [ProveedoresExternos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProveedoresPagos" EntityType="Self.ProveedoresPagos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ProveedoresPagos].[NroPresupuesto] AS [NroPresupuesto], 
+[ProveedoresPagos].[NroFactura] AS [NroFactura], 
+[ProveedoresPagos].[FechaFactura] AS [FechaFactura], 
+[ProveedoresPagos].[FechaSena] AS [FechaSena], 
+[ProveedoresPagos].[TipoComprobante] AS [TipoComprobante], 
+[ProveedoresPagos].[CuentaContable] AS [CuentaContable], 
+[ProveedoresPagos].[FechaEvento] AS [FechaEvento], 
+[ProveedoresPagos].[UnidadNegocio] AS [UnidadNegocio], 
+[ProveedoresPagos].[Costo] AS [Costo], 
+[ProveedoresPagos].[ValorNetoFactura] AS [ValorNetoFactura], 
+[ProveedoresPagos].[ValorDetalleFactura] AS [ValorDetalleFactura], 
+[ProveedoresPagos].[ImportePago] AS [ImportePago], 
+[ProveedoresPagos].[Cuit] AS [Cuit], 
+[ProveedoresPagos].[Proveedor] AS [Proveedor], 
+[ProveedoresPagos].[FechaPago] AS [FechaPago], 
+[ProveedoresPagos].[FormaPago] AS [FormaPago]
+FROM [dbo].[ProveedoresPagos] AS [ProveedoresPagos]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ReporteAdiocionales" EntityType="Self.ReporteAdiocionales" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -6356,26 +6661,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <End Role="INVENTARIO_Unidades" EntitySet="INVENTARIO_Unidades" />
             <End Role="INVENTARIO_UnidadesConversion" EntitySet="INVENTARIO_UnidadesConversion" />
           </AssociationSet>
-          <AssociationSet Name="FK_ItemDetalleProveedor_ItemDetalle" Association="Self.FK_ItemDetalleProveedor_ItemDetalle">
-            <End Role="ItemDetalle" EntitySet="ItemDetalle" />
-            <End Role="ItemDetalleProveedor" EntitySet="ItemDetalleProveedor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ItemDetalleProveedor_Proveedores" Association="Self.FK_ItemDetalleProveedor_Proveedores">
-            <End Role="Proveedores" EntitySet="Proveedores" />
-            <End Role="ItemDetalleProveedor" EntitySet="ItemDetalleProveedor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ItemDetalleRatio_ItemDetalle" Association="Self.FK_ItemDetalleRatio_ItemDetalle">
-            <End Role="ItemDetalle" EntitySet="ItemDetalle" />
-            <End Role="ItemDetalleRatio" EntitySet="ItemDetalleRatio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ItemDetalleRatio_Items" Association="Self.FK_ItemDetalleRatio_Items">
-            <End Role="Items" EntitySet="Items" />
-            <End Role="ItemDetalleRatio" EntitySet="ItemDetalleRatio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ItemDetalleRatio_TipoCatering" Association="Self.FK_ItemDetalleRatio_TipoCatering">
-            <End Role="TipoCatering" EntitySet="TipoCatering" />
-            <End Role="ItemDetalleRatio" EntitySet="ItemDetalleRatio" />
-          </AssociationSet>
           <AssociationSet Name="FK_Items_CategoriasItem" Association="Self.FK_Items_CategoriasItem">
             <End Role="CategoriasItem" EntitySet="CategoriasItem" />
             <End Role="Items" EntitySet="Items" />
@@ -6688,12 +6973,83 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <End Role="Perfiles" EntitySet="Perfiles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <AssociationSet Name="Relation_Form_Bloqueo" Association="Self.Relation_Form_Bloqueo">
+            <End Role="Form" EntitySet="Form" />
+            <End Role="Bloqueo" EntitySet="Bloqueo" />
+          </AssociationSet>
+          <AssociationSet Name="Relation_Form_Permiso" Association="Self.Relation_Form_Permiso">
+            <End Role="Form" EntitySet="Form" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="Relation_Rol_Bloqueo" Association="Self.Relation_Rol_Bloqueo">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Bloqueo" EntitySet="Bloqueo" />
+          </AssociationSet>
+          <AssociationSet Name="Relation_Rol_Permiso" Association="Self.Relation_Rol_Permiso">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
+          <AssociationSet Name="Relation_Rol_UsuarioRol" Association="Self.Relation_Rol_UsuarioRol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+          </AssociationSet>
+          <AssociationSet Name="Relation_Usuario_UsuarioRol" Association="Self.Relation_Usuario_UsuarioRol">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AmbientHouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="CuentaCorrienteProveedores_Result">
+          <Property Name="NroComprobante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CuitProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NombreProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NroPresupuesto" Type="Int32" />
+          <Property Name="FechaPresupuesto" Type="DateTime" />
+          <Property Name="FechaEvento" Type="DateTime" />
+          <Property Name="TipoMovimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TipoTransaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaTransaccion" Type="DateTime" />
+          <Property Name="NroTransaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ValorNetoFactura" Type="Double" />
+          <Property Name="ValorImpuesto" Type="Double" />
+          <Property Name="ValorImpuestoInterno" Type="Double" />
+          <Property Name="ImporteSinIVA" Type="Double" />
+          <Property Name="SaldoPendiente" Type="Double" />
+        </ComplexType>
+        <ComplexType Name="CuentaCorrienteProveedoresGral_Result">
+          <Property Name="NroComprobante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CuitProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NombreProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NroPresupuesto" Type="Int32" />
+          <Property Name="FechaPresupuesto" Type="DateTime" />
+          <Property Name="FechaEvento" Type="DateTime" />
+          <Property Name="TipoMovimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TipoTransaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaTransaccion" Type="DateTime" />
+          <Property Name="NroTransaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ValorNetoFactura" Type="Double" />
+          <Property Name="ValorImpuesto" Type="Double" />
+          <Property Name="ValorImpuestoInterno" Type="Double" />
+          <Property Name="ImporteSinIVA" Type="Double" />
+          <Property Name="SaldoPendiente" Type="Double" />
+        </ComplexType>
+        <ComplexType Name="informeCorrienteProveedor_Result">
+          <Property Name="CuitProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NombreProveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NroPresupuesto" Type="Int32" />
+          <Property Name="FechaPresupuesto" Type="DateTime" />
+          <Property Name="FechaEvento" Type="DateTime" />
+          <Property Name="TipoTransaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaTransaccion" Type="DateTime" />
+          <Property Name="NroTransaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Costo" Type="Double" />
+          <Property Name="ImporteSinIVA" Type="Double" />
+          <Property Name="SaldoPendiente" Type="Double" />
+        </ComplexType>
         <EntityType Name="Adicionales">
           <Key>
             <PropertyRef Name="Id" />
@@ -6756,6 +7112,18 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cheques" Relationship="Self.FK_Cheques_Bancos" FromRole="Bancos" ToRole="Cheques" />
           <NavigationProperty Name="Transferencias" Relationship="Self.FK_Transferencias_Bancos" FromRole="Bancos" ToRole="Transferencias" />
+        </EntityType>
+        <EntityType Name="Bloqueo">
+          <Key>
+            <PropertyRef Name="BloqueoId" />
+          </Key>
+          <Property Name="BloqueoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RolId" Type="Int32" Nullable="false" />
+          <Property Name="FormId" Type="Int32" Nullable="false" />
+          <Property Name="Control" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Form" Relationship="Self.Relation_Form_Bloqueo" FromRole="Bloqueo" ToRole="Form" />
+          <NavigationProperty Name="Rol" Relationship="Self.Relation_Rol_Bloqueo" FromRole="Bloqueo" ToRole="Rol" />
         </EntityType>
         <EntityType Name="Caracteristicas">
           <Key>
@@ -6934,6 +7302,17 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="PagoProveedorId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ComprobantesProveedores" Relationship="Self.FK_ComprobantePagoProveedor_ComprobantesProveedores" FromRole="ComprobantePagoProveedor" ToRole="ComprobantesProveedores" />
           <NavigationProperty Name="PagosProveedores" Relationship="Self.FK_ComprobantePagoProveedor_PagosProveedores" FromRole="ComprobantePagoProveedor" ToRole="PagosProveedores" />
+        </EntityType>
+        <EntityType Name="ComprobantesPagados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComprobanteProveedorDetalleId" Type="Int32" Nullable="false" />
+          <Property Name="NroPresupuesto" Type="Int32" />
+          <Property Name="TipoMovimiento" Type="Int32" />
+          <Property Name="TMDescripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MontoPagado" Type="Double" />
         </EntityType>
         <EntityType Name="ComprobantesProveedores">
           <Key>
@@ -7333,7 +7712,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="UsaPc" Type="Boolean" Nullable="false" />
           <Property Name="NroPc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EstadoId" Type="Int32" />
-          <Property Name="DepartamentoId" Type="Int32" Nullable="false" />
           <Property Name="SectorEmpresaId" Type="Int32" Nullable="false" />
           <Property Name="TipoEmpleadoId" Type="Int32" Nullable="false" />
           <Property Name="HorarioDesde" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
@@ -7342,6 +7720,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Premio" Type="Double" />
           <Property Name="SAC" Type="Double" />
           <Property Name="Observaciones" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="DepartamentoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ciudades" Relationship="Self.FK_Empleados_Ciudades" FromRole="Empleados" ToRole="Ciudades" />
           <NavigationProperty Name="Ciudades1" Relationship="Self.FK_Empleados_Ciudades1" FromRole="Empleados" ToRole="Ciudades" />
           <NavigationProperty Name="DegustacionDetalle" Relationship="Self.FK_DegustacionDetalle_Empleados" FromRole="Empleados" ToRole="DegustacionDetalle" />
@@ -7469,12 +7848,12 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Importe" Type="Double" Nullable="false" />
           <Property Name="NroFactura" Type="Int32" Nullable="false" />
-          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
           <Property Name="EstadoId" Type="Int32" Nullable="false" />
           <Property Name="CreateFecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateFecha" Type="DateTime" Precision="3" />
           <Property Name="Delete" Type="Boolean" Nullable="false" />
           <Property Name="FechaDelete" Type="DateTime" Precision="3" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ClientesBis" Relationship="Self.FK_FacturasCliente_ClientesBis" FromRole="FacturasCliente" ToRole="ClientesBis" />
           <NavigationProperty Name="Empresas" Relationship="Self.FK_FacturasCliente_Empresas" FromRole="FacturasCliente" ToRole="Empresas" />
           <NavigationProperty Name="Estados" Relationship="Self.FK_FacturasCliente_Estados" FromRole="FacturasCliente" ToRole="Estados" />
@@ -7513,6 +7892,16 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Anio" Type="Int32" Nullable="false" />
           <Property Name="SePasaA" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Form">
+          <Key>
+            <PropertyRef Name="FormId" />
+          </Key>
+          <Property Name="FormId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bloqueo" Relationship="Self.Relation_Form_Bloqueo" FromRole="Form" ToRole="Bloqueo" />
+          <NavigationProperty Name="Permiso" Relationship="Self.Relation_Form_Permiso" FromRole="Form" ToRole="Permiso" />
         </EntityType>
         <EntityType Name="FormasdePago">
           <Key>
@@ -7735,38 +8124,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <NavigationProperty Name="INVENTARIO_Unidades" Relationship="Self.FK_INVENTARIO_UnidadesConversion_INVENTARIO_Unidades" FromRole="INVENTARIO_UnidadesConversion" ToRole="INVENTARIO_Unidades" />
           <NavigationProperty Name="INVENTARIO_Unidades1" Relationship="Self.FK_INVENTARIO_UnidadesConversion_INVENTARIO_Unidades1" FromRole="INVENTARIO_UnidadesConversion" ToRole="INVENTARIO_Unidades" />
         </EntityType>
-        <EntityType Name="ItemDetalle">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ItemDetalleProveedor" Relationship="Self.FK_ItemDetalleProveedor_ItemDetalle" FromRole="ItemDetalle" ToRole="ItemDetalleProveedor" />
-          <NavigationProperty Name="ItemDetalleRatio" Relationship="Self.FK_ItemDetalleRatio_ItemDetalle" FromRole="ItemDetalle" ToRole="ItemDetalleRatio" />
-        </EntityType>
-        <EntityType Name="ItemDetalleProveedor">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ItemDetalleId" Type="Int32" Nullable="false" />
-          <Property Name="ProveedorId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ItemDetalle" Relationship="Self.FK_ItemDetalleProveedor_ItemDetalle" FromRole="ItemDetalleProveedor" ToRole="ItemDetalle" />
-          <NavigationProperty Name="Proveedores" Relationship="Self.FK_ItemDetalleProveedor_Proveedores" FromRole="ItemDetalleProveedor" ToRole="Proveedores" />
-        </EntityType>
-        <EntityType Name="ItemDetalleRatio">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoCateringId" Type="Int32" Nullable="false" />
-          <Property Name="ItemId" Type="Int32" Nullable="false" />
-          <Property Name="ItemDetalleId" Type="Int32" Nullable="false" />
-          <Property Name="Ratio" Type="Double" Nullable="false" />
-          <NavigationProperty Name="ItemDetalle" Relationship="Self.FK_ItemDetalleRatio_ItemDetalle" FromRole="ItemDetalleRatio" ToRole="ItemDetalle" />
-          <NavigationProperty Name="Items" Relationship="Self.FK_ItemDetalleRatio_Items" FromRole="ItemDetalleRatio" ToRole="Items" />
-          <NavigationProperty Name="TipoCatering" Relationship="Self.FK_ItemDetalleRatio_TipoCatering" FromRole="ItemDetalleRatio" ToRole="TipoCatering" />
-        </EntityType>
         <EntityType Name="Items">
           <Key>
             <PropertyRef Name="Id" />
@@ -7777,10 +8134,14 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Costo" Type="Double" Nullable="false" />
           <Property Name="Margen" Type="Double" Nullable="false" />
           <Property Name="Precio" Type="Double" Nullable="false" />
-          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <Property Name="EstadoId" Type="Int32" />
+          <Property Name="ItemDetalleId" Type="Int32" />
+          <Property Name="CuentaId" Type="Int32" />
+          <Property Name="DepositoId" Type="Int32" />
+          <Property Name="TipoItem" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NombreFantasiaId" Type="Int32" />
           <NavigationProperty Name="AdicionalesItems" Relationship="Self.FK_AdicionalesItems_Items" FromRole="Items" ToRole="AdicionalesItems" />
           <NavigationProperty Name="CategoriasItem" Relationship="Self.FK_Items_CategoriasItem" FromRole="Items" ToRole="CategoriasItem" />
-          <NavigationProperty Name="ItemDetalleRatio" Relationship="Self.FK_ItemDetalleRatio_Items" FromRole="Items" ToRole="ItemDetalleRatio" />
           <NavigationProperty Name="ProductosCateringItems" Relationship="Self.FK_ProductosCateringItems_Items" FromRole="Items" ToRole="ProductosCateringItems" />
         </EntityType>
         <EntityType Name="Jornadas">
@@ -7992,7 +8353,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="PrincipalChicos" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
           <Property Name="PostreChicos" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
           <Property Name="MesaDulce" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
-          <Property Name="FinFiesta" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="FinFiesta" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="MesaPrincipal" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Manteleria" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Servilletas" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -8152,6 +8513,14 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <NavigationProperty Name="Cuentas" Relationship="Self.FK_PagosProveedores_Cuentas" FromRole="PagosProveedores" ToRole="Cuentas" />
           <NavigationProperty Name="Retenciones" Relationship="Self.FK_Retenciones_PagosProveedores" FromRole="PagosProveedores" ToRole="Retenciones" />
         </EntityType>
+        <EntityType Name="Parametro">
+          <Key>
+            <PropertyRef Name="ParametroId" />
+          </Key>
+          <Property Name="ParametroId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="Parametros">
           <Key>
             <PropertyRef Name="Id" />
@@ -8168,6 +8537,17 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Perfiles" FromRole="Perfiles" ToRole="Productos" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Perfiles" FromRole="Perfiles" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Permiso">
+          <Key>
+            <PropertyRef Name="PermisoId" />
+          </Key>
+          <Property Name="PermisoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RolId" Type="Int32" Nullable="false" />
+          <Property Name="FormId" Type="Int32" Nullable="false" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Form" Relationship="Self.Relation_Form_Permiso" FromRole="Permiso" ToRole="Form" />
+          <NavigationProperty Name="Rol" Relationship="Self.Relation_Rol_Permiso" FromRole="Permiso" ToRole="Rol" />
         </EntityType>
         <EntityType Name="PlanesDePago">
           <Key>
@@ -8213,7 +8593,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="CostoMesas" Type="Double" />
           <Property Name="PrecioSillas" Type="Double" />
           <Property Name="PrecioMesas" Type="Double" />
-          <Property Name="Royalty" Type="Double" Nullable="false" />
           <Property Name="version" Type="Int32" />
           <Property Name="EstadoId" Type="Int32" />
           <Property Name="FechaAprobacion" Type="DateTime" Precision="3" />
@@ -8226,6 +8605,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="FechaUpdate" Type="DateTime" Precision="3" />
           <Property Name="Delete" Type="Boolean" />
           <Property Name="FechaDelete" Type="DateTime" Precision="3" />
+          <Property Name="Royalty" Type="Double" Nullable="false" />
           <NavigationProperty Name="Presupuestos" Relationship="Self.FK_PresupuestoDetalle_Presupuestos" FromRole="PresupuestoDetalle" ToRole="Presupuestos" />
         </EntityType>
         <EntityType Name="Presupuestos">
@@ -8262,12 +8642,12 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="ImporteOrganizador" Type="Double" />
           <Property Name="PorcentajeOrganizador" Type="Double" />
           <Property Name="ValorOrganizador" Type="Double" />
-          <Property Name="ValorRoyaltyOrganizador" Type="Double" />
           <Property Name="FechaCaducidad" Type="DateTime" Precision="3" />
           <Property Name="CantidadAdultosFinal" Type="Int32" />
           <Property Name="CantidadAdolescentesFinal" Type="Int32" />
           <Property Name="CantidadMenores3Final" Type="Int32" />
           <Property Name="CantidadMenoresEntre3y8Final" Type="Int32" />
+          <Property Name="ValorRoyaltyOrganizador" Type="Double" />
           <NavigationProperty Name="Caracteristicas" Relationship="Self.FK_Presupuestos_Caracteristicas" FromRole="Presupuestos" ToRole="Caracteristicas" />
           <NavigationProperty Name="ComprobantesProveedores_Detalles" Relationship="Self.FK_ComprobantesProveedores_Detalles_Presupuestos" FromRole="Presupuestos" ToRole="ComprobantesProveedores_Detalles" />
           <NavigationProperty Name="DuracionEvento" Relationship="Self.FK_Presupuestos_DuracionEvento" FromRole="Presupuestos" ToRole="DuracionEvento" />
@@ -8305,7 +8685,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Precio" Type="Double" Nullable="false" />
           <Property Name="Margen" Type="Double" />
           <Property Name="Costo" Type="Double" Nullable="false" />
-          <Property Name="Royalty" Type="Double" Nullable="false" />
           <Property Name="UnidadNegocioId" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Int32" Nullable="false" />
           <Property Name="FechaVendimiento" Type="DateTime" Precision="3" />
@@ -8327,6 +8706,9 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="CaracteristicaId" Type="Int32" />
           <Property Name="OrganizacionItemId" Type="Int32" />
           <Property Name="Semestre" Type="Int32" />
+          <Property Name="MargenAjuste" Type="Double" />
+          <Property Name="Royalty" Type="Double" Nullable="false" />
+          <Property Name="Margen2" Type="Double" />
           <NavigationProperty Name="Perfiles" Relationship="Self.FK_Productos_Perfiles" FromRole="Productos" ToRole="Perfiles" />
           <NavigationProperty Name="UnidadesNegocios" Relationship="Self.FK_Productos_UnidadesNegocios" FromRole="Productos" ToRole="UnidadesNegocios" />
         </EntityType>
@@ -8372,7 +8754,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <NavigationProperty Name="CondicionIva" Relationship="Self.FK_Proveedores_CondicionIva" FromRole="Proveedores" ToRole="CondicionIva" />
           <NavigationProperty Name="CostosPaquetesCIAmbientacion" Relationship="Self.FK_CostosPaquetesCIAmbientacion_Proveedores" FromRole="Proveedores" ToRole="CostosPaquetesCIAmbientacion" />
           <NavigationProperty Name="Intermediarios" Relationship="Self.FK_Intermediarios_Proveedores" FromRole="Proveedores" ToRole="Intermediarios" />
-          <NavigationProperty Name="ItemDetalleProveedor" Relationship="Self.FK_ItemDetalleProveedor_Proveedores" FromRole="Proveedores" ToRole="ItemDetalleProveedor" />
           <NavigationProperty Name="ProveedoresFormasdePago" Relationship="Self.FK_ProveedoresFormasdePago_Proveedores" FromRole="Proveedores" ToRole="ProveedoresFormasdePago" />
           <NavigationProperty Name="ProveedoresRetenciones" Relationship="Self.FK_ProveedoresRetenciones_Proveedores1" FromRole="Proveedores" ToRole="ProveedoresRetenciones" />
           <NavigationProperty Name="Rubros_Proveedores" Relationship="Self.FK_Rubros_Proveedores_Proveedores" FromRole="Proveedores" ToRole="Rubros_Proveedores" />
@@ -8454,6 +8835,17 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <NavigationProperty Name="PagosClientes" Relationship="Self.FK_Retenciones_PagosClientes" FromRole="Retenciones" ToRole="PagosClientes" />
           <NavigationProperty Name="PagosProveedores" Relationship="Self.FK_Retenciones_PagosProveedores" FromRole="Retenciones" ToRole="PagosProveedores" />
           <NavigationProperty Name="TipoMovimientos" Relationship="Self.FK_Retenciones_TipoMovimientos" FromRole="Retenciones" ToRole="TipoMovimientos" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bloqueo" Relationship="Self.Relation_Rol_Bloqueo" FromRole="Rol" ToRole="Bloqueo" />
+          <NavigationProperty Name="Permiso" Relationship="Self.Relation_Rol_Permiso" FromRole="Rol" ToRole="Permiso" />
+          <NavigationProperty Name="UsuarioRol" Relationship="Self.Relation_Rol_UsuarioRol" FromRole="Rol" ToRole="UsuarioRol" />
         </EntityType>
         <EntityType Name="Rubros">
           <Key>
@@ -8579,7 +8971,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <NavigationProperty Name="ConfiguracionCateringTecnica" Relationship="Self.FK_ConfiguracionCatering_TipoCatering" FromRole="TipoCatering" ToRole="ConfiguracionCateringTecnica" />
           <NavigationProperty Name="CostoCanon" Relationship="Self.FK_CostoCanon_TipoCatering" FromRole="TipoCatering" ToRole="CostoCanon" />
           <NavigationProperty Name="CostoCatering" Relationship="Self.FK_CostoCatering_TipoCatering" FromRole="TipoCatering" ToRole="CostoCatering" />
-          <NavigationProperty Name="ItemDetalleRatio" Relationship="Self.FK_ItemDetalleRatio_TipoCatering" FromRole="TipoCatering" ToRole="ItemDetalleRatio" />
           <NavigationProperty Name="UnidadesNegocios" Relationship="Self.FK_TipoCatering_Rubros" FromRole="TipoCatering" ToRole="UnidadesNegocios" />
           <NavigationProperty Name="TipoCateringAdicional" Relationship="Self.FK_TipoCateringAdicional_TipoCatering" FromRole="TipoCatering" ToRole="TipoCateringAdicional" />
           <NavigationProperty Name="TipoCateringTiempoProductoItem" Relationship="Self.FK_TipoCateringTiempoProductoItem_TipoCatering" FromRole="TipoCatering" ToRole="TipoCateringTiempoProductoItem" />
@@ -8785,6 +9176,22 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <NavigationProperty Name="TipoMovimientos" Relationship="Self.FK_UnidadesNegocios_TipoMovimientos_TipoMovimientos" FromRole="UnidadesNegocios_TipoMovimientos" ToRole="TipoMovimientos" />
           <NavigationProperty Name="UnidadesNegocios" Relationship="Self.FK_UnidadesNegocios_TipoMovimientos_UnidadesNegocios" FromRole="UnidadesNegocios_TipoMovimientos" ToRole="UnidadesNegocios" />
         </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="FeCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NroDeFallos" Type="Int32" Nullable="false" />
+          <Property Name="EsAdmin" Type="Int32" Nullable="false" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioIdCreador" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UsuarioRol" Relationship="Self.Relation_Usuario_UsuarioRol" FromRole="Usuario" ToRole="UsuarioRol" />
+        </EntityType>
         <EntityType Name="UsuarioPipeDrive_Ambient">
           <Key>
             <PropertyRef Name="Id" />
@@ -8792,6 +9199,17 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserPipeDriveId" Type="Int32" Nullable="false" />
           <Property Name="UserAmbientId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioRol">
+          <Key>
+            <PropertyRef Name="UsuarioRolId" />
+          </Key>
+          <Property Name="UsuarioRolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <Property Name="RolId" Type="Int32" Nullable="false" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rol" Relationship="Self.Relation_Rol_UsuarioRol" FromRole="UsuarioRol" ToRole="Rol" />
+          <NavigationProperty Name="Usuario" Relationship="Self.Relation_Usuario_UsuarioRol" FromRole="UsuarioRol" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -8824,6 +9242,22 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmpleadoId" Type="Int32" />
           <Property Name="LocacionId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ItemDetalle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="CategoriaId" Type="Int32" />
+          <Property Name="EstadoId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="NombreFantasia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="AvisosClientesPorFecha">
           <Key>
@@ -8859,6 +9293,14 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="TOTALPRESUPUESTOSININDEXACION" Type="Double" />
           <Property Name="Indexacion" Type="Double" />
           <Property Name="TipoIndexacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ControlEventosConfirmados">
+          <Key>
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="EventoId" />
+          </Key>
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="EventoId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="EMPLEADODEPARTAMENTO">
           <Key>
@@ -9154,6 +9596,58 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Cliente" Type="String" MaxLength="401" FixedLength="false" Unicode="false" />
           <Property Name="FechaSena" Type="DateTime" Precision="3" />
           <Property Name="TipoEventoId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ObtenerEventosNew">
+          <Key>
+            <PropertyRef Name="CARACTERISTICA" />
+            <PropertyRef Name="LOCACION" />
+            <PropertyRef Name="JORNADA" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="EventoId" />
+            <PropertyRef Name="ClienteId" />
+            <PropertyRef Name="EmpleadoId" />
+            <PropertyRef Name="EstadoId" />
+            <PropertyRef Name="RazonSocial" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="PresupuestoId" />
+            <PropertyRef Name="PresupuestoEstadoId" />
+            <PropertyRef Name="EstadoPresupuesto" />
+            <PropertyRef Name="LocacionId" />
+            <PropertyRef Name="EmpleadoCliente" />
+            <PropertyRef Name="TipoEvento" />
+            <PropertyRef Name="TipoEventoId" />
+          </Key>
+          <Property Name="ApellidoNombre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CARACTERISTICA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOCACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SECTOR" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="JORNADA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HorarioEvento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CantidadInicialInvitados" Type="Int32" />
+          <Property Name="FechaEvento" Type="DateTime" Precision="3" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ejecutivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EventoId" Type="Int32" Nullable="false" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="EmpleadoId" Type="Int32" Nullable="false" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="PresupuestoEstadoId" Type="Int32" Nullable="false" />
+          <Property Name="EstadoPresupuesto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PresupuestoIdAnterior" Type="Int32" />
+          <Property Name="LocacionId" Type="Int32" Nullable="false" />
+          <Property Name="EmpleadoCliente" Type="Int32" Nullable="false" />
+          <Property Name="TipoEvento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClienteBisId" Type="Int32" />
+          <Property Name="Cliente" Type="String" MaxLength="401" FixedLength="false" Unicode="false" />
+          <Property Name="FechaSena" Type="DateTime" Precision="3" />
+          <Property Name="TipoEventoId" Type="Int32" Nullable="false" />
+          <Property Name="TipoExperiencia" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="TipoBarra" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ObtenerEventosSeguimiento">
           <Key>
@@ -9541,6 +10035,36 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Correo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="FechaEvento" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="ProveedoresPagos">
+          <Key>
+            <PropertyRef Name="NroPresupuesto" />
+            <PropertyRef Name="NroFactura" />
+            <PropertyRef Name="FechaFactura" />
+            <PropertyRef Name="TipoComprobante" />
+            <PropertyRef Name="CuentaContable" />
+            <PropertyRef Name="UnidadNegocio" />
+            <PropertyRef Name="ValorNetoFactura" />
+            <PropertyRef Name="ValorDetalleFactura" />
+            <PropertyRef Name="Proveedor" />
+            <PropertyRef Name="FechaPago" />
+          </Key>
+          <Property Name="NroPresupuesto" Type="Int32" Nullable="false" />
+          <Property Name="NroFactura" Type="Int64" Nullable="false" />
+          <Property Name="FechaFactura" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaSena" Type="DateTime" Precision="3" />
+          <Property Name="TipoComprobante" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CuentaContable" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaEvento" Type="DateTime" Precision="3" />
+          <Property Name="UnidadNegocio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Costo" Type="Double" />
+          <Property Name="ValorNetoFactura" Type="Double" Nullable="false" />
+          <Property Name="ValorDetalleFactura" Type="Double" Nullable="false" />
+          <Property Name="ImportePago" Type="Double" />
+          <Property Name="Cuit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Proveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaPago" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FormaPago" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="ReporteAdiocionales">
           <Key>
             <PropertyRef Name="NROEVENTO" />
@@ -9915,6 +10439,30 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             </Principal>
             <Dependent Role="Transferencias">
               <PropertyRef Name="BancoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relation_Form_Bloqueo">
+          <End Role="Form" Type="Self.Form" Multiplicity="1" />
+          <End Role="Bloqueo" Type="Self.Bloqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Form">
+              <PropertyRef Name="FormId" />
+            </Principal>
+            <Dependent Role="Bloqueo">
+              <PropertyRef Name="FormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relation_Rol_Bloqueo">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Bloqueo" Type="Self.Bloqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="Bloqueo">
+              <PropertyRef Name="RolId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11070,6 +11618,18 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Relation_Form_Permiso">
+          <End Role="Form" Type="Self.Form" Multiplicity="1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Form">
+              <PropertyRef Name="FormId" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="FormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PagosClientes_FormasdePago">
           <End Role="FormasdePago" Type="Self.FormasdePago" Multiplicity="1" />
           <End Role="PagosClientes" Type="Self.PagosClientes" Multiplicity="*" />
@@ -11319,66 +11879,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             </Principal>
             <Dependent Role="INVENTARIO_UnidadesConversion">
               <PropertyRef Name="UnidadDestinoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ItemDetalleProveedor_ItemDetalle">
-          <End Role="ItemDetalle" Type="Self.ItemDetalle" Multiplicity="1" />
-          <End Role="ItemDetalleProveedor" Type="Self.ItemDetalleProveedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ItemDetalle">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ItemDetalleProveedor">
-              <PropertyRef Name="ItemDetalleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ItemDetalleRatio_ItemDetalle">
-          <End Role="ItemDetalle" Type="Self.ItemDetalle" Multiplicity="1" />
-          <End Role="ItemDetalleRatio" Type="Self.ItemDetalleRatio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ItemDetalle">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ItemDetalleRatio">
-              <PropertyRef Name="ItemDetalleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ItemDetalleProveedor_Proveedores">
-          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
-          <End Role="ItemDetalleProveedor" Type="Self.ItemDetalleProveedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proveedores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ItemDetalleProveedor">
-              <PropertyRef Name="ProveedorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ItemDetalleRatio_Items">
-          <End Role="Items" Type="Self.Items" Multiplicity="1" />
-          <End Role="ItemDetalleRatio" Type="Self.ItemDetalleRatio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ItemDetalleRatio">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ItemDetalleRatio_TipoCatering">
-          <End Role="TipoCatering" Type="Self.TipoCatering" Multiplicity="1" />
-          <End Role="ItemDetalleRatio" Type="Self.ItemDetalleRatio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoCatering">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ItemDetalleRatio">
-              <PropertyRef Name="TipoCateringId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11646,6 +12146,18 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Relation_Rol_Permiso">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Permiso" Type="Self.Permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="Permiso">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PresupuestoDetalle_Presupuestos">
           <End Role="Presupuestos" Type="Self.Presupuestos" Multiplicity="1" />
           <End Role="PresupuestoDetalle" Type="Self.PresupuestoDetalle" Multiplicity="*" />
@@ -11826,6 +12338,18 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Relation_Rol_UsuarioRol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="UsuarioRol">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Rubros_Proveedores_Rubros">
           <End Role="Rubros" Type="Self.Rubros" Multiplicity="1" />
           <End Role="Rubros_Proveedores" Type="Self.Rubros_Proveedores" Multiplicity="*" />
@@ -11994,12 +12518,25 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Relation_Usuario_UsuarioRol">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="UsuarioRol">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="AmbientHouseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Adicionales" EntityType="Self.Adicionales" />
           <EntitySet Name="AdicionalesItems" EntityType="Self.AdicionalesItems" />
           <EntitySet Name="AmbientacionCI" EntityType="Self.AmbientacionCI" />
           <EntitySet Name="AmbientacionSalon" EntityType="Self.AmbientacionSalon" />
           <EntitySet Name="Bancos" EntityType="Self.Bancos" />
+          <EntitySet Name="Bloqueo" EntityType="Self.Bloqueo" />
           <EntitySet Name="Caracteristicas" EntityType="Self.Caracteristicas" />
           <EntitySet Name="Categorias" EntityType="Self.Categorias" />
           <EntitySet Name="CategoriasArchivos" EntityType="Self.CategoriasArchivos" />
@@ -12014,6 +12551,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <EntitySet Name="CodigoPorRubro" EntityType="Self.CodigoPorRubro" />
           <EntitySet Name="Comisiones" EntityType="Self.Comisiones" />
           <EntitySet Name="ComprobantePagoProveedor" EntityType="Self.ComprobantePagoProveedor" />
+          <EntitySet Name="ComprobantesPagados" EntityType="Self.ComprobantesPagados" />
           <EntitySet Name="ComprobantesProveedores" EntityType="Self.ComprobantesProveedores" />
           <EntitySet Name="ComprobantesProveedores_Detalles" EntityType="Self.ComprobantesProveedores_Detalles" />
           <EntitySet Name="CondicionIva" EntityType="Self.CondicionIva" />
@@ -12046,6 +12584,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <EntitySet Name="Familias" EntityType="Self.Familias" />
           <EntitySet Name="FechasBloqueadas" EntityType="Self.FechasBloqueadas" />
           <EntitySet Name="Feriados" EntityType="Self.Feriados" />
+          <EntitySet Name="Form" EntityType="Self.Form" />
           <EntitySet Name="FormasdePago" EntityType="Self.FormasdePago" />
           <EntitySet Name="GruposItems" EntityType="Self.GruposItems" />
           <EntitySet Name="Herramientas" EntityType="Self.Herramientas" />
@@ -12062,9 +12601,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <EntitySet Name="INVENTARIO_Requerimiento_Detalle" EntityType="Self.INVENTARIO_Requerimiento_Detalle" />
           <EntitySet Name="INVENTARIO_Unidades" EntityType="Self.INVENTARIO_Unidades" />
           <EntitySet Name="INVENTARIO_UnidadesConversion" EntityType="Self.INVENTARIO_UnidadesConversion" />
-          <EntitySet Name="ItemDetalle" EntityType="Self.ItemDetalle" />
-          <EntitySet Name="ItemDetalleProveedor" EntityType="Self.ItemDetalleProveedor" />
-          <EntitySet Name="ItemDetalleRatio" EntityType="Self.ItemDetalleRatio" />
           <EntitySet Name="Items" EntityType="Self.Items" />
           <EntitySet Name="Jornadas" EntityType="Self.Jornadas" />
           <EntitySet Name="LiquidacionHorasPersonal" EntityType="Self.LiquidacionHorasPersonal" />
@@ -12085,8 +12621,10 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <EntitySet Name="OrganizacionPresupuestoTimming" EntityType="Self.OrganizacionPresupuestoTimming" />
           <EntitySet Name="PagosClientes" EntityType="Self.PagosClientes" />
           <EntitySet Name="PagosProveedores" EntityType="Self.PagosProveedores" />
+          <EntitySet Name="Parametro" EntityType="Self.Parametro" />
           <EntitySet Name="Parametros" EntityType="Self.Parametros" />
           <EntitySet Name="Perfiles" EntityType="Self.Perfiles" />
+          <EntitySet Name="Permiso" EntityType="Self.Permiso" />
           <EntitySet Name="PlanesDePago" EntityType="Self.PlanesDePago" />
           <EntitySet Name="PresupuestoDetalle" EntityType="Self.PresupuestoDetalle" />
           <EntitySet Name="Presupuestos" EntityType="Self.Presupuestos" />
@@ -12101,6 +12639,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <EntitySet Name="ReciboEventoPresupuesto" EntityType="Self.ReciboEventoPresupuesto" />
           <EntitySet Name="Recibos" EntityType="Self.Recibos" />
           <EntitySet Name="Retenciones" EntityType="Self.Retenciones" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
           <EntitySet Name="Rubros" EntityType="Self.Rubros" />
           <EntitySet Name="Rubros_Proveedores" EntityType="Self.Rubros_Proveedores" />
           <EntitySet Name="Sectores" EntityType="Self.Sectores" />
@@ -12129,12 +12668,17 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <EntitySet Name="UnidadesNegocios" EntityType="Self.UnidadesNegocios" />
           <EntitySet Name="UnidadesNegocios_Proveedores" EntityType="Self.UnidadesNegocios_Proveedores" />
           <EntitySet Name="UnidadesNegocios_TipoMovimientos" EntityType="Self.UnidadesNegocios_TipoMovimientos" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <EntitySet Name="UsuarioPipeDrive_Ambient" EntityType="Self.UsuarioPipeDrive_Ambient" />
+          <EntitySet Name="UsuarioRol" EntityType="Self.UsuarioRol" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <EntitySet Name="UsuariosGrupos" EntityType="Self.UsuariosGrupos" />
           <EntitySet Name="UsuariosLocaciones" EntityType="Self.UsuariosLocaciones" />
+          <EntitySet Name="ItemDetalle" EntityType="Self.ItemDetalle" />
+          <EntitySet Name="NombreFantasia" EntityType="Self.NombreFantasia" />
           <EntitySet Name="AvisosClientesPorFecha" EntityType="Self.AvisosClientesPorFecha" />
           <EntitySet Name="CobranzasVentas" EntityType="Self.CobranzasVentas" />
+          <EntitySet Name="ControlEventosConfirmados" EntityType="Self.ControlEventosConfirmados" />
           <EntitySet Name="EMPLEADODEPARTAMENTO" EntityType="Self.EMPLEADODEPARTAMENTO" />
           <EntitySet Name="EventosConfirmadosProveedores" EntityType="Self.EventosConfirmadosProveedores" />
           <EntitySet Name="EventosConfirmadosReservadosTODOS" EntityType="Self.EventosConfirmadosReservadosTODOS" />
@@ -12149,6 +12693,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <EntitySet Name="ObtenerContactosClientes" EntityType="Self.ObtenerContactosClientes" />
           <EntitySet Name="ObtenerDatosParaPresupuesto" EntityType="Self.ObtenerDatosParaPresupuesto" />
           <EntitySet Name="ObtenerEventos" EntityType="Self.ObtenerEventos" />
+          <EntitySet Name="ObtenerEventosNew" EntityType="Self.ObtenerEventosNew" />
           <EntitySet Name="ObtenerEventosSeguimiento" EntityType="Self.ObtenerEventosSeguimiento" />
           <EntitySet Name="ObtenerFamilias" EntityType="Self.ObtenerFamilias" />
           <EntitySet Name="ObtenerGruposconFamilias" EntityType="Self.ObtenerGruposconFamilias" />
@@ -12165,6 +12710,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <EntitySet Name="ObtenerUsuarios" EntityType="Self.ObtenerUsuarios" />
           <EntitySet Name="PresupuestosAVencer" EntityType="Self.PresupuestosAVencer" />
           <EntitySet Name="ProveedoresExternos" EntityType="Self.ProveedoresExternos" />
+          <EntitySet Name="ProveedoresPagos" EntityType="Self.ProveedoresPagos" />
           <EntitySet Name="ReporteAdiocionales" EntityType="Self.ReporteAdiocionales" />
           <EntitySet Name="ReporteComprobantes" EntityType="Self.ReporteComprobantes" />
           <EntitySet Name="ReporteEventosCobranzas" EntityType="Self.ReporteEventosCobranzas" />
@@ -12218,6 +12764,14 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <AssociationSet Name="FK_Transferencias_Bancos" Association="Self.FK_Transferencias_Bancos">
             <End Role="Bancos" EntitySet="Bancos" />
             <End Role="Transferencias" EntitySet="Transferencias" />
+          </AssociationSet>
+          <AssociationSet Name="Relation_Form_Bloqueo" Association="Self.Relation_Form_Bloqueo">
+            <End Role="Form" EntitySet="Form" />
+            <End Role="Bloqueo" EntitySet="Bloqueo" />
+          </AssociationSet>
+          <AssociationSet Name="Relation_Rol_Bloqueo" Association="Self.Relation_Rol_Bloqueo">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Bloqueo" EntitySet="Bloqueo" />
           </AssociationSet>
           <AssociationSet Name="FK_Categorias_Caracteristicas" Association="Self.FK_Categorias_Caracteristicas">
             <End Role="Caracteristicas" EntitySet="Caracteristicas" />
@@ -12603,6 +13157,10 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <End Role="GruposItems" EntitySet="GruposItems" />
             <End Role="Familias" EntitySet="Familias" />
           </AssociationSet>
+          <AssociationSet Name="Relation_Form_Permiso" Association="Self.Relation_Form_Permiso">
+            <End Role="Form" EntitySet="Form" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
           <AssociationSet Name="FK_PagosClientes_FormasdePago" Association="Self.FK_PagosClientes_FormasdePago">
             <End Role="FormasdePago" EntitySet="FormasdePago" />
             <End Role="PagosClientes" EntitySet="PagosClientes" />
@@ -12686,26 +13244,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <AssociationSet Name="FK_INVENTARIO_UnidadesConversion_INVENTARIO_Unidades1" Association="Self.FK_INVENTARIO_UnidadesConversion_INVENTARIO_Unidades1">
             <End Role="INVENTARIO_Unidades" EntitySet="INVENTARIO_Unidades" />
             <End Role="INVENTARIO_UnidadesConversion" EntitySet="INVENTARIO_UnidadesConversion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ItemDetalleProveedor_ItemDetalle" Association="Self.FK_ItemDetalleProveedor_ItemDetalle">
-            <End Role="ItemDetalle" EntitySet="ItemDetalle" />
-            <End Role="ItemDetalleProveedor" EntitySet="ItemDetalleProveedor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ItemDetalleRatio_ItemDetalle" Association="Self.FK_ItemDetalleRatio_ItemDetalle">
-            <End Role="ItemDetalle" EntitySet="ItemDetalle" />
-            <End Role="ItemDetalleRatio" EntitySet="ItemDetalleRatio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ItemDetalleProveedor_Proveedores" Association="Self.FK_ItemDetalleProveedor_Proveedores">
-            <End Role="Proveedores" EntitySet="Proveedores" />
-            <End Role="ItemDetalleProveedor" EntitySet="ItemDetalleProveedor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ItemDetalleRatio_Items" Association="Self.FK_ItemDetalleRatio_Items">
-            <End Role="Items" EntitySet="Items" />
-            <End Role="ItemDetalleRatio" EntitySet="ItemDetalleRatio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ItemDetalleRatio_TipoCatering" Association="Self.FK_ItemDetalleRatio_TipoCatering">
-            <End Role="TipoCatering" EntitySet="TipoCatering" />
-            <End Role="ItemDetalleRatio" EntitySet="ItemDetalleRatio" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductosCateringItems_Items" Association="Self.FK_ProductosCateringItems_Items">
             <End Role="Items" EntitySet="Items" />
@@ -12795,6 +13333,10 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <End Role="Perfiles" EntitySet="Perfiles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <AssociationSet Name="Relation_Rol_Permiso" Association="Self.Relation_Rol_Permiso">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Permiso" EntitySet="Permiso" />
+          </AssociationSet>
           <AssociationSet Name="FK_PresupuestoDetalle_Presupuestos" Association="Self.FK_PresupuestoDetalle_Presupuestos">
             <End Role="Presupuestos" EntitySet="Presupuestos" />
             <End Role="PresupuestoDetalle" EntitySet="PresupuestoDetalle" />
@@ -12855,6 +13397,10 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <End Role="TipoMovimientos" EntitySet="TipoMovimientos" />
             <End Role="Retenciones" EntitySet="Retenciones" />
           </AssociationSet>
+          <AssociationSet Name="Relation_Rol_UsuarioRol" Association="Self.Relation_Rol_UsuarioRol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+          </AssociationSet>
           <AssociationSet Name="FK_Rubros_Proveedores_Rubros" Association="Self.FK_Rubros_Proveedores_Rubros">
             <End Role="Rubros" EntitySet="Rubros" />
             <End Role="Rubros_Proveedores" EntitySet="Rubros_Proveedores" />
@@ -12911,6 +13457,15 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <End Role="UnidadesNegocios" EntitySet="UnidadesNegocios" />
             <End Role="UnidadesNegocios_TipoMovimientos" EntitySet="UnidadesNegocios_TipoMovimientos" />
           </AssociationSet>
+          <AssociationSet Name="Relation_Usuario_UsuarioRol" Association="Self.Relation_Usuario_UsuarioRol">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+          </AssociationSet>
+          <FunctionImport Name="CuentaCorrienteProveedores" IsComposable="true" ReturnType="Collection(AmbientHouseModel.CuentaCorrienteProveedores_Result)" />
+          <FunctionImport Name="CuentaCorrienteProveedoresGral" IsComposable="true" ReturnType="Collection(AmbientHouseModel.CuentaCorrienteProveedoresGral_Result)" />
+          <FunctionImport Name="informeCorrienteProveedor" IsComposable="true" ReturnType="Collection(AmbientHouseModel.informeCorrienteProveedor_Result)">
+            <Parameter Name="Unidad" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="ActualizarPresupuestosRealizados" />
           <FunctionImport Name="ActualizarPresupuestosVencidos" />
           <FunctionImport Name="BuscarItemsporTipoCatering" ReturnType="Collection(AmbientHouseModel.BuscarItemsporTipoCatering_Result)">
@@ -12935,10 +13490,18 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <Parameter Name="Precio" Mode="In" Type="Double" />
             <Parameter Name="Royalty" Mode="In" Type="Double" />
           </FunctionImport>
-          <FunctionImport Name="CorrecionMovimientosPorCuentas">
-            <Parameter Name="CuentaId" Mode="In" Type="Int32" />
-            <Parameter Name="MovimientoId" Mode="In" Type="Int32" />
-            <Parameter Name="Correccion" Mode="In" Type="Decimal" />
+          <FunctionImport Name="CargarCostosTecnica" ReturnType="Collection(AmbientHouseModel.CargarCostosTecnica_Result)">
+            <Parameter Name="LocacionId" Mode="In" Type="Int32" />
+            <Parameter Name="SectorId" Mode="In" Type="Int32" />
+            <Parameter Name="TipoServicioId" Mode="In" Type="Int32" />
+            <Parameter Name="SegmentoId" Mode="In" Type="Int32" />
+            <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
+            <Parameter Name="Anio" Mode="In" Type="Int32" />
+            <Parameter Name="Mes" Mode="In" Type="Int32" />
+            <Parameter Name="Dia" Mode="In" Type="String" />
+            <Parameter Name="Costo" Mode="In" Type="Double" />
+            <Parameter Name="Precio" Mode="In" Type="Double" />
+            <Parameter Name="Royalty" Mode="In" Type="Double" />
           </FunctionImport>
           <FunctionImport Name="DetalleInformeResultados" ReturnType="Collection(AmbientHouseModel.DetalleInformeResultados_Result)">
             <Parameter Name="TipoMovimiento" Mode="In" Type="String" />
@@ -12961,54 +13524,31 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
             <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="PreciosCatering">
+            <Parameter Name="tipoCateringId" Mode="In" Type="Int32" />
+            <Parameter Name="Costo" Mode="In" Type="Double" />
+            <Parameter Name="Precio" Mode="In" Type="Double" />
+          </FunctionImport>
           <FunctionImport Name="ReporteIva" ReturnType="Collection(AmbientHouseModel.ReporteIva_Result)">
             <Parameter Name="Empresa" Mode="In" Type="Int32" />
             <Parameter Name="StartDate" Mode="In" Type="DateTime" />
             <Parameter Name="EndDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="sp_AltaSalones">
-            <Parameter Name="LocacionId" Mode="In" Type="Int32" />
-            <Parameter Name="SectorId" Mode="In" Type="Int32" />
-            <Parameter Name="Anio" Mode="In" Type="Int32" />
-            <Parameter Name="CantidadInvitados" Mode="In" Type="Int32" />
-            <Parameter Name="Dia" Mode="In" Type="String" />
-            <Parameter Name="Costo" Mode="In" Type="Double" />
-            <Parameter Name="Margen" Mode="In" Type="Double" />
-          </FunctionImport>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(AmbientHouseModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(AmbientHouseModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
         <ComplexType Name="BuscarItemsporTipoCatering_Result">
-          <Property Type="Int32" Name="ItemId" Nullable="false" />
+          <Property Type="Int32" Name="ItemId" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Detalle" Nullable="false" MaxLength="300" />
+          <Property Type="Int32" Name="CategoriaItemId" Nullable="false" />
+          <Property Type="Double" Name="Costo" Nullable="false" />
+          <Property Type="Double" Name="Margen" Nullable="false" />
+          <Property Type="Double" Name="Precio" Nullable="false" />
+          <Property Type="Int32" Name="EstadoId" Nullable="true" />
+          <Property Type="Int32" Name="ItemDetalleId" Nullable="true" />
+          <Property Type="Int32" Name="CuentaId" Nullable="true" />
+          <Property Type="Int32" Name="DepositoId" Nullable="true" />
+          <Property Type="String" Name="TipoItem" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="NombreFantasiaId" Nullable="true" />
         </ComplexType>
         <ComplexType Name="BUSCARPAGOS_Result">
           <Property Type="Int32" Name="PresupuestoId" Nullable="false" />
@@ -13026,6 +13566,15 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="UN" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1000" />
+          <Property Type="Double" Name="Costo" Nullable="false" />
+          <Property Type="Double" Name="Margen" Nullable="true" />
+          <Property Type="Double" Name="Precio" Nullable="false" />
+          <Property Type="Double" Name="Royalty" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CargarCostosTecnica_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1000" />
           <Property Type="Double" Name="Costo" Nullable="false" />
           <Property Type="Double" Name="Margen" Nullable="true" />
@@ -13095,17 +13644,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Type="Double" Name="Exento" Nullable="false" />
           <Property Type="Double" Name="MontoFactura" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13164,6 +13702,17 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bloqueo">
+            <EntityTypeMapping TypeName="AmbientHouseModel.Bloqueo">
+              <MappingFragment StoreEntitySet="Bloqueo">
+                <ScalarProperty Name="BloqueoId" ColumnName="BloqueoId" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="FormId" ColumnName="FormId" />
+                <ScalarProperty Name="Control" ColumnName="Control" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -13327,6 +13876,18 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ComprobanteProveedorId" ColumnName="ComprobanteProveedorId" />
                 <ScalarProperty Name="PagoProveedorId" ColumnName="PagoProveedorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComprobantesPagados">
+            <EntityTypeMapping TypeName="AmbientHouseModel.ComprobantesPagados">
+              <MappingFragment StoreEntitySet="ComprobantesPagados">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ComprobanteProveedorDetalleId" ColumnName="ComprobanteProveedorDetalleId" />
+                <ScalarProperty Name="NroPresupuesto" ColumnName="NroPresupuesto" />
+                <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
+                <ScalarProperty Name="TMDescripcion" ColumnName="TMDescripcion" />
+                <ScalarProperty Name="MontoPagado" ColumnName="MontoPagado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -13686,7 +14247,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="UsaPc" ColumnName="UsaPc" />
                 <ScalarProperty Name="NroPc" ColumnName="NroPc" />
                 <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
-                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
                 <ScalarProperty Name="SectorEmpresaId" ColumnName="SectorEmpresaId" />
                 <ScalarProperty Name="TipoEmpleadoId" ColumnName="TipoEmpleadoId" />
                 <ScalarProperty Name="HorarioDesde" ColumnName="HorarioDesde" />
@@ -13695,6 +14255,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Premio" ColumnName="Premio" />
                 <ScalarProperty Name="SAC" ColumnName="SAC" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -13794,12 +14355,12 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Importe" ColumnName="Importe" />
                 <ScalarProperty Name="NroFactura" ColumnName="NroFactura" />
-                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
                 <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
                 <ScalarProperty Name="CreateFecha" ColumnName="CreateFecha" />
                 <ScalarProperty Name="UpdateFecha" ColumnName="UpdateFecha" />
                 <ScalarProperty Name="Delete" ColumnName="Delete" />
                 <ScalarProperty Name="FechaDelete" ColumnName="FechaDelete" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -13833,6 +14394,15 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Anio" ColumnName="Anio" />
                 <ScalarProperty Name="SePasaA" ColumnName="SePasaA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Form">
+            <EntityTypeMapping TypeName="AmbientHouseModel.Form">
+              <MappingFragment StoreEntitySet="Form">
+                <ScalarProperty Name="FormId" ColumnName="FormId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -14034,34 +14604,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ItemDetalle">
-            <EntityTypeMapping TypeName="AmbientHouseModel.ItemDetalle">
-              <MappingFragment StoreEntitySet="ItemDetalle">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ItemDetalleProveedor">
-            <EntityTypeMapping TypeName="AmbientHouseModel.ItemDetalleProveedor">
-              <MappingFragment StoreEntitySet="ItemDetalleProveedor">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ItemDetalleId" ColumnName="ItemDetalleId" />
-                <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ItemDetalleRatio">
-            <EntityTypeMapping TypeName="AmbientHouseModel.ItemDetalleRatio">
-              <MappingFragment StoreEntitySet="ItemDetalleRatio">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TipoCateringId" ColumnName="TipoCateringId" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="ItemDetalleId" ColumnName="ItemDetalleId" />
-                <ScalarProperty Name="Ratio" ColumnName="Ratio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="AmbientHouseModel.Items">
               <MappingFragment StoreEntitySet="Items">
@@ -14072,6 +14614,11 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Margen" ColumnName="Margen" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="ItemDetalleId" ColumnName="ItemDetalleId" />
+                <ScalarProperty Name="CuentaId" ColumnName="CuentaId" />
+                <ScalarProperty Name="DepositoId" ColumnName="DepositoId" />
+                <ScalarProperty Name="TipoItem" ColumnName="TipoItem" />
+                <ScalarProperty Name="NombreFantasiaId" ColumnName="NombreFantasiaId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -14421,6 +14968,15 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Parametro">
+            <EntityTypeMapping TypeName="AmbientHouseModel.Parametro">
+              <MappingFragment StoreEntitySet="Parametro">
+                <ScalarProperty Name="ParametroId" ColumnName="ParametroId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Parametros">
             <EntityTypeMapping TypeName="AmbientHouseModel.Parametros">
               <MappingFragment StoreEntitySet="Parametros">
@@ -14435,6 +14991,16 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               <MappingFragment StoreEntitySet="Perfiles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permiso">
+            <EntityTypeMapping TypeName="AmbientHouseModel.Permiso">
+              <MappingFragment StoreEntitySet="Permiso">
+                <ScalarProperty Name="PermisoId" ColumnName="PermisoId" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="FormId" ColumnName="FormId" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -14482,7 +15048,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="CostoMesas" ColumnName="CostoMesas" />
                 <ScalarProperty Name="PrecioSillas" ColumnName="PrecioSillas" />
                 <ScalarProperty Name="PrecioMesas" ColumnName="PrecioMesas" />
-                <ScalarProperty Name="Royalty" ColumnName="Royalty" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
                 <ScalarProperty Name="FechaAprobacion" ColumnName="FechaAprobacion" />
@@ -14495,6 +15060,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="FechaUpdate" ColumnName="FechaUpdate" />
                 <ScalarProperty Name="Delete" ColumnName="Delete" />
                 <ScalarProperty Name="FechaDelete" ColumnName="FechaDelete" />
+                <ScalarProperty Name="Royalty" ColumnName="Royalty" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -14531,12 +15097,12 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="ImporteOrganizador" ColumnName="ImporteOrganizador" />
                 <ScalarProperty Name="PorcentajeOrganizador" ColumnName="PorcentajeOrganizador" />
                 <ScalarProperty Name="ValorOrganizador" ColumnName="ValorOrganizador" />
-                <ScalarProperty Name="ValorRoyaltyOrganizador" ColumnName="ValorRoyaltyOrganizador" />
                 <ScalarProperty Name="FechaCaducidad" ColumnName="FechaCaducidad" />
                 <ScalarProperty Name="CantidadAdultosFinal" ColumnName="CantidadAdultosFinal" />
                 <ScalarProperty Name="CantidadAdolescentesFinal" ColumnName="CantidadAdolescentesFinal" />
                 <ScalarProperty Name="CantidadMenores3Final" ColumnName="CantidadMenores3Final" />
                 <ScalarProperty Name="CantidadMenoresEntre3y8Final" ColumnName="CantidadMenoresEntre3y8Final" />
+                <ScalarProperty Name="ValorRoyaltyOrganizador" ColumnName="ValorRoyaltyOrganizador" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -14558,7 +15124,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="Margen" ColumnName="Margen" />
                 <ScalarProperty Name="Costo" ColumnName="Costo" />
-                <ScalarProperty Name="Royalty" ColumnName="Royalty" />
                 <ScalarProperty Name="UnidadNegocioId" ColumnName="UnidadNegocioId" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="FechaVendimiento" ColumnName="FechaVendimiento" />
@@ -14580,6 +15145,9 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="CaracteristicaId" ColumnName="CaracteristicaId" />
                 <ScalarProperty Name="OrganizacionItemId" ColumnName="OrganizacionItemId" />
                 <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+                <ScalarProperty Name="MargenAjuste" ColumnName="MargenAjuste" />
+                <ScalarProperty Name="Royalty" ColumnName="Royalty" />
+                <ScalarProperty Name="Margen2" ColumnName="Margen2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -14686,6 +15254,15 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="UpdateFecha" ColumnName="UpdateFecha" />
                 <ScalarProperty Name="Delete" ColumnName="Delete" />
                 <ScalarProperty Name="DeleteFecha" ColumnName="DeleteFecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="AmbientHouseModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -14970,12 +15547,38 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="AmbientHouseModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FeCreacion" ColumnName="FeCreacion" />
+                <ScalarProperty Name="NroDeFallos" ColumnName="NroDeFallos" />
+                <ScalarProperty Name="EsAdmin" ColumnName="EsAdmin" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="UsuarioIdCreador" ColumnName="UsuarioIdCreador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UsuarioPipeDrive_Ambient">
             <EntityTypeMapping TypeName="AmbientHouseModel.UsuarioPipeDrive_Ambient">
               <MappingFragment StoreEntitySet="UsuarioPipeDrive_Ambient">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserPipeDriveId" ColumnName="UserPipeDriveId" />
                 <ScalarProperty Name="UserAmbientId" ColumnName="UserAmbientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioRol">
+            <EntityTypeMapping TypeName="AmbientHouseModel.UsuarioRol">
+              <MappingFragment StoreEntitySet="UsuarioRol">
+                <ScalarProperty Name="UsuarioRolId" ColumnName="UsuarioRolId" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -15010,6 +15613,24 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ItemDetalle">
+            <EntityTypeMapping TypeName="AmbientHouseModel.ItemDetalle">
+              <MappingFragment StoreEntitySet="ItemDetalle">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NombreFantasia">
+            <EntityTypeMapping TypeName="AmbientHouseModel.NombreFantasia">
+              <MappingFragment StoreEntitySet="NombreFantasia">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AvisosClientesPorFecha">
             <EntityTypeMapping TypeName="AmbientHouseModel.AvisosClientesPorFecha">
               <MappingFragment StoreEntitySet="AvisosClientesPorFecha">
@@ -15038,6 +15659,14 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="TOTALPRESUPUESTOSININDEXACION" ColumnName="TOTALPRESUPUESTOSININDEXACION" />
                 <ScalarProperty Name="Indexacion" ColumnName="Indexacion" />
                 <ScalarProperty Name="TipoIndexacion" ColumnName="TipoIndexacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ControlEventosConfirmados">
+            <EntityTypeMapping TypeName="AmbientHouseModel.ControlEventosConfirmados">
+              <MappingFragment StoreEntitySet="ControlEventosConfirmados">
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="EventoId" ColumnName="EventoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -15285,6 +15914,42 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Cliente" ColumnName="Cliente" />
                 <ScalarProperty Name="FechaSena" ColumnName="FechaSena" />
                 <ScalarProperty Name="TipoEventoId" ColumnName="TipoEventoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObtenerEventosNew">
+            <EntityTypeMapping TypeName="AmbientHouseModel.ObtenerEventosNew">
+              <MappingFragment StoreEntitySet="ObtenerEventosNew">
+                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
+                <ScalarProperty Name="CARACTERISTICA" ColumnName="CARACTERISTICA" />
+                <ScalarProperty Name="LOCACION" ColumnName="LOCACION" />
+                <ScalarProperty Name="SECTOR" ColumnName="SECTOR" />
+                <ScalarProperty Name="JORNADA" ColumnName="JORNADA" />
+                <ScalarProperty Name="HorarioEvento" ColumnName="HorarioEvento" />
+                <ScalarProperty Name="CantidadInicialInvitados" ColumnName="CantidadInicialInvitados" />
+                <ScalarProperty Name="FechaEvento" ColumnName="FechaEvento" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Ejecutivo" ColumnName="Ejecutivo" />
+                <ScalarProperty Name="EventoId" ColumnName="EventoId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="PresupuestoEstadoId" ColumnName="PresupuestoEstadoId" />
+                <ScalarProperty Name="EstadoPresupuesto" ColumnName="EstadoPresupuesto" />
+                <ScalarProperty Name="PresupuestoIdAnterior" ColumnName="PresupuestoIdAnterior" />
+                <ScalarProperty Name="LocacionId" ColumnName="LocacionId" />
+                <ScalarProperty Name="EmpleadoCliente" ColumnName="EmpleadoCliente" />
+                <ScalarProperty Name="TipoEvento" ColumnName="TipoEvento" />
+                <ScalarProperty Name="ClienteBisId" ColumnName="ClienteBisId" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="FechaSena" ColumnName="FechaSena" />
+                <ScalarProperty Name="TipoEventoId" ColumnName="TipoEventoId" />
+                <ScalarProperty Name="TipoExperiencia" ColumnName="TipoExperiencia" />
+                <ScalarProperty Name="TipoBarra" ColumnName="TipoBarra" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -15578,6 +16243,28 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProveedoresPagos">
+            <EntityTypeMapping TypeName="AmbientHouseModel.ProveedoresPagos">
+              <MappingFragment StoreEntitySet="ProveedoresPagos">
+                <ScalarProperty Name="NroPresupuesto" ColumnName="NroPresupuesto" />
+                <ScalarProperty Name="NroFactura" ColumnName="NroFactura" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="FechaSena" ColumnName="FechaSena" />
+                <ScalarProperty Name="TipoComprobante" ColumnName="TipoComprobante" />
+                <ScalarProperty Name="CuentaContable" ColumnName="CuentaContable" />
+                <ScalarProperty Name="FechaEvento" ColumnName="FechaEvento" />
+                <ScalarProperty Name="UnidadNegocio" ColumnName="UnidadNegocio" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="ValorNetoFactura" ColumnName="ValorNetoFactura" />
+                <ScalarProperty Name="ValorDetalleFactura" ColumnName="ValorDetalleFactura" />
+                <ScalarProperty Name="ImportePago" ColumnName="ImportePago" />
+                <ScalarProperty Name="Cuit" ColumnName="Cuit" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+                <ScalarProperty Name="FormaPago" ColumnName="FormaPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ReporteAdiocionales">
             <EntityTypeMapping TypeName="AmbientHouseModel.ReporteAdiocionales">
               <MappingFragment StoreEntitySet="ReporteAdiocionales">
@@ -15767,13 +16454,83 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionName="AmbientHouseModel.Store.CuentaCorrienteProveedores" FunctionImportName="CuentaCorrienteProveedores">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AmbientHouseModel.CuentaCorrienteProveedores_Result">
+                <ScalarProperty Name="NroComprobante" ColumnName="NroComprobante" />
+                <ScalarProperty Name="CuitProveedor" ColumnName="CuitProveedor" />
+                <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
+                <ScalarProperty Name="NroPresupuesto" ColumnName="NroPresupuesto" />
+                <ScalarProperty Name="FechaPresupuesto" ColumnName="FechaPresupuesto" />
+                <ScalarProperty Name="FechaEvento" ColumnName="FechaEvento" />
+                <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
+                <ScalarProperty Name="TipoTransaccion" ColumnName="TipoTransaccion" />
+                <ScalarProperty Name="FechaTransaccion" ColumnName="FechaTransaccion" />
+                <ScalarProperty Name="NroTransaccion" ColumnName="NroTransaccion" />
+                <ScalarProperty Name="ValorNetoFactura" ColumnName="ValorNetoFactura" />
+                <ScalarProperty Name="ValorImpuesto" ColumnName="ValorImpuesto" />
+                <ScalarProperty Name="ValorImpuestoInterno" ColumnName="ValorImpuestoInterno" />
+                <ScalarProperty Name="ImporteSinIVA" ColumnName="ImporteSinIVA" />
+                <ScalarProperty Name="SaldoPendiente" ColumnName="SaldoPendiente" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="AmbientHouseModel.Store.CuentaCorrienteProveedoresGral" FunctionImportName="CuentaCorrienteProveedoresGral">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AmbientHouseModel.CuentaCorrienteProveedoresGral_Result">
+                <ScalarProperty Name="NroComprobante" ColumnName="NroComprobante" />
+                <ScalarProperty Name="CuitProveedor" ColumnName="CuitProveedor" />
+                <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
+                <ScalarProperty Name="NroPresupuesto" ColumnName="NroPresupuesto" />
+                <ScalarProperty Name="FechaPresupuesto" ColumnName="FechaPresupuesto" />
+                <ScalarProperty Name="FechaEvento" ColumnName="FechaEvento" />
+                <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
+                <ScalarProperty Name="TipoTransaccion" ColumnName="TipoTransaccion" />
+                <ScalarProperty Name="FechaTransaccion" ColumnName="FechaTransaccion" />
+                <ScalarProperty Name="NroTransaccion" ColumnName="NroTransaccion" />
+                <ScalarProperty Name="ValorNetoFactura" ColumnName="ValorNetoFactura" />
+                <ScalarProperty Name="ValorImpuesto" ColumnName="ValorImpuesto" />
+                <ScalarProperty Name="ValorImpuestoInterno" ColumnName="ValorImpuestoInterno" />
+                <ScalarProperty Name="ImporteSinIVA" ColumnName="ImporteSinIVA" />
+                <ScalarProperty Name="SaldoPendiente" ColumnName="SaldoPendiente" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="AmbientHouseModel.Store.informeCorrienteProveedor" FunctionImportName="informeCorrienteProveedor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AmbientHouseModel.informeCorrienteProveedor_Result">
+                <ScalarProperty Name="CuitProveedor" ColumnName="CuitProveedor" />
+                <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
+                <ScalarProperty Name="NroPresupuesto" ColumnName="NroPresupuesto" />
+                <ScalarProperty Name="FechaPresupuesto" ColumnName="FechaPresupuesto" />
+                <ScalarProperty Name="FechaEvento" ColumnName="FechaEvento" />
+                <ScalarProperty Name="TipoTransaccion" ColumnName="TipoTransaccion" />
+                <ScalarProperty Name="FechaTransaccion" ColumnName="FechaTransaccion" />
+                <ScalarProperty Name="NroTransaccion" ColumnName="NroTransaccion" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="ImporteSinIVA" ColumnName="ImporteSinIVA" />
+                <ScalarProperty Name="SaldoPendiente" ColumnName="SaldoPendiente" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ActualizarPresupuestosRealizados" FunctionName="AmbientHouseModel.Store.ActualizarPresupuestosRealizados" />
           <FunctionImportMapping FunctionImportName="ActualizarPresupuestosVencidos" FunctionName="AmbientHouseModel.Store.ActualizarPresupuestosVencidos" />
           <FunctionImportMapping FunctionImportName="BuscarItemsporTipoCatering" FunctionName="AmbientHouseModel.Store.BuscarItemsporTipoCatering">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AmbientHouseModel.BuscarItemsporTipoCatering_Result">
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="CategoriaItemId" ColumnName="CategoriaItemId" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Margen" ColumnName="Margen" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="ItemDetalleId" ColumnName="ItemDetalleId" />
+                <ScalarProperty Name="CuentaId" ColumnName="CuentaId" />
+                <ScalarProperty Name="DepositoId" ColumnName="DepositoId" />
+                <ScalarProperty Name="TipoItem" ColumnName="TipoItem" />
+                <ScalarProperty Name="NombreFantasiaId" ColumnName="NombreFantasiaId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -15808,7 +16565,19 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CorrecionMovimientosPorCuentas" FunctionName="AmbientHouseModel.Store.CorrecionMovimientosPorCuentas" />
+          <FunctionImportMapping FunctionImportName="CargarCostosTecnica" FunctionName="AmbientHouseModel.Store.CargarCostosTecnica">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AmbientHouseModel.CargarCostosTecnica_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Margen" ColumnName="Margen" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Royalty" ColumnName="Royalty" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="DetalleInformeResultados" FunctionName="AmbientHouseModel.Store.DetalleInformeResultados">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AmbientHouseModel.DetalleInformeResultados_Result">
@@ -15870,6 +16639,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PreciosCatering" FunctionName="AmbientHouseModel.Store.PreciosCatering" />
           <FunctionImportMapping FunctionImportName="ReporteIva" FunctionName="AmbientHouseModel.Store.ReporteIva">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AmbientHouseModel.ReporteIva_Result">
@@ -15893,31 +16663,6 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_AltaSalones" FunctionName="AmbientHouseModel.Store.sp_AltaSalones" />
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="AmbientHouseModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="AmbientHouseModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="AmbientHouseModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="AmbientHouseModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AmbientHouseModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="AmbientHouseModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AmbientHouseModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="AmbientHouseModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="AmbientHouseModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -15935,7 +16680,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

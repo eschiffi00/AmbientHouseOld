@@ -857,6 +857,8 @@ namespace DomainAmbientHouse.Datos
             return SqlContext.CostoCanon.Where(o => o.SegmentoId == segmentoId && o.CaracteristicaId == caracteriticaId && o.TipoCateringId == TipoCateringId).FirstOrDefault();
         }
 
+
+
         public List<CostoSalones> ObtenerCostoSalones()
         {
             var query = from cs in SqlContext.CostoSalones
@@ -955,6 +957,26 @@ namespace DomainAmbientHouse.Datos
         {
             return SqlContext.CostoCanon.Where(o => o.Id == id).SingleOrDefault();
 
+        }
+        internal List<CargarCostosTecnica_Result> CargarPrecioCostosTecnica(ParametrosCostoTecnica param)
+        {
+            List<CargarCostosTecnica_Result> query = new List<CargarCostosTecnica_Result>();
+            try
+            {
+                query = (from c in SqlContext.CargarCostosTecnica(param.LocacionId, param.SectorId,
+                                                                    param.TipoServicioId,
+                                                                    param.SegmentoId,
+                                                                    param.ProveedorId,
+                                                                    param.Anio, param.Mes, param.Dia,
+                                                                    param.Costo, param.Precio, param.Royalty)
+                         select c).ToList();
+
+                return query;
+            }
+            catch (Exception)
+            {
+                return query;
+            }
         }
     }
 }
@@ -1299,4 +1321,34 @@ public partial class ManipuladorExcel
     }
 
 
+}
+namespace DomainAmbientHouse.Entidades
+{
+    public partial class ParametrosCostoTecnica
+    {
+        public int LocacionId { get; set; }
+        public int SectorId { get; set; }
+        public int TipoServicioId { get; set; }
+        public int SegmentoId { get; set; }
+        public int ProveedorId { get; set; }
+        public int Anio { get; set; }
+        public int Mes { get; set; }
+        public string Dia { get; set; }
+        public double Costo { get; set; }
+        public double Precio { get; set; }
+        public double Royalty { get; set; }
+
+    }
+
+    public partial class ResultParametrosCostosTecnica
+    {
+        public int Id { get; set; }
+        public string Codigo { get; set; }
+        public string Descripcion { get; set; }
+        public double Costo { get; set; }
+        public double? Margen { get; set; }
+        public double Precio { get; set; }
+        public double Royalty { get; set; }
+
+    }
 }
