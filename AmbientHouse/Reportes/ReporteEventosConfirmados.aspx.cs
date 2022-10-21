@@ -7,7 +7,9 @@ using System.Web.UI.WebControls;
 using DomainAmbientHouse.Servicios;
 using DomainAmbientHouse.Entidades;
 using System.Web.UI.HtmlControls;
-
+using DbEntidades.Entities;
+using DbEntidades.Operators;
+using DBEntidades.Entities;
 
 namespace AmbientHouse.Reportes
 {
@@ -47,11 +49,63 @@ namespace AmbientHouse.Reportes
 
             //HtmlTable table =  GenerarTabla(ListPresupuestosConfirmados.ToList().Count(), 3);
             //Panel1.Controls.Add(table);
-
-            GridViewEventosConfirmados.DataSource = ListPresupuestosConfirmados.ToList();
+            List<NewEventosConfirmados> eventosNew = new List<NewEventosConfirmados>();
+            eventosNew = CargarNuevoReporte(ListPresupuestosConfirmados.ToList());
+            GridViewEventosConfirmados.DataSource = eventosNew;
             GridViewEventosConfirmados.DataBind();
         }
-
+        public List<NewEventosConfirmados> CargarNuevoReporte(List<ObtenerEventos> lista)
+        {
+            List<NewEventosConfirmados> EventosConfirmadosNew = new List<NewEventosConfirmados>();
+            NewEventosConfirmados e = new NewEventosConfirmados();
+            foreach(var evento in lista) { 
+                e.ApellidoNombre = evento.ApellidoNombre;
+                e.CARACTERISTICA = evento.CARACTERISTICA;
+                e.LOCACION = evento.LOCACION;
+                e.SECTOR = evento.SECTOR;
+                e.JORNADA = evento.JORNADA;
+                e.HorarioEvento = evento.HorarioEvento;
+                e.CantidadInicialInvitados = evento.CantidadInicialInvitados;
+                e.FechaEvento = evento.FechaEvento;
+                e.Id = evento.Id;
+                e.Estado = evento.Estado;
+                e.Ejecutivo = evento.Ejecutivo;
+                e.EventoId = evento.EventoId;
+                e.ClienteId = evento.ClienteId;
+                e.EmpleadoId = evento.EmpleadoId;
+                e.EstadoId = evento.EstadoId;
+                e.RazonSocial = evento.RazonSocial;
+                e.Fecha = evento.Fecha;
+                e.PresupuestoId = evento.PresupuestoId;
+                e.PresupuestoEstadoId = evento.PresupuestoEstadoId;
+                e.EstadoPresupuesto = evento.EstadoPresupuesto;
+                e.PresupuestoIdAnterior = evento.PresupuestoIdAnterior;
+                e.LocacionId = evento.LocacionId;
+                e.EmpleadoCliente = evento.EmpleadoCliente;
+                e.TipoEvento = evento.TipoEvento;
+                e.ClienteBisId = evento.ClienteBisId;
+                e.Cliente = evento.Cliente;
+                e.FechaSena = evento.FechaSena;
+                e.TipoEventoId = evento.TipoEventoId;
+                var detalles = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId",e.PresupuestoId.ToString());
+                if(detalles.Find(x => x.UnidadNegocioId == 3) !=null){
+                    var productoEx = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 3).ProductoId);
+                    e.TipoExperiencia = TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion == null ? " " : TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion;
+                }
+                else { e.TipoExperiencia = ""; }
+                if (detalles.Find(x => x.UnidadNegocioId == 6) != null)
+                {
+                    var productoBa = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 6).ProductoId);
+                    e.TipoBarra = TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion == null ? " " : TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion;
+                }
+                else
+                {
+                    e.TipoBarra = "";
+                }
+                EventosConfirmadosNew.Add(e);
+            }
+            return EventosConfirmadosNew.ToList();
+        }
         private HtmlTable GenerarTabla(int filas, int columnas)
         {
             HtmlTable tabla = new HtmlTable();
