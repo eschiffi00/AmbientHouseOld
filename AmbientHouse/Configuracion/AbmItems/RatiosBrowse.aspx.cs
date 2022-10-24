@@ -78,7 +78,7 @@ namespace WebApplication.app.ItemsNS
                     List<ItemDetalle> lista = new List<ItemDetalle>();
                     if (ItemDet.ItemDetalleId != null && ItemDet.ItemDetalleId > 0)
                     {
-                        lista = ItemDetalleOperator.GetAllByParameter("ItemId", ItemDet.ItemDetalleId.ToString());
+                        lista = ItemDetalleOperator.GetAllByParameter("ItemId", ItemDet.ItemDetalleId.Value);
                     }
                     foreach (var idCategoria in lista)
                     {
@@ -100,7 +100,7 @@ namespace WebApplication.app.ItemsNS
 
         protected void btnNuevoRatio_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Configuracion/AdmItems/RatiosEdit.aspx");
+            Response.Redirect("~/Configuracion/AbmItems/RatiosEdit.aspx");
         }
         protected void grdRatios_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -116,7 +116,7 @@ namespace WebApplication.app.ItemsNS
             if (e.CommandName == "CommandNameEdit")
             {
 
-                Response.Redirect("../../Configuracion/AdmItems/RatiosEdit.aspx?Id="+id);
+                Response.Redirect("../../Configuracion/AbmItems/RatiosEdit.aspx?Id="+id);
             }
         }
 
@@ -141,7 +141,7 @@ namespace WebApplication.app.ItemsNS
                     List<ItemDetalle> lista = new List<ItemDetalle>();
                     if (ItemDet.ItemDetalleId != null && ItemDet.ItemDetalleId > 0)
                     {
-                        lista = ItemDetalleOperator.GetAllByParameter("ItemId", ItemDet.ItemDetalleId.ToString());
+                        lista = ItemDetalleOperator.GetAllByParameter("ItemId", ItemDet.ItemDetalleId.Value);
                     }
                     foreach (var idCategoria in lista)
                     {

@@ -15,10 +15,10 @@ namespace DbEntidades.Entities
 		public string ItemDetalle { get; set; }
 		public int CategoriaId { get; set; }
 		public string CategoriaDetalle { get; set; }
-		public string TipoDependencia { get; set; }
-        public string DetalleDependencia { get; set; }
-        public double ValorRatio { get; set; }
-        public double TopeRatio { get; set; }
+		public string TipoRatio { get; set; }
+        public string DetalleTipo { get; set; }
+        public double? ValorRatio { get; set; }
+        public double? TopeRatio { get; set; }
 		public int Menores { get; set; }
 		public int AdicionalRatio { get; set; }
 		public int EstadoId { get; set; }
@@ -32,8 +32,8 @@ namespace DbEntidades.Entities
             "ItemDetalle: " + ItemDetalle.ToString() + "\r\n " +
             "CategoriaId: " + CategoriaId.ToString() + "\r\n " +
             "CategoriaDetalle: " + CategoriaDetalle.ToString() + "\r\n " +
-            "TipoDependencia: " + TipoDependencia.ToString() + "\r\n " +
-            "DetalleDependencia: " + DetalleDependencia.ToString() + "\r\n " +
+            "TipoRatio: " + TipoRatio.ToString() + "\r\n " +
+            "DetalleTipo: " + DetalleTipo.ToString() + "\r\n " +
             "TopeRatio: " + TopeRatio.ToString() + "\r\n " +
             "Menores: " + Menores.ToString() + "\r\n " +
 			"EstadoID: " + EstadoId.ToString() + "\r\n " +

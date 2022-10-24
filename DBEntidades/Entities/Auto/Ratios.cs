@@ -13,10 +13,10 @@ namespace DbEntidades.Entities
 		public int Id { get; set; }
 		public int ItemId { get; set; }
 		public int CategoriaId { get; set; }
-		public string TipoDependencia { get; set; }
-		public string DetalleDependencia { get; set; }
-		public double ValorRatio { get; set; }
-		public double TopeRatio { get; set; }
+		public string TipoRatio { get; set; }
+		public string DetalleTipo { get; set; }
+		public double? ValorRatio { get; set; }
+		public double? TopeRatio { get; set; }
 		public int Menores { get; set; }
 		public int AdicionalRatio { get; set; }
 		public int EstadoId { get; set; }
@@ -27,8 +27,8 @@ namespace DbEntidades.Entities
 			"Id: " + Id.ToString() + "\r\n " + 
 			"ItemId: " + ItemId.ToString() + "\r\n " + 
 			"CategoriaId: " + CategoriaId.ToString() + "\r\n " + 
-			"TipoDependencia: " + TipoDependencia.ToString() + "\r\n " + 
-			"DetalleDependencia: " + DetalleDependencia.ToString() + "\r\n " + 
+			"TipoRatio: " + TipoRatio.ToString() + "\r\n " + 
+			"DetalleTipo: " + DetalleTipo.ToString() + "\r\n " + 
 			"ValorRatio: " + ValorRatio.ToString() + "\r\n " + 
 			"TopeRatio: " + TopeRatio.ToString() + "\r\n " + 
 			"Menores: " + Menores.ToString() + "\r\n " + 
@@ -52,8 +52,8 @@ namespace DbEntidades.Entities
 				case "Id": return false;
 				case "ItemId": return false;
 				case "CategoriaId": return false;
-				case "TipoDependencia": return false;
-				case "DetalleDependencia": return false;
+				case "TipoRatio": return false;
+				case "DetalleTipo": return false;
 				case "ValorRatio": return false;
 				case "TopeRatio": return false;
 				case "Menores": return false;

@@ -74,7 +74,7 @@ namespace WebApplication.app.ItemsNS
                 {
                     err = 1;
                 }
-                seItems.EstadoId = EstadosOperator.GetHablitadoID();
+                seItems.EstadoId = EstadosOperator.GetHablitadoID("Items");
                 seItems.Costo = float.Parse(fila2[5].Text);
                 seItems.Margen = float.Parse(fila2[6].Text);
                 seItems.Precio = float.Parse(fila2[7].Text);

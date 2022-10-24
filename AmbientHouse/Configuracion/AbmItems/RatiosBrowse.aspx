@@ -208,9 +208,9 @@
                 <asp:BoundField DataField="ItemId" HeaderText="Detalle" Visible="false" />
                 <asp:BoundField DataField="CategoriaId" HeaderText="CategoriaId" Visible="false" />
                 <asp:BoundField DataField="CategoriaDetalle" HeaderText="Categoria Detalle" Visible="true" />
-                <asp:BoundField DataField="TipoDependencia" HeaderText="Dependencia" Visible="true" />
-                <asp:BoundField DataField="DetalleDependencia" HeaderText="Detalle Dependencia" Visible="true" />
-                <asp:BoundField DataField="ValorRatio" HeaderText="Tope Ratio" Visible="true" />
+                <asp:BoundField DataField="TipoRatio" HeaderText="Tipo Ratio" Visible="true" />
+                <asp:BoundField DataField="DetalleTipo" HeaderText="Detalle Ratio" Visible="true" />
+                <asp:BoundField DataField="ValorRatio" HeaderText="Valor Ratio" Visible="true" />
                 <asp:BoundField DataField="TopeRatio" HeaderText="Tope Ratio" Visible="true" />
                 <asp:BoundField DataField="Menores" HeaderText="Tiene Menores" Visible="true" />
                 <asp:BoundField DataField="AdicionalRatio" HeaderText="Es Adicional" Visible="true" />       

@@ -101,7 +101,7 @@ namespace DbEntidades.Operators
         public static void Delete(int id)
         {
             Receta u = GetOneByIdentity(id);
-            u.EstadoID = EstadosOperator.GetDeshabilitadoID();
+            u.EstadoID = EstadosOperator.GetDeshabilitadoID("Recetas");
             Update(u);
         }
     }

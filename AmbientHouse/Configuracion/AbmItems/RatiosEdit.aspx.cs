@@ -43,7 +43,7 @@ namespace WebApplication.app.ItemsNS
                     int uid = Convert.ToInt32(s);
                     seRatios = RatiosOperator.GetOneByIdentity(uid);
                     
-                    switch (seRatios.TipoDependencia)
+                    switch (seRatios.TipoRatio)
                     {
                         case "PAX": ddlDependencia.SelectedValue = "1";
                             break;
@@ -51,7 +51,7 @@ namespace WebApplication.app.ItemsNS
                             ddlDependencia.SelectedValue = "2";
                             break;
                     }
-                    txtDetalle.Text = seRatios.DetalleDependencia;
+                    txtDetalle.Text = seRatios.DetalleTipo;
                     txtValor.Text = seRatios.ValorRatio.ToString();
                     txtTope.Text = seRatios.TopeRatio.ToString();
                     if (seRatios.Menores == 1)
@@ -64,7 +64,7 @@ namespace WebApplication.app.ItemsNS
                     }
 
                     //obtengo todas las categorias y utilizo descripcion y id
-                    var categorias = ItemDetalleOperator.GetAllByParameter("ItemId", id.ToString());
+                    var categorias = ItemDetalleOperator.GetAllByParameter("ItemId", id);
                     if (categorias.Count() > 0)
                     {
                         foreach (ListItem item in MultiselectCategorias.Items)
@@ -137,7 +137,7 @@ namespace WebApplication.app.ItemsNS
                     List<ItemDetalle> lista = new List<ItemDetalle>();
                     if (ItemDet.ItemDetalleId != null && ItemDet.ItemDetalleId > 0)
                     {
-                        lista = ItemDetalleOperator.GetAllByParameter("ItemId", ItemDet.ItemDetalleId.ToString());
+                        lista = ItemDetalleOperator.GetAllByParameter("ItemId", ItemDet.ItemDetalleId.Value);
                     }
                     foreach (var idCategoria in lista)
                     {
@@ -207,9 +207,9 @@ namespace WebApplication.app.ItemsNS
         {
             Ratios Ratio = new Ratios();
             try
-            {   if(txtDetalle.Text == null || txtDetalle.Text == "") { Ratio.DetalleDependencia = " "; }
-                else { Ratio.DetalleDependencia = txtDetalle.Text; }
-                //seRatios.DetalleDependencia = txtDetalle.Text;
+            {   if(txtDetalle.Text == null || txtDetalle.Text == "") { Ratio.DetalleTipo = " "; }
+                else { Ratio.DetalleTipo = txtDetalle.Text; }
+                //seRatios.DetalleTipo = txtDetalle.Text;
                 Ratio.ValorRatio = float.Parse(txtValor.Text);
                 Ratio.TopeRatio = float.Parse(txtTope.Text);
                 Ratio.Menores = chkMenores.Checked ? 1 : 0;
@@ -218,10 +218,10 @@ namespace WebApplication.app.ItemsNS
                 switch (ddlDependencia.SelectedValue)
                 {
                     case "1":
-                        Ratio.TipoDependencia = "PAX";
+                        Ratio.TipoRatio = "PAX";
                         break;
                     case "2":
-                        Ratio.TipoDependencia = "ITEM";
+                        Ratio.TipoRatio = "ITEM";
                         break;
                 }          
                 
@@ -232,22 +232,33 @@ namespace WebApplication.app.ItemsNS
                     {
                         foreach (ListItem categoria in MultiselectCategorias.Items)
                         {
-                            var categoriasItem = ItemDetalleOperator.GetAllByParameter("ItemId", detItem.ItemDetalleId.ToString());
-                            foreach(var detalle in categoriasItem)
+                            List<ItemDetalle> categoriasItem;
+                            if (detItem.ItemDetalleId.Value > 0)
                             {
-                                if (categoria.Selected && Int32.Parse(categoria.Value) == detalle.CategoriaId)
+                                categoriasItem = ItemDetalleOperator.GetAllByParameter("ItemId", detItem.ItemDetalleId.Value);
+                                foreach (var detalle in categoriasItem)
                                 {
-                                    Ratio.Id = -1;
-                                    Ratio.ItemId = detItem.Id;
-                                    Ratio.CategoriaId = Int32.Parse(categoria.Value);
-                                    RatiosOperator.Save(Ratio);
+                                    if (categoria.Selected && Int32.Parse(categoria.Value) == detalle.CategoriaId)
+                                    {
+                                        Ratio.Id = -1;
+                                        Ratio.ItemId = detItem.Id;
+                                        Ratio.CategoriaId = Int32.Parse(categoria.Value);
+                                        RatiosOperator.Save(Ratio);
+                                    }
                                 }
+                            }else
+                            {
+                                Ratio.Id = -1;
+                                Ratio.ItemId = detItem.Id;
+                                Ratio.CategoriaId = detItem.CategoriaItemId;
+                                RatiosOperator.Save(Ratio);
                             }
+                            
                             
                         }
                     }
                 }
-                Response.Redirect("~/Configuracion/AdmItems/ItemsBrowse.aspx");
+                Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
             }
             catch (Exception ex)
             {

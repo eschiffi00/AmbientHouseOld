@@ -36,8 +36,8 @@ namespace DbEntidades.Operators
                 RatiosDetail.ItemDetalle = ItemsOperator.GetOneByIdentity(Ratios.ItemId).Detalle;
                 RatiosDetail.CategoriaId = Ratios.CategoriaId;
                 RatiosDetail.CategoriaDetalle = CategoriasOperator.GetOneByIdentity(Ratios.CategoriaId).Descripcion;
-                RatiosDetail.TipoDependencia = Ratios.TipoDependencia;
-                RatiosDetail.DetalleDependencia = Ratios.DetalleDependencia;
+                RatiosDetail.TipoRatio = Ratios.TipoRatio;
+                RatiosDetail.DetalleTipo = Ratios.DetalleTipo;
                 RatiosDetail.ValorRatio = Ratios.ValorRatio;
                 RatiosDetail.TopeRatio = Ratios.TopeRatio;
                 RatiosDetail.Menores = Ratios.Menores;

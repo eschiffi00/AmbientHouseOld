@@ -119,7 +119,7 @@ namespace DbEntidades.Operators
         public static void Delete(int id)
         {
             Items u = ItemsOperator.GetOneByIdentity(id);
-            u.EstadoId = EstadosOperator.GetDeshabilitadoID();
+            u.EstadoId = EstadosOperator.GetDeshabilitadoID("Items");
             Update(u);
         }
         public static Items GetOneByParameter(string campo, string valor)
