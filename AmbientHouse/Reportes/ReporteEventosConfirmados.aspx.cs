@@ -10,6 +10,7 @@ using System.Web.UI.HtmlControls;
 using DbEntidades.Entities;
 using DbEntidades.Operators;
 using DBEntidades.Entities;
+using NPOI.SS.Formula.Functions;
 
 namespace AmbientHouse.Reportes
 {
@@ -54,11 +55,13 @@ namespace AmbientHouse.Reportes
             GridViewEventosConfirmados.DataSource = eventosNew;
             GridViewEventosConfirmados.DataBind();
         }
+        int eventoAnterior;
         public List<NewEventosConfirmados> CargarNuevoReporte(List<ObtenerEventos> lista)
         {
             List<NewEventosConfirmados> EventosConfirmadosNew = new List<NewEventosConfirmados>();
-            NewEventosConfirmados e = new NewEventosConfirmados();
+            //NewEventosConfirmados e = new NewEventosConfirmados();
             foreach(var evento in lista) { 
+                NewEventosConfirmados e = new NewEventosConfirmados();
                 e.ApellidoNombre = evento.ApellidoNombre;
                 e.CARACTERISTICA = evento.CARACTERISTICA;
                 e.LOCACION = evento.LOCACION;
@@ -87,22 +90,27 @@ namespace AmbientHouse.Reportes
                 e.Cliente = evento.Cliente;
                 e.FechaSena = evento.FechaSena;
                 e.TipoEventoId = evento.TipoEventoId;
-                var detalles = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId",e.PresupuestoId.ToString());
-                if(detalles.Find(x => x.UnidadNegocioId == 3) !=null){
-                    var productoEx = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 3).ProductoId);
-                    e.TipoExperiencia = TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion == null ? " " : TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion;
-                }
-                else { e.TipoExperiencia = ""; }
-                if (detalles.Find(x => x.UnidadNegocioId == 6) != null)
+                
+                if(eventoAnterior != e.EventoId)
                 {
-                    var productoBa = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 6).ProductoId);
-                    e.TipoBarra = TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion == null ? " " : TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion;
+                    var detalles = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId",e.PresupuestoId.ToString());
+                    if(detalles.Find(x => x.UnidadNegocioId == 3) !=null){
+                        var productoEx = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 3).ProductoId);
+                        e.TipoExperiencia = TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion == null ? " " : TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion;
+                    }
+                    else { e.TipoExperiencia = ""; }
+                    if (detalles.Find(x => x.UnidadNegocioId == 6) != null)
+                    {
+                        var productoBa = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 6).ProductoId);
+                        e.TipoBarra = TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion == null ? " " : TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion;
+                    }
+                    else
+                    {
+                        e.TipoBarra = "";
+                    }
+                    EventosConfirmadosNew.Add(e);
+                    eventoAnterior = e.EventoId;
                 }
-                else
-                {
-                    e.TipoBarra = "";
-                }
-                EventosConfirmadosNew.Add(e);
             }
             return EventosConfirmadosNew.ToList();
         }

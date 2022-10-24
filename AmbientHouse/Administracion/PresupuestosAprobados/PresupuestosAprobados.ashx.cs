@@ -172,7 +172,8 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
                     //pdfFormFields.SetField("TotalPresupuesto", Convert.ToString(Math.Ceiling(PrecioTotal)));
 
                     pdfFormFields.SetField("TotalPresupuesto", formatoNumero(PrecioTotal));
-                    pdfFormFields.SetField("Pax", Convert.ToString(Math.Ceiling(PrecioPAX)));
+                    //pdfFormFields.SetField("Pax", Convert.ToString(Math.Ceiling(PrecioPAX)));
+                    pdfFormFields.SetField("Pax", formatoNumero(PrecioPAX));
 
 
                     List<ListarAdicionalesPorPresupuesto> adicionales = servicio.ObtenerAdicionales((int)Presupuestos.PresupuestoId, aprobado);
