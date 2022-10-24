@@ -129,7 +129,7 @@ namespace WebApplication.app.ItemsNS
             UploadExcel.DeleteUploads(filename);
             if (err == 0)
             {
-                Response.Redirect("~/Configuracion/AdmItems/ItemsAltaMasiva.aspx");
+                Response.Redirect("~/Configuracion/AbmItems/ItemsAltaMasiva.aspx");
             }
         }
 

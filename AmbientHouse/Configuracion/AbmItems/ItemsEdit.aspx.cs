@@ -228,7 +228,7 @@ namespace WebApplication.app.ItemsNS
                 }
 
 
-                Response.Redirect("~/Configuracion/AdmItems/ItemsBrowse.aspx");
+                Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
             }
             catch (Exception ex)
             {
