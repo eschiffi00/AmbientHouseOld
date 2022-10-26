@@ -4,7 +4,7 @@
     <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
 	    rel="stylesheet" type="text/css" />
     
- <%--   <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+  <%--  <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
 	    type="text/javascript"></script>
     <script>--%>
         <script src="../../Scripts/MultiSelect.js" type="text/javascript"></script>
@@ -23,7 +23,7 @@
                 dropRight: true,
                 enableFiltering: true,
                 onDropdownHide: function (event) {
-                    __doPostBack();//__doPostBack($(event.target).parent().children('#DropDownList_ExportCountry').attr('id'), '')
+                    __doPostBack();
                 }
             });
             document.addEventListener("keydown", function (event) {
@@ -93,7 +93,7 @@
          <div class="form-group row" id="MultiItems">
             <label for="MultiselectItems" class="col-sm-2 col-form-label text-sm-left text-md-right">Items</label>
             <div class="col-sm-4">
-                <asp:ListBox ID="MultiselectItems" runat="server" SelectionMode="Multiple"  OnSelectedIndexChanged="MultiselectItems_SelectedIndexChanged" TabIndex="1" class="form-control" ></asp:ListBox>
+                <asp:ListBox ID="MultiselectItems" runat="server" SelectionMode="Multiple"  OnSelectedIndexChanged="MultiselectItems_SelectedIndexChanged"  TabIndex="1" class="form-control" ></asp:ListBox>
             </div>
         </div>
 
@@ -159,7 +159,7 @@
         <div class="form-group row">
             <label for="btnSubmit" class="col-sm-2 col-form-label text-sm-left text-md-right"></label>
             <div class="col-sm-4">
-                <a href="../../Configuracion/AbmItems/ItemsBrowse.aspx" rel="stylesheet" class="btn btncancel mt-1" tabindex="8" runat="server">Cancelar</a>
+                <a href="../../Configuracion/AbmItems/RatiosBrowse.aspx" rel="stylesheet" class="btn btncancel mt-1" tabindex="8" runat="server">Cancelar</a>
                 <asp:Button Text="Crear Item" runat="server" ID="btnSubmit" ClientIDMode="Static" TabIndex="9" CssClass="btn btnsubmit mt-1" OnClick="btnSubmit_Click" />
             </div>
         </div>

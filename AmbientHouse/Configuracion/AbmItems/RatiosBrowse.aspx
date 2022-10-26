@@ -206,6 +206,7 @@
                 </asp:TemplateField>
                 <asp:BoundField DataField="Id" HeaderText="ID" Visible="true" SortExpression="Id" />
                 <asp:BoundField DataField="ItemId" HeaderText="Detalle" Visible="false" />
+                <asp:BoundField DataField="ItemDetalle" HeaderText="Item" Visible="true" />
                 <asp:BoundField DataField="CategoriaId" HeaderText="CategoriaId" Visible="false" />
                 <asp:BoundField DataField="CategoriaDetalle" HeaderText="Categoria Detalle" Visible="true" />
                 <asp:BoundField DataField="TipoRatio" HeaderText="Tipo Ratio" Visible="true" />

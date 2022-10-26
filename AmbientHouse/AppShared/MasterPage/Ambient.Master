@@ -216,7 +216,7 @@
         </div>
 
         <script src="../../Boostrap4/js/bootstrap.min.js"></script>
-        <script src="../../Boostrap4/js/jquery-3.3.1.slim.min.js"></script>
+        <%--<script src="../../Boostrap4/js/jquery-3.3.1.slim.min.js"></script>--%>
         <%--<script src="../../Boostrap4/js/popper.min.js"></script>--%>
         <script src="<%=ResolveUrl("~")%>Scripts/popper.min.js"></script>
         <script src="<%=ResolveUrl("~")%>Scripts/MultiSelect.js" type="text/javascript"></script>

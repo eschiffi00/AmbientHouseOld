@@ -9,6 +9,7 @@ using DomainAmbientHouse.Servicios;
 using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Seguridad;
 using static iTextSharp.text.pdf.AcroFields;
+//using DbEntidades.Entities;
 
 namespace AmbientHouse.Administracion.Costos
 {
@@ -17,6 +18,7 @@ namespace AmbientHouse.Administracion.Costos
         AdministrativasServicios administracion = new AdministrativasServicios();
         EventosServicios eventos = new EventosServicios();
         Comun cmd = new Comun();
+        int procesado = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,6 +27,26 @@ namespace AmbientHouse.Administracion.Costos
                 CargarListas();
             }
         }
+
+        #region Session
+        protected void SessionClearAll()
+        {
+            Session["procesado"] = 0;
+        }
+        protected void SessionLoadAll()
+        {
+            procesado = (int)Session["procesado"];
+        }
+        protected void SessionSaveAll()
+        {
+            Session["procesado"] = procesado;
+        }
+        protected override void OnPreRenderComplete(EventArgs e)
+        {
+            SessionSaveAll();
+            base.OnPreRenderComplete(e);
+        }
+        #endregion Session
 
         private void CargarListas()
         {
@@ -67,12 +89,19 @@ namespace AmbientHouse.Administracion.Costos
 
         protected void ButtonAceptar_Click(object sender, EventArgs e)
         {
-            //if (GrabarCostos().Count() > 0)
-            //{
+            SessionLoadAll();
+            if (procesado == 0)
+            {
                 GridViewProductos.DataSource = GrabarCostos().ToList();
                 GridViewProductos.DataBind();
                 UpdatePanelTecnica.Update();
-            //}
+                procesado = 1;
+                SessionSaveAll();
+            }
+            else
+            {
+                Response.Redirect("~/Home/Index.aspx");
+            }
                 
         }
 

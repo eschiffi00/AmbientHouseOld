@@ -264,6 +264,14 @@ namespace AmbientHouse.App_Shared.Controles
                 mnuItemsMasiva.NavigateUrl = "~/Configuracion/AbmItems/ItemsAltaMasiva.aspx";
 
                 mnuItems.ChildItems.Add(mnuItemsMasiva);
+
+                MenuItem mnuAbmRatios = new MenuItem();
+
+                mnuAbmRatios.Text = "Administracion de Ratios";
+                mnuAbmRatios.Value = "RAT";
+                mnuAbmRatios.NavigateUrl = "~/Configuracion/AbmItems/RatiosBrowse.aspx";
+
+                mnuItems.ChildItems.Add(mnuAbmRatios);
                 mnuConfiguracion.ChildItems.Add(mnuItems);
 
                 #endregion
