@@ -230,6 +230,15 @@
     <Content Include="Content\Imagenes\vegetales-hoja3-168x427px.png" />
     <Content Include="Content\Imagenes\vegetales-hoja4-314x390px.png" />
     <Content Include="Content\Imagenes\ver.jpg" />
+    <Content Include="Content\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\JS\jquery-3.0.0.min.js" />
     <Content Include="Content\JS\presupuestosLoad.js" />
     <Content Include="Content\select2\css\select2.css" />
@@ -397,6 +406,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\MultiSelect.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -633,7 +643,6 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Reportes\Index.aspx" />
     <Content Include="Reportes\ReporteEventosGeneral.aspx" />
     <Content Include="RRHH\Empleados\Editar.aspx" />
@@ -641,8 +650,6 @@
     <Content Include="RRHH\Index.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
     <Content Include="Scripts\Presupuestos\Load.js" />
     <Content Include="Seguridad\Login.aspx" />
@@ -671,7 +678,6 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administracion\Cheques\Editar.aspx.cs">

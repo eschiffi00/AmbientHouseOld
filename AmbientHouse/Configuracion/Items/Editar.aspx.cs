@@ -8,7 +8,7 @@ using DomainAmbientHouse.Servicios;
 using DomainAmbientHouse.Entidades;
 using System.Configuration;
 
-namespace AmbientHouse.Configuracion.Items
+namespace AmbientHouse.Configuracion.Items2
 {
     public partial class Editar : System.Web.UI.Page
     {

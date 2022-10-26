@@ -10,7 +10,8 @@ using System.Globalization;
 using System.Data;
 using System.Text.RegularExpressions;
 
-namespace WebApplication.app.ItemsNS
+
+namespace AmbientHouse.Configuracion.AbmItems
 {
     public partial class RatiosEdit : System.Web.UI.Page
     {
@@ -234,6 +235,7 @@ namespace WebApplication.app.ItemsNS
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            var duplicado = 0;
             List<string> parametros = new List<string>();
             Ratios Ratio = new Ratios();
             try
@@ -300,9 +302,17 @@ namespace WebApplication.app.ItemsNS
                                                 parametros.Add(Ratio.CategoriaId.ToString());
                                                 parametros.Add(Ratio.TipoRatio);
                                                 parametros.Add(Ratio.DetalleTipo);
-                                                if (RatiosOperator.RatioValidation(parametros))
+                                                if (RatiosOperator.RatioValidation(parametros) && duplicado == 0)
                                                 {
                                                     RatiosOperator.Save(Ratio);
+                                                }
+                                                else
+                                                {
+                                                    parametros[0] = item.Text;
+                                                    parametros[1] = MulCat.Text;
+                                                    ArmaMensaje(parametros);
+                                                    ErrorDialog();
+                                                    duplicado = 1;
                                                 }
                                                 
                                             }
@@ -312,7 +322,22 @@ namespace WebApplication.app.ItemsNS
                                         Ratio.Id = -1;
                                         Ratio.ItemId = detItem.Id;
                                         Ratio.CategoriaId = detItem.CategoriaItemId;
-                                        RatiosOperator.Save(Ratio);
+                                        parametros.Add(Ratio.ItemId.ToString());
+                                        parametros.Add(Ratio.CategoriaId.ToString());
+                                        parametros.Add(Ratio.TipoRatio);
+                                        parametros.Add(Ratio.DetalleTipo);
+                                        if (RatiosOperator.RatioValidation(parametros) && duplicado == 0)
+                                        {
+                                            RatiosOperator.Save(Ratio);
+                                        }
+                                        else
+                                        {
+                                            parametros[0] = item.Text;
+                                            parametros[1] = MulCat.Text;
+                                            ArmaMensaje(parametros);
+                                            ErrorDialog();
+                                            duplicado = 1;
+                                        }
                                     }
 
                                 }
@@ -320,7 +345,11 @@ namespace WebApplication.app.ItemsNS
                         }
                     }
                 }
-                Response.Redirect("~/Configuracion/AbmItems/RatiosBrowse.aspx");
+                if(duplicado == 0)
+                {
+                    Response.Redirect("~/Configuracion/AbmItems/RatiosBrowse.aspx");
+                }
+               
             }
             catch (Exception ex)
             {
@@ -338,10 +367,20 @@ namespace WebApplication.app.ItemsNS
                 txtDetalle.Enabled = true;
             }
         }
-        protected virtual void OnErrorReached(EventArgs e)
+        protected virtual void ErrorDialog()
         {
-            DialogContentHandler handler = "DialogContentHandler.ashx";
-            handler?.Invoke(this, e);
+            
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ratioduplicate",
+                "ShowratiosDialog();", true);
+        }
+        protected void ArmaMensaje(List<string> datos)
+        {
+            string mensaje = 
+                             "Item:      " + datos[0] + "<br>" +
+                             "Categoria: " + datos[1] + "<br>" +
+                             "TipoRatio: " + datos[2] + "<br>" +
+                             "Detalle  : " + datos[3];
+            dialog.Text = mensaje;
         }
 
     }

@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace WebApplication.app.ItemsNS
+namespace AmbientHouse.Configuracion.AbmItems
 {
 
 

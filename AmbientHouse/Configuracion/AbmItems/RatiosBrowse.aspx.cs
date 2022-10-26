@@ -10,7 +10,7 @@ using System.IO;
 using System.Data;
 using static iTextSharp.text.pdf.AcroFields;
 
-namespace WebApplication.app.ItemsNS
+namespace AmbientHouse.Configuracion.AbmItems
 {
     public partial class RatiosBrowse : System.Web.UI.Page
     {

@@ -13,7 +13,7 @@ using static iTextSharp.text.pdf.AcroFields;
 
 
 
-namespace WebApplication.app.ItemsNS
+namespace AmbientHouse.Configuracion.AbmItems
 {
     public partial class ItemsEdit : System.Web.UI.Page
     {

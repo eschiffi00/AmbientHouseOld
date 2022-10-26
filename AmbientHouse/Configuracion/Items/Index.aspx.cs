@@ -9,7 +9,7 @@ using DomainAmbientHouse.Entidades;
 using System.Configuration;
 using System.Web.UI.HtmlControls;
 
-namespace AmbientHouse.Configuracion.Items
+namespace AmbientHouse.Configuracion.Items2
 {
     public partial class Index : System.Web.UI.Page
     {

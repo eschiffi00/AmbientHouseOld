@@ -13,7 +13,7 @@ using NPOI.SS.Formula.Functions;
 using System.Drawing;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace WebApplication.app.ItemsNS
+namespace AmbientHouse.Configuracion.AbmItems
 {
     public partial class ItemsAltaMasiva : System.Web.UI.Page
     {

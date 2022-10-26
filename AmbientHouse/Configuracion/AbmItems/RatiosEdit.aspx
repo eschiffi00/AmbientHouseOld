@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="RatiosEdit.aspx.cs" Inherits="WebApplication.app.ItemsNS.RatiosEdit"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="RatiosEdit.aspx.cs" Inherits="AmbientHouse.Configuracion.AbmItems.RatiosEdit"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="<%=ResolveUrl("~")%>Scripts/umd/popper.min.js"></script>
     <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
@@ -79,8 +79,23 @@
                 }
             }
         }
-        
+        //Total out of range dialog
+        function ShowratiosDialog() {
+            $(function () {
+                $('#ratiosDialog').dialog({
+                    modal: true,
+                    width: '200px',
+                    resizable: false,
+                    draggable: false,
+                    close: function (event, ui) { $('body').find('#ratiosDialog').remove(); },
+                    buttons: {
+                        'OK': function () { $(this).dialog('close'); }
+                    }
+                })
+            }).dialog("open");
+        }
     </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
     
@@ -165,5 +180,9 @@
         </div>
 
     </div>
+
     <!--#endregion divPpal -->
+    <div id="ratiosDialog" style="display: none;" title="Ratio Duplicado">
+      <asp:Literal ID="dialog" runat="server" Text="" />
+    </div>
 </asp:Content>

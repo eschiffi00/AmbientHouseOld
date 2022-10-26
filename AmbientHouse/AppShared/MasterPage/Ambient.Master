@@ -16,8 +16,13 @@
     <link href="../../Content/Css/NuevaArc.css" rel="stylesheet" type="text/css" />
     <link   href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"  rel="stylesheet"/>
 	<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/jquery-ui.css" rel="stylesheet" />
+    <link href="../../Content/jquery-ui.structure.css" rel="stylesheet" />
+    <link href="../../Content/jquery-ui.theme.css" rel="stylesheet" />
+
 
     <script src="../../Content/JS/jquery-3.0.0.min.js"></script>
+    <script src="../../Scripts/jquery-ui.js"></script>
     <!-- Estos dos de abajo son para el select2 select2.org/ -->
     <link href="../../Content/select2/css/select2.min.css" rel="stylesheet" />
     <script src="../../Content/select2/js/select2.min.js"></script>

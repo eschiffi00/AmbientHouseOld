@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="ItemsAltaMasiva.aspx.cs" Inherits="WebApplication.app.ItemsNS.ItemsAltaMasiva" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="ItemsAltaMasiva.aspx.cs" Inherits="AmbientHouse.Configuracion.AbmItems.ItemsAltaMasiva" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../Content/Css/NuevaArc.css" rel="stylesheet" type="text/css" />
     <link href="../../Content/resizecolumns/jquery.resizableColumns.css" rel="stylesheet" type="text/css" />

@@ -330,4 +330,10 @@ footer {
     width:fit-content;
     padding:5px;
 }
+.ui-dialog-titlebar-close {
+    visibility: hidden;
+}
+.ui-dialog .ui-dialog-titlebar {
+    text-align: center;
+}
 

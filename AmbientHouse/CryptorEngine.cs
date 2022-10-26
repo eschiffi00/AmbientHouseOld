@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace WebApplication
+namespace AmbientHouse
 {
     public class CryptorEngine
     {

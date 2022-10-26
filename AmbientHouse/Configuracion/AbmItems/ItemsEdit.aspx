@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="ItemsEdit.aspx.cs" Inherits="WebApplication.app.ItemsNS.ItemsEdit"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="ItemsEdit.aspx.cs" Inherits="AmbientHouse.Configuracion.AbmItems.ItemsEdit"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="<%=ResolveUrl("~")%>Scripts/umd/popper.min.js"></script>
     <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"

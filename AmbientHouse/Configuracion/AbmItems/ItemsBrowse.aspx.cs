@@ -14,7 +14,7 @@ using Org.BouncyCastle.X509;
 using static System.Net.WebRequestMethods;
 using System.Drawing;
 
-namespace WebApplication.app.ItemsNS
+namespace AmbientHouse.Configuracion.AbmItems
 {
     public partial class ItemsBrowse : System.Web.UI.Page
     {

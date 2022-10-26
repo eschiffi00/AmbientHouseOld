@@ -115,7 +115,7 @@ namespace DbEntidades.Operators
         // deben estar en ese orden
         public static bool RatioValidation(List<string> key)
         {
-            bool result = false;
+            bool result = true;
             if (!DbEntidades.Seguridad.Permiso("PermisoRatiosBrowse")) throw new PermisoException();
             string columnas = string.Empty;
             foreach (PropertyInfo prop in typeof(Ratios).GetProperties()) columnas += prop.Name + ", ";
@@ -128,7 +128,7 @@ namespace DbEntidades.Operators
             
             if (dt.Rows.Count > 0)
             {
-                result = true;
+                result = false;
             }
             return result;
         }

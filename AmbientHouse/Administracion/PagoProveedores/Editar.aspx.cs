@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 using DbEntidades.Entities;
 using DbEntidades.Operators;
 using NPOI.SS.Formula.Functions;
-using AmbientHouse.Reportes;
+//using AmbientHouse.Reportes;
 //using Microsoft.Reporting.Map.WebForms.BingMaps;
 
 namespace AmbientHouse.Administracion.PagoProveedores
@@ -612,10 +612,6 @@ namespace AmbientHouse.Administracion.PagoProveedores
         {
 
         }
-        //protected virtual void OnErrorReached(EventArgs e)
-        //{
-        //    DialogContentHandler handler = "DialogContentHandler.ashx";
-        //    handler?.Invoke(this, e);
-        //}
+        
     }
 }
