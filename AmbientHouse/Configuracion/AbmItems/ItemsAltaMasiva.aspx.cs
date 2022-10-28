@@ -75,9 +75,9 @@ namespace AmbientHouse.Configuracion.AbmItems
                     err = 1;
                 }
                 seItems.EstadoId = EstadosOperator.GetHablitadoID("Items");
-                seItems.Costo = float.Parse(fila2[5].Text);
-                seItems.Margen = float.Parse(fila2[6].Text);
-                seItems.Precio = float.Parse(fila2[7].Text);
+                seItems.Costo = System.Math.Round(float.Parse(fila2[5].Text),2);
+                seItems.Margen = System.Math.Round(float.Parse(fila2[6].Text),2);
+                seItems.Precio = System.Math.Round(float.Parse(fila2[7].Text),2);
                 seItems.DepositoId = 99;
                 if(err == 0) {
                     if (nombreFantasia.Descripcion != null && nombreFantasia.Descripcion != "")

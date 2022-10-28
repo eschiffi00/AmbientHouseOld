@@ -154,6 +154,7 @@
     <Content Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsBrowse.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsEdit.aspx" />
+    <Content Include="Configuracion\AbmItems\RatiosAltaMasiva.aspx" />
     <Content Include="Configuracion\AbmItems\RatiosBrowse.aspx" />
     <Content Include="Configuracion\AbmItems\RatiosEdit.aspx" />
     <Content Include="Configuracion\AdicionalesItems\Editar.aspx" />
@@ -1001,6 +1002,13 @@
     </Compile>
     <Compile Include="Configuracion\AbmItems\ItemsEdit.aspx.designer.cs">
       <DependentUpon>ItemsEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\AbmItems\RatiosAltaMasiva.aspx.cs">
+      <DependentUpon>RatiosAltaMasiva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AbmItems\RatiosAltaMasiva.aspx.designer.cs">
+      <DependentUpon>RatiosAltaMasiva.aspx</DependentUpon>
     </Compile>
     <Compile Include="Configuracion\AbmItems\RatiosBrowse.aspx.cs">
       <DependentUpon>RatiosBrowse.aspx</DependentUpon>

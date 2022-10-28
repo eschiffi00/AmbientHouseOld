@@ -132,5 +132,29 @@ namespace DbEntidades.Operators
             }
             return result;
         }
+        public static int GetRatioId(List<string> key)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoRatiosBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            foreach (PropertyInfo prop in typeof(Ratios).GetProperties()) columnas += prop.Name + ", ";
+            columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from Ratios where  ItemId = " + key[0]
+                                                                                       + "and CategoriaId = " + key[1]
+                                                                                       + "and TipoRatio = \'" + key[2] + "\'"
+                                                                                       + "and DetalleTipo = \'" + key[3] + "\'").Tables[0];
+            var id = 0;
+            if(dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(Ratios).GetProperties())
+                {
+                    string value = dt.Rows[0]["Id"].ToString();
+                    id = int.Parse(value);
+                }
+
+            }
+            
+            return id;
+        }
     }
 }
