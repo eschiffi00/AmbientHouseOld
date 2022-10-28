@@ -449,6 +449,9 @@
     <Compile Include="Entidades\Items.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\IVAVenta_Result.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\Jornadas.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
@@ -637,6 +640,9 @@
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Provincias.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Ratios.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\ReciboEventoPresupuesto.cs">

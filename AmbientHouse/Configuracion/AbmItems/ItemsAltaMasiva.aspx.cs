@@ -72,16 +72,18 @@ namespace AmbientHouse.Configuracion.AbmItems
                 }
                 else
                 {
-                    err = 1;
+                    //err = 1;
                 }
                 seItems.EstadoId = EstadosOperator.GetHablitadoID("Items");
                 seItems.Costo = System.Math.Round(float.Parse(fila2[5].Text),2);
                 seItems.Margen = System.Math.Round(float.Parse(fila2[6].Text),2);
                 seItems.Precio = System.Math.Round(float.Parse(fila2[7].Text),2);
                 seItems.DepositoId = 99;
+
                 if(err == 0) {
                     if (nombreFantasia.Descripcion != null && nombreFantasia.Descripcion != "")
                     {
+                        nombreFantasia.Descripcion = Server.HtmlDecode(nombreFantasia.Descripcion);
                         seItems.NombreFantasiaId = NombreFantasiaOperator.Save(nombreFantasia).Id;
                     }
                     else
@@ -96,7 +98,9 @@ namespace AmbientHouse.Configuracion.AbmItems
                     List<int> contadorCategorias = new List<int>();
                     foreach (ItemDetalle itemDetalle in temp)
                     {
+                        
                         itemDetalle.EstadoId = 37;
+
                         var Categoria = Array.Find(arrText, 
                        element => element.Contains(CategoriasItemOperator.GetOneByParameter("Id",itemDetalle.CategoriaId.ToString()).Descripcion));
                         if (Categoria != null && Categoria != "")

@@ -2239,5 +2239,11 @@ namespace DomainAmbientHouse.Servicios
 
             return negocios.BuscarItemsPorTipoCatering(TipoCateringId);
         }
+        public List<IVAVenta_Result> BuscarIvaVenta(string fechaInicio, string fechaFin, int empresa)
+        {
+            ComprobanteProveedoresNegocios negocios = new ComprobanteProveedoresNegocios();
+
+            return negocios.BuscarIvaVenta(fechaInicio, fechaFin, empresa);
+        }
     }
 }

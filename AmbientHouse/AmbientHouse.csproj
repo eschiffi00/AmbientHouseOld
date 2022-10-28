@@ -394,6 +394,7 @@
     <Content Include="Reportes\ReporteEventosConfirmados.aspx" />
     <Content Include="Reportes\ReporteGastosPorPresupuesto.aspx" />
     <Content Include="Reportes\ReporteIvaCompra.aspx" />
+    <Content Include="Reportes\ReporteIvaVenta.aspx" />
     <Content Include="Reportes\ReporteMovimientosporCuentas.aspx" />
     <Content Include="Reportes\ReportePagos.aspx" />
     <Content Include="Reportes\ReportePagosProveedores.aspx" />
@@ -1702,6 +1703,13 @@
     </Compile>
     <Compile Include="Reportes\ReporteIvaCompra.aspx.designer.cs">
       <DependentUpon>ReporteIvaCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteIvaVenta.aspx.cs">
+      <DependentUpon>ReporteIvaVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteIvaVenta.aspx.designer.cs">
+      <DependentUpon>ReporteIvaVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\ReporteMovimientosporCuentas.aspx.cs">
       <DependentUpon>ReporteMovimientosporCuentas.aspx</DependentUpon>

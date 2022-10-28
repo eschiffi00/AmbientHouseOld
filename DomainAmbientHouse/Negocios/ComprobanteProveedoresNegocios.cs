@@ -174,5 +174,9 @@ namespace DomainAmbientHouse.Negocios
         {
             return Datos.BuscarPagosProveedores();
         }
+        public List<IVAVenta_Result> BuscarIvaVenta(string fechaInicio, string fechaFin, int empresa)
+        {
+            return Datos.BuscarIvaVenta(fechaInicio, fechaFin, empresa);
+        }
     }
 }

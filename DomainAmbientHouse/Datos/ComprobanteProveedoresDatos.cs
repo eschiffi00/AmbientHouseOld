@@ -735,6 +735,14 @@ namespace DomainAmbientHouse.Datos
             }
 
         }
+        internal List<IVAVenta_Result> BuscarIvaVenta(string fechaInicio, string fechaFin, int empresa)
+        {
+
+            DateTime starDate = DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            DateTime endDate = DateTime.ParseExact(fechaFin, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+            return SqlContext.IVAVenta(empresa, starDate, endDate).OrderBy(o => o.Fecha).ToList();
+        }
     }
 }
 
@@ -784,6 +792,7 @@ namespace DomainAmbientHouse.Entidades
 
         }
     }
+
 
     public partial class SearcherReporteComprobantes
     {

@@ -148,6 +148,15 @@ namespace AmbientHouse.Reportes {
         protected global::System.Web.UI.WebControls.Button ButtonReporteIvaCompra;
         
         /// <summary>
+        /// ButtonReporteIvaVenta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonReporteIvaVenta;
+        
+        /// <summary>
         /// ButtonReporteComprobantesProveedores control.
         /// </summary>
         /// <remarks>

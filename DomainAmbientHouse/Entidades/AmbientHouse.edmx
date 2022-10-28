@@ -1492,6 +1492,21 @@ advertencia 6013: La tabla o vista 'w230092_AmbientHouse.dbo.Prueba' no tiene de
           <Property Name="fecha" Type="varchar" MaxLength="200" />
           <Property Name="importe" Type="varchar" MaxLength="200" />
         </EntityType>-->
+        <EntityType Name="Ratios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="CategoriaId" Type="int" Nullable="false" />
+          <Property Name="TipoRatio" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="DetalleTipo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ValorRatio" Type="float" />
+          <Property Name="TopeRatio" Type="float" />
+          <Property Name="Menores" Type="bit" Nullable="false" />
+          <Property Name="AdicionalRatio" Type="bit" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ReciboEventoPresupuesto">
           <Key>
             <PropertyRef Name="Id" />
@@ -5339,6 +5354,11 @@ advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.SeguimientosEventos
           <Parameter Name="FechaDesde" Type="datetime" Mode="In" />
           <Parameter Name="FechaHasta" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="IVAVenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Empresa" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="ListadoProveedoresAsociados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProveedorId" Type="int" Mode="In" />
           <Parameter Name="FechaDesde" Type="datetime" Mode="In" />
@@ -5460,6 +5480,7 @@ advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.SeguimientosEventos
           <EntitySet Name="ProveedoresFormasdePago" EntityType="Self.ProveedoresFormasdePago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProveedoresRetenciones" EntityType="Self.ProveedoresRetenciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ratios" EntityType="Self.Ratios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReciboEventoPresupuesto" EntityType="Self.ReciboEventoPresupuesto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recibos" EntityType="Self.Recibos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Retenciones" EntityType="Self.Retenciones" Schema="dbo" store:Type="Tables" />
@@ -8787,6 +8808,21 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Ciudades" Relationship="Self.FK_Ciudades_Provincias" FromRole="Provincias" ToRole="Ciudades" />
+        </EntityType>
+        <EntityType Name="Ratios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" />
+          <Property Name="TipoRatio" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DetalleTipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ValorRatio" Type="Double" />
+          <Property Name="TopeRatio" Type="Double" />
+          <Property Name="Menores" Type="Boolean" Nullable="false" />
+          <Property Name="AdicionalRatio" Type="Boolean" Nullable="false" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ReciboEventoPresupuesto">
           <Key>
@@ -12636,6 +12672,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <EntitySet Name="ProveedoresFormasdePago" EntityType="Self.ProveedoresFormasdePago" />
           <EntitySet Name="ProveedoresRetenciones" EntityType="Self.ProveedoresRetenciones" />
           <EntitySet Name="Provincias" EntityType="Self.Provincias" />
+          <EntitySet Name="Ratios" EntityType="Self.Ratios" />
           <EntitySet Name="ReciboEventoPresupuesto" EntityType="Self.ReciboEventoPresupuesto" />
           <EntitySet Name="Recibos" EntityType="Self.Recibos" />
           <EntitySet Name="Retenciones" EntityType="Self.Retenciones" />
@@ -13519,6 +13556,11 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
             <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="IVAVenta" ReturnType="Collection(AmbientHouseModel.IVAVenta_Result)">
+            <Parameter Name="Empresa" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
           <FunctionImport Name="ListadoProveedoresAsociados" ReturnType="Collection(AmbientHouseModel.ListadoProveedoresAsociados_Result)">
             <Parameter Name="ProveedorId" Mode="In" Type="Int32" />
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
@@ -13606,6 +13648,19 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="500" />
           <Property Type="Double" Name="Total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="IVAVenta_Result">
+          <Property Type="Int32" Name="NroFactura" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="RazonSocial" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="400" />
+          <Property Type="String" Name="CUILCUIT" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Concepto" Nullable="false" MaxLength="500" />
+          <Property Type="Double" Name="Cantidad" Nullable="false" />
+          <Property Type="Double" Name="ImporteTotal" Nullable="false" />
+          <Property Type="Boolean" Name="Grabado" Nullable="false" />
+          <Property Type="Double" Name="ImporteBruto" Nullable="false" />
+          <Property Type="Double" Name="IVA21" Nullable="false" />
         </ComplexType>
         <ComplexType Name="ListadoProveedoresAsociados_Result">
           <Property Type="String" Name="UN" Nullable="false" MaxLength="50" />
@@ -15214,6 +15269,22 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Ratios">
+            <EntityTypeMapping TypeName="AmbientHouseModel.Ratios">
+              <MappingFragment StoreEntitySet="Ratios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="TipoRatio" ColumnName="TipoRatio" />
+                <ScalarProperty Name="DetalleTipo" ColumnName="DetalleTipo" />
+                <ScalarProperty Name="ValorRatio" ColumnName="ValorRatio" />
+                <ScalarProperty Name="TopeRatio" ColumnName="TopeRatio" />
+                <ScalarProperty Name="Menores" ColumnName="Menores" />
+                <ScalarProperty Name="AdicionalRatio" ColumnName="AdicionalRatio" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ReciboEventoPresupuesto">
             <EntityTypeMapping TypeName="AmbientHouseModel.ReciboEventoPresupuesto">
               <MappingFragment StoreEntitySet="ReciboEventoPresupuesto">
@@ -16614,6 +16685,23 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="IVAVenta" FunctionName="AmbientHouseModel.Store.IVAVenta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AmbientHouseModel.IVAVenta_Result">
+                <ScalarProperty Name="NroFactura" ColumnName="NroFactura" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="CUILCUIT" ColumnName="CUILCUIT" />
+                <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="ImporteTotal" ColumnName="ImporteTotal" />
+                <ScalarProperty Name="Grabado" ColumnName="Grabado" />
+                <ScalarProperty Name="ImporteBruto" ColumnName="ImporteBruto" />
+                <ScalarProperty Name="IVA21" ColumnName="IVA21" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

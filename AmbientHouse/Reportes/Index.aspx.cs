@@ -111,5 +111,10 @@ namespace AmbientHouse.Reportes
         {
             Response.Redirect("~/Reportes/ReportePagos.aspx");
         }
+
+        protected void ButtonReporteIvaVenta_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Reportes/ReporteIvaVenta.aspx");
+        }
     }
 }

@@ -133,6 +133,7 @@ namespace DomainAmbientHouse.Entidades
         public DbSet<ProveedoresFormasdePago> ProveedoresFormasdePago { get; set; }
         public DbSet<ProveedoresRetenciones> ProveedoresRetenciones { get; set; }
         public DbSet<Provincias> Provincias { get; set; }
+        public DbSet<Ratios> Ratios { get; set; }
         public DbSet<ReciboEventoPresupuesto> ReciboEventoPresupuesto { get; set; }
         public DbSet<Recibos> Recibos { get; set; }
         public DbSet<Retenciones> Retenciones { get; set; }
@@ -426,6 +427,23 @@ namespace DomainAmbientHouse.Entidades
                 new ObjectParameter("FechaHasta", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InformeResultados_Result>("InformeResultados", fechaDesdeParameter, fechaHastaParameter);
+        }
+    
+        public virtual ObjectResult<IVAVenta_Result> IVAVenta(Nullable<int> empresa, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        {
+            var empresaParameter = empresa.HasValue ?
+                new ObjectParameter("Empresa", empresa) :
+                new ObjectParameter("Empresa", typeof(int));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IVAVenta_Result>("IVAVenta", empresaParameter, startDateParameter, endDateParameter);
         }
     
         public virtual ObjectResult<ListadoProveedoresAsociados_Result> ListadoProveedoresAsociados(Nullable<int> proveedorId, Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta)
