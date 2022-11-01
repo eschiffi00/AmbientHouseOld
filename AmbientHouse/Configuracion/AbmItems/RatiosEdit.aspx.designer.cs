@@ -42,6 +42,15 @@ namespace AmbientHouse.Configuracion.AbmItems
         protected global::System.Web.UI.WebControls.ListBox MultiselectItems;
 
         /// <summary>
+        /// Control MultiselectExperiencias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox MultiselectExperiencias;
+
+        /// <summary>
         /// Control MultiselectCategorias.
         /// </summary>
         /// <remarks>
@@ -87,13 +96,31 @@ namespace AmbientHouse.Configuracion.AbmItems
         protected global::System.Web.UI.WebControls.TextBox txtTope;
 
         /// <summary>
-        /// Control chkMenores.
+        /// Control chkMenores3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkMenores;
+        protected global::System.Web.UI.WebControls.CheckBox chkMenores3;
+
+        /// <summary>
+        /// Control chkMenores3y8.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkMenores3y8;
+
+        /// <summary>
+        /// Control chkAdolescentes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkAdolescentes;
 
         /// <summary>
         /// Control chkAdicional.

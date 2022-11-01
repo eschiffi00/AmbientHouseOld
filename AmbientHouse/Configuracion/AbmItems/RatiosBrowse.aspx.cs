@@ -23,6 +23,8 @@ namespace AmbientHouse.Configuracion.AbmItems
                 //if (!PermisoOperator.TienePermiso(Convert.ToInt32(Session["UsuarioId"]), GetType().BaseType.FullName)) throw new PermisoException();
                 InicializaCategorias();
                 InicializaItems();
+                InicializaExpBarras();
+                CargaExperienciasBarras();
                 CargaItems();
                 CargaCategorias();
                 grdRatiosBind();
@@ -40,6 +42,26 @@ namespace AmbientHouse.Configuracion.AbmItems
                 item.Value = row["Value"].ToString();
                 item.Attributes["data-group"] = row["Categoria"].ToString();
                 MultiselectCategorias.Items.Add(item);
+            }
+            MultiselectCategorias.DataBind();
+        }
+        public void CargaExperienciasBarras()
+        {
+            List<TipoCateringComun> tipocatering = TipoCateringOperator.GetAllForCombo();
+            foreach (var item in tipocatering)
+            {
+                ListItem experiencia = new ListItem();
+                experiencia.Text = item.Descripcion;
+                experiencia.Value = item.Id.ToString();
+                MultiselectExperiencias.Items.Add(experiencia);
+            }
+            List<TiposBarrasComun> tipobarras = TiposBarrasOperator.GetAllForCombo();
+            foreach (var item in tipobarras)
+            {
+                ListItem barra = new ListItem();
+                barra.Text = item.Descripcion;
+                barra.Value = item.Id.ToString();
+                MultiselectExperiencias.Items.Add(barra);
             }
             MultiselectCategorias.DataBind();
         }
@@ -78,7 +100,6 @@ namespace AmbientHouse.Configuracion.AbmItems
                         ratiosfiltrados.AddRange(ratiosListado.Where(x => x.ItemId == ItemsOperator.GetOneByParameter("Detalle",item.Value).Id).ToList());
                     }
                 }
-                
             }
             if (MultiselectCategorias.SelectedItem != null)
             {
@@ -89,7 +110,6 @@ namespace AmbientHouse.Configuracion.AbmItems
                         ratiosfiltrados.AddRange(ratiosfiltrados.Where(x => x.CategoriaId == Int32.Parse(categoria.Value)).ToList());
                     }
                 }
-
             }
             grdRatios.DataSource = ratiosfiltrados;
             grdRatios.DataBind();
@@ -180,10 +200,8 @@ namespace AmbientHouse.Configuracion.AbmItems
                         lista = ItemDetalleOperator.GetAllByParameter("ItemId", ItemDet.ItemDetalleId.Value);
                         foreach (var idCategoria in lista)
                         {
-
                             foreach (ListItem categoria in MultiselectCategorias.Items)
                             {
-
                                 var descripcion = CategoriasItemOperator.GetOneByIdentity(idCategoria.CategoriaId).Descripcion;
                                 if (descripcion == categoria.Text)
                                 {
@@ -207,8 +225,6 @@ namespace AmbientHouse.Configuracion.AbmItems
                         }
                     }
 
-
-
                     foreach (ListItem Categoria in MultiselectCategorias.Items)
                     {
                         if (!Categoria.Selected)
@@ -231,6 +247,14 @@ namespace AmbientHouse.Configuracion.AbmItems
         protected void InicializaItems()
         {
             foreach (ListItem Item in MultiselectItems.Items)
+            {
+                Item.Selected = false;
+                Item.Enabled = true;
+            }
+        }
+        protected void InicializaExpBarras()
+        {
+            foreach (ListItem Item in MultiselectExperiencias.Items)
             {
                 Item.Selected = false;
                 Item.Enabled = true;

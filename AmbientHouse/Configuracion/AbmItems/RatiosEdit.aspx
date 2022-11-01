@@ -26,6 +26,11 @@
                     __doPostBack();
                 }
             });
+            $('[id*=MultiselectExperiencias]').multiselect({
+                includeSelectAllOption: true,
+                dropRight: true,
+                enableFiltering: true,
+            });
             document.addEventListener("keydown", function (event) {
                 if (event.which == 9 ) {
                     focusNextElement();
@@ -41,7 +46,7 @@
                             return element.offsetWidth > 0 || element.offsetHeight > 0 || element === document.activeElement
                         });
                     var index = focussable.indexOf(document.activeElement);
-                    if (index <= -1 || index > 8) {
+                    if (index <= -1 || index > 10) {
                         $('[Id$=txtDescripcion]').addClass("active");
                         $('[Id$=txtDescripcion]').focus();
                     }
@@ -105,24 +110,30 @@
             <h4 runat="server" id="h4Titulo" class="ml-3 mb-4">Modificación de Ratios</h4>
         </div>
 
-         <div class="form-group row" id="MultiItems">
+        <div class="form-group row" id="MultiItems">
             <label for="MultiselectItems" class="col-sm-2 col-form-label text-sm-left text-md-right">Items</label>
             <div class="col-sm-4">
                 <asp:ListBox ID="MultiselectItems" runat="server" SelectionMode="Multiple"  OnSelectedIndexChanged="MultiselectItems_SelectedIndexChanged"  TabIndex="1" class="form-control" ></asp:ListBox>
+            </div>
+        </div>
+        <div class="form-group row" id="MultiExperiencias">
+            <label for="MultiselectExperiencias" class="col-sm-2 col-form-label text-sm-left text-md-right">Experiencias</label>
+            <div class="col-sm-4">
+                <asp:ListBox ID="MultiselectExperiencias" runat="server" SelectionMode="Multiple" TabIndex="2" class="form-control" ></asp:ListBox>
             </div>
         </div>
 
         <div class="form-group row" id="categorias">
             <label for="MultiselectCategorias" class="col-sm-2 col-form-label text-sm-left text-md-right">Categoria</label>
             <div class="col-sm-4">
-                <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="2" class="form-control"></asp:ListBox>
+                <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="3" class="form-control"></asp:ListBox>
             </div>
         </div>
 
          <div class="form-group row" id="Dependencia">
             <label for="ddlDependencia" class="col-sm-2 col-form-label text-sm-left text-md-right">Tipo de Ratio</label>
             <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlDependencia" ClientIDMode="Static" TabIndex="3" CssClass="form-control mt-1" AutoPostBack="true" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged">
+                <asp:DropDownList runat="server" ID="ddlDependencia" ClientIDMode="Static" TabIndex="4" CssClass="form-control mt-1" AutoPostBack="true" OnSelectedIndexChanged="ddlDependencia_SelectedIndexChanged">
                     <asp:ListItem Text="PAX" Value="1" Selected="True" />
                     <asp:ListItem Text="ITEM" Value="2" />
                 </asp:DropDownList>
@@ -131,40 +142,52 @@
         <div class="form-group row" id="Detalle">
             <label for="txtDetalle" class="col-sm-2 col-form-label text-sm-left text-md-right">Detalle Ratio</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtDetalle" TabIndex="4" CssClass="form-control" required="required" />        
+                <asp:TextBox runat="server" ID="txtDetalle" TabIndex="5" CssClass="form-control" required="required" />        
             </div>
         </div>
         <div class="form-group row" id="Valor">
             <label for="txtValor" class="col-sm-2 col-form-label text-sm-left text-md-right">Valor Ratio</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtValor" TabIndex="5" CssClass="form-control" required="required" />        
+                <asp:TextBox runat="server" ID="txtValor" TabIndex="6" CssClass="form-control" required="required" />        
             </div>
         </div>
         <div class="form-group row" id="Tope">
             <label for="txtTope" class="col-sm-2 col-form-label text-sm-left text-md-right">Tope</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtTope" TabIndex="5" CssClass="form-control" required="required" />        
+                <asp:TextBox runat="server" ID="txtTope" TabIndex="7" CssClass="form-control" required="required" />        
             </div>
         </div>
 
-        <div class="form-group row" id="Menores">
-            <label for="chkMenores" class="col-sm-2 col-form-label text-sm-left text-md-right">Ratio para Menores</label>
+        <div class="form-group row" id="Menores3">
+            <label for="chkMenores3" class="col-sm-2 col-form-label text-sm-left text-md-right">Ratio para Menores de 3 años</label>
             <div class="col-sm-6">
-               <asp:CheckBox ID="chkMenores" runat="server" class="form-check" Checked="False" TabIndex="6" />        
+               <asp:CheckBox ID="chkMenores3" runat="server" class="form-check" Checked="False" TabIndex="8" />        
+            </div>
+        </div>
+        <div class="form-group row" id="Menores3y8">
+            <label for="chkMenores3y8" class="col-sm-2 col-form-label text-sm-left text-md-right">Ratio para Menores entre 3 y 8 años</label>
+            <div class="col-sm-6">
+               <asp:CheckBox ID="chkMenores3y8" runat="server" class="form-check" Checked="False" TabIndex="9" />        
+            </div>
+        </div>
+        <div class="form-group row" id="Adolescentes">
+            <label for="chkAdolescentes" class="col-sm-2 col-form-label text-sm-left text-md-right">Ratio para Adolescentes</label>
+            <div class="col-sm-6">
+               <asp:CheckBox ID="chkAdolescentes" runat="server" class="form-check" Checked="False" TabIndex="10" />        
             </div>
         </div>
 
         <div class="form-group row" id="Adicional">
             <label for="chkAdicional" class="col-sm-2 col-form-label text-sm-left text-md-right">Es Adicional al Ratio?</label>
             <div class="col-sm-6">
-               <asp:CheckBox ID="chkAdicional" runat="server" class="form-check" Checked="False"  TabIndex="7"  />        
+               <asp:CheckBox ID="chkAdicional" runat="server" class="form-check" Checked="False"  TabIndex="11"  />        
             </div>
         </div>
 
         <div class="form-group row">
             <label for="ddlEstado" class="col-sm-2 col-form-label text-sm-left text-md-right">Estado</label>
             <div class="col-sm-4">
-                <asp:DropDownList runat="server" ID="ddlEstado" TabIndex="8" ClientIDMode="Static" CssClass="form-control mt-1">
+                <asp:DropDownList runat="server" ID="ddlEstado" TabIndex="12" ClientIDMode="Static" CssClass="form-control mt-1" >
                     <asp:ListItem Text="Habilitado" Value="36" Selected="True" />
                     <asp:ListItem Text="Deshabilitado" Value="37" />
                 </asp:DropDownList>
@@ -175,7 +198,7 @@
             <label for="btnSubmit" class="col-sm-2 col-form-label text-sm-left text-md-right"></label>
             <div class="col-sm-4">
                 <a href="../../Configuracion/AbmItems/RatiosBrowse.aspx" rel="stylesheet" class="btn btncancel mt-1" tabindex="8" runat="server">Cancelar</a>
-                <asp:Button Text="Crear Item" runat="server" ID="btnSubmit" ClientIDMode="Static" TabIndex="9" CssClass="btn btnsubmit mt-1" OnClick="btnSubmit_Click" />
+                <asp:Button Text="Crear Item" runat="server" ID="btnSubmit" ClientIDMode="Static" TabIndex="11" CssClass="btn btnsubmit mt-1" OnClick="btnSubmit_Click" />
             </div>
         </div>
 

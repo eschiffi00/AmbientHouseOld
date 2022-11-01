@@ -91,8 +91,8 @@ namespace AmbientHouse.Reportes
                 e.FechaSena = evento.FechaSena;
                 e.TipoEventoId = evento.TipoEventoId;
                 
-                if(eventoAnterior != e.EventoId)
-                {
+                //if(eventoAnterior != e.EventoId)
+                //{
                     var detalles = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId",e.PresupuestoId.ToString());
                     if(detalles.Find(x => x.UnidadNegocioId == 3) !=null){
                         var productoEx = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 3).ProductoId);
@@ -110,7 +110,7 @@ namespace AmbientHouse.Reportes
                     }
                     EventosConfirmadosNew.Add(e);
                     eventoAnterior = e.EventoId;
-                }
+                //}
             }
             return EventosConfirmadosNew.ToList();
         }
@@ -146,8 +146,12 @@ namespace AmbientHouse.Reportes
         protected void ButtonExportarExcel_Click(object sender, EventArgs e)
         {
             GridView Total = new GridView();
+            ListPresupuestosConfirmados = new List<ObtenerEventos>();
+            ListPresupuestosConfirmados = eventos.BuscarEventosConfirmadosReservados();
+            List<NewEventosConfirmados> eventosNew = new List<NewEventosConfirmados>();
+            eventosNew = CargarNuevoReporte(ListPresupuestosConfirmados.ToList());
 
-            Total.DataSource = eventos.BuscarEventosConfirmadosReservados();
+            Total.DataSource = eventosNew;
             Total.DataBind();
 
             Exportar(Total);

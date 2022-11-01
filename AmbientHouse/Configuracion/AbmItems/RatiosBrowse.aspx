@@ -20,7 +20,13 @@
                 enableClickableOptGroups: true,
                 enableCollapsibleOptGroups: true,
                 enableFiltering: true
-            }); $('[id*=MultiselectItems]').multiselect({
+            });
+            $('[id*=MultiselectExperiencias]').multiselect({
+                enableClickableOptGroups: true,
+                enableCollapsibleOptGroups: true,
+                enableFiltering: true
+            });
+            $('[id*=MultiselectItems]').multiselect({
                 includeSelectAllOption: true,
                 dropRight: true,
                 enableFiltering: true,
@@ -174,6 +180,12 @@
                 <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="2" class="form-control"></asp:ListBox>
             </div>
         </div>
+        <div class="form-group row" id="MultiExperiencias">
+            <label for="MultiselectExperiencias" class="col-sm-2 col-form-label text-sm-left text-md-right">Experiencia/Barra</label>
+            <div class="col-sm-4">
+                <asp:ListBox ID="MultiselectExperiencias" runat="server" SelectionMode="Multiple" TabIndex="2" class="form-control"></asp:ListBox>
+            </div>
+        </div>
         <div class="contenedorbtn form-group row">
             <div class="col-4 text-right">
                 <asp:Button ID="btnFiltrar" Text="Filtrar" runat="server" CssClass="btn btnblack btn-primary" OnClick="btnFiltrar_Click" />
@@ -207,13 +219,16 @@
                 <asp:BoundField DataField="Id" HeaderText="ID" Visible="true" SortExpression="Id" />
                 <asp:BoundField DataField="ItemId" HeaderText="Detalle" Visible="false" />
                 <asp:BoundField DataField="ItemDetalle" HeaderText="Item" Visible="true" />
+                <asp:BoundField DataField="ExperienciaBarra" HeaderText="Experiencia/Barra" Visible="true" />
                 <asp:BoundField DataField="CategoriaId" HeaderText="CategoriaId" Visible="false" />
                 <asp:BoundField DataField="CategoriaDetalle" HeaderText="Categoria Detalle" Visible="true" />
                 <asp:BoundField DataField="TipoRatio" HeaderText="Tipo Ratio" Visible="true" />
                 <asp:BoundField DataField="DetalleTipo" HeaderText="Detalle Ratio" Visible="true" />
                 <asp:BoundField DataField="ValorRatio" HeaderText="Valor Ratio" Visible="true" />
                 <asp:BoundField DataField="TopeRatio" HeaderText="Tope Ratio" Visible="true" />
-                <asp:BoundField DataField="Menores" HeaderText="Tiene Menores" Visible="true" />
+                <asp:BoundField DataField="Menores3" HeaderText="Tiene Menores" Visible="true" />
+                <asp:BoundField DataField="Menores3y8" HeaderText="Tiene Menores" Visible="true" />
+                <asp:BoundField DataField="Adolescentes" HeaderText="Tiene Menores" Visible="true" />
                 <asp:BoundField DataField="AdicionalRatio" HeaderText="Es Adicional" Visible="true" />       
                 <asp:BoundField DataField="EstadoId" HeaderText="EstadoId" Visible="false" />       
                 <asp:BoundField DataField="Estado" HeaderText="Estado" Visible="true" />       

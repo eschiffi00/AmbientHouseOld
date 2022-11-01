@@ -12,12 +12,15 @@ namespace DbEntidades.Entities
     {
 		public int Id { get; set; }
 		public int ItemId { get; set; }
+		public string ExperienciaBarra { get; set; }
 		public int CategoriaId { get; set; }
 		public string TipoRatio { get; set; }
 		public string DetalleTipo { get; set; }
 		public double? ValorRatio { get; set; }
 		public double? TopeRatio { get; set; }
-		public int Menores { get; set; }
+		public int Menores3 { get; set; }
+		public int Menores3y8 { get; set; }
+		public int Adolescentes { get; set; }
 		public int AdicionalRatio { get; set; }
 		public int EstadoId { get; set; }
 
@@ -31,7 +34,9 @@ namespace DbEntidades.Entities
 			"DetalleTipo: " + DetalleTipo.ToString() + "\r\n " + 
 			"ValorRatio: " + ValorRatio.ToString() + "\r\n " + 
 			"TopeRatio: " + TopeRatio.ToString() + "\r\n " + 
-			"Menores: " + Menores.ToString() + "\r\n " + 
+			"Menores3: " + Menores3.ToString() + "\r\n " + 
+			"Menores3y8: " + Menores3y8.ToString() + "\r\n " +
+            "Adolescentes: " + Adolescentes.ToString() + "\r\n " + 
 			"AdicionalRatio: " + AdicionalRatio.ToString() + "\r\n " +
             "EstadoId: " + EstadoId.ToString() + "\r\n " ;
 		}
@@ -56,7 +61,9 @@ namespace DbEntidades.Entities
 				case "DetalleTipo": return false;
 				case "ValorRatio": return false;
 				case "TopeRatio": return false;
-				case "Menores": return false;
+				case "Menores3": return false;
+				case "Menores3y8": return false;
+				case "Adolescentes": return false;
 				case "AdicionalRatio": return false;
 				default: return false;
 			}

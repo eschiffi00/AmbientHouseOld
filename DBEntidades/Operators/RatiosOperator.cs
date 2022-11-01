@@ -37,6 +37,14 @@ namespace DbEntidades.Operators
                 RatiosListado RatiosDetail = new RatiosListado();
                 RatiosDetail.Id = Ratios.Id;
                 RatiosDetail.ItemId = Ratios.ItemId;
+                if(Ratios.ExperienciaBarra.Substring(0,3) == "BAR")
+                {
+                    RatiosDetail.ExperienciaBarra = TiposBarrasOperator.GetOneByParameter("Id",Ratios.ExperienciaBarra.Substring(3)).Descripcion;
+                }
+                else
+                {
+                    RatiosDetail.ExperienciaBarra = TipoCateringOperator.GetOneByParameter("Id", Ratios.ExperienciaBarra.Substring(4)).Descripcion;
+                }
                 RatiosDetail.ItemDetalle = ItemsOperator.GetOneByIdentity(Ratios.ItemId).Detalle;
                 RatiosDetail.CategoriaId = Ratios.CategoriaId;
                 RatiosDetail.CategoriaDetalle = CategoriasItemOperator.GetOneByIdentity(Ratios.CategoriaId).Descripcion;
@@ -44,7 +52,9 @@ namespace DbEntidades.Operators
                 RatiosDetail.DetalleTipo = Ratios.DetalleTipo;
                 RatiosDetail.ValorRatio = Ratios.ValorRatio;
                 RatiosDetail.TopeRatio = Ratios.TopeRatio;
-                RatiosDetail.Menores = Ratios.Menores;
+                RatiosDetail.Menores3 = Ratios.Menores3;
+                RatiosDetail.Menores3y8 = Ratios.Menores3y8;
+                RatiosDetail.Adolescentes = Ratios.Adolescentes;
                 RatiosDetail.AdicionalRatio = Ratios.AdicionalRatio;
                 RatiosDetail.EstadoId = Ratios.EstadoId;
 
@@ -115,20 +125,21 @@ namespace DbEntidades.Operators
         // deben estar en ese orden
         public static bool RatioValidation(List<string> key)
         {
-            bool result = true;
+            bool result = false;
             if (!DbEntidades.Seguridad.Permiso("PermisoRatiosBrowse")) throw new PermisoException();
             string columnas = string.Empty;
             foreach (PropertyInfo prop in typeof(Ratios).GetProperties()) columnas += prop.Name + ", ";
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
             DataTable dt = db.GetDataSet("select " + columnas + " from Ratios where  ItemId = " + key[0]
-                                                                                       + "and CategoriaId = " + key[1]
-                                                                                       + "and TipoRatio = \'" + key[2] + "\'"
-                                                                                       + "and DetalleTipo = \'" + key[3] + "\'").Tables[0];
+                                                                                       + "and ExperienciaBarra = \'" + key[1] + "\'"
+                                                                                       + "and CategoriaId = " + key[2]
+                                                                                       + "and TipoRatio = \'" + key[3] + "\'"
+                                                                                       + "and DetalleTipo = \'" + key[4] + "\'").Tables[0];
             
             if (dt.Rows.Count > 0)
             {
-                result = false;
+                result = true;
             }
             return result;
         }
@@ -140,9 +151,10 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
             DataTable dt = db.GetDataSet("select " + columnas + " from Ratios where  ItemId = " + key[0]
-                                                                                       + "and CategoriaId = " + key[1]
-                                                                                       + "and TipoRatio = \'" + key[2] + "\'"
-                                                                                       + "and DetalleTipo = \'" + key[3] + "\'").Tables[0];
+                                                                                       + "and ExperienciaBarra = \'" + key[1] + "\'"
+                                                                                       + "and CategoriaId = " + key[2]
+                                                                                       + "and TipoRatio = \'" + key[3] + "\'"
+                                                                                       + "and DetalleTipo = \'" + key[4] + "\'").Tables[0];
             var id = 0;
             if(dt.Rows.Count > 0)
             {

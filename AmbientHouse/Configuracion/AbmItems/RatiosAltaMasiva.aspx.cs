@@ -49,7 +49,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                 fila2 = fila.Cells;
                 List<string> parametros = new List<string>();
                 //valido que el nombre del item y la categoria sean correctos
-                var itemid =  ItemsOperator.GetOneByParameter("Detalle", fila2[0].Text).Id;
+                var itemid =  ItemsOperator.GetOneByParameter("Detalle", Server.HtmlDecode(fila2[0].Text)).Id;
                 if (itemid < 0) 
                 {
                     err = true;
@@ -59,7 +59,9 @@ namespace AmbientHouse.Configuracion.AbmItems
                     seRatios.ItemId = itemid;
                     parametros.Add(itemid.ToString());
                 }
-                var categoriaid = CategoriasItemOperator.GetOneByParameter("Descripcion",fila2[1].Text).Id;
+                seRatios.ExperienciaBarra = fila2[1].Text;
+                parametros.Add(fila2[1].Text);
+                var categoriaid = CategoriasItemOperator.GetOneByParameter("Descripcion",fila2[2].Text).Id;
                 if(categoriaid < 0)
                 {
                     err = true;
@@ -69,10 +71,10 @@ namespace AmbientHouse.Configuracion.AbmItems
                     seRatios.CategoriaId = categoriaid;
                     parametros.Add(categoriaid.ToString());
                 }
-                seRatios.TipoRatio = fila2[2].Text;
-                parametros.Add(fila2[2].Text);
-                seRatios.DetalleTipo = fila2[3].Text;
+                seRatios.TipoRatio = fila2[3].Text;
                 parametros.Add(fila2[3].Text);
+                seRatios.DetalleTipo = fila2[4].Text;
+                parametros.Add(fila2[4].Text);
                 //obtengo el id del ratio utilizando itemid,categoriaid,tiporatio,detalletipo
                 //para verificar si es una actualizacion o alta
                 if (!err) seRatios.Id = RatiosOperator.GetRatioId(parametros);
@@ -85,10 +87,12 @@ namespace AmbientHouse.Configuracion.AbmItems
                 {
                     seRatios.Id = -1;
                 }
-                seRatios.ValorRatio = System.Math.Round(float.Parse(fila2[4].Text),2);
-                seRatios.TopeRatio = System.Math.Round(float.Parse(fila2[5].Text),2);
-                seRatios.Menores = int.Parse(fila2[6].Text);
-                seRatios.AdicionalRatio = int.Parse(fila2[7].Text);
+                seRatios.ValorRatio = System.Math.Round(float.Parse(fila2[5].Text),2);
+                seRatios.TopeRatio = System.Math.Round(float.Parse(fila2[6].Text),2);
+                seRatios.Menores3 = int.Parse(fila2[7].Text);
+                seRatios.Menores3y8 = int.Parse(fila2[8].Text);
+                seRatios.Adolescentes = int.Parse(fila2[9].Text);
+                seRatios.AdicionalRatio = int.Parse(fila2[10].Text);
                 seRatios.EstadoId = EstadosOperator.GetHablitadoID("Ratios");
                 if (!err)
                 {
@@ -116,7 +120,7 @@ namespace AmbientHouse.Configuracion.AbmItems
             if (erroneos == 0)
             {
 
-                Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
+                Response.Redirect("~/Configuracion/AbmItems/RatiosBrowse.aspx");
             }
         }
 

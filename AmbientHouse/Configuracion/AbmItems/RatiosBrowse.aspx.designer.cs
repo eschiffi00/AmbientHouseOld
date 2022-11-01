@@ -42,6 +42,15 @@ namespace AmbientHouse.Configuracion.AbmItems
         protected global::System.Web.UI.WebControls.ListBox MultiselectCategorias;
 
         /// <summary>
+        /// Control MultiselectExperiencias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox MultiselectExperiencias;
+
+        /// <summary>
         /// Control btnFiltrar.
         /// </summary>
         /// <remarks>

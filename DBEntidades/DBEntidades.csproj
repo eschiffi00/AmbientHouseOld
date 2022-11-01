@@ -234,6 +234,8 @@
     <Compile Include="Entities\Auto\UsuariosGrupos.cs" />
     <Compile Include="Entities\Auto\UsuariosLocaciones.cs" />
     <Compile Include="Entities\CuentaCorrienteProveedores.cs" />
+    <Compile Include="Entities\TiposBarrasComun.cs" />
+    <Compile Include="Entities\TipoCateringComun.cs" />
     <Compile Include="Entities\ItemListado.cs" />
     <Compile Include="Entities\ComprobantesPagosDetalle.cs" />
     <Compile Include="Entities\Auto\NombreFantasia.cs" />
@@ -428,7 +430,9 @@
     <Compile Include="Operators\RatiosOperator.cs" />
     <Compile Include="Operators\RecetaOperator.cs" />
     <Compile Include="Operators\REC_detalleOperator.cs" />
+    <Compile Include="Operators\TipoCateringOperator.cs" />
     <Compile Include="Operators\TipoMovimientosOperator.cs" />
+    <Compile Include="Operators\TiposBarrasOperator.cs" />
     <Compile Include="Operators\UploadExcel.cs" />
     <Compile Include="PermisoException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
