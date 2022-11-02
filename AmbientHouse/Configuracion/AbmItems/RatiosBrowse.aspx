@@ -1,15 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AppShared/MasterPage/Ambient.Master" AutoEventWireup="true" CodeBehind="RatiosBrowse.aspx.cs" Inherits="AmbientHouse.Configuracion.AbmItems.RatiosBrowse"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../Content/Css/NuevaArc.css" rel="stylesheet" type="text/css" />
-    <%--<link href="../../Content/resizecolumns/jquery.resizableColumns.css" rel="stylesheet" type="text/css" />
-    <script src="../../Scripts/resizecolumns/jquery.resizableColumns.min.js" type="text/javascript"></script>--%>
         <script src="<%=ResolveUrl("~")%>Scripts/umd/popper.min.js"></script>
     <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
 	    rel="stylesheet" type="text/css" />
-    
- <%--   <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
-	    type="text/javascript"></script>
-    <script>--%>
         <script src="../../Scripts/MultiSelect.js" type="text/javascript"></script>
       <script>
 
@@ -90,39 +84,6 @@
 
       </script>
     <script>
-        //var j = jQuery.noConflict();
-
-        //function ShowError(error) {
-        //    var texto;
-        //    switch (error) {
-        //        case "1":
-        //            texto = 'El Monto a Pagar es mayor que el Costo';
-        //            break;
-        //        case "2":
-        //            texto = 'El Monto a Pagar es distinto del Importe Saldo';
-        //            break;
-        //    }
-        //    j(function () {
-        //        j('#dialog').dialog({
-        //            modal: true,
-        //            width: 'auto',
-        //            resizable: false,
-        //            draggable: false,
-        //            close: function (event, ui) { j('body').find('#dialog').remove(); },
-        //            closeText: "X",
-        //            show: "fade",
-        //            hide: "fade",
-        //            open: function () {
-        //                $(this).html(texto);
-        //            },
-
-        //        })
-        //    });
-
-        //    j("#dialog").dialog("open");
-        //    j('#dialog').html(texto).dialog({});
-        //    /*$("#dialog").html(texto);*/
-        //}
         function ConfirmaBorrado(e) {
             //o = document.getElementById(e.id);
             anchor = "#" + e.id;
@@ -202,7 +163,6 @@
                 <asp:TemplateField HeaderText="" HeaderStyle-CssClass="text-center columna-iconos-th">
                     <ItemStyle HorizontalAlign="Center" CssClass="verticalMiddle columna-iconos-td" />
                     <ItemTemplate>
-                        <%--<div class="d-flex justify-content-between w-75 text-center mr-1">--%>
                         <div class="columna-iconos-gridview">
                             <div>
                                 <asp:LinkButton ID="LinkButtonDelete" runat="server" CausesValidation="false" CommandName="CommandNameDelete" Text="" ToolTip="Borrar Item" CssClass="ml-2 mr-2" OnClientClick="return ConfirmaBorrado(this);"><i class="fa fa-trash" ></i></asp:LinkButton>
@@ -210,9 +170,6 @@
                             <div>
                                 <asp:LinkButton ID="LinkButtonEdit" runat="server" CausesValidation="false" CommandName="CommandNameEdit" Text="" ToolTip="Modificar" CssClass="ml-2 mr-2" ><i class="fa fa-pencil" ></i></asp:LinkButton>
                             </div>
-                            <%--<div>
-                                <asp:LinkButton ID="LinkButtonTarifa" runat="server" CausesValidation="False" CommandName="CommandNameTarifa" Text="" ToolTip="Tarifas" CssClass="mr-2"><i class="fa fa-usd" ></i></asp:LinkButton>
-                            </div>--%>
                         </div>
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -226,9 +183,9 @@
                 <asp:BoundField DataField="DetalleTipo" HeaderText="Detalle Ratio" Visible="true" />
                 <asp:BoundField DataField="ValorRatio" HeaderText="Valor Ratio" Visible="true" />
                 <asp:BoundField DataField="TopeRatio" HeaderText="Tope Ratio" Visible="true" />
-                <asp:BoundField DataField="Menores3" HeaderText="Tiene Menores" Visible="true" />
-                <asp:BoundField DataField="Menores3y8" HeaderText="Tiene Menores" Visible="true" />
-                <asp:BoundField DataField="Adolescentes" HeaderText="Tiene Menores" Visible="true" />
+                <asp:BoundField DataField="Menores3" HeaderText="Menores de 3" Visible="true" />
+                <asp:BoundField DataField="Menores3y8" HeaderText="Menores entre 3 y 8" Visible="true" />
+                <asp:BoundField DataField="Adolescentes" HeaderText="Adolescentes" Visible="true" />
                 <asp:BoundField DataField="AdicionalRatio" HeaderText="Es Adicional" Visible="true" />       
                 <asp:BoundField DataField="EstadoId" HeaderText="EstadoId" Visible="false" />       
                 <asp:BoundField DataField="Estado" HeaderText="Estado" Visible="true" />       
