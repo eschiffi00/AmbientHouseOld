@@ -138,6 +138,7 @@
     <Content Include="Administracion\PresupuestosAprobados\SeguirAprobados.aspx" />
     <Content Include="Administracion\PresupuestosAprobados\VisualizarArchivo.aspx" />
     <Content Include="Administracion\PresupuestosAprobados\VisualizarArchivoComanda.aspx" />
+    <Content Include="Administracion\Productos\Salonesupd.aspx" />
     <Content Include="Administracion\ProveedoresExternos\Editar.aspx" />
     <Content Include="Administracion\Recibos\Editar.aspx" />
     <Content Include="Administracion\Recibos\EditarOLD.aspx" />
@@ -151,6 +152,7 @@
     <Content Include="Boostrap4\js\bootstrap.min.js" />
     <Content Include="Boostrap4\js\jquery-3.3.1.slim.min.js" />
     <Content Include="Boostrap4\js\popper.min.js" />
+    <Content Include="Configuracion\AbmItems\ItemsAltaMasiva2.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsBrowse.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsEdit.aspx" />
@@ -912,6 +914,13 @@
     <Compile Include="Administracion\PresupuestosAprobados\VisualizarArchivoComanda.aspx.designer.cs">
       <DependentUpon>VisualizarArchivoComanda.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Administracion\Productos\Salonesupd.aspx.cs">
+      <DependentUpon>Salonesupd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Productos\Salonesupd.aspx.designer.cs">
+      <DependentUpon>Salonesupd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administracion\ProveedoresExternos\Editar.aspx.cs">
       <DependentUpon>Editar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -983,6 +992,13 @@
       <DependentUpon>Ambient.Master</DependentUpon>
     </Compile>
     <Compile Include="CCLib.cs" />
+    <Compile Include="Configuracion\AbmItems\ItemsAltaMasiva2.aspx.cs">
+      <DependentUpon>ItemsAltaMasiva2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Configuracion\AbmItems\ItemsAltaMasiva2.aspx.designer.cs">
+      <DependentUpon>ItemsAltaMasiva2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx.cs">
       <DependentUpon>ItemsAltaMasiva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

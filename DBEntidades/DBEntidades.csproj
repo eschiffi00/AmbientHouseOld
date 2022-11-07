@@ -424,6 +424,7 @@
     <Compile Include="Operators\CuentasOperator.cs" />
     <Compile Include="Operators\EstadoOperator.cs" />
     <Compile Include="Operators\ItemDetalleOperator.cs" />
+    <Compile Include="Operators\CommonOperator.cs" />
     <Compile Include="Operators\ItemsOperator.cs" />
     <Compile Include="Operators\ParametroOperator.cs" />
     <Compile Include="Operators\PresupuestoDetalleOperator.cs" />

@@ -336,4 +336,10 @@ footer {
 .ui-dialog .ui-dialog-titlebar {
     text-align: center;
 }
+.tabladatos {
+    width: min-content;
+}
+    .tabladatos div {
+        width: min-content;
+    }
 

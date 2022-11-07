@@ -350,11 +350,18 @@ namespace AmbientHouse.App_Shared.Controles
                 mnuCostosSalones.Value = "LOC";
                 mnuCostosSalones.NavigateUrl = "~/Administracion/Costos/Salones.aspx";
 
+                MenuItem mnuActualizaSalones = new MenuItem();
+
+                mnuActualizaSalones.Text = "Actualizacion de Precios";
+                mnuActualizaSalones.Value = "LOC";
+                mnuActualizaSalones.NavigateUrl = "~/Administracion/Productos/Salonesupd.aspx";
+
                 mnuSalones.ChildItems.Add(mnuLocaciones);
                 mnuSalones.ChildItems.Add(mnuTipoLogistica);
                 mnuSalones.ChildItems.Add(mnuCostoLogistica);
                 mnuSalones.ChildItems.Add(mnuLocalidades);
                 mnuSalones.ChildItems.Add(mnuCostosSalones);
+                mnuSalones.ChildItems.Add(mnuActualizaSalones);
 
                 mnuConfiguracion.ChildItems.Add(mnuSalones);
 

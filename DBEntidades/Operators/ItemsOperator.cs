@@ -68,7 +68,7 @@ namespace DbEntidades.Operators
                 }
                 else
                 {
-                    ItemsDetail.CuentaDescripcion = CuentasOperator.GetOneByIdentity((int)ItemsDetail.CuentaId).Nombre;
+                    ItemsDetail.CuentaDescripcion = CentroCostosOperator.GetOneByIdentity((int)ItemsDetail.CuentaId).Descripcion;
                 }
                 ItemsDetail.Costo = Items.Costo;
                 ItemsDetail.Margen = Items.Margen;
