@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.Productos
 {
@@ -536,7 +534,7 @@ namespace AmbientHouse.Configuracion.Productos
 
             ListProductos = servicios.BuscarProductosPorFiltros(unidadNegocioId, tipoCatering, tipoBarra, tipoServicio, categoriaId, cantidadInvitados,
                                                                                                             locacionId, sectorId, segmentoId, jornadaId, proveedorId,
-                                                                                                            Anio, Mes, Dia, adicionalId, estadoId, caracteristicaId, itemOrganizacionId,semestreId);
+                                                                                                            Anio, Mes, Dia, adicionalId, estadoId, caracteristicaId, itemOrganizacionId, semestreId);
 
 
             GridViewProductos.DataSource = ListProductos.ToList();

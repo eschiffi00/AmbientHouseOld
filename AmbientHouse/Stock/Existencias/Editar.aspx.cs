@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
 
 namespace AmbientHouse.Stock.Existencias
 {
@@ -107,7 +105,7 @@ namespace AmbientHouse.Stock.Existencias
                 NuevaExistencia();
             else
                 EditarExistencia(productoId, depositoId);
-       
+
 
             SetFocus(TextBoxCantidad);
         }
@@ -144,7 +142,7 @@ namespace AmbientHouse.Stock.Existencias
 
         private void CargarListas()
         {
-            DropDownListRubros.DataSource = administracion.ObtenerRubros().Where(o => o.RubroId == 16 || o.RubroId == 17).ToList();;
+            DropDownListRubros.DataSource = administracion.ObtenerRubros().Where(o => o.RubroId == 16 || o.RubroId == 17).ToList(); ;
             DropDownListRubros.DataTextField = "Descripcion";
             DropDownListRubros.DataValueField = "RubroId";
             DropDownListRubros.DataBind();
@@ -172,7 +170,7 @@ namespace AmbientHouse.Stock.Existencias
             if (cmd.IsNumeric(TextBoxCantidad.Text))
                 existencia.Cantidad = double.Parse(TextBoxCantidad.Text.ToString());
 
-          
+
 
             existencia.DepositoId = Int32.Parse(DropDownListDepositos.SelectedItem.Value);
             existencia.ProductoId = Int32.Parse(DropDownListProductos.SelectedItem.Value);

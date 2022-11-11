@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+using System;
 
 namespace AmbientHouse.Stock.Productos
 {
@@ -102,7 +97,7 @@ namespace AmbientHouse.Stock.Productos
 
         private void EditarINVENTARIOProducto(int id)
         {
-           
+
 
             DomainAmbientHouse.Entidades.INVENTARIO_Producto producto = new DomainAmbientHouse.Entidades.INVENTARIO_Producto();
 
@@ -118,13 +113,13 @@ namespace AmbientHouse.Stock.Productos
             TextBoxCodigoBarra.Text = producto.CodigoBarra;
 
 
-            if (cmd.IsNumeric( producto.CantidadNominal))
+            if (cmd.IsNumeric(producto.CantidadNominal))
                 TextBoxCantidadNominal.Text = producto.CantidadNominal.ToString();
 
-             if (cmd.IsNumeric( producto.Cantidad))
+            if (cmd.IsNumeric(producto.Cantidad))
                 TextBoxCantidadExistente.Text = producto.Cantidad.ToString();
-            
-             
+
+
             DropDownListRubros.SelectedValue = producto.RubroId.ToString();
             DropDownListUnidad.SelectedValue = producto.UnidadId.ToString();
             DropDownListPresentacion.SelectedValue = producto.UnidadPresentacionId.ToString();
@@ -179,10 +174,10 @@ namespace AmbientHouse.Stock.Productos
             producto.Codigo = TextBoxCodigo.Text;
 
             if (cmd.IsNumeric(TextBoxCosto.Text))
-                producto.Costo = double.Parse(TextBoxCosto.Text.ToString().Replace('.',','));
+                producto.Costo = double.Parse(TextBoxCosto.Text.ToString().Replace('.', ','));
 
             producto.Descripcion = TextBoxDescripcion.Text;
-            
+
             producto.RubroId = Int32.Parse(DropDownListRubros.SelectedItem.Value);
             producto.UnidadId = Int32.Parse(DropDownListUnidad.SelectedItem.Value);
             producto.UnidadPresentacionId = Int32.Parse(DropDownListPresentacion.SelectedItem.Value);

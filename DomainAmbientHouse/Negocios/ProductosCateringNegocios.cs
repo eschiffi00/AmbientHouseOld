@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System;
+using System.Collections.Generic;
 using System.Transactions;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -50,7 +45,7 @@ namespace DomainAmbientHouse.Negocios
 
                         PCI.ItemId = item.Id;
                         PCI.ProductoCateringId = producto.Id;
-                        
+
 
 
                         DatosItems.GuardarProductoCateringItems(PCI);

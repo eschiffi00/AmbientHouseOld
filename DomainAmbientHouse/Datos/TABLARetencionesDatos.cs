@@ -1,11 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Globalization;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -32,7 +27,7 @@ namespace DomainAmbientHouse.Datos
                 salida.PorcentajeInscripto = item.PorcentajeInscripto;
                 salida.PorcentajeNoInscripto = item.PorcentajeNoInscripto;
                 salida.ValorMaximoaRetenerInscriptos = item.ValorMaximoaRetenerInscriptos;
-              
+
                 list.Add(salida);
             }
 
@@ -46,12 +41,12 @@ namespace DomainAmbientHouse.Datos
 
             var query = from c in SqlContext.TABLA_Retenciones
                         select c;
-                       
+
             return TABLARetencionesToModel(query).ToList();
 
         }
 
-   
+
     }
 }
 
@@ -60,11 +55,11 @@ namespace DomainAmbientHouse.Entidades
 
     public partial class TABLA_Retenciones
     {
-       
+
     }
 
     public class TABLA_RetencionesSearcher
     {
-        
+
     }
 }

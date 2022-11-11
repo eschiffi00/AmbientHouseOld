@@ -1,11 +1,11 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
-using System.Linq;
-using DbEntidades.Entities;
 using System.Data.SqlClient;
-using LibDB2;
+using System.Linq;
+using System.Reflection;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             Entidades entidades = new Entidades();
             foreach (PropertyInfo prop in typeof(Entidades).GetProperties())
             {
-				object value = dt.Rows[0][prop.Name];
-				if (value == DBNull.Value) value = null;
+                object value = dt.Rows[0][prop.Name];
+                if (value == DBNull.Value) value = null;
                 try { prop.SetValue(entidades, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,48 +45,48 @@ namespace DbEntidades.Operators
                 Entidades entidades = new Entidades();
                 foreach (PropertyInfo prop in typeof(Entidades).GetProperties())
                 {
-					object value = dr[prop.Name];
-					if (value == DBNull.Value) value = null;
-					try { prop.SetValue(entidades, value, null); }
-					catch (System.ArgumentException) { }
+                    object value = dr[prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(entidades, value, null); }
+                    catch (System.ArgumentException) { }
                 }
                 lista.Add(entidades);
             }
             return lista;
         }
 
-		public static List<Entidades> GetAllEstado1()
-		{
-			return GetAll().Where(x => x.EstadoId == 1).ToList();
-		}
-		public static List<Entidades> GetAllEstadoNot1()
-		{
-			return GetAll().Where(x => x.EstadoId != 1).ToList();
-		}
-		public static List<Entidades> GetAllEstadoN(int estado)
-		{
-			return GetAll().Where(x => x.EstadoId == estado).ToList();
-		}
-		public static List<Entidades> GetAllEstadoNotN(int estado)
-		{
-			return GetAll().Where(x => x.EstadoId != estado).ToList();
-		}
+        public static List<Entidades> GetAllEstado1()
+        {
+            return GetAll().Where(x => x.EstadoId == 1).ToList();
+        }
+        public static List<Entidades> GetAllEstadoNot1()
+        {
+            return GetAll().Where(x => x.EstadoId != 1).ToList();
+        }
+        public static List<Entidades> GetAllEstadoN(int estado)
+        {
+            return GetAll().Where(x => x.EstadoId == estado).ToList();
+        }
+        public static List<Entidades> GetAllEstadoNotN(int estado)
+        {
+            return GetAll().Where(x => x.EstadoId != estado).ToList();
+        }
 
 
         public class MaxLength
         {
-			public static int IsProveedor { get; set; } = 1;
-			public static int IsCliente { get; set; } = 1;
-			public static int IsContacto { get; set; } = 1;
-			public static int RazonSocial { get; set; } = 50;
-			public static int ApellidoNombre { get; set; } = 50;
-			public static int NombreFantasia { get; set; } = 50;
-			public static int CUITCUIL { get; set; } = 11;
-			public static int CBU { get; set; } = 40;
-			public static int NroIIBB { get; set; } = 30;
-			public static int Email { get; set; } = 50;
-			public static int Localidad { get; set; } = 50;
-			public static int CP { get; set; } = 10;
+            public static int IsProveedor { get; set; } = 1;
+            public static int IsCliente { get; set; } = 1;
+            public static int IsContacto { get; set; } = 1;
+            public static int RazonSocial { get; set; } = 50;
+            public static int ApellidoNombre { get; set; } = 50;
+            public static int NombreFantasia { get; set; } = 50;
+            public static int CUITCUIL { get; set; } = 11;
+            public static int CBU { get; set; } = 40;
+            public static int NroIIBB { get; set; } = 30;
+            public static int Email { get; set; } = 50;
+            public static int Localidad { get; set; } = 50;
+            public static int CP { get; set; } = 10;
 
 
         }
@@ -153,19 +153,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i<param.Count; i++)
+            for (int i = 0; i < param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-        }
+            }
             sql += " where Id = " + entidades.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return entidades;
-    }
+        }
 
         private static string GetComilla(string tipo)
         {

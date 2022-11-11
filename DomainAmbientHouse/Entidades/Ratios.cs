@@ -16,12 +16,15 @@ namespace DomainAmbientHouse.Entidades
     {
         public int Id { get; set; }
         public int ItemId { get; set; }
+        public string ExperienciaBarra { get; set; }
         public int CategoriaId { get; set; }
         public string TipoRatio { get; set; }
         public string DetalleTipo { get; set; }
         public Nullable<double> ValorRatio { get; set; }
         public Nullable<double> TopeRatio { get; set; }
-        public bool Menores { get; set; }
+        public bool Menores3 { get; set; }
+        public bool Menores3y8 { get; set; }
+        public bool Adolescentes { get; set; }
         public bool AdicionalRatio { get; set; }
         public int EstadoId { get; set; }
     }

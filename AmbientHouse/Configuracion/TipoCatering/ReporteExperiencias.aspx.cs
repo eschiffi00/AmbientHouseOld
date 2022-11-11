@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 
 namespace AmbientHouse.Configuracion.TipoCatering
 {
@@ -247,13 +240,13 @@ namespace AmbientHouse.Configuracion.TipoCatering
             //            //Experiencias.Rows.Add(filaCategoriasItems);
             //        }
 
-                   
+
 
             //        List<DomainAmbientHouse.Entidades.Items> ListItems = servicios.ObtenerItemsPorTipoCateringTiempo(TipoCateringId, item.Id);
 
             //        //var result = "<ul>";
 
-                
+
             //        //result = result + "</ul>";
             //        foreach (var itemItems in ListItems)
             //        {

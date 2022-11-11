@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion
 {
@@ -78,7 +73,7 @@ namespace AmbientHouse.Configuracion
         {
 
             Response.Redirect("~/Costos/Catering/Index.aspx");
-           
+
         }
 
         protected void ButtonAdministrarParametros_Click(object sender, EventArgs e)
@@ -202,7 +197,7 @@ namespace AmbientHouse.Configuracion
             Response.Redirect("~/Costos/AmbientacionCI/Index.aspx");
         }
 
-    
+
     }
 }
 

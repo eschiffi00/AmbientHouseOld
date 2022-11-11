@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.Productos
 {
@@ -270,13 +269,13 @@ namespace AmbientHouse.Configuracion.Productos
 
             Filtros(out unidadNegocioId, out tipoCatering, out tipoBarra, out tipoServicio, out categoriaId, out cantidadInvitados, out locacionId, out sectorId, out jornadaId, out segmentoId, out proveedorId, out Anio, out Mes, out Dia, out adicionalId, out caracteristicaId, out itemOrganizacionId, out semestreId);
 
-            if(unidadNegocioId == 7)
+            if (unidadNegocioId == 7)
             {
-                foreach(var rango in cantidadInvitados)
+                foreach (var rango in cantidadInvitados)
                 {
-                    foreach(var sector in sectorId)
+                    foreach (var sector in sectorId)
                     {
-                        foreach(var anio in Anio)
+                        foreach (var anio in Anio)
                         {
                             foreach (var mes in Mes)
                             {
@@ -291,7 +290,7 @@ namespace AmbientHouse.Configuracion.Productos
                     }
                 }
             }
-            
+
 
 
             GridViewProductos.DataSource = ListProductos.ToList();
@@ -314,7 +313,7 @@ namespace AmbientHouse.Configuracion.Productos
             segmentoId = 0;
             proveedorId = 0;
             cantidadInvitados = new List<int>();
-            foreach(ListItem pax in DropDownListCantidadPersonas.Items)
+            foreach (ListItem pax in DropDownListCantidadPersonas.Items)
             {
                 if (pax.Selected)
                 { cantidadInvitados.Add(Int32.Parse(pax.Value)); }
@@ -353,7 +352,7 @@ namespace AmbientHouse.Configuracion.Productos
             foreach (ListItem dia in DropDownListDia.Items)
             {
                 if (dia.Selected)
-                { Dia.Add(dia.Text) ; }
+                { Dia.Add(dia.Text); }
             }
 
             adicionalId = 0;

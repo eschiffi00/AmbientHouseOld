@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -21,7 +19,7 @@ namespace DomainAmbientHouse.Datos
         public virtual List<Estados> BuscarEstadosPorEntidad(string entidad)
         {
 
-            return SqlContext.Estados.Where(o=> o.Entidad.Contains(entidad)).ToList();
+            return SqlContext.Estados.Where(o => o.Entidad.Contains(entidad)).ToList();
 
         }
 

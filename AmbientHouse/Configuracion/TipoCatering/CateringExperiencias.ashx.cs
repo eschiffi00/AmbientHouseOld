@@ -167,10 +167,10 @@ namespace AmbientHouse.Configuracion.TipoCatering
                 }
 
                 DomainAmbientHouse.Entidades.TipoCatering tipo = servicios.BuscarTipoCatering(TipoCateringId);
- 
+
 
                 pdfFormFields.SetField("Experiencia", Convert.ToString(tipo.Descripcion));
-            
+
                 pdfStamper.FormFlattening = true;
                 pdfStamper.Close();
 

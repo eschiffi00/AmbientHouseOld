@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+using System;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.FacturasClientes
 {
@@ -99,7 +96,7 @@ namespace AmbientHouse.Administracion.FacturasClientes
                 DropDownList estados = (DropDownList)row.FindControl("DropDownListEstados");
                 DropDownList tiposComprobantes = (DropDownList)row.FindControl("DropDownListTipoComprobantes");
                 DropDownList empresas = (DropDownList)row.FindControl("DropDownListEmpresas");
-                
+
 
                 int id = Int32.Parse(row.Cells[0].Text);
 
@@ -154,7 +151,7 @@ namespace AmbientHouse.Administracion.FacturasClientes
                 DropDownList estados = (DropDownList)e.Row.FindControl("DropDownListEstados");
                 DropDownList tiposComprobantes = (DropDownList)e.Row.FindControl("DropDownListTipoComprobantes");
                 DropDownList empresas = (DropDownList)e.Row.FindControl("DropDownListEmpresas");
-                
+
 
                 estados.DataSource = administracion.BuscarEstadosPorEntidad("FacturasCliente");
                 estados.DataTextField = "Descripcion";
@@ -181,7 +178,7 @@ namespace AmbientHouse.Administracion.FacturasClientes
                 empresas.SelectedValue = factura.EmpresaId.ToString();
 
                 tiposComprobantes.SelectedValue = factura.TipoComprobanteId.ToString();
-                
+
             }
 
         }

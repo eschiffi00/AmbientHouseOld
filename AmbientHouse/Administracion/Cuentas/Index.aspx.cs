@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 
 namespace AmbientHouse.Administracion.Cuentas
 {
@@ -104,7 +99,7 @@ namespace AmbientHouse.Administracion.Cuentas
                     default:
                         break;
                 }
-              
+
             }
         }
 
@@ -167,7 +162,7 @@ namespace AmbientHouse.Administracion.Cuentas
 
                 Response.Redirect("~/Administracion/Cuentas/Rectificatoria.aspx?Id=" + cuentaId);
             }
-            
+
 
             BuscarCuentas();
             UpdatePanelGrillaCuentas.Update();

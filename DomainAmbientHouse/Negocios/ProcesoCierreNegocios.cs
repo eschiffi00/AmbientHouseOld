@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
     public class ProcesoCierreNegocios
     {
 
-      ProcesoCierreDatos Datos;
+        ProcesoCierreDatos Datos;
 
-      public ProcesoCierreNegocios()
+        public ProcesoCierreNegocios()
         {
             Datos = new ProcesoCierreDatos();
         }
 
-      public virtual List<ProcesoCierre> ObtenerProcesoCierre()
+        public virtual List<ProcesoCierre> ObtenerProcesoCierre()
         {
 
             return Datos.ObtenerProcesoCierre();

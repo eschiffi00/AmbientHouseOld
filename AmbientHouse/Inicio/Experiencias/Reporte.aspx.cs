@@ -1,11 +1,6 @@
 ﻿using DomainAmbientHouse.Servicios;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Inicio.Experiencias
 {
@@ -23,9 +18,9 @@ namespace AmbientHouse.Inicio.Experiencias
             }
         }
 
-    
 
-      
+
+
         AdministrativasServicios servicios = new AdministrativasServicios();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -260,7 +255,7 @@ namespace AmbientHouse.Inicio.Experiencias
 
         //    LabelExperiencia.Text = tc.Descripcion.ToUpper();
 
-         
+
 
 
         //}

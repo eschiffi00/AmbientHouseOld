@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Domain.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Entidades;
 
 namespace Domain.Datos
 {
     public class TransferenciasDatos
     {
-       
+
         public AmbientHouseEntities SqlContext { get; set; }
 
         public TransferenciasDatos()
@@ -57,7 +55,7 @@ namespace Domain.Datos
 
                     return false;
                 }
-               
+
 
             }
             else
@@ -74,13 +72,13 @@ namespace Domain.Datos
                 {
                     return false;
                 }
-               
+
 
             }
 
-        
+
         }
-        
+
     }
 }
 
@@ -88,7 +86,7 @@ namespace Domain.Entidades
 {
     public partial class TransferenciasSearcher
     {
-      
+
 
     }
 }

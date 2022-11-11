@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
-using System.Globalization;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
+using System.Globalization;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.LiquidacionHoras
 {
@@ -231,7 +228,7 @@ namespace AmbientHouse.Administracion.LiquidacionHoras
                 TipoEmpleado.DataBind();
 
             }
- 
+
 
         }
 
@@ -396,7 +393,7 @@ namespace AmbientHouse.Administracion.LiquidacionHoras
                 GridViewDetalle.DataSource = liquidacion.LiquidacionHorasPersonal_Detalle.ToList();
                 GridViewDetalle.DataBind();
 
-               
+
             }
             else if (e.CommandName == "Quitar")
             {

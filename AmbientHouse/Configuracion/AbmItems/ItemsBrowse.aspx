@@ -121,6 +121,7 @@
                 <asp:BoundField DataField="CategoriaDescripcion" HeaderText="Categoria" Visible="true" HeaderStyle-CssClass="header-black" />
                 <asp:BoundField DataField="NombreFantasiaId" HeaderText="NombreFantasiaId" Visible="false" HeaderStyle-CssClass="header-black"/>
                 <asp:BoundField DataField="NombreFantasia" HeaderText="Nombre Fantasía" Visible="true" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="ItemsAsociados" HeaderText="Items Asociados" Visible="true" HeaderStyle-CssClass="header-black"/>
                 <asp:BoundField DataField="CuentaId" HeaderText="CuentaId" Visible="false" HeaderStyle-CssClass="header-black"/>
                 <asp:BoundField DataField="CuentaDescripcion" HeaderText="Cuenta" Visible="true" HeaderStyle-CssClass="header-black"/>
                 <asp:BoundField DataField="Costo" HeaderText="Costo" Visible="true" HeaderStyle-CssClass="header-black"/>

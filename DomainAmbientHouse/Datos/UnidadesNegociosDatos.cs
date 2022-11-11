@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -33,7 +31,7 @@ namespace DomainAmbientHouse.Datos
                         {
                             Id = u.Id,
                             Descripcion = u.Descripcion,
-                           
+
 
                         };
 
@@ -45,8 +43,8 @@ namespace DomainAmbientHouse.Datos
 
                 cat.Id = item.Id;
                 cat.Descripcion = item.Descripcion;
-               
-              
+
+
 
 
                 Salida.Add(cat);
@@ -63,7 +61,7 @@ namespace DomainAmbientHouse.Datos
             int unAmbientacion = Int32.Parse(ConfigurationManager.AppSettings["RubroAmbientacion"].ToString());
             int unBarra = Int32.Parse(ConfigurationManager.AppSettings["RubroBarras"].ToString());
             int unOrganizacion = Int32.Parse(ConfigurationManager.AppSettings["RubroOrganizacion"].ToString());
-           
+
 
 
             List<int> lista = new List<int> { unCatering, unTecnica, unAmbientacion, unBarra, unOrganizacion };
@@ -153,7 +151,7 @@ namespace DomainAmbientHouse.Datos
                 UnidadesNegocios rubroEdit = SqlContext.UnidadesNegocios.Where(o => o.Id == rubro.Id).First();
 
                 rubroEdit.Descripcion = rubro.Descripcion;
-                
+
 
 
                 SqlContext.SaveChanges();
@@ -191,10 +189,11 @@ namespace DomainAmbientHouse.Datos
             var query = from UNP in SqlContext.UnidadesNegocios_Proveedores
                         join Un in SqlContext.UnidadesNegocios on UNP.UnidadNegocioId equals Un.Id
                         where UNP.ProveedorId == ProveedorId
-                        select new { 
-                        Id = UNP.Id,
-                        UnidadNegocioId= UNP.UnidadNegocioId,
-                        Descripcion = Un.Descripcion
+                        select new
+                        {
+                            Id = UNP.Id,
+                            UnidadNegocioId = UNP.UnidadNegocioId,
+                            Descripcion = Un.Descripcion
                         };
 
 
@@ -227,8 +226,8 @@ namespace DomainAmbientHouse.Datos
 
 
             List<UnidadesNegocios> queryFinal = (from un in SqlContext.UnidadesNegocios
-                        where lista.Contains(un.Id)
-                        select un).ToList();
+                                                 where lista.Contains(un.Id)
+                                                 select un).ToList();
 
 
 

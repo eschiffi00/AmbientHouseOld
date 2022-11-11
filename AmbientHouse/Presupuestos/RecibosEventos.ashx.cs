@@ -4,7 +4,6 @@ using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 
@@ -71,7 +70,7 @@ namespace AmbientHouse.Presupuestos
                 pdfFormFields.SetField("CUIT", Convert.ToString(recibos.CuilCuit));
                 pdfFormFields.SetField("IVA", Convert.ToString(recibos.CondicionIva));
 
-                pdfFormFields.SetField("NroRecibo", Convert.ToString("1".PadLeft(6,'0'))); 
+                pdfFormFields.SetField("NroRecibo", Convert.ToString("1".PadLeft(6, '0')));
 
                 pdfStamper.FormFlattening = true;
                 pdfStamper.Close();

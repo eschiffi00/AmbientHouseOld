@@ -1,12 +1,11 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.Adicionales
 {
@@ -23,7 +22,7 @@ namespace AmbientHouse.Configuracion.Adicionales
             {
                 CargarLista();
 
-              
+
 
                 BuscarAdicionales(TextBoxDescripcionBuscador.Text);
             }
@@ -71,7 +70,7 @@ namespace AmbientHouse.Configuracion.Adicionales
                 unidadNegocioId = Int32.Parse(DropDownListUnidadNegocio.SelectedItem.Value);
 
 
-            List<ObtenerAdicionales> list = servicios.BuscarAdicionalesPorDescripcionProveedorSalon(descripcion,proveedorId,locacionId, unidadNegocioId);
+            List<ObtenerAdicionales> list = servicios.BuscarAdicionalesPorDescripcionProveedorSalon(descripcion, proveedorId, locacionId, unidadNegocioId);
 
             //if (cmd.IsNumeric(descripcion))
             //{
@@ -112,7 +111,7 @@ namespace AmbientHouse.Configuracion.Adicionales
         protected void ButtonVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home/Index.aspx");
-           
+
         }
 
         protected void ButtonExportarExcel_Click(object sender, EventArgs e)
@@ -232,8 +231,8 @@ namespace AmbientHouse.Configuracion.Adicionales
             BuscarAdicionales(TextBoxDescripcionBuscador.Text);
         }
 
-      
- 
-      
+
+
+
     }
 }

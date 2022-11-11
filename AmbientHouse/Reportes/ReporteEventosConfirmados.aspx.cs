@@ -1,16 +1,13 @@
-﻿using System;
+﻿using DbEntidades.Operators;
+using DBEntidades.Entities;
+using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 using System.Web.UI.HtmlControls;
-using DbEntidades.Entities;
-using DbEntidades.Operators;
-using DBEntidades.Entities;
-using NPOI.SS.Formula.Functions;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Reportes
 {
@@ -20,7 +17,7 @@ namespace AmbientHouse.Reportes
         {
             get
             {
-                return Session["ListPresupuestosConfirmados"] as List<ObtenerEventos>; 
+                return Session["ListPresupuestosConfirmados"] as List<ObtenerEventos>;
             }
             set
             {
@@ -60,7 +57,8 @@ namespace AmbientHouse.Reportes
         {
             List<NewEventosConfirmados> EventosConfirmadosNew = new List<NewEventosConfirmados>();
             //NewEventosConfirmados e = new NewEventosConfirmados();
-            foreach(var evento in lista) { 
+            foreach (var evento in lista)
+            {
                 NewEventosConfirmados e = new NewEventosConfirmados();
                 e.ApellidoNombre = evento.ApellidoNombre;
                 e.CARACTERISTICA = evento.CARACTERISTICA;
@@ -90,26 +88,27 @@ namespace AmbientHouse.Reportes
                 e.Cliente = evento.Cliente;
                 e.FechaSena = evento.FechaSena;
                 e.TipoEventoId = evento.TipoEventoId;
-                
+
                 //if(eventoAnterior != e.EventoId)
                 //{
-                    var detalles = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId",e.PresupuestoId.ToString());
-                    if(detalles.Find(x => x.UnidadNegocioId == 3) !=null){
-                        var productoEx = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 3).ProductoId);
-                        e.TipoExperiencia = TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion == null ? " " : TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion;
-                    }
-                    else { e.TipoExperiencia = ""; }
-                    if (detalles.Find(x => x.UnidadNegocioId == 6) != null)
-                    {
-                        var productoBa = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 6).ProductoId);
-                        e.TipoBarra = TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion == null ? " " : TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion;
-                    }
-                    else
-                    {
-                        e.TipoBarra = "";
-                    }
-                    EventosConfirmadosNew.Add(e);
-                    eventoAnterior = e.EventoId;
+                var detalles = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId", e.PresupuestoId.ToString());
+                if (detalles.Find(x => x.UnidadNegocioId == 3) != null)
+                {
+                    var productoEx = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 3).ProductoId);
+                    e.TipoExperiencia = TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion == null ? " " : TipoCateringOperator.GetOneByIdentity(productoEx.TipoCateringId.Value).Descripcion;
+                }
+                else { e.TipoExperiencia = ""; }
+                if (detalles.Find(x => x.UnidadNegocioId == 6) != null)
+                {
+                    var productoBa = ProductosOperator.GetOneByIdentity(detalles.Find(x => x.UnidadNegocioId == 6).ProductoId);
+                    e.TipoBarra = TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion == null ? " " : TiposBarrasOperator.GetOneByIdentity(productoBa.TipoBarraId.Value).Descripcion;
+                }
+                else
+                {
+                    e.TipoBarra = "";
+                }
+                EventosConfirmadosNew.Add(e);
+                eventoAnterior = e.EventoId;
                 //}
             }
             return EventosConfirmadosNew.ToList();
@@ -129,11 +128,11 @@ namespace AmbientHouse.Reportes
 
                     celda.InnerHtml = "<strong>ejemplo<strong>";
                 }
-                
+
             }
 
             return tabla;
-        
+
         }
 
         protected void GridViewEventosConfirmados_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -189,25 +188,25 @@ namespace AmbientHouse.Reportes
             Response.End();
         }
 
-    //    Private Function GenerarTabla(ByVal filas As Integer, ByVal columnas As Integer) As HtmlTable
-    //    Dim t As New HtmlTable
+        //    Private Function GenerarTabla(ByVal filas As Integer, ByVal columnas As Integer) As HtmlTable
+        //    Dim t As New HtmlTable
 
-    //    For i As Integer = 1 To filas
-    //        Dim fila As New HtmlTableRow
-    //        For j As Integer = 1 To columnas
+        //    For i As Integer = 1 To filas
+        //        Dim fila As New HtmlTableRow
+        //        For j As Integer = 1 To columnas
 
-    //            Dim celda As New HtmlTableCell
+        //            Dim celda As New HtmlTableCell
 
-    //            'Insertar contenido html dentro de la celda
-    //            '   <td><strong>ejemplo<strong><td>
-    //            celda.InnerHtml = "<strong>ejemplo<strong>"
+        //            'Insertar contenido html dentro de la celda
+        //            '   <td><strong>ejemplo<strong><td>
+        //            celda.InnerHtml = "<strong>ejemplo<strong>"
 
-    //            fila.Cells.Add(celda)
-    //        Next
-    //        t.Rows.Add(fila)
-    //    Next
+        //            fila.Cells.Add(celda)
+        //        Next
+        //        t.Rows.Add(fila)
+        //    Next
 
-    //    Return t
-    //End Function
+        //    Return t
+        //End Function
     }
 }

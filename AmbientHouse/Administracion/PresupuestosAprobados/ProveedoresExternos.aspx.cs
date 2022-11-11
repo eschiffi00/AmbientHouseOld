@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+using System;
 using System.Configuration;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.PresupuestosAprobados
 {
@@ -148,7 +145,7 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
                 PresupuestoId = Int32.Parse(Request["PresupuestoId"]);
                 LabelNroPresupuesto.Text = PresupuestoId.ToString().PadLeft(8, '0');
 
-              
+
             }
 
             CargarEvento(mail, telefono);
@@ -263,15 +260,15 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
             BuscarArchivos();
 
             TextBoxArchivoDescripcion.Text = "";
-         
-            
+
+
         }
 
         private void BuscarArchivos()
         {
 
 
-            GridViewArchivo.DataSource = administrativas.ObtenerArchivosPorPresupuestoPorUsuario(PresupuestoId,EmpleadoId).ToList();
+            GridViewArchivo.DataSource = administrativas.ObtenerArchivosPorPresupuestoPorUsuario(PresupuestoId, EmpleadoId).ToList();
             GridViewArchivo.DataBind();
         }
 
@@ -290,12 +287,12 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
                 administrativas.EliminarArchivo(archivos);
 
                 BuscarArchivos();
-                
+
             }
             else if (e.CommandName == "Descargar")
             {
 
-                int index = Convert.ToInt32(e.CommandArgument); 
+                int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridViewArchivo.Rows[index];
 
                 int Id = Int32.Parse(row.Cells[0].Text);
@@ -355,7 +352,7 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
                 Response.Redirect("~/Organizador/CalendarioOrganizador.aspx");
         }
 
-        
+
 
         protected void GridViewProveedoresExternos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -376,7 +373,7 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
                 else
                     ok.ImageUrl = "~/Content/Imagenes/noaprobado.png";
 
-                
+
             }
         }
 
@@ -402,14 +399,14 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
                 BuscarProveedoresExternos();
 
                 UpdatePanelProveedores.Update();
-               
+
             }
             else if (e.CommandName == "Actualizar")
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridViewProveedoresExternos.Rows[index];
 
-     
+
                 TextBox Observaciones = row.FindControl("TextBoxObservaciones") as TextBox;
 
                 int Id = Int32.Parse(row.Cells[0].Text);

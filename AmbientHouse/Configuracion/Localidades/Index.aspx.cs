@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
 
 namespace AmbientHouse.Configuracion.Localidades
 {
@@ -42,7 +39,7 @@ namespace AmbientHouse.Configuracion.Localidades
         protected void GridViewLocalidades_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridViewLocalidades.PageIndex = e.NewPageIndex;
-             BuscarLocalidades();
+            BuscarLocalidades();
 
         }
     }

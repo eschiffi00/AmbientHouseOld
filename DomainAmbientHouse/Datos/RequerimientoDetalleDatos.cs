@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -19,10 +16,10 @@ namespace DomainAmbientHouse.Datos
 
         public virtual List<INVENTARIO_Requerimiento_Detalle> ListarRequerimientoDetalle()
         {
-           
-            var query = from p in  SqlContext.INVENTARIO_Requerimiento_Detalle
-                        where  p.Delete == false 
-                        select p ;
+
+            var query = from p in SqlContext.INVENTARIO_Requerimiento_Detalle
+                        where p.Delete == false
+                        select p;
 
             return InventarioRequerimientoDetalleToModel(query).OrderBy(o => o.CreateFecha).ToList();
 
@@ -77,7 +74,7 @@ namespace DomainAmbientHouse.Datos
                     edit.ProductoId = requerimiento.ProductoId;
                     edit.UnidadId = requerimiento.UnidadId;
                     edit.Cantidad = requerimiento.Cantidad;
-                   
+
                     edit.UpdateFecha = System.DateTime.Now;
 
 

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using DomainAmbientHouse.Servicios;
+using System;
+using System.IO;
 using System.Linq;
 using System.Web;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
 using System.Web.SessionState;
-using System.IO;
 
 namespace AmbientHouse.Presupuestos
 {
@@ -20,7 +17,7 @@ namespace AmbientHouse.Presupuestos
 
             get { return (Int32)HttpContext.Current.Session["EventoId"]; }
             set { HttpContext.Current.Session["EventoId"] = value; }
-          
+
         }
 
         public void ProcessRequest(HttpContext context)
@@ -30,7 +27,7 @@ namespace AmbientHouse.Presupuestos
             byte[] buffer;
             try
             {
-              
+
                 EventosServicios servicio = new EventosServicios();
                 fotos = servicio.BuscarEvento(EventoId);
 

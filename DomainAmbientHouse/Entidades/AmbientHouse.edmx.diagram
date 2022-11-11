@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="883ee036be1741da8fd005fdda280864" Name="Diagram1">
+      <Diagram DiagramId="d911794c30ab4dcc9f550fc3889b1476" Name="Diagram1">
         <EntityTypeShape EntityType="AmbientHouseModel.Adicionales" Width="1.5" PointX="3" PointY="58.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AmbientHouseModel.AdicionalesItems" Width="1.5" PointX="5.25" PointY="63.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AmbientHouseModel.AmbientacionCI" Width="1.5" PointX="18.25" PointY="73.375" IsExpanded="true" />
@@ -165,33 +165,33 @@
         <EntityTypeShape EntityType="AmbientHouseModel.ObtenerCantidadInvitadosCatering" Width="1.5" PointX="21.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AmbientHouseModel.ObtenerCantidadPersonasAdicionalesCatering" Width="1.5" PointX="21.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AmbientHouseModel.ObtenerClientes" Width="1.5" PointX="21.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerContactosClientes" Width="1.5" PointX="6.75" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerDatosParaPresupuesto" Width="1.5" PointX="22.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerEventos" Width="1.5" PointX="22.75" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerEventosNew" Width="1.5" PointX="23.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerEventosSeguimiento" Width="1.5" PointX="8.75" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerFamilias" Width="1.5" PointX="0.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerContactosClientes" Width="1.5" PointX="22.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerDatosParaPresupuesto" Width="1.5" PointX="22.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerEventos" Width="1.5" PointX="23.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerEventosNew" Width="1.5" PointX="0.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerEventosSeguimiento" Width="1.5" PointX="6.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerFamilias" Width="1.5" PointX="23.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AmbientHouseModel.ObtenerGruposconFamilias" Width="1.5" PointX="10.75" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPrecioCostoBarra" Width="1.5" PointX="12.75" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPrecioCostoCatering" Width="1.5" PointX="23.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPrecioCostoTecnica" Width="1.5" PointX="17.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoAmbientacion" Width="1.5" PointX="24.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoArtistica" Width="1.5" PointX="24.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoAudiovisual" Width="1.5" PointX="19.75" PointY="24.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoBarra" Width="1.5" PointX="24.75" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoCatering" Width="1.5" PointX="25.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoSalon" Width="1.5" PointX="25.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoTecnica" Width="1.5" PointX="2.75" PointY="26.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerUsuarios" Width="1.5" PointX="26.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.PresupuestosAVencer" Width="1.5" PointX="26.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ProveedoresExternos" Width="1.5" PointX="26.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ProveedoresPagos" Width="1.5" PointX="26.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPrecioCostoCatering" Width="1.5" PointX="17.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPrecioCostoTecnica" Width="1.5" PointX="24.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoAmbientacion" Width="1.5" PointX="24.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoArtistica" Width="1.5" PointX="19.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoAudiovisual" Width="1.5" PointX="24.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoBarra" Width="1.5" PointX="25.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoCatering" Width="1.5" PointX="25.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoSalon" Width="1.5" PointX="2.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerPresupuestoTecnica" Width="1.5" PointX="26.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ObtenerUsuarios" Width="1.5" PointX="26.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.PresupuestosAVencer" Width="1.5" PointX="26.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ProveedoresExternos" Width="1.5" PointX="21.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ProveedoresPagos" Width="1.5" PointX="26.75" PointY="26.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AmbientHouseModel.ReporteAdiocionales" Width="1.5" PointX="27.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AmbientHouseModel.ReporteComprobantes" Width="1.5" PointX="27.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ReporteEventosCobranzas" Width="1.5" PointX="28.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ReporteEventosPorUnidadesdeNegocios" Width="1.5" PointX="28.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.ResponsablesEventos" Width="1.5" PointX="29.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmbientHouseModel.SeguimientosEventosClientesEstados" Width="1.5" PointX="18.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ReporteEventosCobranzas" Width="1.5" PointX="23.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ReporteEventosPorUnidadesdeNegocios" Width="1.5" PointX="28.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.ResponsablesEventos" Width="1.5" PointX="28.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmbientHouseModel.SeguimientosEventosClientesEstados" Width="1.5" PointX="29.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="AmbientHouseModel.FK_Adicionales_Estados" ManuallyRouted="false" />
         <AssociationConnector Association="AmbientHouseModel.FK_Adicionales_Rubros" ManuallyRouted="false" />
         <AssociationConnector Association="AmbientHouseModel.FK_AdicionalesItems_Adicionales" ManuallyRouted="false" />

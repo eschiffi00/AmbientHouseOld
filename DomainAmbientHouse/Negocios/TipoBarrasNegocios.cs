@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -14,12 +9,12 @@ namespace DomainAmbientHouse.Negocios
 
         TipoBarrasDatos Datos;
 
-      public TipoBarrasNegocios()
+        public TipoBarrasNegocios()
         {
             Datos = new TipoBarrasDatos();
         }
 
-      public virtual List<TiposBarras> ObtenerTipoBarras()
+        public virtual List<TiposBarras> ObtenerTipoBarras()
         {
 
             return Datos.ObtenerTipoBarras();
@@ -27,19 +22,19 @@ namespace DomainAmbientHouse.Negocios
         }
 
 
-      public TiposBarras BuscarTipoBarras(int id)
-      {
-          return Datos.BuscarTipoBarras(id);
-      }
+        public TiposBarras BuscarTipoBarras(int id)
+        {
+            return Datos.BuscarTipoBarras(id);
+        }
 
-      public void NuevoTipoBarra(TiposBarras tipoBarra)
-      {
-          Datos.NuevoTipoBarra( tipoBarra);
-      }
+        public void NuevoTipoBarra(TiposBarras tipoBarra)
+        {
+            Datos.NuevoTipoBarra(tipoBarra);
+        }
 
-      public List<TiposBarras> BuscarTipoBarrasPorSegmento(int segmentoId, int duracionId)
-      {
-          return Datos.BuscarTipoBarrasPorSegmento(segmentoId, duracionId);
-      }
+        public List<TiposBarras> BuscarTipoBarrasPorSegmento(int segmentoId, int duracionId)
+        {
+            return Datos.BuscarTipoBarrasPorSegmento(segmentoId, duracionId);
+        }
     }
 }

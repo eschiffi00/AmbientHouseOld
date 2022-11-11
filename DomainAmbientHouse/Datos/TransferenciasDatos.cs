@@ -1,12 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -16,7 +13,7 @@ namespace DomainAmbientHouse.Datos
 
         public ClientesDatos DatosClientes;
         public ProveedoresDatos DatosProveedores;
-       
+
         public TransferenciasDatos()
         {
             SqlContext = new AmbientHouseEntities();
@@ -66,16 +63,16 @@ namespace DomainAmbientHouse.Datos
             return list;
         }
 
-      
 
-        
+
+
 
         public virtual bool GrabarTransferencias(Transferencias transferencia)
         {
 
             try
             {
-                
+
                 if (transferencia.Id > 0)
                 {
                     Transferencias edit = SqlContext.Transferencias.Where(o => o.Id == transferencia.Id).FirstOrDefault();
@@ -183,14 +180,14 @@ namespace DomainAmbientHouse.Datos
 
             if (!string.IsNullOrEmpty(searcher.RazonSocial))
             {
-              
+
                 query = from q in query
                         join c in SqlContext.ClientesBis on q.ClienteId equals c.Id into CS
                         from c in CS.DefaultIfEmpty()
                         join p in SqlContext.Proveedores on q.ProveedorId equals p.Id into PS
                         from p in PS.DefaultIfEmpty()
-                        where (c.RazonSocial.Contains(searcher.RazonSocial) 
-                                || c.ApellidoNombre.Contains(searcher.RazonSocial)) 
+                        where (c.RazonSocial.Contains(searcher.RazonSocial)
+                                || c.ApellidoNombre.Contains(searcher.RazonSocial))
                                 || p.RazonSocial.Contains(searcher.RazonSocial)
                         select q;
 
@@ -248,7 +245,7 @@ namespace DomainAmbientHouse.Entidades
             {
                 return System.Math.Round((double)Importe, 2).ToString("C");
             }
-         
+
         }
     }
 

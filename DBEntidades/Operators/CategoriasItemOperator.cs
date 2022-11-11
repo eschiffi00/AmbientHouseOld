@@ -1,11 +1,10 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
 using System.Linq;
-using DbEntidades.Entities;
-using System.Data.SqlClient;
-using LibDB2;
+using System.Reflection;
 
 namespace DbEntidades.Operators
 {
@@ -36,7 +35,8 @@ namespace DbEntidades.Operators
             dt2.Columns.AddRange(new DataColumn[3] { new DataColumn("Value"), new DataColumn("Text"), new DataColumn("Categoria") });
             var categoria = "";
             foreach (var item in lista)
-            {   if(item.CategoriaItemPadreId != null)
+            {
+                if (item.CategoriaItemPadreId != null)
                 {
                     categoria = CategoriasItemOperator.GetOneByIdentity(item.CategoriaItemPadreId.Value).Descripcion;
                 }
@@ -44,8 +44,8 @@ namespace DbEntidades.Operators
                 {
                     categoria = item.Descripcion;
                 }
-                
-                dt2.Rows.Add(item.Id, item.Descripcion,categoria);
+
+                dt2.Rows.Add(item.Id, item.Descripcion, categoria);
             }
 
             return dt2;

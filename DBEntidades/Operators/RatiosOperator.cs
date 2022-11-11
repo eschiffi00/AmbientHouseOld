@@ -1,11 +1,10 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
 using System.Linq;
-using DbEntidades.Entities;
-using System.Data.SqlClient;
-using LibDB2;
+using System.Reflection;
 
 namespace DbEntidades.Operators
 {
@@ -37,9 +36,9 @@ namespace DbEntidades.Operators
                 RatiosListado RatiosDetail = new RatiosListado();
                 RatiosDetail.Id = Ratios.Id;
                 RatiosDetail.ItemId = Ratios.ItemId;
-                if(Ratios.ExperienciaBarra.Substring(0,3) == "BAR")
+                if (Ratios.ExperienciaBarra.Substring(0, 3) == "BAR")
                 {
-                    RatiosDetail.ExperienciaBarra = TiposBarrasOperator.GetOneByParameter("Id",Ratios.ExperienciaBarra.Substring(3)).Descripcion;
+                    RatiosDetail.ExperienciaBarra = TiposBarrasOperator.GetOneByParameter("Id", Ratios.ExperienciaBarra.Substring(3)).Descripcion;
                 }
                 else
                 {
@@ -58,12 +57,8 @@ namespace DbEntidades.Operators
                 RatiosDetail.AdicionalRatio = Ratios.AdicionalRatio;
                 RatiosDetail.EstadoId = Ratios.EstadoId;
 
-                if (EstadosOperator.GetHablitadoID("Ratios") > 0)
-                {
-                    RatiosDetail.Estado = "Activo";
-                }
-                else { RatiosDetail.Estado = "Inactivo"; }
-                
+                RatiosDetail.Estado = EstadosOperator.GetOneByIdentity(RatiosDetail.EstadoId).Descripcion;
+
                 lista.Add(RatiosDetail);
             }
             return lista;
@@ -136,7 +131,7 @@ namespace DbEntidades.Operators
                                                                                        + "and CategoriaId = " + key[2]
                                                                                        + "and TipoRatio = \'" + key[3] + "\'"
                                                                                        + "and DetalleTipo = \'" + key[4] + "\'").Tables[0];
-            
+
             if (dt.Rows.Count > 0)
             {
                 result = true;
@@ -156,7 +151,7 @@ namespace DbEntidades.Operators
                                                                                        + "and TipoRatio = \'" + key[3] + "\'"
                                                                                        + "and DetalleTipo = \'" + key[4] + "\'").Tables[0];
             var id = 0;
-            if(dt.Rows.Count > 0)
+            if (dt.Rows.Count > 0)
             {
                 foreach (PropertyInfo prop in typeof(Ratios).GetProperties())
                 {
@@ -165,7 +160,7 @@ namespace DbEntidades.Operators
                 }
 
             }
-            
+
             return id;
         }
     }

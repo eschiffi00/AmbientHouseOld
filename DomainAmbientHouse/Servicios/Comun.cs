@@ -1,16 +1,12 @@
 ﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Negocios;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Negocios;
 using System.Configuration;
 using System.Globalization;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Web.UI.WebControls;
 
 
 namespace DomainAmbientHouse.Servicios
@@ -171,7 +167,7 @@ namespace DomainAmbientHouse.Servicios
                 Meses.Items.Add(mes);
             }
         }
-        
+
 
         public void CargarDias(DropDownList Dias)
         {
@@ -379,7 +375,7 @@ namespace DomainAmbientHouse.Servicios
             return Categoria + tipoCatering + Proveedor + proveedor + CantidadInvitados + cantidadInvitadosId;
         }
 
-        public string ArmarCodigoTecnica(string fechaEvento, int tipoTecnicaId, int proveedorId, int segmentoId,int sectorId)
+        public string ArmarCodigoTecnica(string fechaEvento, int tipoTecnicaId, int proveedorId, int segmentoId, int sectorId)
         {
 
             DateTime fechaSeleccionada = DateTime.ParseExact(fechaEvento, "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -592,18 +588,18 @@ namespace DomainAmbientHouse.Servicios
 
         }
 
-        public double CalcularTotalPresupuestoPendiente(int PresupuestoId,List<PresupuestoDetalle> ListPresupuestoDetalle, double porcentajeOrganizador, double importeOrganizador)
+        public double CalcularTotalPresupuestoPendiente(int PresupuestoId, List<PresupuestoDetalle> ListPresupuestoDetalle, double porcentajeOrganizador, double importeOrganizador)
         {
             int PresupuestoDetallePendiente = Int32.Parse(ConfigurationManager.AppSettings["PresupuestoDetallePendiente"].ToString());
 
             var query = (from L in ListPresupuestoDetalle
                          where L.EstadoId == PresupuestoDetallePendiente
-                         select L.ValorSeleccionado + (L.Cannon == null ? 0 : L.Cannon) 
-                                                    + (L.Logistica == null ? 0 : L.Logistica) 
+                         select L.ValorSeleccionado + (L.Cannon == null ? 0 : L.Cannon)
+                                                    + (L.Logistica == null ? 0 : L.Logistica)
                                                     + (L.UsoCocina == null ? 0 : L.UsoCocina)
                                                     + (L.ValorIntermediario == null ? 0 : L.ValorIntermediario)
                                                     + (L.PrecioSillas == null ? 0 : L.PrecioSillas)
-                                                    + (L.PrecioMesas == null ? 0 : L.PrecioMesas) 
+                                                    + (L.PrecioMesas == null ? 0 : L.PrecioMesas)
                                                     + (L.Incremento == null ? 0 : L.Incremento) - (L.Descuentos == null ? 0 : L.Descuentos)).Sum();
 
             double TotalOrganizador = 0;
@@ -612,7 +608,7 @@ namespace DomainAmbientHouse.Servicios
 
             if (presu.ValorOrganizador != null)
             {
-                TotalOrganizador = TotalOrganizador + double.Parse(presu.ValorOrganizador.ToString() ) + double.Parse(presu.ValorRoyaltyOrganizador.ToString());
+                TotalOrganizador = TotalOrganizador + double.Parse(presu.ValorOrganizador.ToString()) + double.Parse(presu.ValorRoyaltyOrganizador.ToString());
             }
 
             //if (IsNumeric(porcentajeOrganizador))
@@ -632,18 +628,18 @@ namespace DomainAmbientHouse.Servicios
 
         }
 
-        public double CalcularTotalPresupuestoAprobado(int PresupuestoId,List<PresupuestoDetalle> ListPresupuestoDetalle, double porcentajeOrganizador, double importeOrganizador)
+        public double CalcularTotalPresupuestoAprobado(int PresupuestoId, List<PresupuestoDetalle> ListPresupuestoDetalle, double porcentajeOrganizador, double importeOrganizador)
         {
             int PresupuestoDetalleAprobado = Int32.Parse(ConfigurationManager.AppSettings["PresupuestoDetalleAprobado"].ToString());
 
             var query = (from L in ListPresupuestoDetalle
                          where L.EstadoId == PresupuestoDetalleAprobado
-                         select L.ValorSeleccionado + (L.Cannon == null ? 0 : L.Cannon) 
-                                                    + (L.Logistica == null ? 0 : L.Logistica) 
+                         select L.ValorSeleccionado + (L.Cannon == null ? 0 : L.Cannon)
+                                                    + (L.Logistica == null ? 0 : L.Logistica)
                                                     + (L.UsoCocina == null ? 0 : L.UsoCocina)
                                                     + (L.ValorIntermediario == null ? 0 : L.ValorIntermediario)
                                                     + (L.PrecioSillas == null ? 0 : L.PrecioSillas)
-                                                    + (L.PrecioMesas == null ? 0 : L.PrecioMesas) 
+                                                    + (L.PrecioMesas == null ? 0 : L.PrecioMesas)
                                                     + (L.Incremento == null ? 0 : L.Incremento) - (L.Descuentos == null ? 0 : L.Descuentos)).Sum();
 
             double TotalOrganizador = 0;
@@ -680,12 +676,12 @@ namespace DomainAmbientHouse.Servicios
             int PresupuestoDetalleAprobado = Int32.Parse(ConfigurationManager.AppSettings["PresupuestoDetalleAprobado"].ToString());
 
             var query = (from L in ListPresupuestoDetalle
-                         select L.ValorSeleccionado + (L.Cannon == null ? 0 : L.Cannon) 
-                                                    + (L.Logistica == null ? 0 : L.Logistica) 
+                         select L.ValorSeleccionado + (L.Cannon == null ? 0 : L.Cannon)
+                                                    + (L.Logistica == null ? 0 : L.Logistica)
                                                     + (L.UsoCocina == null ? 0 : L.UsoCocina)
                                                     + (L.ValorIntermediario == null ? 0 : L.ValorIntermediario)
                                                     + (L.PrecioSillas == null ? 0 : L.PrecioSillas)
-                                                    + (L.PrecioMesas == null ? 0 : L.PrecioMesas) 
+                                                    + (L.PrecioMesas == null ? 0 : L.PrecioMesas)
                                                     + (L.Incremento == null ? 0 : L.Incremento) - (L.Descuentos == null ? 0 : L.Descuentos)).Sum();
             double TotalOrganizador = 0;
 
@@ -714,7 +710,7 @@ namespace DomainAmbientHouse.Servicios
             var queryPrecio = (from l in ListPresupuestoDetalle
                                select l.ValorSeleccionado + (l.PrecioMesas == null ? 0 : l.PrecioMesas)
                                                           + (l.PrecioSillas == null ? 0 : l.PrecioSillas)
-                                                          + (l.Incremento == null ? 0 : l.Incremento) - (l.Descuentos== null ? 0 : l.Descuentos)).Sum();
+                                                          + (l.Incremento == null ? 0 : l.Incremento) - (l.Descuentos == null ? 0 : l.Descuentos)).Sum();
 
 
             double rentabilidad = double.Parse(queryPrecio.ToString()) - double.Parse(queryCosto.ToString());
@@ -744,7 +740,7 @@ namespace DomainAmbientHouse.Servicios
         {
             double ValorTotal = 0;
 
-         
+
 
             List<PresupuestoDetalle> query = (from L in ListPresupuestoDetalle
                                               select L).ToList();
@@ -767,12 +763,12 @@ namespace DomainAmbientHouse.Servicios
             string cadenaHoraInicio;
             string cadenaMinutosInicio;
 
-           
+
 
             cadenaHoraInicio = hora.Substring(0, 2);
             cadenaMinutosInicio = hora.Substring(3, 2);
 
-        
+
 
 
             if (Int32.Parse(cadenaHoraInicio) > 24)
@@ -823,7 +819,7 @@ namespace DomainAmbientHouse.Servicios
                 CantidadInvitadosAdolecentes = double.Parse((double.Parse(pCantidadInvitadosAdolecentes) * porcentajeCateringAdolescentes).ToString());
             }
 
-            return ((CantidadAdultos + (int)CantidadInvitadosEntre3y8 + (int) CantidadInvitadosMenores3 +  (int)CantidadInvitadosAdolecentes));
+            return ((CantidadAdultos + (int)CantidadInvitadosEntre3y8 + (int)CantidadInvitadosMenores3 + (int)CantidadInvitadosAdolecentes));
 
         }
 
@@ -836,7 +832,7 @@ namespace DomainAmbientHouse.Servicios
         public double CalcularSaldoIndexadoEvento(int presupuestoId, double saldoEvento)
         {
             return 0;
-        
+
         }
 
         public void PanelDescuentos(GridViewRowEventArgs e)
@@ -862,7 +858,7 @@ namespace DomainAmbientHouse.Servicios
             Label labelAjuste = (Label)e.Row.FindControl("LabelAjuste");
 
             Panel panelDescuento = (Panel)e.Row.FindControl("PanelValores");
-            
+
 
             button.Visible = false;
 
@@ -981,7 +977,7 @@ namespace DomainAmbientHouse.Servicios
                 textoCosto.Text = System.Math.Round(costo, 2).ToString();
                 textoCosto.Visible = true;
                 labelCosto.Visible = true;
-               
+
             }
 
             if (detalle.UsoCocina > 0)
@@ -1019,6 +1015,6 @@ namespace DomainAmbientHouse.Servicios
                                 || EmpleadoId == UsuarioHernan
                                 || EmpleadoId == UsuarioLucas;
         }
-       
+
     }
 }

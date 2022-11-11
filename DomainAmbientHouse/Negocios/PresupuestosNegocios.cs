@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
-using System.Transactions;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using System.Transactions;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -311,7 +308,7 @@ namespace DomainAmbientHouse.Negocios
             return Datos.BuscarPresupuestoPorCliente(clientebisId);
         }
 
-        public void  ReservarPresupuesto(Eventos evento, Presupuestos presupuesto, ClientesBis cliente,
+        public void ReservarPresupuesto(Eventos evento, Presupuestos presupuesto, ClientesBis cliente,
                                         List<PresupuestoDetalle> ListPresupuestoDetalle,
                                         Cheques cheque, Transferencias transferencia)
         {
@@ -320,7 +317,7 @@ namespace DomainAmbientHouse.Negocios
             int formaPagoTransferencia = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoTransferencia"].ToString());
             int cuentaClientes = Int32.Parse(ConfigurationManager.AppSettings["CuentaClientes"].ToString());
             int pagoClienteEfectuado = Int32.Parse(ConfigurationManager.AppSettings["PagoClienteEfectuado"].ToString());
-          
+
 
             PagosClientes pagos = new PagosClientes();
 
@@ -341,13 +338,13 @@ namespace DomainAmbientHouse.Negocios
                     if (evento.FormadePagoId == formaPagoCheque)
                     {
                         cheque.ClienteId = cliente.Id;
-                        
+
                         DatosCheques.GrabarChequesClientes(cheque);
                     }
                     else if ((evento.FormadePagoId == formaPagoTransferencia))
                     {
                         transferencia.ClienteId = cliente.Id;
-                        
+
                         DatosTransferencias.GrabarTransferencias(transferencia);
                     }
 
@@ -389,7 +386,7 @@ namespace DomainAmbientHouse.Negocios
                         presu.Descuentos = item.Descuentos;
                         presu.Incremento = item.Incremento;
                         presu.EstadoProveedor = item.EstadoProveedor;
-                        
+
                         presu.ComentarioProveedor = item.ComentarioProveedor;
 
                         presu.Logistica = item.Logistica;

@@ -1,10 +1,5 @@
 ﻿using DomainAmbientHouse.Servicios;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.Grupos
 {
@@ -36,7 +31,7 @@ namespace AmbientHouse.Configuracion.Grupos
             }
         }
 
-      
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

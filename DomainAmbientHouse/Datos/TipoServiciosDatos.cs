@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -38,7 +35,7 @@ namespace DomainAmbientHouse.Datos
                 TipoServicios tipoServiciosEdit = SqlContext.TipoServicios.Where(o => o.Id == tiposervicio.Id).First();
 
                 tipoServiciosEdit.Descripcion = tiposervicio.Descripcion;
-              
+
 
 
                 SqlContext.SaveChanges();
@@ -51,7 +48,7 @@ namespace DomainAmbientHouse.Datos
             }
         }
 
-        public  List<TipoServicios> TraerTipoServicios(int CaracteristicasId, int SegmentosId, int MomentoDiaId, int DuracionId)
+        public List<TipoServicios> TraerTipoServicios(int CaracteristicasId, int SegmentosId, int MomentoDiaId, int DuracionId)
         {
             var query = from Tc in SqlContext.TipoServicios
                         join Ctc in SqlContext.ConfiguracionCateringTecnica on Tc.Id equals Ctc.TipoServicioId
@@ -77,12 +74,12 @@ namespace DomainAmbientHouse.Datos
         public List<TipoServicios> BuscarTipoServicioParaAgregarPorAdicional(int adicionalId)
         {
             List<TipoServicios> query = (from Tc in SqlContext.TipoServicios
-                                        join TcA in SqlContext.TipoServicioAdicional on Tc.Id equals TcA.TipoServicioId
-                                        where TcA.AdicionalId == adicionalId
-                                        select Tc).ToList();
+                                         join TcA in SqlContext.TipoServicioAdicional on Tc.Id equals TcA.TipoServicioId
+                                         where TcA.AdicionalId == adicionalId
+                                         select Tc).ToList();
 
             List<TipoServicios> queryfinal = (from Tc in SqlContext.TipoServicios
-                                             select Tc).ToList();
+                                              select Tc).ToList();
 
             return queryfinal.Except(query).ToList();
         }

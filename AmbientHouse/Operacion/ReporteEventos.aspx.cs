@@ -1,13 +1,11 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
 using System.Web.UI.HtmlControls;
-using DomainAmbientHouse.Entidades;
-using System.Globalization;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Operacion
 {
@@ -55,7 +53,7 @@ namespace AmbientHouse.Operacion
         private void Buscar(int nropresupuesto, string fechaeventodesde, string fechaeventohasta, int unidadnegocioId)
         {
 
-            List<ObtenerEventosPresupuestosProveedores> list = eventos.BuscarEventosConfirmadosProveedoresExternos(nropresupuesto,  fechaeventodesde,  fechaeventohasta,  unidadnegocioId);
+            List<ObtenerEventosPresupuestosProveedores> list = eventos.BuscarEventosConfirmadosProveedoresExternos(nropresupuesto, fechaeventodesde, fechaeventohasta, unidadnegocioId);
 
             GridViewReporte.DataSource = list.ToList();
             GridViewReporte.DataBind();

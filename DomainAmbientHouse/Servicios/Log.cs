@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Web;
 
 
 namespace DomainAmbientHouse.Servicios
@@ -47,6 +44,6 @@ namespace DomainAmbientHouse.Servicios
         }
 
 
-       
+
     }
 }

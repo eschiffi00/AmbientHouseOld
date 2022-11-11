@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using System.Globalization;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Operacion
 {
@@ -197,7 +195,7 @@ namespace AmbientHouse.Operacion
 
                 int PresupuestoId = int.Parse(row.Cells[1].Text);
 
-           
+
 
                 Response.Redirect("~/Operacion/AgregarPersonal.aspx?EventoId=" + EventoId + "&PresupuestoId=" + PresupuestoId);
 

@@ -1,17 +1,13 @@
 ﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.SessionState;
-
-using iTextSharp;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System.Globalization;
 
 namespace AmbientHouse.Presupuestos
 {
@@ -53,7 +49,7 @@ namespace AmbientHouse.Presupuestos
         private PresupuestosServicios servicio = new PresupuestosServicios();
         private Comun cmd = new Comun();
         private AdministrativasServicios serviciosAdministrativas = new AdministrativasServicios();
-    
+
         public void ProcessRequest(HttpContext context)
         {
 
@@ -141,7 +137,7 @@ namespace AmbientHouse.Presupuestos
                     { pdfFormFields.SetField("Locacion", Convert.ToString(Presupuestos.LocacionOtra)); }
                     else { pdfFormFields.SetField("Locacion", Convert.ToString(Presupuestos.Locacion)); }
 
-                    
+
                     pdfFormFields.SetField("NROEvento", Convert.ToString(Presupuestos.EventoId));
 
                     pdfFormFields.SetField("CantEventos", Convert.ToString(Presupuestos.CantidadInicialInvitados));

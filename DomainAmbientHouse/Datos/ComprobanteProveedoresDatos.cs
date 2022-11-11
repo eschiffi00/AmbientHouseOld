@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Globalization;
 using System.Configuration;
+using System.Globalization;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -134,8 +132,8 @@ namespace DomainAmbientHouse.Datos
             var query = from u in SqlContext.ComprobantesProveedores
                         join p in SqlContext.Proveedores on u.ProveedorId equals p.Id into Ps
                         from p in Ps.DefaultIfEmpty()
-                        //join pp in SqlContext.ComprobantePagoProveedor on u.Id equals pp.ComprobanteProveedorId into pps
-                        //from pp in pps.DefaultIfEmpty()
+                            //join pp in SqlContext.ComprobantePagoProveedor on u.Id equals pp.ComprobanteProveedorId into pps
+                            //from pp in pps.DefaultIfEmpty()
                         join tc in SqlContext.TipoComprobantes on u.TipoComprobanteId equals tc.Id
                         join fp in SqlContext.FormasdePago on u.FormadePagoId equals fp.Id
                         join e in SqlContext.Estados on u.EstadoId equals e.Id

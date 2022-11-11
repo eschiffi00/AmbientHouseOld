@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 
 namespace AmbientHouse.Configuracion.Localidades
 {
@@ -89,7 +84,7 @@ namespace AmbientHouse.Configuracion.Localidades
         protected void ButtonAceptar_Click(object sender, EventArgs e)
         {
             GrabarLocalidades();
-           
+
         }
 
         protected void ButtonVolver_Click(object sender, EventArgs e)

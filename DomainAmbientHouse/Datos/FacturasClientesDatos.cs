@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -150,7 +148,7 @@ namespace DomainAmbientHouse.Datos
                         where c.Delete == false
                         select c;
 
-           
+
 
             if (Int32.Parse(searcher.EmpresaId.ToString()) > 0)
                 query = query.Where(o => o.EmpresaId == searcher.EmpresaId);

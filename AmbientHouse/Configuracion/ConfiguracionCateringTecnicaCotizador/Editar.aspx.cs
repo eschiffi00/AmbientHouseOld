@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.ConfiguracionCateringTecnicaCotizador
 {
@@ -72,7 +70,7 @@ namespace AmbientHouse.Configuracion.ConfiguracionCateringTecnicaCotizador
             else
                 EditarTipoConfiguracion(id);
 
-            
+
         }
 
         private void EditarTipoConfiguracion(int id)
@@ -134,7 +132,7 @@ namespace AmbientHouse.Configuracion.ConfiguracionCateringTecnicaCotizador
             int segmentoId = Int32.Parse(DropDownListSegmentos.SelectedItem.Value.ToString());
             int caracteristicaId = Int32.Parse(DropDownListCaracteristicas.SelectedItem.Value.ToString());
             int momentoDiaId = Int32.Parse(DropDownListMomentosdeDia.SelectedItem.Value.ToString());
-            int duracionId =Int32.Parse(DropDownListDuracionEvento.SelectedItem.Value.ToString());
+            int duracionId = Int32.Parse(DropDownListDuracionEvento.SelectedItem.Value.ToString());
             int tipoCateringId = Int32.Parse(DropDownListTipoCatering.SelectedItem.Value.ToString());
             int tipoServicioId = Int32.Parse(DropDownListTipoServicio.SelectedItem.Value.ToString());
 
@@ -211,7 +209,7 @@ namespace AmbientHouse.Configuracion.ConfiguracionCateringTecnicaCotizador
 
                     DomainAmbientHouse.Entidades.ConfiguracionCateringTecnica config = new DomainAmbientHouse.Entidades.ConfiguracionCateringTecnica();
 
-                 
+
 
                     var itemRemove = ConfiguracionCateringTecnicaSalida.Where(o => o.Id == config.Id).Single();
 
@@ -238,9 +236,9 @@ namespace AmbientHouse.Configuracion.ConfiguracionCateringTecnicaCotizador
             Response.Redirect("~/Configuracion/ConfiguracionCateringTecnicaCotizador/Index.aspx");
         }
 
-    
 
-     
+
+
 
     }
 }

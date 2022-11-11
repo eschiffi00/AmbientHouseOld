@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Seguridad;
+using DomainAmbientHouse.Servicios;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Inicio
 {
@@ -105,8 +103,8 @@ namespace AmbientHouse.Inicio
                     ButtonVerCalendario.Visible = true;
                 }
                 else if (PerfilId == PerfilOperacion)
-                { 
-                    ButtonVerCalendario.Visible = true; 
+                {
+                    ButtonVerCalendario.Visible = true;
                 }
                 else if (PerfilId == PerfilEjecutivo)
                 {
@@ -253,7 +251,7 @@ namespace AmbientHouse.Inicio
 
                 GridViewEventosPendientes.Visible = true;
             }
-            else if (PerfilId == PerfilEjecutivo)         
+            else if (PerfilId == PerfilEjecutivo)
             {
                 GridViewEventosPendientesEjecutivos.DataSource = ListaEventos.ToList();
                 GridViewEventosPendientesEjecutivos.DataBind();
@@ -292,7 +290,7 @@ namespace AmbientHouse.Inicio
             if (cmd.IsNumeric(TextBoxNroEventoBuscador.Text)) nroEvento = int.Parse(TextBoxNroEventoBuscador.Text);
             if (cmd.IsNumeric(TextBoxNroPresupuestoBuscador.Text)) nroPresupuesto = int.Parse(TextBoxNroPresupuestoBuscador.Text);
 
-            string fecha ="";
+            string fecha = "";
 
             List<ObtenerEventosPresupuestos> ListaEventos = eventos.BuscarEventosReservadosPorEjecutivos(EmpleadoId, nroEvento, nroPresupuesto, nroCliente, fecha);
             if (PerfilId == PerfilCoordinador || PerfilId == PerfilGerencial)
@@ -436,7 +434,7 @@ namespace AmbientHouse.Inicio
         protected void Button1_Click(object sender, EventArgs e)
         {
 
-           
+
             List<UsuariosPipedrive> list = pipedrive.ObtenerListaUsuariosPipedrive();
 
 
@@ -530,7 +528,7 @@ namespace AmbientHouse.Inicio
             }
         }
 
-     
+
 
     }
 }

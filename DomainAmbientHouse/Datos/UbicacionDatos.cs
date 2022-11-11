@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -36,7 +33,7 @@ namespace DomainAmbientHouse.Datos
                 salida.CP = item.CP;
                 salida.ProvinciaId = item.ProvinciaId;
                 salida.ProvinciaDescripcion = SqlContext.Provincias.Single(o => o.Id == item.ProvinciaId).Descripcion;
-            
+
 
 
                 list.Add(salida);
@@ -52,7 +49,7 @@ namespace DomainAmbientHouse.Datos
                         where c.ProvinciaId == provinciaId
                         select c;
 
-            return query.OrderBy(o=> o.Descripcion).ToList();
+            return query.OrderBy(o => o.Descripcion).ToList();
 
         }
 
@@ -76,9 +73,10 @@ namespace DomainAmbientHouse.Datos
 
 namespace DomainAmbientHouse.Entidades
 {
-    public partial class Ciudades {
+    public partial class Ciudades
+    {
 
         public string ProvinciaDescripcion { get; set; }
-    
+
     }
 }

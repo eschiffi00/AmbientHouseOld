@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+﻿using DomainAmbientHouse.Datos;
 
 namespace DomainAmbientHouse.Negocios
 {

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Inicio
 {
@@ -14,7 +11,7 @@ namespace AmbientHouse.Inicio
     {
         EventosServicios eventos = new EventosServicios();
         AdministrativasServicios administracion = new AdministrativasServicios();
-      
+
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -71,7 +68,7 @@ namespace AmbientHouse.Inicio
 
                         lbl.Font.Size = new FontUnit(FontSize.Small);
                         lbl.ForeColor = System.Drawing.Color.Green;
-                        lbl.Attributes.Add("onclick",  "<script language='javascript'>window.open('Default.aspx', 'Serial Numbers', 'width=200 , height=300, toolbar=no');</script>" );
+                        lbl.Attributes.Add("onclick", "<script language='javascript'>window.open('Default.aspx', 'Serial Numbers', 'width=200 , height=300, toolbar=no');</script>");
                         //lbl.Click += new EventHandler(btn_Click);
 
 

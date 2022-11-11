@@ -1,14 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Services.Description;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Seguridad;
-using static iTextSharp.text.pdf.AcroFields;
 //using DbEntidades.Entities;
 
 namespace AmbientHouse.Administracion.Costos
@@ -102,7 +97,7 @@ namespace AmbientHouse.Administracion.Costos
             {
                 Response.Redirect("~/Home/Index.aspx");
             }
-                
+
         }
 
         private List<DomainAmbientHouse.Entidades.CargarCostosTecnica_Result> GrabarCostos()

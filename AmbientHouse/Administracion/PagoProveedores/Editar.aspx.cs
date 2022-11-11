@@ -1,15 +1,12 @@
-﻿using DomainAmbientHouse.Servicios;
+﻿using DbEntidades.Entities;
+using DbEntidades.Operators;
+using DomainAmbientHouse.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DbEntidades.Entities;
-using DbEntidades.Operators;
-using NPOI.SS.Formula.Functions;
 //using AmbientHouse.Reportes;
 //using Microsoft.Reporting.Map.WebForms.BingMaps;
 
@@ -17,7 +14,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
 {
     public partial class Editar : System.Web.UI.Page
     {
-        
+
         AdministrativasServicios servicios = new AdministrativasServicios();
         Comun cmd = new Comun();
 
@@ -132,7 +129,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
 
                 FormasdePago();
 
-           
+
                 PanelCheques.Visible = false;
                 PanelTransferencia.Visible = false;
                 PanelRetenciones.Visible = false;
@@ -146,9 +143,9 @@ namespace AmbientHouse.Administracion.PagoProveedores
         private void CargarListas()
         {
 
-           
 
-            string CuentaDeudores =ConfigurationManager.AppSettings["CuentaDeudas"].ToString();
+
+            string CuentaDeudores = ConfigurationManager.AppSettings["CuentaDeudas"].ToString();
 
             DropDownListCuenta.DataSource = servicios.ListarCuentasEfectivosMasEfectivo(EmpresaId);
             DropDownListCuenta.DataTextField = "Nombre";
@@ -181,7 +178,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
             if (Request["Id"] != null)
             {
                 id = Int32.Parse(Request["Id"]);
-                 
+
                 PagosProveedorId = id;
             }
 
@@ -190,24 +187,24 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 ProveedorId = Int32.Parse(Request["ProveedorId"]);
             }
 
-            if(ListComprobantesSeleccionados.Count > 0)
+            if (ListComprobantesSeleccionados.Count > 0)
             {
                 List<ComprobantesPagosDetalle> ListaPagos = new List<ComprobantesPagosDetalle>();
-                
 
-                    foreach(var comprobante in ListComprobantesSeleccionados)
+
+                foreach (var comprobante in ListComprobantesSeleccionados)
+                {
+                    List<ComprobantesProveedores_Detalles> ComprobanteDetalle = new List<ComprobantesProveedores_Detalles>();
+                    ComprobanteDetalle.AddRange(ComprobantesProveedores_DetallesOperator.GetAllByParameter("ComprobanteProveedorId", comprobante.Id));
+                    if (ComprobanteDetalle.Count >= 1)
                     {
-                        List<ComprobantesProveedores_Detalles> ComprobanteDetalle = new List<ComprobantesProveedores_Detalles>();
-                        ComprobanteDetalle.AddRange(ComprobantesProveedores_DetallesOperator.GetAllByParameter("ComprobanteProveedorId", comprobante.Id));
-                        if (ComprobanteDetalle.Count >= 1)
-                        {
                         var ind = 0;
-                            foreach (var detalle in ComprobanteDetalle)
-                            {
-                                var importes = ComprobantesPagadosOperator.GetAllByParameter("ComprobanteProveedorDetalleId", detalle.Id);
+                        foreach (var detalle in ComprobanteDetalle)
+                        {
+                            var importes = ComprobantesPagadosOperator.GetAllByParameter("ComprobanteProveedorDetalleId", detalle.Id);
                             var importe = importes.Count > 0 ? importes[ind].MontoPagado : 0;
-                            if ((detalle.Importe+detalle.ValorImpuesto) > importe)
-                                {
+                            if ((detalle.Importe + detalle.ValorImpuesto) > importe)
+                            {
 
                                 ComprobantesPagosDetalle ComprobantePago = new ComprobantesPagosDetalle();
                                 ComprobantePago.ComprobanteProveedorDetalleId = detalle.Id;
@@ -215,31 +212,31 @@ namespace AmbientHouse.Administracion.PagoProveedores
                                 ComprobantePago.Descripcion = detalle.Descripcion;
                                 ComprobantePago.TipoMovimiento = TipoMovimientosOperator.GetOneByParameter("Id", detalle.TipoMoviemientoId).Id;
                                 ComprobantePago.TMDescripcion = TipoMovimientosOperator.GetOneByParameter("Id", detalle.TipoMoviemientoId).Descripcion;
-                                
+
                                 ComprobantePago.Costo = (detalle.Importe - importe) < 0 ? 0 : (detalle.Importe - importe);
                                 ComprobantePago.Costo = Math.Round(ComprobantePago.Costo, 2);
-                                if(ComprobantePago.Costo == 0)
+                                if (ComprobantePago.Costo == 0)
                                 {
                                     importe = importe - detalle.Importe;
                                     ComprobantePago.ValorImpuesto = (detalle.ValorImpuesto - importe);
                                 }
-                                else {ComprobantePago.ValorImpuesto = detalle.ValorImpuesto;}
+                                else { ComprobantePago.ValorImpuesto = detalle.ValorImpuesto; }
                                 var iibbarba = comprobante.IIBBARBA is null ? 0 : comprobante.IIBBARBA.Value;
                                 var iva105 = comprobante.Iva105 is null ? 0 : comprobante.Iva105.Value;
                                 var iibbcaba = comprobante.IIBBCABA is null ? 0 : comprobante.IIBBCABA.Value;
                                 //var impuestoint = detalle.ValorImpuestoInterno is null  ? 0 : detalle.ValorImpuestoInterno;
                                 if (ind == 0)
                                 {
-                                    ComprobantePago.ValorImpuesto = Math.Round((ComprobantePago.ValorImpuesto + iibbarba + iva105 + iibbcaba),2);
+                                    ComprobantePago.ValorImpuesto = Math.Round((ComprobantePago.ValorImpuesto + iibbarba + iva105 + iibbcaba), 2);
                                 }
                                 ComprobantePago.ValorImpuesto += Math.Round(detalle.ValorImpuestoInterno, 2);
-                                ComprobantePago.CostoTotal = Math.Round((ComprobantePago.Costo + ComprobantePago.ValorImpuesto),2);
+                                ComprobantePago.CostoTotal = Math.Round((ComprobantePago.Costo + ComprobantePago.ValorImpuesto), 2);
                                 ListaPagos.Add(ComprobantePago);
                                 ind++;
-                                }   
                             }
                         }
                     }
+                }
                 GridViewPresupuestos.DataSource = ListaPagos;
                 GridViewPresupuestos.DataBind();
             }
@@ -250,10 +247,10 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 GridViewComprobantes.DataBind();
 
                 double totalImporteNotaCreditos = ObtenerImporteNotaCreditos(ListComprobantesSeleccionados);
-                 
 
 
-                EmpresaId = (int) ListComprobantesSeleccionados.FirstOrDefault().EmpresaId;
+
+                EmpresaId = (int)ListComprobantesSeleccionados.FirstOrDefault().EmpresaId;
 
                 TextBoxImporte.Text = (ListComprobantesSeleccionados.Sum(o => o.MontoFactura) - totalImporteNotaCreditos).ToString();
 
@@ -323,7 +320,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
 
                 result = result + notaCreditoRelacionados.Select(s => s.Importe).Sum();
 
-               
+
             }
 
             GridViewNotasCredito.DataSource = listTotal.ToList();
@@ -390,16 +387,17 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 double costo = float.Parse(fila2[5].Text);
                 double valorImpuesto = float.Parse(fila2[6].Text);
                 double montoPagado = 0;
-                if (((TextBox)fila.FindControl("MontoaPagar")).Text != ""){
+                if (((TextBox)fila.FindControl("MontoaPagar")).Text != "")
+                {
                     var montoTemp = ((TextBox)fila.FindControl("MontoaPagar")).Text;
                     montoTemp = montoTemp.Contains(".") ? montoTemp.Replace(".", ",") : montoTemp;
                     montoPagado = float.Parse(montoTemp);
                     //var algo = Int32.Parse(((TextBox)fila.FindControl("NroComprobante")).Text);
                 }
-                if(costo + valorImpuesto < 0)
-                    {totalaPagar = totalaPagar + montoPagado + costo + valorImpuesto;}
-                else 
-                    { totalaPagar = totalaPagar + montoPagado;}
+                if (costo + valorImpuesto < 0)
+                { totalaPagar = totalaPagar + montoPagado + costo + valorImpuesto; }
+                else
+                { totalaPagar = totalaPagar + montoPagado; }
                 var costoFinal = Math.Truncate(costo + valorImpuesto);
                 var montoFinal = Math.Truncate(montoPagado);
                 //if (costoFinal < montoFinal && costoFinal >= 0) 
@@ -416,39 +414,43 @@ namespace AmbientHouse.Administracion.PagoProveedores
 
             //if(error == 0)
             //{
-                /////INICIA GRABACION DE ComprobantesPagados/////
-                ComprobantesPagados comprobante = new ComprobantesPagados();
-                var ind = 0;
+            /////INICIA GRABACION DE ComprobantesPagados/////
+            ComprobantesPagados comprobante = new ComprobantesPagados();
+            var ind = 0;
 
-                foreach (GridViewRow fila in GridViewPresupuestos.Rows)
+            foreach (GridViewRow fila in GridViewPresupuestos.Rows)
+            {
+                TableCellCollection fila2;
+                fila2 = fila.Cells;
+                //comprobante.NroComprobante = Int32.Parse(((TextBox)fila.FindControl("NroComprobante")).Text);
+                comprobante.ComprobanteProveedorDetalleId = Int32.Parse(fila2[0].Text);
+                var ids = ComprobantesPagadosOperator.GetAllByParameter("ComprobanteProveedorDetalleId", comprobante.ComprobanteProveedorDetalleId.Value);
+                foreach (var idtemp in ids)
                 {
-                    TableCellCollection fila2;
-                    fila2 = fila.Cells;
-                    //comprobante.NroComprobante = Int32.Parse(((TextBox)fila.FindControl("NroComprobante")).Text);
-                    comprobante.ComprobanteProveedorDetalleId = Int32.Parse(fila2[0].Text);
-                    var ids = ComprobantesPagadosOperator.GetAllByParameter("ComprobanteProveedorDetalleId", comprobante.ComprobanteProveedorDetalleId.Value);
-                    var id = ids.Count > 0 ? ids[ind].Id : -1;
-                    comprobante.Id = id;
-                    comprobante.NroPresupuesto  = fila2[1].Text != "" ? Int32.Parse(fila2[3].Text) : 0;
-                    comprobante.TipoMovimiento  = TipoMovimientosOperator.GetOneByStrParameter("Descripcion", fila2[4].Text).Id;
-                    comprobante.TMDescripcion   = fila2[4].Text;
+                    //var id = ids.Count > 0 ? ids[ind].Id : -1;
+                    comprobante.Id = idtemp.Id;
+                    comprobante.NroPresupuesto = fila2[1].Text != "" ? Int32.Parse(fila2[3].Text) : 0;
+                    comprobante.TipoMovimiento = TipoMovimientosOperator.GetOneByStrParameter("Descripcion", fila2[4].Text).Id;
+                    comprobante.TMDescripcion = fila2[4].Text;
                     //comprobante.MontoPagado     = float.Parse(fila2[7].Text);
                     //comprobante.NroPresupuesto = Int32.Parse(((TextBox)fila.FindControl("NroPresupuesto")).Text);
                     //comprobante.TipoMovimiento = Int32.Parse(((TextBox)fila.FindControl("TipoMovimiento")).Text);
                     //comprobante.TMDescripcion = ((TextBox)fila.FindControl("TMDescripcion")).Text;
                     comprobante.MontoPagado = float.Parse(((TextBox)fila.FindControl("MontoaPagar")).Text);
                     ComprobantesPagadosOperator.Save(comprobante);
-                    ind++;
+                    //ind++;
                 }
 
-                Grabar(sender, e);
+            }
+
+            Grabar(sender, e);
             //}
             //else
             //{
             //    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "dlgOutOfRange",
             //        "ShowError('" + error+"');", true);
             //}
-            
+
         }
 
         private void Grabar(object sender, EventArgs e)
@@ -476,7 +478,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 pagos.FechaTransferencia = DateTime.ParseExact(TextBoxFecha.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 pagos.NroTransferencia = TextBoxNroComprobanteTrans.Text;
                 pagos.ProveedorId = ProveedorId;
-               
+
             }
             servicios.GrabarPagoProveedores(pagos, ListComprobantesSeleccionados, ListChequesSeleccionados);
 
@@ -612,6 +614,6 @@ namespace AmbientHouse.Administracion.PagoProveedores
         {
 
         }
-        
+
     }
 }

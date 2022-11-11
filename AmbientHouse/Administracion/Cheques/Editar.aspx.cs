@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.Cheques
 {
@@ -40,7 +38,7 @@ namespace AmbientHouse.Administracion.Cheques
                 Session["ChequeId"] = value;
             }
         }
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -48,7 +46,7 @@ namespace AmbientHouse.Administracion.Cheques
 
                 MaskedEditExtenderFechaEmision.Mask = "99/99/9999";
                 MaskedEditExtenderFechaVencimiento.Mask = "99/99/9999";
-                
+
                 CargarListas();
                 InicializarPagina();
             }
@@ -180,7 +178,7 @@ namespace AmbientHouse.Administracion.Cheques
                 cheque.CuentaId = Int32.Parse(DropDownListCuentas.SelectedItem.Value);
             }
             cheque.BancoId = Int32.Parse(DropDownListBancos.SelectedItem.Value);
-          
+
             cheque.FechaVencimiento = fechaVencimiento;
             cheque.FechaEmision = fechaEmision;
             cheque.Importe = cmd.ValidarImportes(TextBoxImporte.Text);
@@ -188,7 +186,7 @@ namespace AmbientHouse.Administracion.Cheques
 
             administracion.GuardarCheque(cheque);
             Response.Redirect("~/Administracion/Cheques/Index.aspx");
-           
+
         }
 
         private bool Validar()

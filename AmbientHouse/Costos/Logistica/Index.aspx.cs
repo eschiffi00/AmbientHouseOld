@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 
 namespace AmbientHouse.Costos.Logistica
 {
@@ -93,7 +91,7 @@ namespace AmbientHouse.Costos.Logistica
         protected void GridViewCostoLogistica_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridViewCostoLogistica.PageIndex = e.NewPageIndex;
-             BuscarCostoLogostica();
+            BuscarCostoLogostica();
         }
 
         protected void GridViewCostoLogistica_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -107,7 +105,7 @@ namespace AmbientHouse.Costos.Logistica
                 TextBox precio = row.FindControl("TextBoxPrecio") as TextBox;
                 TextBox costo = row.FindControl("TextBoxCosto") as TextBox;
                 TextBox margen = row.FindControl("TextBoxMargen") as TextBox;
-               
+
 
 
                 int id = Int32.Parse(row.Cells[0].Text);
@@ -145,7 +143,7 @@ namespace AmbientHouse.Costos.Logistica
 
                 }
 
-               
+
 
                 try
                 {
@@ -163,7 +161,7 @@ namespace AmbientHouse.Costos.Logistica
             }
 
             BuscarCostoLogostica();
-            
+
         }
 
         protected void GridViewCostoLogistica_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -173,7 +171,7 @@ namespace AmbientHouse.Costos.Logistica
                 TextBox Precio = (TextBox)e.Row.FindControl("TextBoxPrecio");
                 TextBox Costo = (TextBox)e.Row.FindControl("TextBoxCosto");
                 TextBox Margen = (TextBox)e.Row.FindControl("TextBoxMargen");
-               
+
 
 
                 int id = Int32.Parse(e.Row.Cells[0].Text);
@@ -183,7 +181,7 @@ namespace AmbientHouse.Costos.Logistica
                 Precio.Text = costo.Valor.ToString();
                 Costo.Text = costo.Costo.ToString();
                 Margen.Text = costo.Margen.ToString();
-             
+
             }
         }
 

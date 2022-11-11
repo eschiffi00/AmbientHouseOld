@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
 
 namespace AmbientHouse.Configuracion.Locaciones
 {
@@ -210,7 +208,7 @@ namespace AmbientHouse.Configuracion.Locaciones
                     TextBoxPrecioMesas.Text = Locacion.PrecioMesas.ToString();
 
                 if (Locacion.PrecioSillas > 0 || Locacion.PrecioSillas != null)
-                     TextBoxPrecioSillas.Text = Locacion.PrecioSillas.ToString();
+                    TextBoxPrecioSillas.Text = Locacion.PrecioSillas.ToString();
 
             }
 

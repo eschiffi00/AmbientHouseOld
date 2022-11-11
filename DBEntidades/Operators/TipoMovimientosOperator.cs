@@ -1,11 +1,10 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
 using System.Linq;
-using DbEntidades.Entities;
-using System.Data.SqlClient;
-using LibDB2;
+using System.Reflection;
 
 namespace DbEntidades.Operators
 {
@@ -36,7 +35,7 @@ namespace DbEntidades.Operators
             foreach (PropertyInfo prop in typeof(TipoMovimientos).GetProperties()) columnas += prop.Name + ", ";
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
-            DataTable dt = db.GetDataSet("select " + columnas + " from TipoMovimientos where " + campo + " = \'"+ valor.ToString()+"\'").Tables[0];
+            DataTable dt = db.GetDataSet("select " + columnas + " from TipoMovimientos where " + campo + " = \'" + valor.ToString() + "\'").Tables[0];
             TipoMovimientos TipoMovimientos = new TipoMovimientos();
             foreach (PropertyInfo prop in typeof(TipoMovimientos).GetProperties())
             {

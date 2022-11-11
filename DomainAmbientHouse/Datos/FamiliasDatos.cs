@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -34,7 +31,7 @@ namespace DomainAmbientHouse.Datos
 
             Familias familiaEdit = SqlContext.Familias.Where(o => o.GrupoId == familia.GrupoId && o.CategoriaItemId == familia.CategoriaItemId).FirstOrDefault();
 
-            if (familiaEdit!=null)
+            if (familiaEdit != null)
             {
 
                 familiaEdit.Comentario = familia.Comentario;
@@ -42,7 +39,7 @@ namespace DomainAmbientHouse.Datos
                 familiaEdit.Fantasia = familia.Fantasia;
                 familiaEdit.Subtitulo = familia.Subtitulo;
                 familiaEdit.Titulo = familia.Titulo;
- 
+
                 SqlContext.SaveChanges();
             }
             else
@@ -75,7 +72,7 @@ namespace DomainAmbientHouse.Datos
 
             TipoCateringFamilia detalle = SqlContext.TipoCateringFamilia.Where(o => o.TipoCateringId == tipoCateringFamilia.TipoCateringId && o.GrupoId == tipoCateringFamilia.GrupoId).FirstOrDefault();
 
-           if (detalle != null)
+            if (detalle != null)
             {
 
                 SqlContext.TipoCateringFamilia.Remove(detalle);
@@ -98,7 +95,7 @@ namespace DomainAmbientHouse.Datos
             return query.Distinct().ToList();
         }
 
-        public  List<GruposItems> ObtenerFamiliasConItemsAdicionales(int AdicionalId)
+        public List<GruposItems> ObtenerFamiliasConItemsAdicionales(int AdicionalId)
         {
             var query = from OF in SqlContext.ObtenerFamilias
                         join It in SqlContext.TipoCateringFamilia on OF.GrupoId equals It.GrupoId

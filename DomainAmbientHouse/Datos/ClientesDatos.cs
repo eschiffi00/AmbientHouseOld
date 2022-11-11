@@ -1,11 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
-
-using DomainAmbientHouse.Entidades;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -46,9 +43,9 @@ namespace DomainAmbientHouse.Datos
 
             if (nroCliente > 0)
                 query = query.Where(t => t.Id == nroCliente);
-          
 
-            return query.OrderByDescending(o=> o.FechaContacto).ToList();
+
+            return query.OrderByDescending(o => o.FechaContacto).ToList();
         }
 
         public List<SeguimientosEventosClientesEstados> BuscarClientesSeguimientos(long ClienteId)
@@ -84,9 +81,9 @@ namespace DomainAmbientHouse.Datos
 
         public List<AvisosClientesPorFecha> ObtenerAvisosClientes(int empleadoId)
         {
-            return SqlContext.AvisosClientesPorFecha.Where(o=> o.EmpleadoId == empleadoId).ToList();
-                                
-                                                                
+            return SqlContext.AvisosClientesPorFecha.Where(o => o.EmpleadoId == empleadoId).ToList();
+
+
         }
 
         public List<Entidades.ObtenerClientes> ObtenerClientesAsignados(int EmpleadoId)
@@ -97,7 +94,7 @@ namespace DomainAmbientHouse.Datos
         public ClientesBis BuscarClientesPorCuitCuil(string cuitcuil)
         {
             return SqlContext.ClientesBis.Where(o => o.CUILCUIT.Equals(cuitcuil)).FirstOrDefault();
-        
+
         }
 
         public void GrabarClienteBis(ClientesBis cliente)
@@ -148,7 +145,7 @@ namespace DomainAmbientHouse.Datos
                 query = query.Where(o => o.CUILCUIT == searcher.CUIT);
 
             return query.ToList();
-            
+
         }
 
         public string ValidarCliente(int? clienteId)

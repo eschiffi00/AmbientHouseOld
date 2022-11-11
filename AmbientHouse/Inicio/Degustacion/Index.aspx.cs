@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Configuration;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
 
 namespace AmbientHouse.Inicio.Degustacion
 {
@@ -27,7 +23,7 @@ namespace AmbientHouse.Inicio.Degustacion
         {
             int degustacionAbierta = int.Parse(ConfigurationManager.AppSettings["DegustacionAbierta"].ToString());
 
-            this.GridViewDegustacion.DataSource = this.administracion.ObtenerDegustacion().Where(o=> o.EstadoId == degustacionAbierta).ToList();
+            this.GridViewDegustacion.DataSource = this.administracion.ObtenerDegustacion().Where(o => o.EstadoId == degustacionAbierta).ToList();
             this.GridViewDegustacion.DataBind();
 
         }
@@ -45,6 +41,6 @@ namespace AmbientHouse.Inicio.Degustacion
 
         }
 
-    
+
     }
 }

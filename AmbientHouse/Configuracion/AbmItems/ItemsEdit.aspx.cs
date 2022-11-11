@@ -1,15 +1,11 @@
-﻿using System;
+﻿using DbEntidades.Entities;
+using DbEntidades.Operators;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DbEntidades.Entities;
-using DbEntidades.Operators;
-using System.Globalization;
-using System.Data;
-using System.Text.RegularExpressions;
-using static iTextSharp.text.pdf.AcroFields;
 
 
 
@@ -44,40 +40,44 @@ namespace AmbientHouse.Configuracion.AbmItems
                 {
                     int uid = Convert.ToInt32(s);
                     seItems = ItemsOperator.GetOneByIdentity(uid);
-                    txtNombreFantasia.Text = seItems.NombreFantasiaId > 0 ? NombreFantasiaOperator.GetOneByIdentity(seItems.NombreFantasiaId).Descripcion: "";
+                    txtNombreFantasia.Text = seItems.NombreFantasiaId > 0 ? NombreFantasiaOperator.GetOneByIdentity(seItems.NombreFantasiaId).Descripcion : "";
                     switch (seItems.TipoItem)
                     {
-                        case "PRO": ddlTipos.SelectedValue = "1";
+                        case "PRO":
+                            ddlTipos.SelectedValue = "1";
                             break;
-                        case "VEN": ddlTipos.SelectedValue = "2";
+                        case "VEN":
+                            ddlTipos.SelectedValue = "2";
                             break;
-                        case "OPE": ddlTipos.SelectedValue = "3";
+                        case "OPE":
+                            ddlTipos.SelectedValue = "3";
                             break;
                     }
-
+                    DDLCategorias.SelectedValue = seItems.CategoriaItemId.ToString();
                     //obtengo todas las categorias y utilizo descripcion y id
-                    var categorias = ItemDetalleOperator.GetAllByParameter("ItemId", id);
-                    if (categorias.Count() > 0)
-                    {
-                        foreach (ListItem item in MultiselectCategorias.Items)
-                        {
-                            var categoria = categorias.Where(x => x.CategoriaId == Int32.Parse(item.Value)&& x.EstadoId == 36).ToList();
-                            if (categoria.Count() > 0)
-                            {
-                                item.Selected = true;
-                            }
-                        }
-                    }else
-                    {
-                        MultiselectCategorias.SelectedValue = CategoriasOperator.GetOneByIdentity((int)seItems.CategoriaItemId).Id.ToString();
-                    }
+                    //var categorias = ItemDetalleOperator.GetAllByParameter("ItemId", id);
+                    //if (categorias.Count() > 0)
+                    //{
+                    //    foreach (ListItem item in MultiselectCategorias.Items)
+                    //    {
+                    //        var categoria = categorias.Where(x => x.CategoriaId == Int32.Parse(item.Value) && x.EstadoId == 36).ToList();
+                    //        if (categoria.Count() > 0)
+                    //        {
+                    //            item.Selected = true;
+                    //        }
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    MultiselectCategorias.SelectedValue = CategoriasOperator.GetOneByIdentity((int)seItems.CategoriaItemId).Id.ToString();
+                    //}
                     if (seItems.CuentaId > 0)
                     {
-                        ddlCuenta.SelectedValue = CuentasOperator.GetOneByIdentity((int)seItems.CuentaId).Id.ToString();
+                        ddlCuenta.SelectedValue = CentroCostosOperator.GetOneByIdentity((int)seItems.CuentaId).Id.ToString();
                     }
                     //if (seItems.DepositoId > 0)
                     //{
-                        //ddlUnidad.SelectedValue = INVENTARIO_UnidadesOperator.GetOneByIdentity((INVENTARIO_ProductoOperator.GetOneByIdentity((int)seItems.DepositoId).Id)).Descripcion;
+                    //ddlUnidad.SelectedValue = INVENTARIO_UnidadesOperator.GetOneByIdentity((INVENTARIO_ProductoOperator.GetOneByIdentity((int)seItems.DepositoId).Id)).Descripcion;
                     //}
                     txtDescripcion.Text = seItems.Detalle;
                     //busco el stock para el StockID
@@ -92,7 +92,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                 }
                 else
                 {
-                    ddlCuenta.Items.Insert(0, new ListItem("<Selecciona Cuenta Contable>", "0"));
+                    ddlCuenta.Items.Insert(0, new ListItem("<Selecciona Centro de Costo>", "0"));
                     h4Titulo.InnerText = "Creación de nuevo Item";
                     seItems = new Items();
                 }
@@ -111,17 +111,16 @@ namespace AmbientHouse.Configuracion.AbmItems
                 ListItem item = new ListItem();
                 item.Text = row["Text"].ToString();
                 item.Value = row["Value"].ToString();
-                item.Attributes["data-group"] = row["Categoria"].ToString();
-                MultiselectCategorias.Items.Add(item);
+                DDLCategorias.Items.Add(item);
             }
-            MultiselectCategorias.DataBind();
+            DDLCategorias.DataBind();
         }
         public void CargaCuentas()
         {
-            List<Cuentas> cuentasList = CuentasOperator.GetAll();
+            List<CentroCostos> cuentasList = CentroCostosOperator.GetAll();
             ddlCuenta.DataSource = cuentasList;
-            ddlCuenta.DataTextField = "Nombre";
-            ddlCuenta.DataValueField = "ID";
+            ddlCuenta.DataTextField = "Descripcion";
+            ddlCuenta.DataValueField = "Id";
             ddlCuenta.DataBind();
         }
         //public void CargaUnidades()
@@ -161,12 +160,12 @@ namespace AmbientHouse.Configuracion.AbmItems
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             try
-            {   
+            {
                 seItems.ItemDetalleId = 99;
                 seItems.Detalle = txtDescripcion.Text;
                 seItems.CuentaId = Int32.Parse(ddlCuenta.Text);
                 seItems.EstadoId = Int32.Parse(ddlEstado.Text);
-                seItems.CategoriaItemId = 76;
+                seItems.CategoriaItemId = Int32.Parse(DDLCategorias.Text);
                 seItems.Costo = float.Parse(txtCosto.Text);
                 seItems.Margen = float.Parse(txtMargen.Text);
                 seItems.Precio = float.Parse(txtPrecio.Text);
@@ -183,49 +182,48 @@ namespace AmbientHouse.Configuracion.AbmItems
                     case "2":
                         seItems.TipoItem = "VEN";
                         break;
-                    case "3":   
+                    case "3":
                         seItems.TipoItem = "OPE";
                         break;
                 }
-                var newItemId = ItemsOperator.Save(seItems).Id;
-                seItems.ItemDetalleId = newItemId;
-                seItems.Id = newItemId;
                 ItemsOperator.Save(seItems);
-                List<int> idcategorias = new List<int>();
-                foreach (ListItem categoria in MultiselectCategorias.Items)
-                {
-                    if (categoria.Selected)
-                    {
-                        idcategorias.Add(Int32.Parse(categoria.Value));
-                    }
-                }
+
+                //List<int> idcategorias = new List<int>();
+                ////foreach (ListItem categoria in MultiselectCategorias.Items)
+                ////{
+                ////    if (categoria.Selected)
+                ////    {
+                ////        idcategorias.Add(Int32.Parse(categoria.Value));
+                ////    }
+                ////}
                 
-                List<ItemDetalle> temp = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.ItemDetalleId.Value);
-                List<int> contadorCategorias = new List<int>();
-                foreach(ItemDetalle itemDetalle in temp)
-                {
-                    itemDetalle.EstadoId = 37;
-                    if (idcategorias.Contains(itemDetalle.CategoriaId))
-                    {
-                        itemDetalle.EstadoId = 36;
-                        contadorCategorias.Add(itemDetalle.CategoriaId);
-                    }
-                    ItemDetalleOperator.Save(itemDetalle);
-                }
-                if(contadorCategorias.Count < idcategorias.Count)
-                {
-                    foreach(var categoria in idcategorias)
-                    {
-                        if (!contadorCategorias.Contains(categoria))
-                        {
-                            ItemDetalle itemNuevo = new ItemDetalle();
-                            itemNuevo.ItemId = seItems.ItemDetalleId.Value;
-                            itemNuevo.CategoriaId = categoria;
-                            itemNuevo.EstadoId = 36;
-                            ItemDetalleOperator.Save(itemNuevo);
-                        }
-                    }
-                }
+
+                //List<ItemDetalle> temp = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.ItemDetalleId.Value);
+                //List<int> contadorCategorias = new List<int>();
+                //foreach (ItemDetalle itemDetalle in temp)
+                //{
+                //    itemDetalle.EstadoId = 37;
+                //    if (idcategorias.Contains(itemDetalle.CategoriaId))
+                //    {
+                //        itemDetalle.EstadoId = 36;
+                //        contadorCategorias.Add(itemDetalle.CategoriaId);
+                //    }
+                //    ItemDetalleOperator.Save(itemDetalle);
+                //}
+                //if (contadorCategorias.Count < idcategorias.Count)
+                //{
+                //    foreach (var categoria in idcategorias)
+                //    {
+                //        if (!contadorCategorias.Contains(categoria))
+                //        {
+                //            ItemDetalle itemNuevo = new ItemDetalle();
+                //            itemNuevo.ItemId = seItems.ItemDetalleId.Value;
+                //            itemNuevo.CategoriaId = categoria;
+                //            itemNuevo.EstadoId = 36;
+                //            ItemDetalleOperator.Save(itemNuevo);
+                //        }
+                //    }
+                //}
 
 
                 Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
@@ -264,7 +262,7 @@ namespace AmbientHouse.Configuracion.AbmItems
             Item = INVENTARIO_ProductoOperator.Save(Item);
             return Item.Id;
         }
-        
+
     }
 
 }

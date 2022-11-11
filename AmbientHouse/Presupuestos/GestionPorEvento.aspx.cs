@@ -6,7 +6,6 @@ using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Presupuestos
@@ -265,7 +264,7 @@ namespace AmbientHouse.Presupuestos
             DropDownListBancos.DataValueField = "Id";
             DropDownListBancos.DataBind();
 
-            DropDownListBancoTransferencia.DataSource = administrativas.ObtenerCuentas().Where(o=> o.TipoCuenta.Equals("BANCARIA")).ToList();
+            DropDownListBancoTransferencia.DataSource = administrativas.ObtenerCuentas().Where(o => o.TipoCuenta.Equals("BANCARIA")).ToList();
             DropDownListBancoTransferencia.DataTextField = "Nombre";
             DropDownListBancoTransferencia.DataValueField = "Id";
             DropDownListBancoTransferencia.DataBind();
@@ -502,7 +501,7 @@ namespace AmbientHouse.Presupuestos
         private void CargarDetallePresupuesto()
         {
 
-                ListPresupuestoDetalle = serviciosPresupuestos.BuscarDetallePresupuesto(PresupuestoId);
+            ListPresupuestoDetalle = serviciosPresupuestos.BuscarDetallePresupuesto(PresupuestoId);
 
 
             //foreach (var item in Items)
@@ -545,7 +544,7 @@ namespace AmbientHouse.Presupuestos
             //}
 
 
-          
+
         }
 
         private void CalcularTotalPresupuesto()
@@ -557,9 +556,9 @@ namespace AmbientHouse.Presupuestos
 
             double TotalPresupuesto = 0;
 
-            TotalPresupuesto = cmd.CalcularTotalPresupuestoPendiente(PresupuestoId,ListPresupuestoDetalle, PorcentajeOrganizador, ImporteOrganizador);
+            TotalPresupuesto = cmd.CalcularTotalPresupuestoPendiente(PresupuestoId, ListPresupuestoDetalle, PorcentajeOrganizador, ImporteOrganizador);
 
-           
+
 
             //if (ImporteOrganizador > 0)
             //{ }
@@ -624,7 +623,7 @@ namespace AmbientHouse.Presupuestos
                 verDescuentos.Visible = false;
                 represupuestar.Visible = false;
 
-                DateTime fechaEvento = DateTime.Parse( e.Row.Cells[9].Text);
+                DateTime fechaEvento = DateTime.Parse(e.Row.Cells[9].Text);
 
                 if (PerfilId == PerfilGerencial)
                     verDescuentos.Visible = true;
@@ -676,85 +675,85 @@ namespace AmbientHouse.Presupuestos
             //if (cmd.ValidarCuilCuit(TextBoxBuscadorCuitCuil.Text))
             //{
 
-                TextBoxApellidoyNombre.Text = "";
-                TextBoxRazonSocial.Text = "";
-                TextBoxDomicilio.Text = "";
+            TextBoxApellidoyNombre.Text = "";
+            TextBoxRazonSocial.Text = "";
+            TextBoxDomicilio.Text = "";
 
-                TextBoxCorreoContratacion.Text = "";
-                TextBoxCorreoAdministracion.Text = "";
-                TextBoxCorreoTesoreria.Text = "";
+            TextBoxCorreoContratacion.Text = "";
+            TextBoxCorreoAdministracion.Text = "";
+            TextBoxCorreoTesoreria.Text = "";
 
-                TextBoxTelContratacion.Text = "";
-                TextBoxTelAdministracion.Text = "";
-                TextBoxTelTesoreria.Text = "";
+            TextBoxTelContratacion.Text = "";
+            TextBoxTelAdministracion.Text = "";
+            TextBoxTelTesoreria.Text = "";
 
-                CuitCuil = TextBoxBuscadorCuitCuil.Text;
+            CuitCuil = TextBoxBuscadorCuitCuil.Text;
 
-                ClienteBisSeleccionado = serviciosClientes.BuscarClientePorCuitCuil(CuitCuil);
+            ClienteBisSeleccionado = serviciosClientes.BuscarClientePorCuitCuil(CuitCuil);
 
-                if (ClienteBisSeleccionado != null)
+            if (ClienteBisSeleccionado != null)
+            {
+                PanelCliente.Visible = true;
+
+                ClienteId = ClienteBisSeleccionado.Id;
+
+                if (ClienteBisSeleccionado.PersonaFisicaJuridica == "FISICA")
                 {
-                    PanelCliente.Visible = true;
+                    RadioButtonPF.Checked = true;
 
-                    ClienteId = ClienteBisSeleccionado.Id;
+                    LabelApellidoyNombre.Visible = true;
+                    TextBoxApellidoyNombre.Visible = true;
 
-                    if (ClienteBisSeleccionado.PersonaFisicaJuridica == "FISICA")
-                    {
-                        RadioButtonPF.Checked = true;
+                    TextBoxApellidoyNombre.Text = ClienteBisSeleccionado.ApellidoNombre;
 
-                        LabelApellidoyNombre.Visible = true;
-                        TextBoxApellidoyNombre.Visible = true;
-
-                        TextBoxApellidoyNombre.Text = ClienteBisSeleccionado.ApellidoNombre;
-
-                        LabelRazonSocial.Visible = false;
-                        TextBoxRazonSocial.Visible = false;
-
-                       
-                    }
-                    else
-                    {
-                        RadioButtonPJ.Checked = true;
-
-                        LabelRazonSocial.Visible = true;
-                        TextBoxRazonSocial.Visible = true;
-
-                        TextBoxRazonSocial.Text = ClienteBisSeleccionado.RazonSocial;
-
-                        LabelApellidoyNombre.Visible = false;
-                        TextBoxApellidoyNombre.Visible = false;
-
-
-                    }
-
-
-
-                    TextBoxCuilCuit.Text = CuitCuil;
-                    TextBoxDomicilio.Text = ClienteBisSeleccionado.Direccion;
-                    DropDownListCondicionIva.SelectedValue = ClienteBisSeleccionado.CondicionIva;
-                    DropDownListTipoCliente.SelectedValue = ClienteBisSeleccionado.TipoCliente;
-
-
-                    TextBoxCorreoContratacion.Text = ClienteBisSeleccionado.MailContactoContratacion;
-                    TextBoxCorreoAdministracion.Text = ClienteBisSeleccionado.MailContactoAdministracion;
-                    TextBoxCorreoTesoreria.Text = ClienteBisSeleccionado.MailContactoTesoreia;
-                    TextBoxCorreoOrganizacion.Text = ClienteBisSeleccionado.MailContactoOrganizacion;
-
-                    TextBoxTelContratacion.Text = ClienteBisSeleccionado.TelContactoContratacion;
-                    TextBoxTelAdministracion.Text = ClienteBisSeleccionado.TelContactoAdministracion;
-                    TextBoxTelTesoreria.Text = ClienteBisSeleccionado.TelContactoTesoreria;
-                    TextBoxTelOrganizacion.Text = ClienteBisSeleccionado.TelContactoOrganizacion;
+                    LabelRazonSocial.Visible = false;
+                    TextBoxRazonSocial.Visible = false;
 
 
                 }
                 else
                 {
-                    RadioButtonPF.Checked = true;
-                    TextBoxApellidoyNombre.Visible = true;
-                    ClienteId = 0;
-                    TextBoxCuilCuit.Text = TextBoxBuscadorCuitCuil.Text;
-                    PanelCliente.Visible = true;
+                    RadioButtonPJ.Checked = true;
+
+                    LabelRazonSocial.Visible = true;
+                    TextBoxRazonSocial.Visible = true;
+
+                    TextBoxRazonSocial.Text = ClienteBisSeleccionado.RazonSocial;
+
+                    LabelApellidoyNombre.Visible = false;
+                    TextBoxApellidoyNombre.Visible = false;
+
+
                 }
+
+
+
+                TextBoxCuilCuit.Text = CuitCuil;
+                TextBoxDomicilio.Text = ClienteBisSeleccionado.Direccion;
+                DropDownListCondicionIva.SelectedValue = ClienteBisSeleccionado.CondicionIva;
+                DropDownListTipoCliente.SelectedValue = ClienteBisSeleccionado.TipoCliente;
+
+
+                TextBoxCorreoContratacion.Text = ClienteBisSeleccionado.MailContactoContratacion;
+                TextBoxCorreoAdministracion.Text = ClienteBisSeleccionado.MailContactoAdministracion;
+                TextBoxCorreoTesoreria.Text = ClienteBisSeleccionado.MailContactoTesoreia;
+                TextBoxCorreoOrganizacion.Text = ClienteBisSeleccionado.MailContactoOrganizacion;
+
+                TextBoxTelContratacion.Text = ClienteBisSeleccionado.TelContactoContratacion;
+                TextBoxTelAdministracion.Text = ClienteBisSeleccionado.TelContactoAdministracion;
+                TextBoxTelTesoreria.Text = ClienteBisSeleccionado.TelContactoTesoreria;
+                TextBoxTelOrganizacion.Text = ClienteBisSeleccionado.TelContactoOrganizacion;
+
+
+            }
+            else
+            {
+                RadioButtonPF.Checked = true;
+                TextBoxApellidoyNombre.Visible = true;
+                ClienteId = 0;
+                TextBoxCuilCuit.Text = TextBoxBuscadorCuitCuil.Text;
+                PanelCliente.Visible = true;
+            }
 
             //}
             //else
@@ -763,7 +762,7 @@ namespace AmbientHouse.Presupuestos
             //    LabelErrorCuit.Text = "El Cuit/Cuil no es Valido.";
             //}
 
-                UpdatePanelClientes.Update();
+            UpdatePanelClientes.Update();
         }
 
         private void PersonaFisicaoJuridica()
@@ -789,7 +788,7 @@ namespace AmbientHouse.Presupuestos
             }
 
             UpdatePanelClientes.Update();
-          
+
         }
 
         protected void ButtonAceptarGanado_Click(object sender, EventArgs e)
@@ -1108,7 +1107,7 @@ namespace AmbientHouse.Presupuestos
                     ListPresupuestoDetalleAprobados.Add(detalle);
 
                 }
-         
+
             }
 
 
@@ -1122,7 +1121,7 @@ namespace AmbientHouse.Presupuestos
             {
                 mailAprobacion.envioMailAprobadoComercial(item.PresupuestoId, evento.Id);
             }
-           
+
 
             Response.Redirect("~/Inicio/Principal.aspx");
         }
@@ -1188,7 +1187,7 @@ namespace AmbientHouse.Presupuestos
             PersonaFisicaoJuridica();
         }
 
-       
+
 
     }
 }

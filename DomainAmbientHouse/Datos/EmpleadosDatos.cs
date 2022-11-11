@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -26,7 +24,7 @@ namespace DomainAmbientHouse.Datos
                         select E;
 
             return query.ToList();
-             
+
 
         }
 
@@ -78,18 +76,18 @@ namespace DomainAmbientHouse.Datos
                 edit.MailLaboral = empleado.MailLaboral;
                 edit.UsaPc = empleado.UsaPc;
                 edit.NroPc = empleado.NroPc;
-              
+
                 edit.Observaciones = empleado.Observaciones;
                 edit.Premio = empleado.Premio;
                 edit.SAC = empleado.SAC;
-                
+
                 edit.Sueldo = empleado.Sueldo;
-             
-               
+
+
                 edit.TipoEmpleadoId = empleado.TipoEmpleadoId;
 
 
-              
+
                 SqlContext.SaveChanges();
             }
             else
@@ -101,33 +99,33 @@ namespace DomainAmbientHouse.Datos
 
         public void GrabarEquipo(EmpleadosPresupuestosAprobados empleados)
         {
-            
-                if (SqlContext.EmpleadosPresupuestosAprobados.Where(o => o.PresupuestoId == empleados.PresupuestoId).Count() > 0)
-                {
-                    EmpleadosPresupuestosAprobados edit = SqlContext.EmpleadosPresupuestosAprobados.Where(o => o.PresupuestoId == empleados.PresupuestoId).SingleOrDefault();
 
-                    edit.JefeCocinaId = empleados.JefeCocinaId;
-                    edit.JefeBarraId = empleados.JefeBarraId;
-                    edit.JefeLogisticaId = empleados.JefeLogisticaId;
-                    edit.JefeOperacionId = empleados.JefeOperacionId;
-                    edit.JefeSalonId = empleados.JefeSalonId;
-                    edit.CoordinadorId = empleados.CoordinadorId;
-                    edit.CoordinadorBisId = empleados.CoordinadorBisId;
-                    edit.OrganizadorId = empleados.OrganizadorId;
-                    edit.ResponsableLogisticaArmadoId = empleados.ResponsableLogisticaArmadoId;
-                    edit.ResponsableLogisticaDesarmadoId = empleados.ResponsableLogisticaDesarmadoId;
-                    edit.HoraIngresoCoordinador1 = empleados.HoraIngresoCoordinador1;
-                    edit.HoraIngresoCoordinador2 = empleados.HoraIngresoCoordinador2;
+            if (SqlContext.EmpleadosPresupuestosAprobados.Where(o => o.PresupuestoId == empleados.PresupuestoId).Count() > 0)
+            {
+                EmpleadosPresupuestosAprobados edit = SqlContext.EmpleadosPresupuestosAprobados.Where(o => o.PresupuestoId == empleados.PresupuestoId).SingleOrDefault();
 
-                    SqlContext.SaveChanges();
-                }
-                else
-                {
-                    SqlContext.EmpleadosPresupuestosAprobados.Add(empleados);
-                    SqlContext.SaveChanges();
-                }
+                edit.JefeCocinaId = empleados.JefeCocinaId;
+                edit.JefeBarraId = empleados.JefeBarraId;
+                edit.JefeLogisticaId = empleados.JefeLogisticaId;
+                edit.JefeOperacionId = empleados.JefeOperacionId;
+                edit.JefeSalonId = empleados.JefeSalonId;
+                edit.CoordinadorId = empleados.CoordinadorId;
+                edit.CoordinadorBisId = empleados.CoordinadorBisId;
+                edit.OrganizadorId = empleados.OrganizadorId;
+                edit.ResponsableLogisticaArmadoId = empleados.ResponsableLogisticaArmadoId;
+                edit.ResponsableLogisticaDesarmadoId = empleados.ResponsableLogisticaDesarmadoId;
+                edit.HoraIngresoCoordinador1 = empleados.HoraIngresoCoordinador1;
+                edit.HoraIngresoCoordinador2 = empleados.HoraIngresoCoordinador2;
 
-           
+                SqlContext.SaveChanges();
+            }
+            else
+            {
+                SqlContext.EmpleadosPresupuestosAprobados.Add(empleados);
+                SqlContext.SaveChanges();
+            }
+
+
         }
 
         public EmpleadosPresupuestosAprobados BuscarEquiposPorPresupuesto(int PresupuestoId)
@@ -135,7 +133,7 @@ namespace DomainAmbientHouse.Datos
             return SqlContext.EmpleadosPresupuestosAprobados.Where(o => o.PresupuestoId == PresupuestoId).SingleOrDefault();
         }
 
-        public  List<Empleados> ObtenerEmpleadosPorTipoEmpleado(int tipoEmpleado)
+        public List<Empleados> ObtenerEmpleadosPorTipoEmpleado(int tipoEmpleado)
         {
             int Baja = Int32.Parse(ConfigurationManager.AppSettings["Baja"].ToString());
 

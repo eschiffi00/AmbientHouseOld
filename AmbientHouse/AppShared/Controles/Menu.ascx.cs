@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Configuration;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
 
 namespace AmbientHouse.App_Shared.Controles
 {
@@ -53,7 +50,7 @@ namespace AmbientHouse.App_Shared.Controles
                 int PerfilStockCarga = int.Parse(ConfigurationManager.AppSettings["StockCarga"].ToString());
                 int PerfilCoordinadorOrganizacion = int.Parse(ConfigurationManager.AppSettings["CoordinadorOrganizacion"].ToString());
                 int PerfilGestor = int.Parse(ConfigurationManager.AppSettings["Gestor"].ToString());
-                
+
                 MenuItem mnuHome = new MenuItem();
 
                 mnuHome.Text = "Home";
@@ -131,7 +128,7 @@ namespace AmbientHouse.App_Shared.Controles
                 mnuPlanContable.NavigateUrl = "~/Administracion/TipoMovimientos/Index.aspx";
 
                 MenuItem mnuCajas = new MenuItem();
-                
+
                 mnuCajas.Text = "Cajas";
                 mnuCajas.Value = "PCT";
                 mnuCajas.NavigateUrl = "~/Administracion/Cuentas/Index.aspx";
@@ -202,7 +199,7 @@ namespace AmbientHouse.App_Shared.Controles
 
                 mnuConfiguracion.Text = "Configuracion";
                 mnuConfiguracion.Value = "CON";
-              
+
                 MenuItem mnuUnidadesNegocios = new MenuItem();
 
                 mnuUnidadesNegocios.Text = "Unidades de Negocios";
@@ -564,7 +561,7 @@ namespace AmbientHouse.App_Shared.Controles
 
                 #endregion
 
-     
+
 
                 #endregion
 
@@ -619,7 +616,7 @@ namespace AmbientHouse.App_Shared.Controles
                 MenuPrincipal.Items.Add(mnuHome);
 
 
-                if (PerfilId == PerfilCoordinadorVentas 
+                if (PerfilId == PerfilCoordinadorVentas
                     || PerfilId == PerfilEjecutivo
                     || PerfilId == PerfilGestor)
                 {

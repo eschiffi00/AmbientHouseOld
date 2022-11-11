@@ -3,8 +3,6 @@ using DomainAmbientHouse.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.PresupuestosAprobados
@@ -118,10 +116,12 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
         {
             if (!IsPostBack)
             {
+                LabelMensaje.Visible = false;
                 InicializarPagina();
 
             }
         }
+
 
         private void InicializarPagina()
         {
@@ -297,8 +297,8 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
                 GridViewRow row = GridViewVentasConRenta.Rows[index];
 
                 TextBox costo = row.FindControl("TextBoxCosto") as TextBox;
-                
-                if (cmd.IsNumeric(costo.Text.Replace("$ ","").ToString()))
+
+                if (cmd.IsNumeric(costo.Text.Replace("$ ", "").ToString()))
                 {
                     double TotalCosto = cmd.ValidarImportes(costo.Text.Replace("$", "").ToString());
 
@@ -306,7 +306,7 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
 
                     detalle.Id = Int32.Parse(row.Cells[0].Text);
 
-                    presupuestos.AplicarAjuste(detalle.Id,0, 0,"", TotalCosto);
+                    presupuestos.AplicarAjuste(detalle.Id, 0, 0, "", TotalCosto);
                 }
 
             }
@@ -340,7 +340,42 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
             }
 
         }
+        protected void ButtonActualizarOrganizador_Click(object sender, EventArgs e)
+        {
+            LabelMensaje.Visible = false;
+            if (PresupuestoId > 0)
+            {
+
+                try
+                {
+                    DomainAmbientHouse.Entidades.Presupuestos editar = eventos.BuscarPresupuesto(PresupuestoId);
+
+                    TextBoxTotalPorcOrganizador.Text = TextBoxTotalPorcOrganizador.Text.Replace("$", "");
+
+                    if (cmd.IsNumeric(TextBoxTotalPorcOrganizador.Text))
+                        editar.ValorOrganizador = cmd.ValidarImportes(TextBoxTotalPorcOrganizador.Text);
 
 
+                    eventos.GuardarPresupuesto(editar);
+
+                    LabelMensaje.Text = "Se modifico correctamente!!!!";
+                    LabelMensaje.ForeColor = System.Drawing.Color.Green;
+                    LabelMensaje.Visible = true;
+
+                    InicializarPagina();
+                }
+                catch (Exception)
+                {
+                    LabelMensaje.Text = "Se produjo un error al modificar el Valor Organizador.";
+                    LabelMensaje.ForeColor = System.Drawing.Color.Red;
+                    LabelMensaje.Visible = true;
+                }
+
+
+            }
+
+
+
+        }
     }
 }

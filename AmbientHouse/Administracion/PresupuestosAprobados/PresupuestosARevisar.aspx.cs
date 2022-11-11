@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.PresupuestosAprobados
@@ -147,7 +145,7 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
 
         }
 
-      
+
 
 
         private void CargarDetalle()
@@ -157,7 +155,7 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
             GridViewVentas.DataSource = ListPresupuestoDetalle.ToList();
             GridViewVentas.DataBind();
 
-            TextBoxTotal.Text = System.Math.Round(cmd.CalcularTotalPresupuestoPendiente(PresupuestoId, ListPresupuestoDetalle, 0, 0),2).ToString();
+            TextBoxTotal.Text = System.Math.Round(cmd.CalcularTotalPresupuestoPendiente(PresupuestoId, ListPresupuestoDetalle, 0, 0), 2).ToString();
 
 
 
@@ -177,27 +175,27 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
                 TextBox precio = (TextBox)e.Row.FindControl("TextBoxPrecio");
 
 
-               int id = Int32.Parse( e.Row.Cells[0].Text);
+                int id = Int32.Parse(e.Row.Cells[0].Text);
 
-               PresupuestoDetalle detalle = presupuestos.BuscarPresupuestoDetalle(id);
+                PresupuestoDetalle detalle = presupuestos.BuscarPresupuestoDetalle(id);
 
-               if (detalle.UsoCocina != null)
-                   usoCocina.Text = System.Math.Round((double)detalle.UsoCocina,2).ToString();
+                if (detalle.UsoCocina != null)
+                    usoCocina.Text = System.Math.Round((double)detalle.UsoCocina, 2).ToString();
 
-               if (detalle.ValorIntermediario != null)
-                   fee.Text = System.Math.Round((double)detalle.ValorIntermediario,2).ToString();
+                if (detalle.ValorIntermediario != null)
+                    fee.Text = System.Math.Round((double)detalle.ValorIntermediario, 2).ToString();
 
-               if (detalle.Cannon != null)
-                   canon.Text = System.Math.Round((double)detalle.Cannon,2).ToString();
+                if (detalle.Cannon != null)
+                    canon.Text = System.Math.Round((double)detalle.Cannon, 2).ToString();
 
-               if (detalle.Logistica != null)
-                   logistica.Text = System.Math.Round((double)detalle.Logistica, 2).ToString();
+                if (detalle.Logistica != null)
+                    logistica.Text = System.Math.Round((double)detalle.Logistica, 2).ToString();
 
-               if (detalle.Costo != null)
-                   costo.Text = System.Math.Round((double)detalle.Costo,2).ToString();
+                if (detalle.Costo != null)
+                    costo.Text = System.Math.Round((double)detalle.Costo, 2).ToString();
 
-               if (detalle.ValorSeleccionado != null)
-                   precio.Text = System.Math.Round(detalle.ValorSeleccionado, 2).ToString();
+                if (detalle.ValorSeleccionado != null)
+                    precio.Text = System.Math.Round(detalle.ValorSeleccionado, 2).ToString();
 
 
             }
@@ -217,7 +215,7 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
 
                 TextBox costo = (TextBox)row.FindControl("TextBoxCosto");
                 TextBox precio = (TextBox)row.FindControl("TextBoxPrecio");
-               
+
 
                 int id = int.Parse(row.Cells[0].Text);
 

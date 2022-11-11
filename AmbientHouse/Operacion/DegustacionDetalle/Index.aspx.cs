@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
-using System.Text;
-using System.Web.UI.HtmlControls;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.IO;
+using System.Text;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Operacion.DesgustacionDetalle
 {
@@ -94,6 +90,6 @@ namespace AmbientHouse.Operacion.DesgustacionDetalle
             base.Response.Write(sb.ToString());
             base.Response.End();
         }
-    
+
     }
 }

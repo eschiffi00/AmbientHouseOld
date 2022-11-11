@@ -1,24 +1,14 @@
-﻿using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Linq;
+﻿using System;
+using System.Security.Permissions;
 using System.Web;
 using System.Web.SessionState;
-
-using iTextSharp;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System.Security.Permissions;
 
 namespace AmbientHouse.Presupuestos
 {
     /// <summary>
     /// Summary description for ComprobanteMail
     /// </summary>
-    public class ComprobanteMail: IHttpHandler, IRequiresSessionState
+    public class ComprobanteMail : IHttpHandler, IRequiresSessionState
     {
 
         private DomainAmbientHouse.Entidades.Eventos EventosPDF
@@ -27,7 +17,7 @@ namespace AmbientHouse.Presupuestos
             set { HttpContext.Current.Session["Evento"] = value; }
         }
 
-    
+
 
         public void ProcessRequest(HttpContext context)
         {
@@ -54,7 +44,7 @@ namespace AmbientHouse.Presupuestos
 
                 DomainAmbientHouse.Servicios.Log.save(this, ex);
             }
-  
+
         }
 
         private string GetContentType(string FileExtension)

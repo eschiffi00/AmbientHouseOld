@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 
 namespace AmbientHouse.Reportes
 {
@@ -32,7 +30,7 @@ namespace AmbientHouse.Reportes
                 SimuladorIndexacionSeleccionado = new List<DomainAmbientHouse.Entidades.SimuladorIndexacion>();
         }
 
-        
+
 
         protected void ButtonAgregar_Click(object sender, EventArgs e)
         {
@@ -59,8 +57,8 @@ namespace AmbientHouse.Reportes
 
             List<PagosClientes> list = administrativas.ObtenerIndexacion(TextBoxFechaEvento.Text,
                                                                             cmd.ValidarImportes(TextBoxMontoTotal.Text),
-                                                                            cmd.ValidarImportes(TextBoxIndexacion.Text), 
-                                                                            DropDownListTipoIndexacion.SelectedValue, 
+                                                                            cmd.ValidarImportes(TextBoxIndexacion.Text),
+                                                                            DropDownListTipoIndexacion.SelectedValue,
                                                                             SimuladorIndexacionSeleccionado);
 
             GridViewCuotas.DataSource = list.ToList();

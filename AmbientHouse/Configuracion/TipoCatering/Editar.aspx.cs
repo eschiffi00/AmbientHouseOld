@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Configuration;
 
 namespace AmbientHouse.Configuracion.TipoCatering
@@ -69,20 +64,20 @@ namespace AmbientHouse.Configuracion.TipoCatering
             tipoCatering = servicio.BuscarTipoCatering(id);
 
             TipoCateringSeleccionado = tipoCatering;
-          
+
 
             TextBoxDescripcion.Text = tipoCatering.Descripcion;
             DropDownListEstados.SelectedValue = tipoCatering.EstadoId.ToString();
 
-            
-           
+
+
         }
 
         private void NuevoTipoCatering()
         {
             TipoCateringSeleccionado = new DomainAmbientHouse.Entidades.TipoCatering();
 
-          
+
         }
 
         private void GrabarTipoCatering()

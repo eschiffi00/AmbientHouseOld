@@ -6,7 +6,6 @@ using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Presupuestos
@@ -305,7 +304,7 @@ namespace AmbientHouse.Presupuestos
                 //double resta = Valor - double.Parse(PresupuestoSeleccionado.ValorOrganizador.ToString());
                 double porcentaje = (double.Parse(PresupuestoSeleccionado.PorcentajeOrganizador.ToString()) / 100);
 
-                TextBoxTotalOrganizador.Text =  System.Math.Round(Valor * porcentaje).ToString("C");
+                TextBoxTotalOrganizador.Text = System.Math.Round(Valor * porcentaje).ToString("C");
 
                 valorOrganizador = System.Math.Round(Valor * porcentaje);
             }
@@ -532,7 +531,7 @@ namespace AmbientHouse.Presupuestos
 
                 return detalle = presupuestos.AddItem(detalle, producto, (int)presupuesto.LocacionId, cantidadAductos,
                     cantidadAdolescentes,
-                    CantidadTotalInvitados,ListPresupuestoDetalleModificado);
+                    CantidadTotalInvitados, ListPresupuestoDetalleModificado);
 
 
             }
@@ -622,7 +621,7 @@ namespace AmbientHouse.Presupuestos
 
         protected void ButtonAceptar_Click(object sender, EventArgs e)
         {
-            
+
             int PresupuestoEnviado = Int32.Parse(ConfigurationManager.AppSettings["EstadoPresupuestoEnviadoalCliente"].ToString());
 
 

@@ -12,19 +12,19 @@
 
         $(document).ready(function () {
             // seteo como multiselect al listbox
-            GroupDropdownlist();
-            $('[id*=MultiselectCategorias]').multiselect({
-                enableClickableOptGroups: true,
-                enableCollapsibleOptGroups: true,
-                enableFiltering: true
-            });
+            //GroupDropdownlist();
+            //$('[id*=MultiselectCategorias]').multiselect({
+            //    enableClickableOptGroups: true,
+            //    enableCollapsibleOptGroups: true,
+            //    enableFiltering: true
+            //});
             $('[id*=MultiselectItems]').multiselect({
                 includeSelectAllOption: true,
                 dropRight: true,
                 enableFiltering: true,
-                onDropdownHide: function (event) {
-                    __doPostBack();
-                }
+                //onDropdownHide: function (event) {
+                //    __doPostBack();
+                //}
             });
             $('[id*=MultiselectExperiencias]').multiselect({
                 includeSelectAllOption: true,
@@ -57,33 +57,33 @@
             //$("form input:checkbox").checked = false;
               
         });
-        function GroupDropdownlist() {
-            var selectControl = $('[id*=MultiselectCategorias]');
-            var groups = [];
-            $(selectControl).find('option').each(function () {
-                groups.push($(this).attr('data-group'));
-            });
-            var uniqueGroup = groups.filter(function (itm, i, a) {
-                return i == a.indexOf(itm);
-            });
-            for (var i = 0; i < uniqueGroup.length; i++) {
+        //function GroupDropdownlist() {
+        //    var selectControl = $('[id*=MultiselectCategorias]');
+        //    var groups = [];
+        //    $(selectControl).find('option').each(function () {
+        //        groups.push($(this).attr('data-group'));
+        //    });
+        //    var uniqueGroup = groups.filter(function (itm, i, a) {
+        //        return i == a.indexOf(itm);
+        //    });
+        //    for (var i = 0; i < uniqueGroup.length; i++) {
 
-                var Group = jQuery('<optgroup/>', {
-                    label: uniqueGroup[i]
-                }).appendTo(selectControl);
-                var grpItems = $(selectControl).find('option[data-group="' + uniqueGroup[i] + '"]');
-                for (var x = 0; x < grpItems.length; x++)
-                {
-                    var item = grpItems[x];
-                    if (item.text != uniqueGroup[i]) {
-                        //item.appendTo(Group);
-                        Group.append(item);
-                    } else {
-                        grpItems[x].remove();
-                    } 
-                }
-            }
-        }
+        //        var Group = jQuery('<optgroup/>', {
+        //            label: uniqueGroup[i]
+        //        }).appendTo(selectControl);
+        //        var grpItems = $(selectControl).find('option[data-group="' + uniqueGroup[i] + '"]');
+        //        for (var x = 0; x < grpItems.length; x++)
+        //        {
+        //            var item = grpItems[x];
+        //            if (item.text != uniqueGroup[i]) {
+        //                //item.appendTo(Group);
+        //                Group.append(item);
+        //            } else {
+        //                grpItems[x].remove();
+        //            } 
+        //        }
+        //    }
+        //}
         //Total out of range dialog
         function ShowratiosDialog() {
             $(function () {
@@ -113,7 +113,7 @@
         <div class="form-group row" id="MultiItems">
             <label for="MultiselectItems" class="col-sm-2 col-form-label text-sm-left text-md-right">Items</label>
             <div class="col-sm-4">
-                <asp:ListBox ID="MultiselectItems" runat="server" SelectionMode="Multiple"  OnSelectedIndexChanged="MultiselectItems_SelectedIndexChanged"  TabIndex="1" class="form-control" ></asp:ListBox>
+                <asp:ListBox ID="MultiselectItems" runat="server" SelectionMode="Multiple"    TabIndex="1" class="form-control" ></asp:ListBox>
             </div>
         </div>
         <div class="form-group row" id="MultiExperiencias">
@@ -123,12 +123,12 @@
             </div>
         </div>
 
-        <div class="form-group row" id="categorias">
+       <%-- <div class="form-group row" id="categorias">
             <label for="MultiselectCategorias" class="col-sm-2 col-form-label text-sm-left text-md-right">Categoria</label>
             <div class="col-sm-4">
                 <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="3" class="form-control"></asp:ListBox>
             </div>
-        </div>
+        </div>--%>
 
          <div class="form-group row" id="Dependencia">
             <label for="ddlDependencia" class="col-sm-2 col-form-label text-sm-left text-md-right">Tipo de Ratio</label>

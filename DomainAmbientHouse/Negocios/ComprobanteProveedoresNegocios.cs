@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
-using System.Transactions;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Transactions;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -68,7 +64,7 @@ namespace DomainAmbientHouse.Negocios
                             CuentaId = int.Parse(comprobante.CuentaId.ToString()),
                             Fecha = DateTime.Now
                         };
-                        this.DatosPagos.NuevoPagoProveedores(pagos,"Pago Nro Comprobante: (" + comprobante.NroComprobante + ")" );
+                        this.DatosPagos.NuevoPagoProveedores(pagos, "Pago Nro Comprobante: (" + comprobante.NroComprobante + ")");
                     }
 
 
@@ -92,18 +88,18 @@ namespace DomainAmbientHouse.Negocios
                             det.ValorImpuesto = item.ValorImpuesto;
                             det.ValorImpuestoInterno = item.ValorImpuestoInterno;
                         }
-                      
+
                         Datos.NuevoComprobanteProveedoresDetalle(det);
                     }
 
-                    
+
                     scope.Complete();
                     return true;
 
                 }
                 catch (Exception ex)
                 {
-                    DomainAmbientHouse.Servicios.Log.save(this,ex);
+                    DomainAmbientHouse.Servicios.Log.save(this, ex);
 
                     return false;
                 }
@@ -117,7 +113,7 @@ namespace DomainAmbientHouse.Negocios
 
         public List<ComprobantesProveedores> BuscarComprobantesPorProveedor(int proveedorId)
         {
-            return Datos.BuscarComprobantesPorProveedor( proveedorId);
+            return Datos.BuscarComprobantesPorProveedor(proveedorId);
         }
 
         public List<ReporteComprobantes> ObtenerReporteComprobantes(SearcherReporteComprobantes searcher)
@@ -127,12 +123,12 @@ namespace DomainAmbientHouse.Negocios
 
         internal List<ComprobantesProveedores> BuscarComprobantesPorProveedorNroComprobante(int proveedorId, long nroComprobante)
         {
-            return Datos.BuscarComprobantesPorProveedorNroComprobante( proveedorId,  nroComprobante);
+            return Datos.BuscarComprobantesPorProveedorNroComprobante(proveedorId, nroComprobante);
         }
 
         internal List<ReporteIva_Result> BuscarIva(string fechaInicio, string fechaFin, int empresa)
         {
-            return Datos.BuscarIva( fechaInicio,  fechaFin,  empresa);
+            return Datos.BuscarIva(fechaInicio, fechaFin, empresa);
         }
 
         internal bool GrabarComprobante(ComprobantesProveedores comprobantes)

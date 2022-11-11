@@ -1,9 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -40,7 +38,7 @@ namespace DomainAmbientHouse.Datos
                 cat.Id = item.Id;
                 cat.RazonSocial = item.RazonSocial;
                 cat.Cuit = item.Cuit;
-            
+
                 Salida.Add(cat);
             }
 
@@ -119,7 +117,7 @@ namespace DomainAmbientHouse.Datos
 
             //return query.OrderBy(o=>o.FechaCierre).Select(s => s.FechaCierre).Max();
             return System.DateTime.Now;
-        
+
         }
 
     }

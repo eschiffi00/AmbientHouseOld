@@ -1040,7 +1040,7 @@ advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.NombreFantasia' no 
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="NotaCreditos">
           <Key>
@@ -1498,12 +1498,15 @@ advertencia 6013: La tabla o vista 'w230092_AmbientHouse.dbo.Prueba' no tiene de
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="ExperienciaBarra" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="CategoriaId" Type="int" Nullable="false" />
           <Property Name="TipoRatio" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="DetalleTipo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ValorRatio" Type="float" />
           <Property Name="TopeRatio" Type="float" />
-          <Property Name="Menores" Type="bit" Nullable="false" />
+          <Property Name="Menores3" Type="bit" Nullable="false" />
+          <Property Name="Menores3y8" Type="bit" Nullable="false" />
+          <Property Name="Adolescentes" Type="bit" Nullable="false" />
           <Property Name="AdicionalRatio" Type="bit" Nullable="false" />
           <Property Name="EstadoId" Type="int" Nullable="false" />
         </EntityType>
@@ -8815,12 +8818,15 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="ExperienciaBarra" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CategoriaId" Type="Int32" Nullable="false" />
           <Property Name="TipoRatio" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DetalleTipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ValorRatio" Type="Double" />
           <Property Name="TopeRatio" Type="Double" />
-          <Property Name="Menores" Type="Boolean" Nullable="false" />
+          <Property Name="Menores3" Type="Boolean" Nullable="false" />
+          <Property Name="Menores3y8" Type="Boolean" Nullable="false" />
+          <Property Name="Adolescentes" Type="Boolean" Nullable="false" />
           <Property Name="AdicionalRatio" Type="Boolean" Nullable="false" />
           <Property Name="EstadoId" Type="Int32" Nullable="false" />
         </EntityType>
@@ -9293,7 +9299,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="AvisosClientesPorFecha">
           <Key>
@@ -15274,12 +15280,15 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               <MappingFragment StoreEntitySet="Ratios">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ExperienciaBarra" ColumnName="ExperienciaBarra" />
                 <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
                 <ScalarProperty Name="TipoRatio" ColumnName="TipoRatio" />
                 <ScalarProperty Name="DetalleTipo" ColumnName="DetalleTipo" />
                 <ScalarProperty Name="ValorRatio" ColumnName="ValorRatio" />
                 <ScalarProperty Name="TopeRatio" ColumnName="TopeRatio" />
-                <ScalarProperty Name="Menores" ColumnName="Menores" />
+                <ScalarProperty Name="Menores3" ColumnName="Menores3" />
+                <ScalarProperty Name="Menores3y8" ColumnName="Menores3y8" />
+                <ScalarProperty Name="Adolescentes" ColumnName="Adolescentes" />
                 <ScalarProperty Name="AdicionalRatio" ColumnName="AdicionalRatio" />
                 <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
               </MappingFragment>

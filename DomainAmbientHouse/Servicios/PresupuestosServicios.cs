@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Negocios;
+using System;
+using System.Collections.Generic;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
@@ -117,9 +113,9 @@ namespace DomainAmbientHouse.Servicios
 
         public PresupuestoDetalle AprobarItemPresupuesto(int detalleId)
         {
-             PresupuestoDetalleNegocios negocio = new PresupuestoDetalleNegocios();
+            PresupuestoDetalleNegocios negocio = new PresupuestoDetalleNegocios();
 
-             return negocio.AprobarItemPresupuesto(detalleId);
+            return negocio.AprobarItemPresupuesto(detalleId);
         }
 
         public void EditarCantidadInvitados(Presupuestos PresupuestoSeleccionado)
@@ -131,7 +127,7 @@ namespace DomainAmbientHouse.Servicios
         {
             PresupuestoDetalleNegocios negocio = new PresupuestoDetalleNegocios();
 
-            return negocio.BuscarPresupuestoDetalle( id);
+            return negocio.BuscarPresupuestoDetalle(id);
         }
 
         public bool ActualizarFechaEvento(Presupuestos PresupuestoSeleccionado)
@@ -159,11 +155,11 @@ namespace DomainAmbientHouse.Servicios
         }
 
         public PagosClientes BuscarPagoCliente(int id)
-        { 
-              PagosClienteNegocios negocios = new PagosClienteNegocios();
+        {
+            PagosClienteNegocios negocios = new PagosClienteNegocios();
 
 
-              return negocios.BuscarPagoCliente(id);
+            return negocios.BuscarPagoCliente(id);
         }
 
         public bool GrabarPagoCliente(PagosClientes pagoCliente, Cheques cheque)
@@ -201,11 +197,11 @@ namespace DomainAmbientHouse.Servicios
             return negocios.ActualizarCobroItem(Id);
         }
 
-        public List<PresupuestoDetalle> BuscarDetallePresupuestoNoPagos(int presupuestoId,string fechaEvento, string cliente)
+        public List<PresupuestoDetalle> BuscarDetallePresupuestoNoPagos(int presupuestoId, string fechaEvento, string cliente)
         {
             PresupuestoDetalleNegocios negocios = new PresupuestoDetalleNegocios();
 
-            return negocios.BuscarDetallePresupuestoNoPagados(presupuestoId,fechaEvento,cliente);
+            return negocios.BuscarDetallePresupuestoNoPagados(presupuestoId, fechaEvento, cliente);
         }
 
         public Presupuestos BuscarPresupuesto(int presupuestoId)
@@ -219,7 +215,7 @@ namespace DomainAmbientHouse.Servicios
         {
 
             Presupuestos cabecera = Negocios.BuscarPresupuesto(PresupuestoId);
-            List<PresupuestoDetalle> detalle =  Negocios.BuscarDetallePresupuesto(PresupuestoId);
+            List<PresupuestoDetalle> detalle = Negocios.BuscarDetallePresupuesto(PresupuestoId);
 
 
             ArmarCabeceraGrillaPresupuestoDetalle(_retorno);
@@ -251,7 +247,7 @@ namespace DomainAmbientHouse.Servicios
                 precioSeleccionado.InnerText = item.PrecioSeleccionado;
 
                 HtmlTableCell tipoLogistica = new HtmlTableCell();
-                tipoLogistica.InnerText =  item.TipoLogisticaDescripcion;
+                tipoLogistica.InnerText = item.TipoLogisticaDescripcion;
 
                 HtmlTableCell localidad = new HtmlTableCell();
                 localidad.InnerText = item.LocalidadDescripcion;
@@ -277,7 +273,7 @@ namespace DomainAmbientHouse.Servicios
                 TextBox Comentario = new TextBox();
                 Comentario.TextMode = TextBoxMode.MultiLine;
                 Comentario.ID = "TextBoxComentario" + item.Id.ToString();
-              
+
                 Comentario.CssClass = "form-control";
 
                 textboxComentario.Controls.Add(Comentario);
@@ -288,21 +284,21 @@ namespace DomainAmbientHouse.Servicios
                 //descuentos.ImageUrl = "~/Content/Imagenes/Ajuste.png";
                 descuentos.ID = item.Id.ToString();
                 descuentos.Attributes.Add("style", "width: 25px; height: 25px;");
-                descuentos.Attributes.Add("OnClick", "javascript:return fnAceptar("  + item.Id + ");");
-              
+                descuentos.Attributes.Add("OnClick", "javascript:return fnAceptar(" + item.Id + ");");
+
 
                 ImageButton descuentos1 = new ImageButton();
                 descuentos1.ImageUrl = "~/Content/Imagenes/Ajuste.png";
                 descuentos1.ID = item.Id.ToString();
                 descuentos1.Attributes.Add("style", "width: 25px; height: 25px;");
-                
+
                 acciones.Controls.Add(descuentos);
                 acciones.Controls.Add(descuentos1);
 
-               
-                 //<asp:ImageButton ID="ImageDescuentos" runat="server" Text="Ver" ToolTip="Aplicar Ajustes (Descuentos/Incrementos) por Unidades de Negocio al Presupuesto." ImageUrl="~/Content/Imagenes/Ajuste.png"
 
-             
+                //<asp:ImageButton ID="ImageDescuentos" runat="server" Text="Ver" ToolTip="Aplicar Ajustes (Descuentos/Incrementos) por Unidades de Negocio al Presupuesto." ImageUrl="~/Content/Imagenes/Ajuste.png"
+
+
                 fila.Cells.Add(nroItem);
                 fila.Cells.Add(unidadNegocio);
                 fila.Cells.Add(producto);
@@ -317,16 +313,16 @@ namespace DomainAmbientHouse.Servicios
                 fila.Cells.Add(acciones);
 
                 _retorno.Rows.Add(fila);
-                
+
             }
 
 
             double Valor = this.CalcularValorTotalPresupuestoPorPresupuestoId(PresupuestoId);
 
             ArmarLogisticaGrillaPresupuestoDetalle(_retorno, System.Math.Round(_logisticaTotal, 2).ToString("C"));
-            ArmarCanonGrillaPresupuestoDetalle (_retorno,System.Math.Round(_totalizadorCanon, 2).ToString("C"));
+            ArmarCanonGrillaPresupuestoDetalle(_retorno, System.Math.Round(_totalizadorCanon, 2).ToString("C"));
             //ArmarOrganizadorGrillaPresupuestoDetalle(_retorno, ,System.Math.Round(cabecera.ValorOrganizador, 2).ToString("C"));
-            ArmarFooterGrillaPresupuestoDetalle(_retorno,System.Math.Round(Valor, 2).ToString("C"));
+            ArmarFooterGrillaPresupuestoDetalle(_retorno, System.Math.Round(Valor, 2).ToString("C"));
 
 
         }
@@ -353,22 +349,22 @@ namespace DomainAmbientHouse.Servicios
             _producto.InnerHtml = "<b>Producto</b>";
 
             HtmlTableCell _precioSeleccionado = new HtmlTableCell();
-            _precioSeleccionado.InnerHtml = "<b>PL Seleccionado</b>"; 
+            _precioSeleccionado.InnerHtml = "<b>PL Seleccionado</b>";
 
             HtmlTableCell _tipoLogistica = new HtmlTableCell();
-            _tipoLogistica.InnerHtml = "<b>Logistica</b>"; 
+            _tipoLogistica.InnerHtml = "<b>Logistica</b>";
 
             HtmlTableCell _localidad = new HtmlTableCell();
-            _localidad.InnerHtml = "<b>Localidad</b>"; 
+            _localidad.InnerHtml = "<b>Localidad</b>";
 
             HtmlTableCell _logisticaCosto = new HtmlTableCell();
-            _logisticaCosto.InnerHtml = "<b>Log. Costo</b>"; 
+            _logisticaCosto.InnerHtml = "<b>Log. Costo</b>";
 
             HtmlTableCell _canon = new HtmlTableCell();
-            _canon.InnerHtml = "<b>Canon</b>"; 
+            _canon.InnerHtml = "<b>Canon</b>";
 
             HtmlTableCell _precio = new HtmlTableCell();
-            _precio.InnerHtml = "<b>Precio</b>"; 
+            _precio.InnerHtml = "<b>Precio</b>";
 
             HtmlTableCell _estadoItem = new HtmlTableCell();
             _estadoItem.InnerHtml = "<b>Estado</b>";
@@ -377,7 +373,7 @@ namespace DomainAmbientHouse.Servicios
             _comentario.InnerHtml = "<b>Comentario</b>";
 
             HtmlTableCell _acciones = new HtmlTableCell();
-            _acciones.InnerHtml = "<b>Acciones</b>"; 
+            _acciones.InnerHtml = "<b>Acciones</b>";
 
             cabecera.Cells.Add(_nroItem);
             cabecera.Cells.Add(_unidadNegocio);
@@ -433,7 +429,7 @@ namespace DomainAmbientHouse.Servicios
             _footer9.InnerHtml = "<b>" + canonTotal + "</b>";
 
 
-            HtmlTableCell _footer10 = new HtmlTableCell(); 
+            HtmlTableCell _footer10 = new HtmlTableCell();
             _footer10.InnerText = "";
 
             HtmlTableCell _footer11 = new HtmlTableCell();
@@ -455,11 +451,11 @@ namespace DomainAmbientHouse.Servicios
             _retorno.Rows.Add(footer);
         }
 
-      
+
         private static void ArmarLogisticaGrillaPresupuestoDetalle(HtmlTable _retorno, string logisticaTotal)
         {
             HtmlTableRow footer = new HtmlTableRow();
-        
+
 
             HtmlTableCell _footer1 = new HtmlTableCell();
             _footer1.InnerText = "";
@@ -592,7 +588,7 @@ namespace DomainAmbientHouse.Servicios
 
             footer.Attributes.Add("class", "bg-primary");
 
-    
+
             HtmlTableCell _footer1 = new HtmlTableCell();
             _footer1.InnerText = "";
 
@@ -692,7 +688,7 @@ namespace DomainAmbientHouse.Servicios
 
         public void ActualizarDetallePresupuestos(PresupuestoDetalle detalle)
         {
-            PresupuestoDetalleNegocios negocios = new  PresupuestoDetalleNegocios();
+            PresupuestoDetalleNegocios negocios = new PresupuestoDetalleNegocios();
 
             negocios.GrabarDetallePresupuesto(detalle);
         }
@@ -724,7 +720,7 @@ namespace DomainAmbientHouse.Servicios
             return Negocios.CalcularValorTotalRoyaltyAprobado(presupuestoId);
         }
 
-        
+
 
         public bool EliminarInvitadosPendientes(int presupuestoId)
         {

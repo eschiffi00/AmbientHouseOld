@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -19,10 +16,10 @@ namespace DomainAmbientHouse.Datos
 
         public virtual List<Retenciones> ListarRetenciones()
         {
-           
-            var query = from p in  SqlContext.Retenciones
-                        where p.Delete == false 
-                        select p ;
+
+            var query = from p in SqlContext.Retenciones
+                        where p.Delete == false
+                        select p;
 
             return RetencionesToModel(query).OrderBy(o => o.CreateFecha).ToList();
 
@@ -32,7 +29,7 @@ namespace DomainAmbientHouse.Datos
         {
 
             var query = from p in SqlContext.Retenciones
-                        where p.PagoProveedorId == pagoProveedorId &&  p.Delete == false
+                        where p.PagoProveedorId == pagoProveedorId && p.Delete == false
                         select p;
 
             return RetencionesToModel(query).OrderBy(o => o.CreateFecha).ToList();
@@ -76,9 +73,9 @@ namespace DomainAmbientHouse.Datos
                     edit.Importe = retenciones.Importe;
                     edit.Fecha = retenciones.Fecha;
                     edit.NroCertificado = retenciones.NroCertificado;
-                    
+
                     edit.UpdateFecha = System.DateTime.Now;
-                  
+
 
                     SqlContext.SaveChanges();
 
@@ -134,7 +131,7 @@ namespace DomainAmbientHouse.Datos
         }
 
     }
-  
+
 }
 
 namespace DomainAmbientHouse.Entidades

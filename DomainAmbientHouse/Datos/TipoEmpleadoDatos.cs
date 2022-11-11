@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -26,7 +23,7 @@ namespace DomainAmbientHouse.Datos
         public virtual List<TipoEmpleados> ObtenerTipoEmpleadosPorSector(int SectorEmpresaId)
         {
 
-            return SqlContext.TipoEmpleados.Where(o=> o.SectorEmpresaId == SectorEmpresaId).ToList();
+            return SqlContext.TipoEmpleados.Where(o => o.SectorEmpresaId == SectorEmpresaId).ToList();
 
         }
     }

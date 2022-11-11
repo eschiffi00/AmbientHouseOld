@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -24,7 +22,7 @@ namespace DomainAmbientHouse.Datos
 
             return SqlContext.ProductosCatering.ToList();
 
-           
+
 
         }
 
@@ -66,6 +64,6 @@ namespace DomainAmbientHouse.Datos
             return query.ToList();
         }
 
-       
+
     }
 }

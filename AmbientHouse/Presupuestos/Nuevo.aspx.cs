@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Seguridad;
-using System.Globalization;
+using DomainAmbientHouse.Servicios;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
 using System.IO;
-using iTextSharp.text.html.simpleparser;
+using System.Linq;
+using System.Web;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Presupuestos
 {
@@ -932,9 +930,9 @@ namespace AmbientHouse.Presupuestos
             coeficienteRoyalty = (coeficienteRoyalty / 100);
 
             var query = (from L in ListPresupuestoDetalle
-                         select L.ValorSeleccionado + (L.Cannon == null ? 0 : L.Cannon) 
-                                                    + (L.Logistica == null ? 0 : L.Logistica) 
-                                                    + (L.UsoCocina == null ? 0 : L.UsoCocina) 
+                         select L.ValorSeleccionado + (L.Cannon == null ? 0 : L.Cannon)
+                                                    + (L.Logistica == null ? 0 : L.Logistica)
+                                                    + (L.UsoCocina == null ? 0 : L.UsoCocina)
                                                     + (L.ValorIntermediario == null ? 0 : L.ValorIntermediario)
                                                     + (L.PrecioMesas == null ? 0 : L.PrecioMesas)
                                                     + (L.PrecioSillas == null ? 0 : L.PrecioSillas)).Sum();
@@ -981,9 +979,9 @@ namespace AmbientHouse.Presupuestos
             var query = (from L in ListPresupuestoDetalle
                          select L.Royalty).Sum();
 
-           
-            TextBoxRoyalty.Text =  (double.Parse(query.ToString()) + TotalOrganizadorRoyalty).ToString("C");
-            
+
+            TextBoxRoyalty.Text = (double.Parse(query.ToString()) + TotalOrganizadorRoyalty).ToString("C");
+
         }
         private void Controles()
         {
@@ -1055,7 +1053,7 @@ namespace AmbientHouse.Presupuestos
                 TextBoxRentaPorcentaje.Visible = true;
                 TextBoxRentaValor.Visible = true;
                 TextBoxRoyalty.Visible = true;
-               
+
 
             }
 
@@ -1429,7 +1427,7 @@ namespace AmbientHouse.Presupuestos
             searcher.cantidadAdolescentes = TextBoxCantAdolescentes.Text;
 
             searcher.FechaEvento = TextBoxFechaDesdeEvento.Text;
-            
+
 
             AgregarItem(searcher);
 
@@ -1440,7 +1438,7 @@ namespace AmbientHouse.Presupuestos
 
             PresupuestoDetalleADD searcher = new PresupuestoDetalleADD();
 
-            
+
             searcher.precioSeleccionado = null;
             searcher.unidadNegocio = RubroAdicional;
             searcher.productoNinguno = 0;
@@ -1788,8 +1786,8 @@ namespace AmbientHouse.Presupuestos
 
                     detalle.SegmentoId = SegmentosId;
                     detalle.CarasteristicaId = CaracteristicasId;
-                    
-                   
+
+
 
                     detalle.CantidadAdicional = cantidadAdicional;
 
@@ -1801,7 +1799,7 @@ namespace AmbientHouse.Presupuestos
                         detalle.TipoCanonCatering = TipoCannon;
 
                     detalle.AnuloCanon = false;
-                    
+
 
                     detalle = serviciosPresupuestos.AddItem(detalle, producto, LocacionId, cantidadAductos,
                         cantidadAdolescentes,
@@ -2284,7 +2282,7 @@ namespace AmbientHouse.Presupuestos
                     //    DropDownListProveedor.DataValueField = "Id";
                     //    DropDownListProveedor.DataBind();
                     //}
-                  
+
 
 
                     if (Int32.Parse(DropDownListUnidadNegocio.SelectedItem.Value.ToString()) == RubroCatering)
@@ -2652,11 +2650,11 @@ namespace AmbientHouse.Presupuestos
                                                                              Int32.Parse(DropDownListLocalidadOut.SelectedItem.Value),
                                                                              CantidadInvitadosLogistica).ToString();
                 else
-                    TextBoxCostoLogistica.Text = ObtenerCostoLogisticaOUT(Int32.Parse(DropDownListConceptoLogistica.SelectedItem.Value), 
+                    TextBoxCostoLogistica.Text = ObtenerCostoLogisticaOUT(Int32.Parse(DropDownListConceptoLogistica.SelectedItem.Value),
                                                                             CantidadInvitadosLogistica).ToString();
             }
             else
-                TextBoxCostoLogistica.Text = ObtenerCostoLogistica(Int32.Parse(DropDownListConceptoLogistica.SelectedItem.Value), 
+                TextBoxCostoLogistica.Text = ObtenerCostoLogistica(Int32.Parse(DropDownListConceptoLogistica.SelectedItem.Value),
                                                                     CantidadInvitadosLogistica).ToString();
         }
 
@@ -3569,7 +3567,7 @@ namespace AmbientHouse.Presupuestos
 
         private void ConfirmarEvento()
         {
-        
+
             int EventoEnviado = Int32.Parse(ConfigurationManager.AppSettings["EstadoEnviado"].ToString());
 
             ClientesPipedrive cliPipe = ListClientesPipe.Where(o => o.Id == ClienteId).SingleOrDefault();
@@ -3680,7 +3678,7 @@ namespace AmbientHouse.Presupuestos
         {
             double coeficienteRoyalty = double.Parse(ConfigurationManager.AppSettings["coeficienteRoyalty"].ToString());
 
-            coeficienteRoyalty =  (coeficienteRoyalty/100);
+            coeficienteRoyalty = (coeficienteRoyalty / 100);
 
             if (cmd.IsNumeric(TotalPresupuesto) && cmd.IsNumeric(TextBoxPorcentajeOrganizador.Text))
             {
@@ -3692,7 +3690,7 @@ namespace AmbientHouse.Presupuestos
 
             else if (cmd.IsNumeric(TotalPresupuesto) && cmd.IsNumeric(TextBoxImporteOrganizador.Text))
             {
-                TotalOrganizador = double.Parse(TextBoxImporteOrganizador.Text) ;
+                TotalOrganizador = double.Parse(TextBoxImporteOrganizador.Text);
 
                 TotalOrganizadorRoyalty = (double.Parse(TextBoxImporteOrganizador.Text) * coeficienteRoyalty);
             }
@@ -3846,7 +3844,7 @@ namespace AmbientHouse.Presupuestos
                 if (itemAgregado.Logistica != null)
                     searcher.LogisticaCosto = (int)itemAgregado.Logistica;
 
-         
+
 
                 Accion = "M";
                 AgregarItem(searcher);

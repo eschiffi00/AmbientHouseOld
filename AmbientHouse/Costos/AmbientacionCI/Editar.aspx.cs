@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+using System;
 using System.Configuration;
 
 namespace AmbientHouse.Costos.AmbientacionCI
@@ -144,7 +139,7 @@ namespace AmbientHouse.Costos.AmbientacionCI
             if (cmd.IsNumeric(TextBoxRangoPersonas.Text))
                 ambientacion.CantidadPaquetes = Int32.Parse(TextBoxRangoPersonas.Text);
 
-            if (cmd.IsNumeric(TextBoxCostoFlete.Text) )
+            if (cmd.IsNumeric(TextBoxCostoFlete.Text))
                 ambientacion.CostoFlete = double.Parse(TextBoxCostoFlete.Text);
 
             if (cmd.IsNumeric(TextBoxCosto.Text))

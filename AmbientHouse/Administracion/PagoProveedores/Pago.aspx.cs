@@ -2,10 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Globalization;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.PagoProveedores
@@ -201,7 +198,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
 
                 double totalImporteNotaCreditos = ObtenerImporteNotaCreditos(ListComprobantesSeleccionados);
 
-                LabelTotalFacturas.Text = "$ " +  ListComprobantesSeleccionados.Sum(o => o.MontoFactura).ToString();
+                LabelTotalFacturas.Text = "$ " + ListComprobantesSeleccionados.Sum(o => o.MontoFactura).ToString();
                 LabelTotalNotaCredito.Text = "$ " + totalImporteNotaCreditos;
 
                 if (ListComprobantesSeleccionados.FirstOrDefault().EmpresaId != null)
@@ -507,7 +504,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
 
         }
 
-    
+
         protected void ButtonAceptar_Click(object sender, EventArgs e)
         {
             LabelErrores.Visible = false;
@@ -530,7 +527,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridViewPagos.Rows[index];
 
-              
+
                 int Id = Int32.Parse(row.Cells[0].Text);
 
                 var itemRemove = ListOrdenPagoProveedoresSeleccionados.Where(o => o.Id == Id).FirstOrDefault();

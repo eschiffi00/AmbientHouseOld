@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 
 namespace AmbientHouse.PedidosCotizacion
 {
@@ -70,7 +63,7 @@ namespace AmbientHouse.PedidosCotizacion
             if (!IsPostBack)
             {
 
-              
+
 
                 PanelLocacion.Visible = false;
                 PanelTecnica.Visible = false;
@@ -108,7 +101,7 @@ namespace AmbientHouse.PedidosCotizacion
         //    else
         //        EditarPedidoCotizacion(id);
 
-            
+
         //}
 
         //private void EditarPedidoCotizacion(int id)
@@ -136,7 +129,7 @@ namespace AmbientHouse.PedidosCotizacion
         //        this.TextBoxPaqueteAmbientacion.Text = pedido.RequerimientoAmbientacion;
 
         //        this.TextBoxComentario.Text = pedido.DetalleRequerimiento;
-             
+
         //    }
         //    else if (pedido.UnidadNegocioId == 2)
         //    {
@@ -173,8 +166,8 @@ namespace AmbientHouse.PedidosCotizacion
 
         //        this.TextBoxComentario.Text = pedido.DetalleRequerimiento;
 
-                
-                
+
+
         //    }
 
         //    this.TextBoxComentario.Text = pedido.DetalleRequerimiento;
@@ -259,7 +252,7 @@ namespace AmbientHouse.PedidosCotizacion
         //    //UNIDAD DE NEGOCIO TECNICA
         //    if (Int32.Parse(DropDownListUnidadNegocio.SelectedItem.Value) == 2)
         //    {
-               
+
         //        pedido.LocacionId = Int32.Parse(DropDownListLocacionTecnica.SelectedItem.Value);
 
         //        pedido.SectorId = Int32.Parse(DropDownListSectorTecnica.SelectedItem.Value);
@@ -279,7 +272,7 @@ namespace AmbientHouse.PedidosCotizacion
         //        pedido.SectorId = Int32.Parse(DropDownListSectorAmbientacion.SelectedItem.Value);
 
         //        pedido.RequerimientoAmbientacion = TextBoxPaqueteAmbientacion.Text;
-            
+
         //    }//UNIDAD DE NEGOCIO SALON
         //    else if (Int32.Parse(DropDownListUnidadNegocio.SelectedItem.Value) == 7)
         //    {
@@ -296,7 +289,7 @@ namespace AmbientHouse.PedidosCotizacion
 
         //    }
 
-           
+
 
         //    pedido.DetalleRequerimiento = TextBoxComentario.Text;
 
@@ -310,7 +303,7 @@ namespace AmbientHouse.PedidosCotizacion
         //        pedido.Margen = double.Parse(TextBoxMargen.Text);
 
 
-           
+
 
         //    eventos.GrabarPedidosCotizacion(pedido);
 
@@ -354,7 +347,7 @@ namespace AmbientHouse.PedidosCotizacion
         //    {
 
         //        CargarSectoresPorLocacion(Int32.Parse(DropDownListLocaciones.SelectedItem.Value), DropDownListSectores);
-               
+
         //        UpdatePanelProductos.Update();
         //    }
         //}
@@ -376,7 +369,7 @@ namespace AmbientHouse.PedidosCotizacion
 
         //        CargarSectoresPorLocacion(Int32.Parse(DropDownListLocacionAmbientacion.SelectedItem.Value), DropDownListSectorAmbientacion);
 
-           
+
         //        UpdatePanelProductos.Update();
         //    }
         //}
@@ -390,7 +383,7 @@ namespace AmbientHouse.PedidosCotizacion
         //        sectores.DataValueField = "Id";
         //        sectores.DataBind();
         //    }
-        
+
         //}
 
         //protected void DropDownListLocalidades_SelectedIndexChanged(object sender, EventArgs e)
@@ -462,7 +455,7 @@ namespace AmbientHouse.PedidosCotizacion
 
         //        TextBoxOtrasLocaciones.Visible = true;
         //        TextBoxOtroSector.Visible = true;
-                
+
         //    }
 
         //    UpdatePanelProductos.Update();
@@ -470,7 +463,7 @@ namespace AmbientHouse.PedidosCotizacion
 
         //protected void ButtonBuscar_Click(object sender, EventArgs e)
         //{
-          
+
         //    ObtenerLocacionesFiltradas();
         //}
 
@@ -511,7 +504,7 @@ namespace AmbientHouse.PedidosCotizacion
         //        {
         //            Productos producto = new Productos();
 
-                  
+
         //        }
         //        else if (PedidosCotizacionSeleccionado.UnidadNegocioId == 7)
         //        {

@@ -1,12 +1,7 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Home
 {
@@ -53,7 +48,7 @@ namespace AmbientHouse.Home
         {
             string oldFile = System.Web.HttpContext.Current.Server.MapPath("~/AppShared") + "\\Pueba.pdf";
             string newFile = @"C:\Users\Pc\Desktop\newFile.pdf";
-            
+
             // open the reader
             PdfReader reader = new PdfReader(oldFile);
             iTextSharp.text.Rectangle size = reader.GetPageSizeWithRotation(1);

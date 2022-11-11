@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.Recibos
 {
@@ -166,7 +162,7 @@ namespace AmbientHouse.Administracion.Recibos
 
             TextBoxConcepto.Text = recibo.Concepto;
             TextBoxFechaRecibo.Text = recibo.FechaRecibo.ToString();
-           
+
             TextBoxNroRecibo.Text = recibo.NroRecibo;
 
 
@@ -183,14 +179,14 @@ namespace AmbientHouse.Administracion.Recibos
             int FormaCheque = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoCheque"].ToString());
             int FormaTransferencia = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoTransferencia"].ToString());
 
-           
+
             DomainAmbientHouse.Entidades.Recibos recibo = RecibosSeleccionado;
 
             DomainAmbientHouse.Entidades.Cheques cheque = new DomainAmbientHouse.Entidades.Cheques();
 
             DomainAmbientHouse.Entidades.Transferencias transferencia = new DomainAmbientHouse.Entidades.Transferencias();
 
-          
+
 
             recibo.NroRecibo = TextBoxNroRecibo.Text;
             recibo.Concepto = TextBoxConcepto.Text;
@@ -199,7 +195,7 @@ namespace AmbientHouse.Administracion.Recibos
             recibo.EmpleadoId = EmpleadoId;
             recibo.CuentaId = Int32.Parse(DropDownListCuentas.SelectedItem.Value);
 
-            
+
             if (recibo.FormadePagoId == FormaCheque)
             {
                 int Pendiente = Int32.Parse(ConfigurationManager.AppSettings["ChequesPendiente"].ToString()); ;
@@ -217,7 +213,7 @@ namespace AmbientHouse.Administracion.Recibos
             }
             else if (recibo.FormadePagoId == FormaTransferencia)
             {
-              
+
 
                 transferencia.BancoId = int.Parse(DropDownListBancoTransferencia.SelectedItem.Value);
                 transferencia.NroTransferencia = TextBoxNroComprobanteTrans.Text;
@@ -245,7 +241,7 @@ namespace AmbientHouse.Administracion.Recibos
             Grabar();
 
         }
-         
+
         protected void DropDownListFormaPago_SelectedIndexChanged(object sender, EventArgs e)
         {
             int FormaCheque = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoCheque"].ToString());

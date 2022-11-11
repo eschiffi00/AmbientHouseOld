@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
 
 
 namespace AmbientHouse.Operacion
@@ -151,7 +148,7 @@ namespace AmbientHouse.Operacion
                 DropDownListEmpleados.DataTextField = "ApellidoNombre";
                 DropDownListEmpleados.DataValueField = "Id";
                 DropDownListEmpleados.DataBind();
-            
+
             }
         }
 
@@ -165,7 +162,7 @@ namespace AmbientHouse.Operacion
 
 
             //Personal.Add(personal);
-          
+
             //GridViewEmpleadosEventos.DataSource = Personal.ToList();
             //GridViewEmpleadosEventos.DataBind();
 
@@ -194,7 +191,7 @@ namespace AmbientHouse.Operacion
             //    GridViewEmpleadosEventos.DataBind();
 
             //    UpdatePanelGrilla.Update();
-              
+
             //}
         }
 

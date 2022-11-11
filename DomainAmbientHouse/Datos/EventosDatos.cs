@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -260,7 +258,7 @@ namespace DomainAmbientHouse.Datos
             return queryGerencia;
         }
 
-        public List<ObtenerEventosPresupuestos> BuscarEventosConfirmadosPorEjecutivo(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente,string apellidoNombre, string razonsocial, string fechaEvento)
+        public List<ObtenerEventosPresupuestos> BuscarEventosConfirmadosPorEjecutivo(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente, string apellidoNombre, string razonsocial, string fechaEvento)
         {
 
             int estadoConfirmado = Int32.Parse(ConfigurationManager.AppSettings["EstadoConfirmado"].ToString());
@@ -339,7 +337,7 @@ namespace DomainAmbientHouse.Datos
                                             && (e.EstadoEventoId == estadoConfirmado || e.EstadoEventoId == estadoReservado)
                                     select e;
 
-                queryGerencia = FiltrosQueryInicio(nroEvento, nroPresupuesto, nroCliente,"","", fechaEvento, queryGerencia);
+                queryGerencia = FiltrosQueryInicio(nroEvento, nroPresupuesto, nroCliente, "", "", fechaEvento, queryGerencia);
 
 
                 return queryGerencia.OrderBy(o => o.FechaEvento).Distinct().ToList();
@@ -354,14 +352,14 @@ namespace DomainAmbientHouse.Datos
                                            && (e.EstadoEventoId == estadoConfirmado || e.EstadoEventoId == estadoReservado)
                                      select e;
 
-                queryEjecutivo = FiltrosQueryInicio(nroEvento, nroPresupuesto, nroCliente,"","" ,fechaEvento, queryEjecutivo);
+                queryEjecutivo = FiltrosQueryInicio(nroEvento, nroPresupuesto, nroCliente, "", "", fechaEvento, queryEjecutivo);
 
                 return queryEjecutivo.OrderBy(o => o.FechaEvento).Distinct().ToList();
 
             }
         }
 
-        private IEnumerable<Entidades.ObtenerEventosPresupuestos> FiltrosQueryInicio(int nroEvento, int nroPresupuesto, int nroCliente, 
+        private IEnumerable<Entidades.ObtenerEventosPresupuestos> FiltrosQueryInicio(int nroEvento, int nroPresupuesto, int nroCliente,
                                                                                         string apellidoNombre, string razonsocial,
                                                                                         string fechaEvento, IEnumerable<Entidades.ObtenerEventosPresupuestos> queryGerencia)
         {
@@ -1024,7 +1022,7 @@ namespace DomainAmbientHouse.Datos
         {
 
             var query = from Ev in SqlContext.Eventos
-                        //join Cl in ListClientes on Ev.ClienteId equals Cl.Id
+                            //join Cl in ListClientes on Ev.ClienteId equals Cl.Id
                         join Pre in SqlContext.Presupuestos on Ev.Id equals Pre.EventoId into Pres
                         from Pre in Pres.DefaultIfEmpty()
                         join Loc in SqlContext.Locaciones on Pre.LocacionId equals Loc.Id into Locs
@@ -1150,7 +1148,7 @@ namespace DomainAmbientHouse.Datos
         {
 
             var query = from Ev in SqlContext.Eventos
-                        //join Cl in ListClientes on Ev.ClienteId equals Cl.Id
+                            //join Cl in ListClientes on Ev.ClienteId equals Cl.Id
                         join Pre in SqlContext.Presupuestos on Ev.Id equals Pre.EventoId into Pres
                         from Pre in Pres.DefaultIfEmpty()
                         join Loc in SqlContext.Locaciones on Pre.LocacionId equals Loc.Id into Locs
@@ -1276,7 +1274,7 @@ namespace DomainAmbientHouse.Datos
         {
 
             var query = from Ev in SqlContext.Eventos
-                        //join Cl in ListClientes on Ev.ClienteId equals Cl.Id
+                            //join Cl in ListClientes on Ev.ClienteId equals Cl.Id
                         join Pre in SqlContext.Presupuestos on Ev.Id equals Pre.EventoId into Pres
                         from Pre in Pres.DefaultIfEmpty()
                         join Loc in SqlContext.Locaciones on Pre.LocacionId equals Loc.Id into Locs
@@ -1456,7 +1454,7 @@ namespace DomainAmbientHouse.Datos
 
             var queryEjecutivo = from e in SqlContext.ObtenerEventosSeguimiento
                                  where e.EmpleadoId == EmpleadoId
-                                     //&& e.FechaEvento <= System.DateTime.Today 
+                                         //&& e.FechaEvento <= System.DateTime.Today 
                                          && e.EstadoId == estadoEnviado
                                  select e;
 
@@ -2651,7 +2649,7 @@ namespace DomainAmbientHouse.Datos
             int estadoPresupuestoARevisar = Int32.Parse(ConfigurationManager.AppSettings["EstadoPresupuestoARevisar"].ToString());
 
             var query = from Ev in SqlContext.Eventos
-                        //join Cl in ListClientes on Ev.ClienteId equals Cl.Id
+                            //join Cl in ListClientes on Ev.ClienteId equals Cl.Id
                         join Pre in SqlContext.Presupuestos on Ev.Id equals Pre.EventoId into Pres
                         from Pre in Pres.DefaultIfEmpty()
                         join Loc in SqlContext.Locaciones on Pre.LocacionId equals Loc.Id into Locs

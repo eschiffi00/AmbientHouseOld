@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System;
+using System.Collections.Generic;
 using System.Transactions;
 
 namespace DomainAmbientHouse.Negocios
@@ -102,7 +98,7 @@ namespace DomainAmbientHouse.Negocios
             return Datos.ObtenerLocacionesValorAnio(anio, locacionId);
         }
 
-        public void GrabarTecnicaSalon(int  sectorId, List<TecnicaSalon> list)
+        public void GrabarTecnicaSalon(int sectorId, List<TecnicaSalon> list)
         {
             using (TransactionScope scope = new TransactionScope())
             {
@@ -135,17 +131,17 @@ namespace DomainAmbientHouse.Negocios
                 }
             }
 
-     
+
         }
 
         public List<Locaciones> ObtenerLocacionesOUT()
         {
-           return  Datos.ObtenerLocacionesOUT();
+            return Datos.ObtenerLocacionesOUT();
         }
 
-        internal List<Locaciones> ObtenerLocacionesParaCotizarPorLocacion(int localidadId,string tieneVerde, string estacionamiento, string aireLibre)
+        internal List<Locaciones> ObtenerLocacionesParaCotizarPorLocacion(int localidadId, string tieneVerde, string estacionamiento, string aireLibre)
         {
-            return Datos.ObtenerLocacionesParaCotizarPorLocacion(localidadId,tieneVerde,  estacionamiento,  aireLibre);
+            return Datos.ObtenerLocacionesParaCotizarPorLocacion(localidadId, tieneVerde, estacionamiento, aireLibre);
         }
 
         internal List<CargarCostosSalones_Result> CargarPrecioCostosSalon(ParametrosCostoSalones param)

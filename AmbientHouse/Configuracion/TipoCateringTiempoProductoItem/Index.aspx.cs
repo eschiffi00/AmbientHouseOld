@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
 {
@@ -19,7 +15,7 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
         {
             if (!IsPostBack)
             {
-              
+
                 CargarListas();
                 Buscar();
             }
@@ -63,7 +59,7 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
             GridView Total = new GridView();
 
 
-            Total.DataSource = administracion.BuscarConfiguracionPorTipoCatering (Int32.Parse(DropDownListTipoCatering.SelectedItem.Value));
+            Total.DataSource = administracion.BuscarConfiguracionPorTipoCatering(Int32.Parse(DropDownListTipoCatering.SelectedItem.Value));
             Total.DataBind();
 
 
@@ -111,7 +107,7 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-               
+
 
                 DropDownList Estados = (DropDownList)e.Row.FindControl("DropDownListEstados");
 
@@ -130,16 +126,16 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
 
         protected void GridViewTiempos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-             if (e.CommandName == "Actualizar")
+            if (e.CommandName == "Actualizar")
             {
 
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridViewTiempos.Rows[index];
 
-             
+
 
                 DropDownList Estados = row.FindControl("DropDownListEstados") as DropDownList;
-               
+
 
 
                 int ItemId = Int32.Parse(row.Cells[0].Text);
@@ -147,10 +143,10 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
                 DomainAmbientHouse.Entidades.TipoCateringTiempoProductoItem item = administracion.BuscarTipoCateringTiempoProductoItem(ItemId);
 
 
-              
+
                 item.EstadoId = Int32.Parse(Estados.SelectedItem.Value);
-              
-             
+
+
 
                 try
                 {
@@ -168,8 +164,8 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
             }
 
             Buscar();
-          
+
         }
-        
+
     }
 }

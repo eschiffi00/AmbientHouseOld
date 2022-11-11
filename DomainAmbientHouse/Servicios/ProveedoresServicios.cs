@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Negocios;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Servicios
 {
@@ -13,15 +8,15 @@ namespace DomainAmbientHouse.Servicios
     {
 
         ProveedoresNegocios Negocios;
-       
+
 
         public ProveedoresServicios()
         {
             Negocios = new ProveedoresNegocios();
-         
+
         }
 
-     
+
         public List<Proveedores> ObtenerProveedores()
         {
 
@@ -35,7 +30,7 @@ namespace DomainAmbientHouse.Servicios
         //    Negocios.NuevoProveedor(proveedor);
         //}
 
-    
+
         public Proveedores GetProveedor(int proveedorId)
         {
             return Negocios.GetProveedor(proveedorId);

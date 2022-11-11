@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 
 namespace AmbientHouse.Configuracion.PlanesDePagos
 {
@@ -95,7 +90,7 @@ namespace AmbientHouse.Configuracion.PlanesDePagos
 
             if (TextBoxIndice.Text != "")
             { Indice = double.Parse(TextBoxIndice.Text); }
-            planesDePago.Indice =  Indice;
+            planesDePago.Indice = Indice;
 
             servicios.NuevaPlanesDePago(planesDePago);
             Response.Redirect("~/Configuracion/PlanesDePagos/Index.aspx");

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 
 
 namespace AmbientHouse.Costos.AmbientacionCI
@@ -58,8 +53,8 @@ namespace AmbientHouse.Costos.AmbientacionCI
                 TextBox costo = row.FindControl("TextBoxCosto") as TextBox;
                 TextBox costoFlete = (TextBox)row.FindControl("TextBoxCostoFlete");
                 TextBox margen = row.FindControl("TextBoxMargen") as TextBox;
-               
-             
+
+
 
 
 
@@ -144,7 +139,7 @@ namespace AmbientHouse.Costos.AmbientacionCI
                 Margen.Text = item.Margen.ToString();
 
 
-              
+
             }
         }
     }

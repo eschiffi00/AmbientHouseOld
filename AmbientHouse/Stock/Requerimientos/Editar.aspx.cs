@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
 
 namespace AmbientHouse.Stock.Requerimientos
 {
@@ -74,12 +72,12 @@ namespace AmbientHouse.Stock.Requerimientos
             if (id == 0)
             {
                 NuevoRequerimiento();
-               
+
             }
             else
             {
                 EditarRequerimiento(id);
-                
+
             }
 
             SetFocus(TextBoxDescripcion);
@@ -107,7 +105,7 @@ namespace AmbientHouse.Stock.Requerimientos
 
         protected void ButtonAceptar_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void ButtonVolver_Click(object sender, EventArgs e)
@@ -138,7 +136,7 @@ namespace AmbientHouse.Stock.Requerimientos
                 }
 
                 UpdatePanelDetalleProductos.Update();
-                 
+
             }
         }
 
@@ -148,13 +146,13 @@ namespace AmbientHouse.Stock.Requerimientos
 
             agregarRequerimiento.Id = ListDetalleRequerimientos.Count() + 1;
             agregarRequerimiento.ProductoId = Int32.Parse(DropDownListProducto.SelectedItem.Value);
-            agregarRequerimiento.ProductoDescripcion =DropDownListProducto.SelectedItem.Text;
+            agregarRequerimiento.ProductoDescripcion = DropDownListProducto.SelectedItem.Text;
 
-           
+
             if (agregarRequerimiento.ProductoId > 0)
             {
                 DomainAmbientHouse.Entidades.INVENTARIO_Producto producto = administracion.BuscarINVENTARIOProducto((int)agregarRequerimiento.ProductoId);
-                
+
                 agregarRequerimiento.UnidadId = producto.UnidadId;
 
                 agregarRequerimiento.UnidadDescripcion = producto.UnidadDescripcion;

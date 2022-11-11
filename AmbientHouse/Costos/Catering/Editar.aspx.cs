@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using System.IO;
-using DomainAmbientHouse.Entidades;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Costos.Catering
 {
@@ -107,10 +104,10 @@ namespace AmbientHouse.Costos.Catering
                             CostoCatering cosCa = new CostoCatering();
 
                             cosCa.TipoCateringId = costoCatering.TipoCateringId;
-                            cosCa.Precio = Math.Round(costoCatering.Precio,0);
+                            cosCa.Precio = Math.Round(costoCatering.Precio, 0);
                             cosCa.CantidadPersonas = costoCatering.CantidadPersonas;
-                            cosCa.ValorMas5PorCiento = Math.Round(costoCatering.ValorMas5PorCiento,0);
-                            cosCa.ValorMenos5PorCiento = Math.Round(costoCatering.ValorMenos5PorCiento,0);
+                            cosCa.ValorMas5PorCiento = Math.Round(costoCatering.ValorMas5PorCiento, 0);
+                            cosCa.ValorMenos5PorCiento = Math.Round(costoCatering.ValorMenos5PorCiento, 0);
                             cosCa.ValorMenos10PorCiento = Math.Round(costoCatering.ValorMenos10PorCiento, 0);
                             cosCa.TipoCateringDescripcion = costoCatering.TipoCateringDescripcion;
                             cosCa.ProveedorId = Int32.Parse(DropDownListProveedores.SelectedItem.Value.ToString());
@@ -151,6 +148,6 @@ namespace AmbientHouse.Costos.Catering
             Response.Redirect("~/Costos/Catering/Index.aspx");
         }
 
-     
+
     }
 }

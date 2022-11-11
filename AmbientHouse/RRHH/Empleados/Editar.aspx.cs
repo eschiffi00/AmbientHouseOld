@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Seguridad;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Seguridad;
+using System;
 using System.Globalization;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.RRHH.Empleados
 {
@@ -177,16 +173,16 @@ namespace AmbientHouse.RRHH.Empleados
             TextBoxApellidoNombre.Text = empleado.ApellidoNombre;
             TextBoxNombre.Text = empleado.Nombre;
             TextBoxCUIL.Text = empleado.Cuil;
-            
+
             TextBoxNroLegajo.Text = empleado.NroLegajo.ToString();
             DropDownListSituacion.SelectedValue = empleado.EstadoId.ToString();
             TextBoxFechaIngreso.Text = String.Format("{0:dd/MM/yyyy}", empleado.FechaIngreso);
             TextBoxFechaNacimiento.Text = String.Format("{0:dd/MM/yyyy}", empleado.FechaNacimiento);
             TextBoxHoraDesde.Text = empleado.HorarioDesde;
             TextBoxHoraHasta.Text = empleado.HorarioHasta;
-           
+
             TextBoxMail.Text = empleado.Mail;
-            TextBoxMailLaboral.Text =  empleado.MailLaboral;
+            TextBoxMailLaboral.Text = empleado.MailLaboral;
             TextBoxNroDocumento.Text = empleado.NroDocumento.ToString();
 
             TextBoxTelefonoFijo.Text = empleado.TelefonoFijo;
@@ -198,7 +194,7 @@ namespace AmbientHouse.RRHH.Empleados
             TextBoxDomicilioLegal.Text = empleado.DireccionLegal;
             if (empleado.LocalidadId != null)
             {
-                int ciudadId =  empleado.LocalidadId;
+                int ciudadId = empleado.LocalidadId;
 
                 DropDownListLocalidad.SelectedValue = ciudadId.ToString();
                 DropDownListProvincia.SelectedValue = serviciosAdmin.BuscarProvinciaPorCiudad(ciudadId).Id.ToString();
@@ -212,13 +208,13 @@ namespace AmbientHouse.RRHH.Empleados
                 DropDownListLocalidadLegal.SelectedValue = ciudadId.ToString();
                 DropDownListProvinciaLegal.SelectedValue = serviciosAdmin.BuscarProvinciaPorCiudad(ciudadId).Id.ToString();
 
-             
+
 
             }
 
             TextBoxCP.Text = empleado.CP;
             TextBoxCPLegal.Text = empleado.CPLegal;
-            
+
             DropDownListTipoDocumento.SelectedValue = empleado.TipoDocumento;
 
             if (empleado.UsaPc)

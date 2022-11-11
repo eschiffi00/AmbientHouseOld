@@ -2,9 +2,6 @@
 using DomainAmbientHouse.Servicios;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Costos.Salones
@@ -35,7 +32,7 @@ namespace AmbientHouse.Costos.Salones
 
                 ListCostoSalones = new List<CostoSalones>();
 
-             
+
             }
         }
 
@@ -88,7 +85,7 @@ namespace AmbientHouse.Costos.Salones
 
 
 
-            
+
         //}
 
         //protected void DropDownListLocaciones_SelectedIndexChanged(object sender, EventArgs e)
@@ -110,6 +107,6 @@ namespace AmbientHouse.Costos.Salones
         //    UpdatePanelFiltros.Update();
         //}
 
-       
+
     }
 }

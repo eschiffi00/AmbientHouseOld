@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System;
+using System.Collections.Generic;
 using System.Transactions;
 
 namespace DomainAmbientHouse.Negocios
@@ -151,7 +147,7 @@ namespace DomainAmbientHouse.Negocios
                         costo.ValorMas5PorCiento = double.Parse("1.05");
                         costo.ValorMenos5PorCiento = double.Parse("0.95");
                         costo.ValorMenos10PorCiento = double.Parse("0.90");
-                        
+
 
                         Datos.NuevoCostoBarra(costo);
 
@@ -462,13 +458,13 @@ namespace DomainAmbientHouse.Negocios
                         costo.ValorMas5PorCiento = double.Parse("1.05");
                         costo.ValorMenos5PorCiento = double.Parse("0.95");
                         costo.ValorMenos10PorCiento = double.Parse("0.90");
-                       
+
 
                         Datos.NuevoCostoSalon(costo);
 
 
                     }
-                    
+
 
                     scope.Complete();
                 }
@@ -483,7 +479,7 @@ namespace DomainAmbientHouse.Negocios
 
         public CostoLogistica BuscarCostoLogistica(int tipoLogisticaId, int localidadId, int cantInvitados, int tipoEventoId)
         {
-            return Datos.BuscarCostoLogistica( tipoLogisticaId,  localidadId,  cantInvitados,  tipoEventoId);
+            return Datos.BuscarCostoLogistica(tipoLogisticaId, localidadId, cantInvitados, tipoEventoId);
         }
 
         public CostoLogistica BuscarCostoLogistica(int id)

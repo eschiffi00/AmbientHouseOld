@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -27,7 +24,7 @@ namespace DomainAmbientHouse.Datos
 
                 salida.Id = item.Id;
                 salida.Descripcion = item.Descripcion;
-             
+
 
                 list.Add(salida);
             }
@@ -44,7 +41,7 @@ namespace DomainAmbientHouse.Datos
                         select d;
 
             return this.InventarioDepositosToModel(query).ToList();
-            
+
 
         }
 

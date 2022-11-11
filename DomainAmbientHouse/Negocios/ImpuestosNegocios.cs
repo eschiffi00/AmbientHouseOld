@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -29,7 +24,7 @@ namespace DomainAmbientHouse.Negocios
 
         public Impuestos BuscarImpuestos(int id)
         {
-            return Datos.BuscarImpuestos (id);
+            return Datos.BuscarImpuestos(id);
         }
 
         public void NuevoImpuestos(Impuestos item)
@@ -41,7 +36,7 @@ namespace DomainAmbientHouse.Negocios
 
         public List<Impuestos> ObtenerImpuestosorTipoComprobante(int tipoComprobanteId)
         {
-            return Datos.ObtenerImpuestosorTipoComprobante( tipoComprobanteId);
+            return Datos.ObtenerImpuestosorTipoComprobante(tipoComprobanteId);
         }
 
         public virtual List<Impuestos> BuscarImpuestosPorTipoComprobante(int tipoComprobanteId)

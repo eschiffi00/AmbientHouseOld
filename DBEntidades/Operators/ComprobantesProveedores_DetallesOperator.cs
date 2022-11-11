@@ -1,11 +1,10 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
 using System.Linq;
-using DbEntidades.Entities;
-using System.Data.SqlClient;
-using LibDB2;
+using System.Reflection;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +22,8 @@ namespace DbEntidades.Operators
             ComprobantesProveedores_Detalles comprobantesProveedores_Detalles = new ComprobantesProveedores_Detalles();
             foreach (PropertyInfo prop in typeof(ComprobantesProveedores_Detalles).GetProperties())
             {
-				object value = dt.Rows[0][prop.Name];
-				if (value == DBNull.Value) value = null;
+                object value = dt.Rows[0][prop.Name];
+                if (value == DBNull.Value) value = null;
                 try { prop.SetValue(comprobantesProveedores_Detalles, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -40,7 +39,7 @@ namespace DbEntidades.Operators
             DataTable dt = db.GetDataSet("select " + columnas + " from ComprobantesProveedores_Detalles where " + campo + " = " + valor.ToString()).Tables[0];
             List<ComprobantesProveedores_Detalles> lista = new List<ComprobantesProveedores_Detalles>();
             foreach (DataRow dr in dt.AsEnumerable())
-            {   
+            {
 
                 ComprobantesProveedores_Detalles comprobante = new ComprobantesProveedores_Detalles();
                 foreach (PropertyInfo prop in typeof(ComprobantesProveedores_Detalles).GetProperties())

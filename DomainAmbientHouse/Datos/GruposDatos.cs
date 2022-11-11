@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -32,7 +29,7 @@ namespace DomainAmbientHouse.Datos
         public void NuevoGruposItems(GruposItems grupoItem)
         {
 
-           
+
 
             if (grupoItem.Id > 0)
             {
@@ -41,7 +38,7 @@ namespace DomainAmbientHouse.Datos
                 grupoItemEdit.Codigo = grupoItem.Codigo;
                 grupoItemEdit.Tipo = grupoItem.Tipo;
                 grupoItemEdit.Descripcion = grupoItem.Descripcion;
-               
+
 
                 SqlContext.SaveChanges();
             }

@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
     public class MomentosDiasNegocios
     {
 
-      MomentosDiaDatos Datos;
+        MomentosDiaDatos Datos;
 
-      public MomentosDiasNegocios()
+        public MomentosDiasNegocios()
         {
             Datos = new MomentosDiaDatos();
         }
 
-      public virtual List<MomentosDias> ObtenerMomentosDia()
+        public virtual List<MomentosDias> ObtenerMomentosDia()
         {
 
             return Datos.ObtenerMomentosDia();
@@ -27,14 +22,14 @@ namespace DomainAmbientHouse.Negocios
         }
 
 
-      public MomentosDias BuscarMomentosDias(int id)
-      {
-          return Datos.BuscarMomentosDias(id);
-      }
+        public MomentosDias BuscarMomentosDias(int id)
+        {
+            return Datos.BuscarMomentosDias(id);
+        }
 
-      public void NuevoMomentoDia(MomentosDias item)
-      { 
-        Datos.NuevoMomentoDia( item);
-      }
+        public void NuevoMomentoDia(MomentosDias item)
+        {
+            Datos.NuevoMomentoDia(item);
+        }
     }
 }

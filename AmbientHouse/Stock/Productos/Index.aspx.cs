@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 
 namespace AmbientHouse.Stock
 {
@@ -63,7 +58,7 @@ namespace AmbientHouse.Stock
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 TextBox Cantidad = (TextBox)e.Row.FindControl("TextBoxCantidad");
-               
+
 
                 int ProductoId = Int32.Parse(e.Row.Cells[0].Text);
 

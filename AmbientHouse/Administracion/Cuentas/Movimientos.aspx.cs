@@ -1,12 +1,11 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.Cuentas
 {
@@ -117,7 +116,7 @@ namespace AmbientHouse.Administracion.Cuentas
             {
                 TextBox Descripcion = (TextBox)e.Row.FindControl("TextBoxDescripcion");
                 Button ElimanarMovimiento = (Button)e.Row.FindControl("ButtonEliminarMovimiento");
-             
+
                 int id = Int32.Parse(e.Row.Cells[0].Text);
 
                 DomainAmbientHouse.Entidades.Cuentas_Log cuentasLog = administracion.BuscarMovimiento(id);
@@ -128,7 +127,7 @@ namespace AmbientHouse.Administracion.Cuentas
 
                 if (cuentasLog.Id == ultimoMovimiento.Id)
                     ElimanarMovimiento.Visible = true;
-                
+
 
                 if (cuentasLog.Descripcion != null)
                     Descripcion.Text = cuentasLog.Descripcion.ToString();

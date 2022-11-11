@@ -1,24 +1,21 @@
-using System;
+using DbEntidades.Operators;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
 using System.Linq;
-using LibDB2;
-using DbEntidades.Operators;
 
 namespace DbEntidades.Entities
 {
     public partial class CondicionIva
     {
-		public int Id { get; set; }
-		public string Descripcion { get; set; }
+        public int Id { get; set; }
+        public string Descripcion { get; set; }
 
-		public override string ToString() 
-		{
-			return "\r\n " + 
-			"Id: " + Id.ToString() + "\r\n " + 
-			"Descripcion: " + Descripcion.ToString() + "\r\n " ;
-		}
+        public override string ToString()
+        {
+            return "\r\n " +
+            "Id: " + Id.ToString() + "\r\n " +
+            "Descripcion: " + Descripcion.ToString() + "\r\n ";
+        }
         public CondicionIva()
         {
             Id = -1;
@@ -27,25 +24,25 @@ namespace DbEntidades.Entities
 
 
 
-		public List<Proveedores> GetRelatedProveedoreses()
-		{
-			return ProveedoresOperator.GetAll().Where(x => x.CondicionIvaId == Id).ToList();
-		}
-		public List<TipoComprobantes> GetRelatedTipoComprobanteses()
-		{
-			return TipoComprobantesOperator.GetAll().Where(x => x.CondicionIvaId == Id).ToList();
-		}
+        public List<Proveedores> GetRelatedProveedoreses()
+        {
+            return ProveedoresOperator.GetAll().Where(x => x.CondicionIvaId == Id).ToList();
+        }
+        public List<TipoComprobantes> GetRelatedTipoComprobanteses()
+        {
+            return TipoComprobantesOperator.GetAll().Where(x => x.CondicionIvaId == Id).ToList();
+        }
 
 
-		public static bool CanBeNull(string colName)
-		{
-			switch (colName) 
-			{
-				case "Id": return false;
-				case "Descripcion": return true;
-				default: return false;
-			}
-		}
+        public static bool CanBeNull(string colName)
+        {
+            switch (colName)
+            {
+                case "Id": return false;
+                case "Descripcion": return true;
+                default: return false;
+            }
+        }
     }
 }
 

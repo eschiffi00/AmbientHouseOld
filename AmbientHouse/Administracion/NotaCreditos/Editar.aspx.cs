@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Globalization;
 
 namespace AmbientHouse.Administracion.NotaCreditos
 {
-        
+
     public partial class Editar : System.Web.UI.Page
     {
         private int ComprobanteId
@@ -69,7 +64,7 @@ namespace AmbientHouse.Administracion.NotaCreditos
 
                 NotaCreditoId = id;
 
-            
+
             }
 
             DomainAmbientHouse.Entidades.ComprobantesProveedores comprobante = administracion.BuscarComprobantes(ComprobanteId);
@@ -93,8 +88,8 @@ namespace AmbientHouse.Administracion.NotaCreditos
             NotaCreditosSeleccionado = notaCredito;
 
             TextBoxImporte.Text = notaCredito.Importe.ToString();
-            TextBoxFecha.Text = String.Format("{0:dd/MM/yyyy}", notaCredito.Fecha); 
-        
+            TextBoxFecha.Text = String.Format("{0:dd/MM/yyyy}", notaCredito.Fecha);
+
 
         }
 
@@ -129,7 +124,7 @@ namespace AmbientHouse.Administracion.NotaCreditos
         }
 
 
-        public bool Valido ()
+        public bool Valido()
         {
             return true;
         }

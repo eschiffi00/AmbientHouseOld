@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Presupuestos
 {
@@ -186,7 +184,7 @@ namespace AmbientHouse.Presupuestos
             }
 
 
-         
+
 
 
 
@@ -235,7 +233,7 @@ namespace AmbientHouse.Presupuestos
 
                 TextBoxFechaDesdeEvento.Text = String.Format("{0:dd/MM/yyyy}", PresupuestoSeleccionado.FechaEvento);
 
-         
+
                 double Valor = presupuestos.CalcularValorTotalPresupuestoPorPresupuestoId(PresupuestoId);
 
                 LabelCaracteristica.Text = eventos.TraerCaracteristicas().Where(o => o.Id == PresupuestoSeleccionado.CaracteristicaId).Select(o => o.Descripcion).SingleOrDefault();
@@ -275,10 +273,10 @@ namespace AmbientHouse.Presupuestos
 
         protected void GridViewVentasConRenta_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-         
 
-                e.Row.Cells[10].BackColor = System.Drawing.Color.GreenYellow;
-                e.Row.Cells[10].Font.Bold = true;
+
+            e.Row.Cells[10].BackColor = System.Drawing.Color.GreenYellow;
+            e.Row.Cells[10].Font.Bold = true;
 
 
         }

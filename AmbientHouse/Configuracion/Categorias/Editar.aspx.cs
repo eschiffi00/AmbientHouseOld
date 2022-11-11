@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Configuration;
 
 namespace AmbientHouse.Configuracion.Categorias
@@ -43,12 +38,12 @@ namespace AmbientHouse.Configuracion.Categorias
         {
             if (!IsPostBack)
             {
-              
+
 
                 InicializarPagina();
                 CargarListas();
 
-              
+
             }
         }
 
@@ -146,10 +141,10 @@ namespace AmbientHouse.Configuracion.Categorias
         private void GrabarCategoria()
         {
 
-             int activo = Int32.Parse(ConfigurationManager.AppSettings["CategoriasActivo"].ToString()); ;
+            int activo = Int32.Parse(ConfigurationManager.AppSettings["CategoriasActivo"].ToString()); ;
 
 
-   
+
             DomainAmbientHouse.Entidades.Categorias categoria = CategoriaSeleccionado;
 
             categoria.Descripcion = TextBoxDescripcion.Text;
@@ -178,10 +173,10 @@ namespace AmbientHouse.Configuracion.Categorias
                 DropDownListSectores.DataValueField = "Id";
                 DropDownListSectores.DataBind();
 
-               
+
             }
 
-           
+
 
         }
     }

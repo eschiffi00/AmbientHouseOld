@@ -1,11 +1,10 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
 
 namespace AmbientHouse.Reportes
 {
@@ -46,7 +45,7 @@ namespace AmbientHouse.Reportes
             GridViewReporteComprobantes.DataSource = list.ToList();
             GridViewReporteComprobantes.DataBind();
 
-            TextBoxTotal.Text = (System.Math.Round(list.Select(o => o.NETO).Sum(),2)).ToString("C");
+            TextBoxTotal.Text = (System.Math.Round(list.Select(o => o.NETO).Sum(), 2)).ToString("C");
 
             UpdatePanelGrillaReporteComprobantes.Update();
         }

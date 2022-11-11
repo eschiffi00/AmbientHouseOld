@@ -1,11 +1,8 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
-using System.Linq;
-using DbEntidades.Entities;
-using System.Data.SqlClient;
-using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -20,7 +17,8 @@ namespace DbEntidades.Operators
             DB db = new DB();
             DataTable dt = db.GetDataSet("select " + columnas + " from Cuentas where  " + campo + " = \'" + valor + "\'").Tables[0];
             Cuentas Cuentas = new Cuentas();
-            if (dt.Rows.Count > 0) { 
+            if (dt.Rows.Count > 0)
+            {
                 foreach (PropertyInfo prop in typeof(Cuentas).GetProperties())
                 {
                     object value = dt.Rows[0][prop.Name];

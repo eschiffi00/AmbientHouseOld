@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Servicios;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System;
+using System.Collections.Generic;
 using System.IO;
-using Microsoft.Reporting.WebForms;
-using System.Reflection;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.TipoCatering
 {
@@ -84,7 +78,7 @@ namespace AmbientHouse.Configuracion.TipoCatering
             if (!IsPostBack)
             {
                 InicializarPagina();
-              
+
                 CargarTreeview();
 
 
@@ -112,7 +106,7 @@ namespace AmbientHouse.Configuracion.TipoCatering
             }
         }
 
-      
+
 
         private void InicializarPagina()
         {
@@ -130,7 +124,7 @@ namespace AmbientHouse.Configuracion.TipoCatering
 
         }
 
-    
+
 
 
         //private void GrabarTipoCateringFamilia()
@@ -335,7 +329,7 @@ namespace AmbientHouse.Configuracion.TipoCatering
         //    UpdatePanelArbol.Update();
         //}
 
-       
+
 
         private void GenerarPDF()
         {
@@ -372,7 +366,7 @@ namespace AmbientHouse.Configuracion.TipoCatering
 
             // Creamos una tabla que contendrá el nombre, apellido y país
             // de nuestros visitante.
-            
+
 
             PdfPTable tblPrueba = new PdfPTable(2);
             tblPrueba.WidthPercentage = 100;

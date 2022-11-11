@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
 using System.Configuration;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Stock.Existencias
 {
@@ -188,9 +186,9 @@ namespace AmbientHouse.Stock.Existencias
 
         protected void GridViewExistencias_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-              int PerfilStockCarga = int.Parse(ConfigurationManager.AppSettings["StockCarga"].ToString());
-              int PerfilCoordinador = Int32.Parse(ConfigurationManager.AppSettings["CoordinadorVentas"].ToString());
-              int PerfilGerencial = Int32.Parse(ConfigurationManager.AppSettings["Gerencial"].ToString());
+            int PerfilStockCarga = int.Parse(ConfigurationManager.AppSettings["StockCarga"].ToString());
+            int PerfilCoordinador = Int32.Parse(ConfigurationManager.AppSettings["CoordinadorVentas"].ToString());
+            int PerfilGerencial = Int32.Parse(ConfigurationManager.AppSettings["Gerencial"].ToString());
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {

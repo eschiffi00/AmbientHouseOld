@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Configuration;
 
 namespace AmbientHouse.Configuracion.Items2
@@ -79,9 +73,9 @@ namespace AmbientHouse.Configuracion.Items2
         private void EditarItem(int id)
         {
 
-           DomainAmbientHouse.Entidades.Items item = new DomainAmbientHouse.Entidades.Items();
+            DomainAmbientHouse.Entidades.Items item = new DomainAmbientHouse.Entidades.Items();
 
-           item = servicios.BuscarItems(id);
+            item = servicios.BuscarItems(id);
 
             ItemSeleccionado = item;
 
@@ -92,9 +86,9 @@ namespace AmbientHouse.Configuracion.Items2
             if (cmd.IsNumeric(item.Costo))
                 TextBoxCosto.Text = item.Costo.ToString();
 
-              if (cmd.IsNumeric(item.Precio))
+            if (cmd.IsNumeric(item.Precio))
                 TextBoxPrecio.Text = item.Precio.ToString();
-         
+
         }
 
         private void NuevoItem()
@@ -112,11 +106,11 @@ namespace AmbientHouse.Configuracion.Items2
             item.Detalle = TextBoxDetalle.Text;
             item.CategoriaItemId = Int32.Parse(DropDownListCategoriasItems.SelectedItem.Value);
 
-            if (cmd.IsNumeric(TextBoxPrecio.Text) )
+            if (cmd.IsNumeric(TextBoxPrecio.Text))
                 item.Precio = double.Parse(TextBoxPrecio.Text.ToString());
 
             if (cmd.IsNumeric(TextBoxCosto.Text))
-                item.Costo =  double.Parse(TextBoxCosto.Text.ToString());
+                item.Costo = double.Parse(TextBoxCosto.Text.ToString());
 
             item.EstadoId = estadoActivo;
 
@@ -133,7 +127,7 @@ namespace AmbientHouse.Configuracion.Items2
         {
             GrabarItem();
         }
-       
-      
+
+
     }
 }

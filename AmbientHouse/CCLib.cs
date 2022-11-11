@@ -1,17 +1,12 @@
-﻿using DbEntidades.Entities;
-using DbEntidades.Operators;
+﻿using DbEntidades.Operators;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -235,7 +230,7 @@ namespace AmbientHouse
                 repo = "SomosAmbient " + strContents.Split('\r')[6].Split('/').Last();
                 //string cnn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                 //SqlConnectionStringBuilder s = new SqlConnectionStringBuilder(cnn);
-                repo += "(" + aRevData + ") - " ;
+                repo += "(" + aRevData + ") - ";
                 repo += " build 0.1." + aRevData;
             }
 
@@ -323,8 +318,8 @@ namespace AmbientHouse
 
                             if (tipo[j] == "int") cell.SetCellValue(Convert.ToInt32(s));
                             else if (tipo[j] == "double") cell.SetCellValue(Convert.ToDouble(s));
-                            else if (tipo[j] == "date")  {cell.SetCellValue(DateTime.Parse(s)); cell.CellStyle = styleDate; }
-                            else if (tipo[j] == "datetime")  {cell.SetCellValue(DateTime.Parse(s)); cell.CellStyle = styleDateTime; }
+                            else if (tipo[j] == "date") { cell.SetCellValue(DateTime.Parse(s)); cell.CellStyle = styleDate; }
+                            else if (tipo[j] == "datetime") { cell.SetCellValue(DateTime.Parse(s)); cell.CellStyle = styleDateTime; }
                             else cell.SetCellValue(s);
                         }
                         catch (Exception ee)
@@ -350,7 +345,7 @@ namespace AmbientHouse
             file.Close();
             stream.Close();
         }
-#region mail
+        #region mail
         public static string Base64Encode(string plainText)
         {
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
@@ -535,7 +530,7 @@ namespace AmbientHouse
             mail.Fields[SEND_USERNAME] = ParametroOperator.GetParametroString("mail.FromAdress");
             //mail.Fields[SEND_PASSWORD] = Properties.Settings.Default.EmailPass;
 
-            mail.From = ParametroOperator.GetParametroString("mail.DisplayName") + " <" +ParametroOperator.GetParametroString("mail.FromAdress") + ">";
+            mail.From = ParametroOperator.GetParametroString("mail.DisplayName") + " <" + ParametroOperator.GetParametroString("mail.FromAdress") + ">";
             mail.To = nombre + " <" + email + ">";
             mail.Subject = mailSubject;
             mail.Body = mailBody;

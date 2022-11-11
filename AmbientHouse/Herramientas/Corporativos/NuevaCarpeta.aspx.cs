@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 
 namespace AmbientHouse.Herramientas.Corporativos
 {
@@ -23,7 +17,7 @@ namespace AmbientHouse.Herramientas.Corporativos
         {
 
             DomainAmbientHouse.Entidades.CategoriasArchivos Categorias = new DomainAmbientHouse.Entidades.CategoriasArchivos();
-            
+
             Categorias.Descripcion = TextBoxDescripcion.Text;
 
             servicios.NuevaCategoriaArchivo(Categorias);

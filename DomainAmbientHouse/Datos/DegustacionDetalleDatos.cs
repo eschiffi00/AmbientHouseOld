@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -29,27 +26,27 @@ namespace DomainAmbientHouse.Datos
                 salida.Id = item.Id;
                 salida.CantidadInvitados = item.CantidadInvitados;
                 salida.CaracteristicaId = item.CaracteristicaId;
-                salida.CaracteristicaDescripcion = this.SqlContext.Caracteristicas.Where(o=> o.Id == item.CaracteristicaId).FirstOrDefault().Descripcion;
+                salida.CaracteristicaDescripcion = this.SqlContext.Caracteristicas.Where(o => o.Id == item.CaracteristicaId).FirstOrDefault().Descripcion;
                 salida.Comensal = item.Comensal;
                 salida.Comentarios = item.Comentarios;
                 salida.DegustacionId = item.DegustacionId;
                 salida.EmpleadoId = item.EmpleadoId;
-                salida.EmpleadoApellidoyNombre = this.SqlContext.Empleados.Where(o=> o.Id == item.EmpleadoId).FirstOrDefault().ApellidoNombre;
+                salida.EmpleadoApellidoyNombre = this.SqlContext.Empleados.Where(o => o.Id == item.EmpleadoId).FirstOrDefault().ApellidoNombre;
                 salida.Empresa = item.Empresa;
                 salida.FechaEvento = item.FechaEvento;
                 salida.LocacionId = item.LocacionId;
-              
-                salida.LocacionDescripcion = this.SqlContext.Locaciones.Where(o=>o.Id == item.LocacionId).FirstOrDefault().Descripcion;
+
+                salida.LocacionDescripcion = this.SqlContext.Locaciones.Where(o => o.Id == item.LocacionId).FirstOrDefault().Descripcion;
                 salida.Mail = item.Mail;
                 salida.NroComensal = item.NroComensal;
                 salida.NroMesa = item.NroMesa;
                 salida.SegmentoId = item.SegmentoId;
-                salida.SegmentoDescripcion = this.SqlContext.Segmentos.Where(o=>o.Id == item.SegmentoId).FirstOrDefault().Descripcion;
+                salida.SegmentoDescripcion = this.SqlContext.Segmentos.Where(o => o.Id == item.SegmentoId).FirstOrDefault().Descripcion;
                 salida.Telefono = item.Telefono;
                 salida.TipoEventoId = item.TipoEventoId;
                 if ((item.TipoEventoId > 0) && (item.TipoEventoId != null))
                 {
-                    salida.TipoEventoDescripcion = this.SqlContext.TipoEventos.Where(o=> o.Id == item.TipoEventoId).FirstOrDefault().Descripcion;
+                    salida.TipoEventoDescripcion = this.SqlContext.TipoEventos.Where(o => o.Id == item.TipoEventoId).FirstOrDefault().Descripcion;
                 }
                 salida.EstadoId = item.EstadoId;
                 salida.EstadoDescripcion = SqlContext.Estados.Where(o => o.Id == item.EstadoId).FirstOrDefault().Descripcion;
@@ -63,7 +60,7 @@ namespace DomainAmbientHouse.Datos
 
         public DegustacionDetalle BuscarDegustacionDetalle(int id)
         {
-            return this.SqlContext.DegustacionDetalle.Where(o=> o.Id == id).FirstOrDefault();
+            return this.SqlContext.DegustacionDetalle.Where(o => o.Id == id).FirstOrDefault();
         }
 
         public List<DegustacionDetalle> BuscarDegustacionDetallePorDegustacion(int DegustacionId)
@@ -88,7 +85,7 @@ namespace DomainAmbientHouse.Datos
 
         public bool GrabarDegustacionDetalle(DegustacionDetalle detalle)
         {
-         
+
             try
             {
                 if (detalle.Id <= 0)
@@ -99,7 +96,7 @@ namespace DomainAmbientHouse.Datos
                 }
                 else
                 {
-                    DegustacionDetalle edit = this.SqlContext.DegustacionDetalle.Where(o=> o.Id == detalle.Id).FirstOrDefault();
+                    DegustacionDetalle edit = this.SqlContext.DegustacionDetalle.Where(o => o.Id == detalle.Id).FirstOrDefault();
 
                     edit.CantidadInvitados = detalle.CantidadInvitados;
                     edit.CaracteristicaId = detalle.CaracteristicaId;
@@ -127,7 +124,7 @@ namespace DomainAmbientHouse.Datos
             {
                 return false;
             }
-         
+
         }
 
 

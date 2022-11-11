@@ -1,11 +1,10 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
 using System.Linq;
-using DbEntidades.Entities;
-using System.Data.SqlClient;
-using LibDB2;
+using System.Reflection;
 
 namespace DbEntidades.Operators
 {
@@ -17,8 +16,8 @@ namespace DbEntidades.Operators
             DB db = new DB();
             db.ExecuteNonQuery(query);
         }
-    
-        public static int GetOneRelative(int IdItem,int IdRel)
+
+        public static int GetOneRelative(int IdItem, int IdRel)
         {
             if (!DbEntidades.Seguridad.Permiso("PermisoItemDetalleBrowse")) throw new PermisoException();
             string columnas = string.Empty;
@@ -27,7 +26,7 @@ namespace DbEntidades.Operators
             DB db = new DB();
             DataTable dt = db.GetDataSet("select " + columnas + " from ItemDetalle where ItemId = " + IdItem.ToString() + "and ItemDetalleId = " + IdRel.ToString()).Tables[0];
             ItemDetalle itemDetalle = new ItemDetalle();
-            if(dt.Rows.Count > 0)
+            if (dt.Rows.Count > 0)
             {
                 foreach (PropertyInfo prop in typeof(ItemDetalle).GetProperties())
                 {
@@ -36,7 +35,7 @@ namespace DbEntidades.Operators
                     try { prop.SetValue(itemDetalle, value, null); }
                     catch (System.ArgumentException) { }
                 }
-                
+
             }
             return itemDetalle.Id;
         }

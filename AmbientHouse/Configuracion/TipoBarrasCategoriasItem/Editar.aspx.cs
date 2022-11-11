@@ -1,11 +1,6 @@
 ﻿using DomainAmbientHouse.Servicios;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.TipoBarrasCategoriasItem
 {
@@ -57,7 +52,7 @@ namespace AmbientHouse.Configuracion.TipoBarrasCategoriasItem
             DropDownListTipoBarra.DataValueField = "Id";
             DropDownListTipoBarra.DataBind();
 
-        
+
 
 
             DropDownListItmes.DataSource = administracion.ObtenerItems(estadoActivo);
@@ -102,7 +97,7 @@ namespace AmbientHouse.Configuracion.TipoBarrasCategoriasItem
 
 
             DropDownListTipoBarra.SelectedValue = item.TipoBarraId.ToString();
-          
+
 
             if (item.CategoriaItemId != null)
                 DropDownListCategorias.SelectedValue = item.CategoriaItemId.ToString();
@@ -131,7 +126,7 @@ namespace AmbientHouse.Configuracion.TipoBarrasCategoriasItem
             DomainAmbientHouse.Entidades.TipoBarraCategoriaItem tipo = TipoBarraCategoriaItemSeleccionado;
 
             tipo.TipoBarraId = Int32.Parse(DropDownListTipoBarra.SelectedItem.Value);
-          
+
             if (DropDownListCategorias.SelectedItem.Value != "null")
                 tipo.CategoriaItemId = Int32.Parse(DropDownListCategorias.SelectedItem.Value);
             else
@@ -158,11 +153,11 @@ namespace AmbientHouse.Configuracion.TipoBarrasCategoriasItem
         {
             if (DropDownListCategorias.SelectedValue != "null")
             {
-                
+
                 DropDownListItmes.SelectedValue = "null";
             }
 
-           
+
             UpdatePanelItems.Update();
         }
 
@@ -171,11 +166,11 @@ namespace AmbientHouse.Configuracion.TipoBarrasCategoriasItem
             if (DropDownListItmes.SelectedValue != "null")
             {
                 DropDownListCategorias.SelectedValue = "null";
-              
+
             }
 
             UpdatePanelCategorias.Update();
-           
+
         }
     }
 }

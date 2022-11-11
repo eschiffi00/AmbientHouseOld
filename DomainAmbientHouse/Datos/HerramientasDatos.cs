@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -20,9 +17,9 @@ namespace DomainAmbientHouse.Datos
         public virtual List<ObtenerArchivosPorCategorias> ObtenerHerramientas()
         {
 
-            return SqlContext.ObtenerArchivosPorCategorias.OrderBy(o=> o.CarpetaId).ToList();
+            return SqlContext.ObtenerArchivosPorCategorias.OrderBy(o => o.CarpetaId).ToList();
 
-          
+
         }
 
 
@@ -32,7 +29,7 @@ namespace DomainAmbientHouse.Datos
             SqlContext.SaveChanges();
         }
 
-       
+
 
         public Herramientas TraerArchivo(int herramientaId)
         {

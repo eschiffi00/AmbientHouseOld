@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Domain.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Entidades;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
 
 namespace Domain.Datos
 {
@@ -32,22 +30,22 @@ namespace Domain.Datos
             if (searcher.NroEvento > 0)
                 query = query.Where(o => o.EventoId == searcher.NroEvento);
 
-            if(searcher.NroPresupuesto > 0)
+            if (searcher.NroPresupuesto > 0)
                 query = query.Where(o => o.Id == searcher.NroPresupuesto);
 
             if (searcher.EstadoId > 0)
                 query = query.Where(o => o.EstadoId == searcher.EstadoId);
 
-           
+
 
             return query.ToList();
         }
     }
 }
 
-namespace Domain.Entidades 
+namespace Domain.Entidades
 {
-    public partial class PresupuestosSearcher 
+    public partial class PresupuestosSearcher
     {
         public int NroPresupuesto { get; set; }
         public DateTime FechaEvento { get; set; }
@@ -56,7 +54,7 @@ namespace Domain.Entidades
 
     }
 
-    public partial class Presupuestos 
+    public partial class Presupuestos
     {
         private string formatoFecha = ConfigurationManager.AppSettings["FormatoddMMyyyy"].ToString();
 

@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.Locaciones
@@ -97,8 +95,8 @@ namespace AmbientHouse.Configuracion.Locaciones
 
 
 
-           
-           EditarAmbientacionSalon(id);
+
+            EditarAmbientacionSalon(id);
         }
 
         private void EditarAmbientacionSalon(int id)

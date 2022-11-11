@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Configuration;
+using System.Web.UI;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.Items2
 {
@@ -38,7 +34,7 @@ namespace AmbientHouse.Configuracion.Items2
             GridViewItems.DataBind();
         }
 
-  
+
 
         protected void ButtonNuevo_Click(object sender, EventArgs e)
         {
@@ -68,13 +64,13 @@ namespace AmbientHouse.Configuracion.Items2
                 DropDownList Estados = (DropDownList)e.Row.FindControl("DropDownListEstados");
 
                 DropDownList Categorias = (DropDownList)e.Row.FindControl("DropDownListCategorias");
-               
+
 
                 int ItemId = Int32.Parse(e.Row.Cells[0].Text);
 
                 DomainAmbientHouse.Entidades.Items item = servicio.BuscarItems(ItemId);
 
-            
+
 
                 Precio.Text = item.Precio.ToString();
                 Costo.Text = item.Costo.ToString();
@@ -92,7 +88,7 @@ namespace AmbientHouse.Configuracion.Items2
                 Categorias.DataBind();
 
 
-              
+
 
                 Categorias.SelectedValue = item.CategoriaItemId.ToString();
 
@@ -203,7 +199,7 @@ namespace AmbientHouse.Configuracion.Items2
                 item.CategoriaItemId = Int32.Parse(Categoria.SelectedItem.Value);
                 item.EstadoId = Int32.Parse(Estados.SelectedItem.Value);
                 item.Detalle = descripcion.Text;
-             
+
 
                 try
                 {
@@ -231,8 +227,8 @@ namespace AmbientHouse.Configuracion.Items2
 
 
 
-       
 
-  
+
+
     }
 }

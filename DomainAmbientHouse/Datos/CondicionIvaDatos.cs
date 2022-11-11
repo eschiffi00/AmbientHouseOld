@@ -1,10 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -28,6 +24,6 @@ namespace DomainAmbientHouse.Datos
             return SqlContext.CondicionIva.Where(o => o.Id == Id).FirstOrDefault();
         }
 
-   
+
     }
 }

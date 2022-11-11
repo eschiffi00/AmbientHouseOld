@@ -1,11 +1,5 @@
 ﻿using DomainAmbientHouse.Servicios;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.Cuentas
 {
@@ -92,7 +86,7 @@ namespace AmbientHouse.Administracion.Cuentas
 
         private void CargarListas()
         {
-           
+
             DropDownListTipoMovimiento.DataSource = administracion.ObtenerTipoMovimientos();
             DropDownListTipoMovimiento.DataTextField = "Identificador";
             DropDownListTipoMovimiento.DataValueField = "Id";
@@ -149,9 +143,9 @@ namespace AmbientHouse.Administracion.Cuentas
                 centroCostoId = Int32.Parse(DropDownListCentrodeCosto.SelectedItem.Value);
             else
                 centroCostoId = null;
-            
 
-            return administracion.RectificarMovimiento(movimientos,presupuestoId,centroCostoId);
+
+            return administracion.RectificarMovimiento(movimientos, presupuestoId, centroCostoId);
 
         }
 
@@ -185,7 +179,7 @@ namespace AmbientHouse.Administracion.Cuentas
                 {
                     PanelPresupuestos.Visible = true;
 
-                    
+
                 }
                 else
                     PanelPresupuestos.Visible = false;

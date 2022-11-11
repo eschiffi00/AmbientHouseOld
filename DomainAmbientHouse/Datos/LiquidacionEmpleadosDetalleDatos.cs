@@ -1,12 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
-using System.Configuration;
-using System.Globalization;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -61,7 +56,7 @@ namespace DomainAmbientHouse.Datos
         {
             if (id > 0)
             {
-                LiquidacionHorasPersonal_Detalle edit = SqlContext.LiquidacionHorasPersonal_Detalle.Single(o=> o.Id==id);
+                LiquidacionHorasPersonal_Detalle edit = SqlContext.LiquidacionHorasPersonal_Detalle.Single(o => o.Id == id);
 
                 if (edit != null)
                 {
@@ -160,7 +155,7 @@ namespace DomainAmbientHouse.Datos
                     return true;
 
                 }
-               
+
             }
             catch (Exception)
             {

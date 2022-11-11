@@ -1,12 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Services.Description;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using static iTextSharp.text.pdf.AcroFields;
 
 namespace AmbientHouse.Administracion.Costos
 {
@@ -50,7 +46,7 @@ namespace AmbientHouse.Administracion.Costos
                 GridViewProductos.DataBind();
                 UpdatePanelSalones.Update();
             }
-                
+
         }
 
         private List<DomainAmbientHouse.Entidades.CargarCostosSalones_Result> GrabarCostos()
@@ -68,13 +64,13 @@ namespace AmbientHouse.Administracion.Costos
                     param.Anio = Int32.Parse(anio.Value);
                     foreach (ListItem mes in MultiSelectMes.Items)
                     {
-                        
+
                         if (mes.Selected)
                         {
                             param.Mes = Int32.Parse(mes.Value);
                             foreach (ListItem dia in MultiSelectDia.Items)
                             {
-                                
+
                                 if (dia.Selected)
                                 {
                                     param.Dia = dia.Value;

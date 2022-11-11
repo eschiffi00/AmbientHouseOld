@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -42,7 +41,7 @@ namespace AmbientHouse.Reportes
             GridViewReporte.DataBind();
 
 
-        
+
 
             double totaIvaPeriodo = list.Sum(o => (o.IVA21));
 

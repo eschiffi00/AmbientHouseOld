@@ -1,12 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
-using System.Configuration;
-using System.Globalization;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -134,7 +129,7 @@ namespace DomainAmbientHouse.Datos
                 return false;
         }
 
-    
+
 
         //public List<Transferencias> ListarTransferencias(TransferenciasSearcher searcher)
         //{

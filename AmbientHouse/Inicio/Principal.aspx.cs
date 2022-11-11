@@ -4,12 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Threading;
-using System.Net.Mail;
-using System.Net;
 
 namespace AmbientHouse.Inicio
 {
@@ -151,8 +146,8 @@ namespace AmbientHouse.Inicio
         }
 
         private void CargarWorking()
-        { 
-            PanelCarga.Visible = true; 
+        {
+            PanelCarga.Visible = true;
         }
 
         protected void ButtonNuevoEvento_Click(object sender, EventArgs e)
@@ -337,7 +332,7 @@ namespace AmbientHouse.Inicio
                     break;
 
                 case "VerLupa":
-             
+
                     EventoId = int.Parse(row.Cells[0].Text);
 
                     PresupuestoId = int.Parse(row.Cells[1].Text);
@@ -347,7 +342,7 @@ namespace AmbientHouse.Inicio
                     Response.Redirect("~/Presupuestos/Ver.aspx?EventoId=" + EventoId + "&PresupuestoId=" + PresupuestoId);
                     break;
 
-              
+
                 default:
                     break;
             }
@@ -449,7 +444,7 @@ namespace AmbientHouse.Inicio
 
                 case "VerLupa":
 
-                     EventoId = int.Parse(row.Cells[0].Text);
+                    EventoId = int.Parse(row.Cells[0].Text);
 
                     PresupuestoId = int.Parse(row.Cells[1].Text);
 
@@ -539,12 +534,12 @@ namespace AmbientHouse.Inicio
             if (cmd.IsNumeric(TextBoxNroPresupuestoBuscador.Text)) nroPresupuesto = int.Parse(TextBoxNroPresupuestoBuscador.Text);
 
 
-            List<ObtenerEventosPresupuestos> ListaEventos = eventos.BuscarEventos(EmpleadoId, 
-                                                                                    nroEvento, 
+            List<ObtenerEventosPresupuestos> ListaEventos = eventos.BuscarEventos(EmpleadoId,
+                                                                                    nroEvento,
                                                                                     nroPresupuesto,
                                                                                     nroCliente,
-                                                                                    cmd.QuitarAcentos(apellidoynombre), 
-                                                                                    cmd.QuitarAcentos(razonsocial), 
+                                                                                    cmd.QuitarAcentos(apellidoynombre),
+                                                                                    cmd.QuitarAcentos(razonsocial),
                                                                                     fechaEvento);
 
             if ((PerfilId == PerfilCoordinador || PerfilId == PerfilGerencial))
@@ -596,7 +591,7 @@ namespace AmbientHouse.Inicio
                 GridViewEventosEjecutivos.Visible = false;
 
             }
-          
+
         }
 
         protected void TextBoxApellidoBuscador_TextChanged(object sender, EventArgs e)

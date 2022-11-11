@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 
 namespace AmbientHouse.Costos.Salones
 {
@@ -124,11 +122,11 @@ namespace AmbientHouse.Costos.Salones
                             cosCa.Dia = costoSalon.Dia;
                             cosCa.Precio = Math.Round(double.Parse(costoSalon.Precio.ToString()), 0);
                             cosCa.Costo = Math.Round(double.Parse(costoSalon.Costo.ToString()), 0);
-                            
+
                             cosCa.ValorMas5PorCiento = Math.Round(costoSalon.ValorMas5PorCiento, 0);
                             cosCa.ValorMenos5PorCiento = Math.Round(costoSalon.ValorMenos5PorCiento, 0);
                             cosCa.ValorMenos10PorCiento = Math.Round(costoSalon.ValorMenos10PorCiento, 0);
-                          
+
                             CostoSalonesSalida.Add(cosCa);
                         }
 

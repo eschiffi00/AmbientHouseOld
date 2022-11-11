@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -24,7 +21,7 @@ namespace DomainAmbientHouse.Datos
 
         public virtual ConversionMonedas BuscarConversion(int origenId, int destinoId)
         {
-            return SqlContext.ConversionMonedas.SingleOrDefault(o => o.MonedaOrigenId == origenId 
+            return SqlContext.ConversionMonedas.SingleOrDefault(o => o.MonedaOrigenId == origenId
                                                                     && o.MonedaDestinoId == destinoId);
         }
 

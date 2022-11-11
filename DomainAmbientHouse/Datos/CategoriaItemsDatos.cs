@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -84,7 +82,7 @@ namespace DomainAmbientHouse.Datos
                     cat.CategoriaItemPadrePadreDescripcion = item.CategoriaItemPadreDescripcion + " \\ " + item.Descripcion.ToUpper(); ;
                 }
                 else
-                    cat.CategoriaItemPadrePadreDescripcion = item.CategoriaItemPadrePadreDescripcion + " \\ " + item.CategoriaItemPadreDescripcion + " \\ " + item.Descripcion.ToUpper()  ;
+                    cat.CategoriaItemPadrePadreDescripcion = item.CategoriaItemPadrePadreDescripcion + " \\ " + item.CategoriaItemPadreDescripcion + " \\ " + item.Descripcion.ToUpper();
 
 
                 Salida.Add(cat);
@@ -112,7 +110,7 @@ namespace DomainAmbientHouse.Datos
                 editCategoriaItem.EstadoId = categoria.EstadoId;
 
                 SqlContext.SaveChanges();
-            
+
             }
             else
             {
@@ -127,7 +125,7 @@ namespace DomainAmbientHouse.Datos
             int activo = Int32.Parse(ConfigurationManager.AppSettings["TipoCateringTiempoProductoItemctivo"].ToString()); ;
 
             var query = from T in SqlContext.TipoCateringTiempoProductoItem
-                        join C in SqlContext.CategoriasItem on T.CategoriaItemId equals C.Id 
+                        join C in SqlContext.CategoriasItem on T.CategoriaItemId equals C.Id
                         join CP in SqlContext.CategoriasItem on C.CategoriaItemPadreId equals CP.Id into CPs
                         from CP in CPs.DefaultIfEmpty()
                         where T.TipoCateringId == TipoCateringId && T.TiempoId == TiempoId && T.EstadoId == activo && C.EstadoId == 1
@@ -138,7 +136,7 @@ namespace DomainAmbientHouse.Datos
                             CategoriaItemPadreId = (C.CategoriaItemPadreId == null ? null : C.CategoriaItemPadreId),
                             CategoriaItemPadreDescripcion = CP.Descripcion,
                             EstadoId = C.EstadoId
-                           
+
                         };
 
             List<CategoriasItem> Salida = new List<CategoriasItem>();
@@ -157,7 +155,7 @@ namespace DomainAmbientHouse.Datos
                 {
                     cat.CategoriaItemPadreDescripcion = item.Descripcion.ToUpper();
                 }
-              
+
 
                 Salida.Add(cat);
             }

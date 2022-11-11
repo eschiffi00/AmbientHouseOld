@@ -152,7 +152,6 @@
     <Content Include="Boostrap4\js\bootstrap.min.js" />
     <Content Include="Boostrap4\js\jquery-3.3.1.slim.min.js" />
     <Content Include="Boostrap4\js\popper.min.js" />
-    <Content Include="Configuracion\AbmItems\ItemsAltaMasiva2.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsBrowse.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsEdit.aspx" />
@@ -992,13 +991,6 @@
       <DependentUpon>Ambient.Master</DependentUpon>
     </Compile>
     <Compile Include="CCLib.cs" />
-    <Compile Include="Configuracion\AbmItems\ItemsAltaMasiva2.aspx.cs">
-      <DependentUpon>ItemsAltaMasiva2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Configuracion\AbmItems\ItemsAltaMasiva2.aspx.designer.cs">
-      <DependentUpon>ItemsAltaMasiva2.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx.cs">
       <DependentUpon>ItemsAltaMasiva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

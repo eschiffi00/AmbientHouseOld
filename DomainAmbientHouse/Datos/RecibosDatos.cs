@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -40,7 +37,7 @@ namespace DomainAmbientHouse.Datos
                 salida.Concepto = item.Concepto;
                 salida.FormadePagoId = item.FormadePagoId;
                 salida.FormadePagoDescripcion = SqlContext.FormasdePago.Where(o => o.Id == item.FormadePagoId).SingleOrDefault().Descripcion;
-               
+
 
                 list.Add(salida);
             }
@@ -58,11 +55,11 @@ namespace DomainAmbientHouse.Datos
                     Recibos edit = SqlContext.Recibos.Where(o => o.Id == recibo.Id).FirstOrDefault();
 
                     edit.NroRecibo = recibo.NroRecibo;
-                    edit.FechaRecibo  = recibo.FechaRecibo;
+                    edit.FechaRecibo = recibo.FechaRecibo;
                     edit.FormadePagoId = recibo.FormadePagoId;
                     edit.Concepto = recibo.Concepto;
 
-                    edit.FechaUpdate= System.DateTime.Now;
+                    edit.FechaUpdate = System.DateTime.Now;
 
                     SqlContext.SaveChanges();
 
@@ -116,7 +113,7 @@ namespace DomainAmbientHouse.Datos
                 return false;
         }
 
-        public  List<Recibos> BuscarRecibos(RecibosSearcher searcher)
+        public List<Recibos> BuscarRecibos(RecibosSearcher searcher)
         {
             var query = from c in SqlContext.Recibos
                         select c;

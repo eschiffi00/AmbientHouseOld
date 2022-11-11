@@ -3,8 +3,6 @@ using DomainAmbientHouse.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Organizador.Presupuestos
@@ -135,7 +133,7 @@ namespace AmbientHouse.Organizador.Presupuestos
 
             CargarPresupuesto();
 
-            List<PresupuestoDetalle > ListPresuDetalle = presupuestos.BuscarDetallePresupuesto(PresupuestoId);
+            List<PresupuestoDetalle> ListPresuDetalle = presupuestos.BuscarDetallePresupuesto(PresupuestoId);
 
             GridViewVentas.DataSource = ListPresuDetalle.ToList();
             GridViewVentas.DataBind();
@@ -145,7 +143,7 @@ namespace AmbientHouse.Organizador.Presupuestos
         private void CalcularCantidadInvitados(string pCantidadAdultos, string pCantidadInvitadosEntre3y8, string pCantidadInvitadosMenores3, string pCantidadInvitadosAdolecentes)
         {
 
-            CantidadTotalInvitados = Convert.ToInt32( cmd.CalcularCantidadInvitados(pCantidadAdultos, pCantidadInvitadosEntre3y8, pCantidadInvitadosMenores3, pCantidadInvitadosAdolecentes));
+            CantidadTotalInvitados = Convert.ToInt32(cmd.CalcularCantidadInvitados(pCantidadAdultos, pCantidadInvitadosEntre3y8, pCantidadInvitadosMenores3, pCantidadInvitadosAdolecentes));
 
         }
 

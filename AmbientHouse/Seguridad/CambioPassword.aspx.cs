@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Seguridad;
-using DomainAmbientHouse.Entidades;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace AmbientHouse.Seguridad
@@ -145,7 +141,7 @@ namespace AmbientHouse.Seguridad
 
                 ListClientesPipe = pipeDrive.ObtenerListaClientesPipedrive(null, usuPipe.UserPipeDriveId.ToString());
 
-         
+
             }
 
 
@@ -181,13 +177,13 @@ namespace AmbientHouse.Seguridad
         {
             LabelError.Visible = false;
 
-            DomainAmbientHouse.Entidades.Usuarios  usu = servicios.BuscarUsuario(EmpleadoId);
+            DomainAmbientHouse.Entidades.Usuarios usu = servicios.BuscarUsuario(EmpleadoId);
 
             if (usu.Password.ToUpper().Trim() ==
                 TextBoxLoginAnterior.Text.ToUpper().Trim())
             {
 
-               
+
                 if (TextBoxLoginNuevo.Text.ToUpper().Trim() ==
                     TextBoxConfirmacion.Text.ToUpper().Trim())
                 {
@@ -215,7 +211,7 @@ namespace AmbientHouse.Seguridad
                         LabelError.Visible = true;
                         return false;
                     }
-                  
+
                 }
                 else
                 {

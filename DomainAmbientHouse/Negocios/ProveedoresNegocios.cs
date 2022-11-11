@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System;
+using System.Collections.Generic;
 using System.Transactions;
 
 namespace DomainAmbientHouse.Negocios
@@ -38,8 +34,8 @@ namespace DomainAmbientHouse.Negocios
             return Datos.GetProveedor(proveedorId);
         }
 
-        public void NuevoProveedor(Proveedores proveedor, 
-                                    List<UnidadesNegocios_Proveedores> ListUnidadesNegociosProveedores, 
+        public void NuevoProveedor(Proveedores proveedor,
+                                    List<UnidadesNegocios_Proveedores> ListUnidadesNegociosProveedores,
                                     List<Rubros_Proveedores> ListRubrosProveedores,
                                     List<ProveedoresFormasdePago> ListProveedoresFormasdePago)
         {
@@ -87,7 +83,7 @@ namespace DomainAmbientHouse.Negocios
                         Datos.NuevaFormadePagoProveedores(proveedoresFormasdePago);
 
                     }
-                    
+
                     scope.Complete();
 
 
@@ -193,7 +189,7 @@ namespace DomainAmbientHouse.Negocios
 
         internal void EliminarProveedoresExternos(OrganizacionPresupuestoProveedoresExternos proveedor)
         {
-            Datos.EliminarProveedoresExternos( proveedor);
+            Datos.EliminarProveedoresExternos(proveedor);
         }
 
         internal List<OrganizacionPresupuestoTimming> ObtenerTimmingPorPresupuesto(int PresupuestoId)
@@ -243,14 +239,14 @@ namespace DomainAmbientHouse.Negocios
 
         internal Proveedores BuscarProveedoresPorCuit(string cuit)
         {
-            return Datos.BuscarProveedoresPorCuit( cuit);
+            return Datos.BuscarProveedoresPorCuit(cuit);
         }
 
 
 
         internal List<Proveedores> BuscarProveedores(ProveedoresSearcher searcher)
         {
-           return Datos.BuscarProveedores( searcher);
+            return Datos.BuscarProveedores(searcher);
         }
 
         internal List<ProveedoresExternos> ListarProveedoresExternos(ProveedoresExternosSearcher searcher)

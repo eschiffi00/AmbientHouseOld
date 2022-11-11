@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System;
+using System.Collections.Generic;
 using System.Transactions;
 
 namespace DomainAmbientHouse.Negocios
@@ -15,7 +11,7 @@ namespace DomainAmbientHouse.Negocios
 
         TipoCateringDatos Datos;
 
-      public TipoCateringNegocios()
+        public TipoCateringNegocios()
         {
             Datos = new TipoCateringDatos();
         }
@@ -30,7 +26,7 @@ namespace DomainAmbientHouse.Negocios
         public virtual List<TipoCatering> BuscarTipoCateringPorSegmentoCaracteristicaMomendoDuracionEvento(int caracteristicaId, int segmentoId, int MomentoDiaId, int DuracionId)
         {
 
-            return Datos.BuscarTipoCateringPorSegmentoCaracteristicaMomendoDuracionEvento(caracteristicaId,segmentoId,MomentoDiaId,DuracionId);
+            return Datos.BuscarTipoCateringPorSegmentoCaracteristicaMomendoDuracionEvento(caracteristicaId, segmentoId, MomentoDiaId, DuracionId);
 
         }
 
@@ -56,13 +52,13 @@ namespace DomainAmbientHouse.Negocios
 
         public List<ConfiguracionCateringTecnica> ObtenerConfiguracionCateringTecnica(int segmentoId, int caracteristicaId, int momentoDiaId, int duracionId)
         {
-            return Datos.ObtenerConfiguracionCateringTecnica( segmentoId,  caracteristicaId,  momentoDiaId,  duracionId);
+            return Datos.ObtenerConfiguracionCateringTecnica(segmentoId, caracteristicaId, momentoDiaId, duracionId);
         }
 
         public void ImportarConfiguracionCateringTecnica(List<ConfiguracionCateringTecnica> configuracionCateringTecnica)
         {
 
-           using (TransactionScope scope = new TransactionScope())
+            using (TransactionScope scope = new TransactionScope())
             {
 
                 try
@@ -70,7 +66,7 @@ namespace DomainAmbientHouse.Negocios
 
                     //Datos.EliminarConfiguracionCateringTecnica();
 
-               
+
                     foreach (var item in configuracionCateringTecnica)
                     {
 
@@ -83,7 +79,7 @@ namespace DomainAmbientHouse.Negocios
                         configuracion.TipoCateringId = item.TipoCateringId;
                         configuracion.TipoServicioId = item.TipoServicioId;
                         configuracion.EstadoId = item.EstadoId;
-                      
+
 
                         Datos.NuevaConfiguracionCateringTecnica(configuracion);
 
@@ -106,7 +102,7 @@ namespace DomainAmbientHouse.Negocios
             {
 
             }
-          
+
         }
 
         public List<TipoCatering> ObtenerTipoCateringSoloActivos()
@@ -116,17 +112,17 @@ namespace DomainAmbientHouse.Negocios
 
         public ConfiguracionCateringTecnica BuscarConfiguracionCateringTecnica(int segmentoId, int caracteristicaId, int momentoDiaId, int duracionId, int tipoCateringId, int tipoServicioId)
         {
-           return Datos.BuscarConfiguracionCateringTecnica( segmentoId,  caracteristicaId,  momentoDiaId,  duracionId,  tipoCateringId,  tipoServicioId);
+            return Datos.BuscarConfiguracionCateringTecnica(segmentoId, caracteristicaId, momentoDiaId, duracionId, tipoCateringId, tipoServicioId);
         }
 
         public void ActivarDesactivarConfiguracion(int Id, int estado)
         {
-            Datos.ActivarDesactivarConfiguracion( Id,  estado);
+            Datos.ActivarDesactivarConfiguracion(Id, estado);
         }
 
         public List<TipoCatering> BuscarTipoCateringPorAdicional(int adicionalId)
         {
-            return Datos.BuscarTipoCateringPorAdicional( adicionalId);
+            return Datos.BuscarTipoCateringPorAdicional(adicionalId);
         }
 
         public List<TipoCatering> BuscarTipoCateringParaAgregarPorAdicional(int adicionalId)

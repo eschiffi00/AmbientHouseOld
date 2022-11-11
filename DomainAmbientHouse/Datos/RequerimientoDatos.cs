@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -49,7 +46,7 @@ namespace DomainAmbientHouse.Datos
                 salida.UpdateFecha = item.UpdateFecha;
 
                 salida.INVENTARIO_Requerimiento_Detalle = SqlContext.INVENTARIO_Requerimiento_Detalle.Where(o => o.RequerimientoId == item.Id).ToList();
-              
+
                 list.Add(salida);
             }
 

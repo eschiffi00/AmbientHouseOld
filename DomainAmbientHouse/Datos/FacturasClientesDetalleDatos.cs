@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -12,11 +9,11 @@ namespace DomainAmbientHouse.Datos
     {
         public AmbientHouseEntities SqlContext { get; set; }
 
-      
+
         public FacturasClientesDetalleDatos()
         {
             SqlContext = new AmbientHouseEntities();
-          
+
         }
 
         private List<FacturaClienteDetalle> FacturaClienteDetalleToModel(IQueryable<FacturaClienteDetalle> query)
@@ -30,10 +27,10 @@ namespace DomainAmbientHouse.Datos
                 salida.Id = item.Id;
                 salida.Importe = item.Importe;
                 salida.Descripcion = item.Descripcion;
-                salida.Cantidad  = item.Cantidad;
+                salida.Cantidad = item.Cantidad;
                 salida.FacturaClienteId = item.FacturaClienteId;
                 salida.Grabado = item.Grabado;
-            
+
                 list.Add(salida);
             }
 
@@ -142,7 +139,7 @@ namespace DomainAmbientHouse.Entidades
                     return "SI";
                 else
                     return "NO";
-               
+
             }
 
         }

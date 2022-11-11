@@ -1,12 +1,11 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Reportes
 {
@@ -63,7 +62,7 @@ namespace AmbientHouse.Reportes
             Buscar(nroPresupuesto, TextBoxNroFechaDesde.Text, TextBoxFechaHasta.Text, unidadNegocioId, DropDownListEstadoProveedor.SelectedItem.Value, proveedorId);
         }
 
-        private void Buscar(int nropresupuesto, string fechaeventodesde, string fechaeventohasta, int unidadnegocioId,string estadoProveedor, int proveedorId)
+        private void Buscar(int nropresupuesto, string fechaeventodesde, string fechaeventohasta, int unidadnegocioId, string estadoProveedor, int proveedorId)
         {
 
 

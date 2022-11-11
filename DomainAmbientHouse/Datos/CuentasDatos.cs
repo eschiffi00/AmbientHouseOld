@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Globalization;
 using System.Configuration;
+using System.Globalization;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -471,8 +469,8 @@ namespace DomainAmbientHouse.Datos
             return SqlContext.Cuentas.Where(o => o.EmpresaId == empresaId).OrderBy(o => o.Nombre).ToList();
         }
 
-       internal List<Cuentas> ListarCuentasEfectivosMasEfectivo(int empresaId)
-         {
+        internal List<Cuentas> ListarCuentasEfectivosMasEfectivo(int empresaId)
+        {
             return SqlContext.Cuentas.Where(o => o.EmpresaId == empresaId || o.TipoCuenta == "EFECTIVO").OrderBy(o => o.Nombre).ToList();
         }
     }

@@ -1,49 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
     public class ComisionesNegocios
     {
 
-      ComisionesDatos Datos;
+        ComisionesDatos Datos;
 
-      public ComisionesNegocios()
+        public ComisionesNegocios()
         {
             Datos = new ComisionesDatos();
         }
 
-      public virtual List<Comisiones> ObtenerComisiones()
+        public virtual List<Comisiones> ObtenerComisiones()
         {
 
             return Datos.ObtenerComisiones();
 
         }
 
-      public Comisiones BuscarComisiones(int id)
-      {
-          return Datos.BuscarComisiones(id);
-      }
+        public Comisiones BuscarComisiones(int id)
+        {
+            return Datos.BuscarComisiones(id);
+        }
 
-      public void NuevaComisiones(Comisiones comisiones)
-      {
-          Datos.NuevaComisiones(comisiones);
-      }
+        public void NuevaComisiones(Comisiones comisiones)
+        {
+            Datos.NuevaComisiones(comisiones);
+        }
 
-      public Comisiones BuscarComisiones(string descripcion)
-      {
-          return Datos.BuscarComisiones(descripcion);
-      }
+        public Comisiones BuscarComisiones(string descripcion)
+        {
+            return Datos.BuscarComisiones(descripcion);
+        }
 
-      public Comisiones BuscarComisionPorUnidadNegocioPrecioSeleccionado(int UnidadNegocioParaAdicional, string PrecioParaAdicional)
-      {
-          return Datos.BuscarComisionPorUnidadNegocioPrecioSeleccionado(UnidadNegocioParaAdicional, PrecioParaAdicional);
-      }
+        public Comisiones BuscarComisionPorUnidadNegocioPrecioSeleccionado(int UnidadNegocioParaAdicional, string PrecioParaAdicional)
+        {
+            return Datos.BuscarComisionPorUnidadNegocioPrecioSeleccionado(UnidadNegocioParaAdicional, PrecioParaAdicional);
+        }
     }
 }

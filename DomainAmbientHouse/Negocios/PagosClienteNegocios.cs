@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System;
+using System.Collections.Generic;
 using System.Transactions;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -125,10 +120,10 @@ namespace DomainAmbientHouse.Negocios
 
         internal List<PagosClientes> ObtenerIndexacion(int presupuestoId, double indice, string tipoIndexacion)
         {
-            return Datos.TotalPagado(presupuestoId, indice,  tipoIndexacion);
+            return Datos.TotalPagado(presupuestoId, indice, tipoIndexacion);
         }
 
-        internal List<PagosClientes> ObtenerIndexacion(string fechaEvento,double totalPresupuesto, double indexacion, string tipoIndexacion, 
+        internal List<PagosClientes> ObtenerIndexacion(string fechaEvento, double totalPresupuesto, double indexacion, string tipoIndexacion,
                                                     List<SimuladorIndexacion> SimuladorIndexacionSeleccionado)
         {
             return Datos.ObtenerIndexacion(fechaEvento, totalPresupuesto, indexacion, tipoIndexacion, SimuladorIndexacionSeleccionado);

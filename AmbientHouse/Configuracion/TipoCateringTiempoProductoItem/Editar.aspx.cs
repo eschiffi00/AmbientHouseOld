@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Configuration;
 
 
@@ -83,7 +77,7 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
 
         }
 
-       
+
 
         private void InicializarPagina()
         {
@@ -102,7 +96,7 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
             else
                 EditarTipoCateringTiempoProductoItem(id);
 
-          
+
         }
 
         private void EditarTipoCateringTiempoProductoItem(long id)
@@ -114,7 +108,7 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
             TipoCateringTiempoProductoItemSeleccionado = item;
 
 
-            DropDownListTipoCatering.SelectedValue = item.TipoCateringId.ToString() ;
+            DropDownListTipoCatering.SelectedValue = item.TipoCateringId.ToString();
             DropDownListTiempo.SelectedValue = item.TiempoId.ToString();
 
             if (item.ProductoCateringId != null)
@@ -124,7 +118,7 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
                 DropDownListCategorias.SelectedValue = item.CategoriaItemId.ToString();
 
 
-            if (item.ItemId!= null)
+            if (item.ItemId != null)
                 DropDownListItmes.SelectedValue = item.ItemId.ToString();
 
 
@@ -143,7 +137,7 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
         protected void ButtonAceptar_Click(object sender, EventArgs e)
         {
 
-         int activo =Int32.Parse(ConfigurationManager.AppSettings["TipoCateringTiempoProductoItemctivo"].ToString());
+            int activo = Int32.Parse(ConfigurationManager.AppSettings["TipoCateringTiempoProductoItemctivo"].ToString());
 
 
             DomainAmbientHouse.Entidades.TipoCateringTiempoProductoItem tipo = TipoCateringTiempoProductoItemSeleccionado;
@@ -160,7 +154,7 @@ namespace AmbientHouse.Configuracion.TipoCateringTiempoProductoItem
                 tipo.CategoriaItemId = Int32.Parse(DropDownListCategorias.SelectedItem.Value);
             else
                 tipo.CategoriaItemId = null;
-             
+
             if (DropDownListItmes.SelectedItem.Value != "null")
                 tipo.ItemId = Int32.Parse(DropDownListItmes.SelectedItem.Value);
             else

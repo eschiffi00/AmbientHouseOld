@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using System.Configuration;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 
 namespace AmbientHouse.Administracion.Cuentas
 {
@@ -85,7 +79,7 @@ namespace AmbientHouse.Administracion.Cuentas
             movimientos.UsuarioId = EmpleadoId;
             movimientos.FechaMovimiento = System.DateTime.Now;
             movimientos.TipoMovimiento = "CONCILIACION";
-            
+
             return administracion.GrabarMovimiento(movimientos);
 
         }

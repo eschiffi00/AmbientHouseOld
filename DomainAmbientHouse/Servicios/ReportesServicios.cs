@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Negocios;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Servicios
 {
@@ -38,11 +33,11 @@ namespace DomainAmbientHouse.Servicios
 
         public List<ReporteAdicionales> ObtenerAdicionalesEventos(int nroEvento, int nroPresupuesto, string fechaDesde, string fechaHasta)
         {
-            return NegocioAdicionales.ObtenerAdicionalesEventos( nroEvento,  nroPresupuesto,  fechaDesde,  fechaHasta);
+            return NegocioAdicionales.ObtenerAdicionalesEventos(nroEvento, nroPresupuesto, fechaDesde, fechaHasta);
         }
         public List<ReporteEventosPorUnidadesdeNegocios> ObtenerReporteEventosPorUnidadesNegocios(int nroEvento, int nroPresupuesto, string fechaDesde, string fechaHasta)
         {
-            return NegocioEventos.ObtenerReporteEventosPorUnidadesNegocios( nroEvento,  nroPresupuesto,  fechaDesde,  fechaHasta);
+            return NegocioEventos.ObtenerReporteEventosPorUnidadesNegocios(nroEvento, nroPresupuesto, fechaDesde, fechaHasta);
         }
 
         public List<ReporteComprobantes> ObtenerReporteComprobantes(SearcherReporteComprobantes searcher)

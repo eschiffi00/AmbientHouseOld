@@ -1,14 +1,10 @@
-﻿using System;
+﻿using DbEntidades.Entities;
+using DbEntidades.Operators;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DbEntidades.Entities;
-using DbEntidades.Operators;
-using System.Globalization;
-using System.Data;
-using System.Text.RegularExpressions;
 
 
 namespace AmbientHouse.Configuracion.AbmItems
@@ -26,32 +22,36 @@ namespace AmbientHouse.Configuracion.AbmItems
                 Session["tablagrid"] = tablagrid;
                 Session["listaitem"] = listaitem;
                 SessionClearAll();
+                var id = 0;
                 //string s;
                 //object o = Page.RouteData.Values["id"];
                 //if (o != null) s = Page.RouteData.Values["id"].ToString();
                 //else s = Request.QueryString["id"];
-                var temp = Request["Id"];
-                var id = 0;
-                var categoria = "";
-                if (temp != null)
+                if (Request["Id"] != "" && Request["Id"] != null)
                 {
-                    var list = temp.Split('-');
-                    id = Int32.Parse(list[0]);
-                    categoria = list[1];
+                    id = int.Parse(Request["Id"]);
                 }
+                
+                //var categoria = "";
+                //if (temp != null)
+                //{
+                //    var list = temp.Split('-');
+                //    id = Int32.Parse(list[0]);
+                //    categoria = list[1];
+                //}
 
 
-                InicializaCategorias();
+                //InicializaCategorias();
                 InicializaItems();
                 InicializaExpBarras();
                 CargaExperienciasBarras();
                 CargaItems();
-                CargaCategorias();
-                
+                //CargaCategorias();
+
                 if (id != 0)
                 {
                     seRatios = RatiosOperator.GetOneByIdentity(id);
-                    var Item = MultiselectItems.Items.FindByText(ItemsOperator.GetOneByParameter("Id",seRatios.ItemId.ToString()).Detalle);
+                    var Item = MultiselectItems.Items.FindByText(ItemsOperator.GetOneByParameter("Id", seRatios.ItemId.ToString()).Detalle);
                     Item.Selected = true;
                     MultiselectItems.Enabled = false;
                     ListItem experienciabarra = new ListItem();
@@ -66,7 +66,8 @@ namespace AmbientHouse.Configuracion.AbmItems
                     experienciabarra.Selected = true;
                     switch (seRatios.TipoRatio)
                     {
-                        case "PAX": ddlDependencia.SelectedValue = "1";
+                        case "PAX":
+                            ddlDependencia.SelectedValue = "1";
                             break;
                         case "ITEM":
                             ddlDependencia.SelectedValue = "2";
@@ -91,9 +92,9 @@ namespace AmbientHouse.Configuracion.AbmItems
                     {
                         chkAdicional.Checked = true;
                     }
-                    var cat = MultiselectCategorias.Items.FindByText(categoria);
-                    cat.Selected = true;
-                    MultiselectCategorias.Enabled = false;
+                    //var cat = MultiselectCategorias.Items.FindByText(categoria);
+                    //cat.Selected = true;
+                    //MultiselectCategorias.Enabled = false;
                     //obtengo todas las categorias y utilizo descripcion y id
                     //var categorias = ItemDetalleOperator.GetAllByParameter("ItemId", id);
                     //if (categorias.Count() > 0)
@@ -132,20 +133,20 @@ namespace AmbientHouse.Configuracion.AbmItems
             SessionLoadAll();
         }
 
-        public void CargaCategorias()
-        {
-            DataTable dt = new DataTable();
-            dt = CategoriasItemOperator.GetAllWithGroups();
-            foreach (DataRow row in dt.Rows)
-            {
-                ListItem item = new ListItem();
-                item.Text = row["Text"].ToString();
-                item.Value = row["Value"].ToString();
-                item.Attributes["data-group"] = row["Categoria"].ToString();
-                MultiselectCategorias.Items.Add(item);
-            }
-            MultiselectCategorias.DataBind();
-        }
+        //public void CargaCategorias()
+        //{
+        //    DataTable dt = new DataTable();
+        //    dt = CategoriasItemOperator.GetAllWithGroups();
+        //    foreach (DataRow row in dt.Rows)
+        //    {
+        //        ListItem item = new ListItem();
+        //        item.Text = row["Text"].ToString();
+        //        item.Value = row["Value"].ToString();
+        //        item.Attributes["data-group"] = row["Categoria"].ToString();
+        //        MultiselectCategorias.Items.Add(item);
+        //    }
+        //    MultiselectCategorias.DataBind();
+        //}
         public void CargaExperienciasBarras()
         {
             List<TipoCateringComun> tipocatering = TipoCateringOperator.GetAllForCombo();
@@ -164,7 +165,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                 barra.Value = item.Id.ToString();
                 MultiselectExperiencias.Items.Add(barra);
             }
-            MultiselectCategorias.DataBind();
+            MultiselectExperiencias.DataBind();
         }
         public void CargaItems()
         {
@@ -181,68 +182,68 @@ namespace AmbientHouse.Configuracion.AbmItems
             MultiselectItems.DataBind();
         }
 
-        protected void MultiselectItems_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            InicializaCategorias();
-            foreach (ListItem item in MultiselectItems.Items)
-            {
-                if (item.Selected)
-                {
-                    var ItemDet = ItemsOperator.GetOneByParameter("Detalle", item.Value);
-                    List<ItemDetalle> lista = new List<ItemDetalle>();
-                    if (ItemDet.ItemDetalleId != null && ItemDet.ItemDetalleId > 0)
-                    {
-                        lista = ItemDetalleOperator.GetAllByParameter("ItemId", ItemDet.ItemDetalleId.Value);
-                        foreach (var idCategoria in lista)
-                        {
+        //protected void MultiselectItems_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    InicializaCategorias();
+        //    foreach (ListItem item in MultiselectItems.Items)
+        //    {
+        //        if (item.Selected)
+        //        {
+        //            var ItemDet = ItemsOperator.GetOneByParameter("Detalle", item.Value);
+        //            List<ItemDetalle> lista = new List<ItemDetalle>();
+        //            if (ItemDet.ItemDetalleId != null && ItemDet.ItemDetalleId > 0)
+        //            {
+        //                lista = ItemDetalleOperator.GetAllByParameter("ItemId", ItemDet.ItemDetalleId.Value);
+        //                foreach (var idCategoria in lista)
+        //                {
 
-                            foreach (ListItem categoria in MultiselectCategorias.Items)
-                            {
+        //                    foreach (ListItem categoria in MultiselectCategorias.Items)
+        //                    {
 
-                                var descripcion = CategoriasItemOperator.GetOneByIdentity(idCategoria.CategoriaId).Descripcion;
-                                if (descripcion == categoria.Text)
-                                {
-                                    categoria.Selected = true;
-                                    categoria.Enabled = true;
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (ListItem categoria in MultiselectCategorias.Items)
-                        {
+        //                        var descripcion = CategoriasItemOperator.GetOneByIdentity(idCategoria.CategoriaId).Descripcion;
+        //                        if (descripcion == categoria.Text)
+        //                        {
+        //                            categoria.Selected = true;
+        //                            categoria.Enabled = true;
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //                foreach (ListItem categoria in MultiselectCategorias.Items)
+        //                {
 
-                            var descripcion = CategoriasItemOperator.GetOneByIdentity(ItemDet.CategoriaItemId).Descripcion;
-                            if (descripcion == categoria.Text)
-                            {
-                                categoria.Selected = true;
-                                categoria.Enabled = true;
-                            }
-                        }
-                    }
-                    
+        //                    var descripcion = CategoriasItemOperator.GetOneByIdentity(ItemDet.CategoriaItemId).Descripcion;
+        //                    if (descripcion == categoria.Text)
+        //                    {
+        //                        categoria.Selected = true;
+        //                        categoria.Enabled = true;
+        //                    }
+        //                }
+        //            }
 
 
-                    foreach (ListItem Categoria in MultiselectCategorias.Items)
-                    {
-                        if (!Categoria.Selected)
-                        {
-                            Categoria.Selected = false;
-                            Categoria.Enabled = false;
-                        }
-                    }
-                }
-            }
-        }
-        protected void InicializaCategorias()
-        {
-            foreach (ListItem Categoria in MultiselectCategorias.Items)
-            {
-                Categoria.Selected = false;
-                Categoria.Enabled = true;
-            }
-        }
+
+        //            foreach (ListItem Categoria in MultiselectCategorias.Items)
+        //            {
+        //                if (!Categoria.Selected)
+        //                {
+        //                    Categoria.Selected = false;
+        //                    Categoria.Enabled = false;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+        //protected void InicializaCategorias()
+        //{
+        //    foreach (ListItem Categoria in MultiselectCategorias.Items)
+        //    {
+        //        Categoria.Selected = false;
+        //        Categoria.Enabled = true;
+        //    }
+        //}
         protected void InicializaItems()
         {
             foreach (ListItem Item in MultiselectItems.Items)
@@ -288,24 +289,15 @@ namespace AmbientHouse.Configuracion.AbmItems
             Ratios Ratio = new Ratios();
             try
             {
-                var temp = Request["Id"];
-                var id = 0;
-                var categoria = "";
-                if (temp != null)
-                {
-                    var list = temp.Split('-');
-                    id = Int32.Parse(list[0]);
-                    categoria = list[1];
-                }
-
+                var id = int.Parse(Request["Id"]);
                 if (txtDetalle.Text == null || txtDetalle.Text == "") { Ratio.DetalleTipo = " "; }
                 else { Ratio.DetalleTipo = txtDetalle.Text; }
-                Ratio.ValorRatio = System.Math.Round(float.Parse(txtValor.Text),2);
-                Ratio.TopeRatio = System.Math.Round(float.Parse(txtTope.Text),2);
+                Ratio.ValorRatio = System.Math.Round(float.Parse(txtValor.Text), 2);
+                Ratio.TopeRatio = System.Math.Round(float.Parse(txtTope.Text), 2);
                 Ratio.Menores3 = chkMenores3.Checked ? 1 : 0;
                 Ratio.Menores3y8 = chkMenores3y8.Checked ? 1 : 0;
                 Ratio.Adolescentes = chkAdolescentes.Checked ? 1 : 0;
-                Ratio.AdicionalRatio = chkAdicional.Checked ? 1 : 0;  
+                Ratio.AdicionalRatio = chkAdicional.Checked ? 1 : 0;
                 Ratio.EstadoId = EstadosOperator.GetHablitadoID("Items");
                 switch (ddlDependencia.SelectedValue)
                 {
@@ -315,116 +307,68 @@ namespace AmbientHouse.Configuracion.AbmItems
                     case "2":
                         Ratio.TipoRatio = "ITEM";
                         break;
-                }          
-                if(id > 0)
+                }
+                if (id > 0)
                 {
                     Ratio.Id = id;
                     Ratio.ItemId = RatiosOperator.GetOneByIdentity(id).ItemId;
                     Ratio.ExperienciaBarra = RatiosOperator.GetOneByIdentity(id).ExperienciaBarra;
-                    Ratio.CategoriaId = CategoriasItemOperator.GetOneByParameter("Descripcion",categoria).Id;
+                    Ratio.CategoriaId = 99;
                     RatiosOperator.Save(Ratio);
 
                 }
                 else
                 {
                     //recorro multiselect items
-                    foreach(ListItem item in MultiselectItems.Items)
+                    foreach (ListItem item in MultiselectItems.Items)
                     {
-                        
+
                         if (item.Selected)
-                        {            
+                        {
                             var detItem = ItemsOperator.GetOneByParameter("Detalle", item.Text);
                             //recorro multiselect experiencias por cada item seleccionado
                             foreach (ListItem MulExpBar in MultiselectExperiencias.Items)
                             {
                                 if (MulExpBar.Selected)
-                                {
-                                    //recorro multiselect categorias por cada experiencia seleccionado
-                                    foreach (ListItem MulCat in MultiselectCategorias.Items)
+                                { 
+                                    Ratio.Id = -1;
+                                    Ratio.ItemId = detItem.Id;
+                                    Ratio.CategoriaId = 99;
+                                    //verifico si se selecciono un tipo de experiencia o barra y armo el codigo
+                                    if (TipoCateringOperator.TipoCateringValidation("Descripcion", MulExpBar.Text))
                                     {
-                                        List<ItemDetalle> categoriasItem;
-                                        if (MulCat.Selected)
-                                        {
-                                            //si tengo itemdetalleid significa que tengo una categoria asociada al item o varias
-                                            //obtengo las categorias y luego las recorro
-                                            if (detItem.ItemDetalleId != null)
-                                            {
-                                                categoriasItem = ItemDetalleOperator.GetAllByParameter("ItemId", detItem.ItemDetalleId.Value);
-                                                foreach (var detalle in categoriasItem)
-                                                {
-                                                    if (MulCat.Selected && Int32.Parse(MulCat.Value) == detalle.CategoriaId)
-                                                    {
-                                                        Ratio.Id = -1;
-                                                        Ratio.ItemId = detItem.Id;
-                                                        Ratio.CategoriaId = Int32.Parse(MulCat.Value);
-                                                        //verifico si se selecciono un tipo de experiencia o barra y armo el codigo
-                                                        if (TipoCateringOperator.TipoCateringValidation("Descripcion", MulExpBar.Text))
-                                                        {
-                                                            Ratio.ExperienciaBarra = "TCAT" + MulExpBar.Value;
-                                                        }
-                                                        else
-                                                        {
-                                                            Ratio.ExperienciaBarra = "BAR" + MulExpBar.Value;
-                                                        }
-                                                        parametros.Add(Ratio.ItemId.ToString());
-                                                        parametros.Add(Ratio.ExperienciaBarra);
-                                                        parametros.Add(Ratio.CategoriaId.ToString());
-                                                        parametros.Add(Ratio.TipoRatio);
-                                                        parametros.Add(Ratio.DetalleTipo);
-                                                        if (!RatiosOperator.RatioValidation(parametros) && duplicado == 0)
-                                                        {
-                                                            RatiosOperator.Save(Ratio);
-                                                        }
-                                                        else
-                                                        {
-                                                            parametros[0] = item.Text;
-                                                            parametros[1] = MulCat.Text;
-                                                            ArmaMensaje(parametros);
-                                                            ErrorDialog();
-                                                            duplicado = 1;
-                                                        }
-
-                                                    }
-                                                }
-                                            }
-                                            //CODIGO TEMPORAL PARA LOS ITEMS QUE YA TIENEN UN ITEMCATEGORIAID
-                                            //BORRAR LUEGO DE QUE TODOS TENGAN ITEMDETALLEID
-                                            else
-                                            {
-                                                Ratio.Id = -1;
-                                                Ratio.ItemId = detItem.Id;
-                                                Ratio.CategoriaId = detItem.CategoriaItemId;
-                                                parametros.Add(Ratio.ItemId.ToString());
-                                                parametros.Add(Ratio.ExperienciaBarra);
-                                                parametros.Add(Ratio.CategoriaId.ToString());
-                                                parametros.Add(Ratio.TipoRatio);
-                                                parametros.Add(Ratio.DetalleTipo);
-                                                if (RatiosOperator.RatioValidation(parametros) && duplicado == 0)
-                                                {
-                                                    RatiosOperator.Save(Ratio);
-                                                }
-                                                else
-                                                {
-                                                    parametros[0] = item.Text;
-                                                    parametros[1] = MulCat.Text;
-                                                    ArmaMensaje(parametros);
-                                                    ErrorDialog();
-                                                    duplicado = 1;
-                                                }
-                                            }
-
-                                        }
+                                        Ratio.ExperienciaBarra = "TCAT" + MulExpBar.Value;
                                     }
+                                    else
+                                    {
+                                        Ratio.ExperienciaBarra = "BAR" + MulExpBar.Value;
+                                    }
+                                    parametros.Add(Ratio.ItemId.ToString());
+                                    parametros.Add(Ratio.ExperienciaBarra);
+                                    parametros.Add(Ratio.CategoriaId.ToString());
+                                    parametros.Add(Ratio.TipoRatio);
+                                    parametros.Add(Ratio.DetalleTipo);
+                                    if (!RatiosOperator.RatioValidation(parametros) && duplicado == 0)
+                                    {
+                                        RatiosOperator.Save(Ratio);
+                                    }
+                                    else
+                                    {
+                                        parametros[0] = item.Text;
+                                        ArmaMensaje(parametros);
+                                        ErrorDialog();
+                                        duplicado = 1;
+                                    }  
                                 }
                             }
                         }
                     }
                 }
-                if(duplicado == 0)
+                if (duplicado == 0)
                 {
                     Response.Redirect("~/Configuracion/AbmItems/RatiosBrowse.aspx");
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -433,7 +377,7 @@ namespace AmbientHouse.Configuracion.AbmItems
         }
         protected void ddlDependencia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ddlDependencia.SelectedValue == "1")
+            if (ddlDependencia.SelectedValue == "1")
             {
                 txtDetalle.Enabled = false;
             }
@@ -444,17 +388,17 @@ namespace AmbientHouse.Configuracion.AbmItems
         }
         protected virtual void ErrorDialog()
         {
-            
+
             Page.ClientScript.RegisterStartupScript(this.GetType(), "ratioduplicate",
                 "ShowratiosDialog();", true);
         }
         protected void ArmaMensaje(List<string> datos)
         {
-            string mensaje = 
+            string mensaje =
                              "Item:      " + datos[0] + "<br>" +
-                             "Categoria: " + datos[1] + "<br>" +
-                             "TipoRatio: " + datos[2] + "<br>" +
-                             "Detalle  : " + datos[3];
+                             "Experiencia: " + datos[1] + "<br>" +
+                             "TipoRatio: " + datos[3] + "<br>" +
+                             "Detalle  : " + datos[4];
             dialog.Text = mensaje;
         }
 

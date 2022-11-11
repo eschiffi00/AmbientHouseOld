@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System;
+using System.Collections.Generic;
 using System.Transactions;
 
 namespace DomainAmbientHouse.Negocios
@@ -64,7 +60,7 @@ namespace DomainAmbientHouse.Negocios
             return Datos.ListarProductos(searcher);
         }
 
-        public List<Productos> BuscarProductosPorFiltros(int unidadNegocioId, int tipoCatering, int tipoBarra, int tipoServicio, int categoriaId, 
+        public List<Productos> BuscarProductosPorFiltros(int unidadNegocioId, int tipoCatering, int tipoBarra, int tipoServicio, int categoriaId,
                                                     int cantidadInvitados, int locacionId, int sectorId, int segmentoId, int jornadaId,
                                                     int proveedorId, int Anio, int Mes, string Dia, int adicionalId, int estadoId, int caracteristicaId, int itemOrganizacionId, int semestreId)
         {
@@ -74,7 +70,7 @@ namespace DomainAmbientHouse.Negocios
 
         public void ActualizarPrecioCostoProductos(List<Productos> ListProductos, double ValorCosto, double ValorPrecio, double PorcentajeCosto, double PorcentajePrecio, double Margen)
         {
-           
+
 
 
             using (TransactionScope scope = new TransactionScope())
@@ -137,10 +133,10 @@ namespace DomainAmbientHouse.Negocios
 
                             cat.Precio = precio;
 
-                            cat.Margen =margen;
+                            cat.Margen = margen;
 
                         }
-                        else  if (ValorPrecio > 0)
+                        else if (ValorPrecio > 0)
                         {
 
                             precio = item.Precio + ValorPrecio;
@@ -234,7 +230,7 @@ namespace DomainAmbientHouse.Negocios
                 catch (Exception ex)
                 {
                     DomainAmbientHouse.Servicios.Log.save(this, ex);
-                     throw;
+                    throw;
                 }
             }
         }
@@ -259,7 +255,7 @@ namespace DomainAmbientHouse.Negocios
                     DomainAmbientHouse.Servicios.Log.save(this, ex);
                     throw;
                 }
-               
+
 
 
             }

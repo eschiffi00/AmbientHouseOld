@@ -1,16 +1,14 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
     public class PagoProveedoresDatos
     {
         public AmbientHouseEntities SqlContext { get; set; }
-         
+
         public PagoProveedoresDatos()
         {
             SqlContext = new AmbientHouseEntities();
@@ -151,7 +149,7 @@ namespace DomainAmbientHouse.Datos
                         from Chp in Chps.DefaultIfEmpty()
                         join Che in SqlContext.Cheques on Chp.ChequeId equals Che.Id into Ches
                         from Che in Ches.DefaultIfEmpty()
-                        
+
                         where CP.ComprobanteProveedorId == comprobanteId
                         select new
                         {
@@ -201,10 +199,10 @@ namespace DomainAmbientHouse.Datos
             }
             catch (Exception ex)
             {
-                
+
                 throw ex;
             }
-         
+
         }
     }
 }
@@ -216,7 +214,7 @@ namespace DomainAmbientHouse.Entidades
         public string CuentaNombre { get; set; }
         public string FormaPagoDescripcion { get; set; }
         public string NroCheque { get; set; }
-        
+
     }
 
     public partial class OrdenPagoProveedores

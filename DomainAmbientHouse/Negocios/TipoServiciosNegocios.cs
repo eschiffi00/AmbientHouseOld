@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
     public class TipoServiciosNegocios
     {
 
-      TipoServiciosDatos Datos;
+        TipoServiciosDatos Datos;
 
-      public TipoServiciosNegocios()
+        public TipoServiciosNegocios()
         {
             Datos = new TipoServiciosDatos();
         }
@@ -27,9 +22,9 @@ namespace DomainAmbientHouse.Negocios
         }
 
 
-        public  TipoServicios BuscarTipoServicios(int id)
+        public TipoServicios BuscarTipoServicios(int id)
         {
-            return Datos.BuscarTipoServicios( id);
+            return Datos.BuscarTipoServicios(id);
         }
 
         public void NuevoTipoServicio(TipoServicios tiposervicio)
@@ -39,12 +34,12 @@ namespace DomainAmbientHouse.Negocios
 
         public List<TipoServicios> TraerTipoServicios(int CaracteristicasId, int SegmentosId, int MomentoDiaId, int DuracionId)
         {
-           return Datos.TraerTipoServicios( CaracteristicasId,  SegmentosId,  MomentoDiaId,  DuracionId);
+            return Datos.TraerTipoServicios(CaracteristicasId, SegmentosId, MomentoDiaId, DuracionId);
         }
 
         public List<TipoServicios> BuscarTipoServicioPorAdicional(int adicionalId)
         {
-          return Datos.BuscarTipoServicioPorAdicional( adicionalId);
+            return Datos.BuscarTipoServicioPorAdicional(adicionalId);
         }
 
         public List<TipoServicios> BuscarTipoServicioParaAgregarPorAdicional(int adicionalId)

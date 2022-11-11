@@ -1,13 +1,12 @@
-﻿using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
+using System.Web;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Presupuestos
 {
@@ -716,8 +715,8 @@ namespace AmbientHouse.Presupuestos
 
 
                 int CantidadesFinales = Int32.Parse((
-                    (PresupuestoSeleccionado.CantidadAdultosFinal== null? 0 : PresupuestoSeleccionado.CantidadAdultosFinal) +
-                    (PresupuestoSeleccionado.CantidadAdolescentesFinal == null? 0 : PresupuestoSeleccionado.CantidadAdolescentesFinal) +
+                    (PresupuestoSeleccionado.CantidadAdultosFinal == null ? 0 : PresupuestoSeleccionado.CantidadAdultosFinal) +
+                    (PresupuestoSeleccionado.CantidadAdolescentesFinal == null ? 0 : PresupuestoSeleccionado.CantidadAdolescentesFinal) +
                     (PresupuestoSeleccionado.CantidadMenoresEntre3y8Final == null ? 0 : PresupuestoSeleccionado.CantidadMenoresEntre3y8Final) +
                     (PresupuestoSeleccionado.CantidadMenores3Final == null ? 0 : PresupuestoSeleccionado.CantidadMenores3Final)
                     ).ToString());
@@ -930,7 +929,7 @@ namespace AmbientHouse.Presupuestos
                 ListPresupuestoDetalleQuitados.Add(itemRemove);
 
                 ListPresupuestoDetalle.Remove(itemRemove);
-               
+
                 if (itemRemove.UnidadNegocioId == 10)
                 {
                     if (presupuestos.EliminarInvitadosPendientes((int)itemRemove.PresupuestoId))
@@ -981,7 +980,7 @@ namespace AmbientHouse.Presupuestos
 
                 DomainAmbientHouse.Entidades.PresupuestoDetalle detalle = presupuestos.AprobarItemPresupuesto(detalleId);
 
-                mailAprobacion.envioMailCambiosEventoGanado(PresupuestoId,EventoId,row.Cells[2].Text);
+                mailAprobacion.envioMailCambiosEventoGanado(PresupuestoId, EventoId, row.Cells[2].Text);
 
                 ListPresupuestoDetalle = presupuestos.BuscarDetallePresupuesto(PresupuestoId);
 
@@ -1156,9 +1155,9 @@ namespace AmbientHouse.Presupuestos
                 else if ((e.Row.Cells[14].Text == "10") && (e.Row.Cells[15].Text == "Aprobado"))
                 {
                     presupuestarAdicionales.Visible = false;
-                   
+
                 }
-                else if ((e.Row.Cells[14].Text == "10") )
+                else if ((e.Row.Cells[14].Text == "10"))
                 {
                     presupuestarAdicionales.Visible = false;
 
@@ -1168,7 +1167,7 @@ namespace AmbientHouse.Presupuestos
                     presupuestarAdicionales.Visible = false;
 
                 }
-              
+
 
             }
         }
@@ -1292,7 +1291,7 @@ namespace AmbientHouse.Presupuestos
                         }
 
 
-                            CargarServicios();
+                        CargarServicios();
 
 
                         HabilitarLogisticaCannon(false);
@@ -2213,7 +2212,7 @@ namespace AmbientHouse.Presupuestos
                                  CantidadTotalInvitados,
                                  SectorId, searcher.FechaEvento);
                     }
-                    else 
+                    else
                     {
 
                         CargarAmbientacionCI(String.Format("{0:dd/MM/yyyy}", TextBoxFechaDesdeEvento.Text),
@@ -2233,7 +2232,7 @@ namespace AmbientHouse.Presupuestos
                         cantidadAdicional = Int32.Parse(DropDownListCICantidadPaquetesAmbientacion.SelectedValue);
                         ProveedorId = Int32.Parse(DropDownListProveedor.SelectedItem.Value);
                     }
-                   
+
 
                     break;
 
@@ -2719,7 +2718,7 @@ namespace AmbientHouse.Presupuestos
         private void CalcularTotalPresupuesto()
         {
 
-            double Valor = cmd.CalcularTotalPresupuestoAprobado(PresupuestoId,ListPresupuestoDetalle, PorcentajeOrganizador, ImporteOrganizador);
+            double Valor = cmd.CalcularTotalPresupuestoAprobado(PresupuestoId, ListPresupuestoDetalle, PorcentajeOrganizador, ImporteOrganizador);
 
 
             TextBoxTotalPresupuesto.Text = (System.Math.Round(Valor, 2)).ToString("C");
@@ -2759,7 +2758,7 @@ namespace AmbientHouse.Presupuestos
              Int32.Parse(ConfigurationManager.AppSettings["PresupuestoDetallePendiente"].ToString());
 
 
-           
+
             if (cmd.IsNumeric(TextBoxCantAdolescentesAdicionales.Text) && TextBoxCantAdolescentesAdicionales.Text.Length > 0)
             {
                 PresupuestoSeleccionado.CantidadAdolescentesFinal = Int32.Parse(TextBoxCantAdolescentesAdicionales.Text);
@@ -2805,7 +2804,7 @@ namespace AmbientHouse.Presupuestos
 
             double totalCosto = cmd.CalcularCostoTotalPresupuestoPorPresupuestoId(ListPresupuestoDetalleModificado, 0, 0);
 
-            double totalPaxModificado =cmd.CalcularCantidadInvitados(TextBoxCantMayores.Text, TextBoxCantEntre3y8.Text, TextBoxCantMenores3.Text, TextBoxCantAdolescentes.Text) +
+            double totalPaxModificado = cmd.CalcularCantidadInvitados(TextBoxCantMayores.Text, TextBoxCantEntre3y8.Text, TextBoxCantMenores3.Text, TextBoxCantAdolescentes.Text) +
                                     cmd.CalcularCantidadInvitados(TextBoxCantMayoresFinal.Text, TextBoxCantEntre3y8Final.Text, TextBoxCantMenores3Final.Text, TextBoxCantAdolescentesFinal.Text);
 
             double totalPorPersona = totalModificado / totalPaxModificado;
@@ -2815,11 +2814,11 @@ namespace AmbientHouse.Presupuestos
             double totalPaxAgregados = cmd.CalcularCantidadInvitados(TextBoxCantMayoresAdicionales.Text, TextBoxCantEntre3y8Adicionales.Text,
                                                                         TextBoxCantMenores3Adicionales.Text, TextBoxCantAdolescentesAdicionales.Text);
 
-            
+
             //double valorTotalInvitados = totalPorPersona * totalPaxAgregados;
 
             double valorTotalInvitados = ValorPax * totalPaxAgregados;
-           
+
             double valorTotalInvitadosCosto = totalCostoPorPersona * totalPaxAgregados;
 
 
@@ -2867,7 +2866,7 @@ namespace AmbientHouse.Presupuestos
         {
             int productoNinguno = Int32.Parse(ConfigurationManager.AppSettings["ProductoSalonSinCosto"].ToString());
 
-         
+
             int cantidadAdultos = 0;
             int cantidadAdolescentes = 0;
             int cantidadAdicional = 0;
@@ -2944,7 +2943,7 @@ namespace AmbientHouse.Presupuestos
                     Codigo = cmd.ArmarCodigoCatering(ServicioId,
                         ProveedorId,
                         CantidadTotalInvitados);
-                     
+
                     break;
 
 
@@ -3067,7 +3066,7 @@ namespace AmbientHouse.Presupuestos
                 if (LogisticaCosto > 0)
                     detalle.Logistica = LogisticaCosto;
 
-               
+
                 detalle.CantidadAdicional = cantidadAdicional;
 
 
@@ -3107,7 +3106,7 @@ namespace AmbientHouse.Presupuestos
 
                 return GenerarNuevoProducto(fechaEvento, semestre, anio, activo, costoAmbientacion);
 
-           
+
             }
             return new Productos();
 

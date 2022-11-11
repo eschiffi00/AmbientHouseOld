@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Permissions;
 using System.Web;
 using System.Web.SessionState;
@@ -19,7 +17,7 @@ namespace AmbientHouse.Presupuestos
         }
 
 
-     
+
         private string GetContentType(string FileExtension)
         {
             // Convertimos la extensión en minúsculas

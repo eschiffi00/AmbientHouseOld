@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
 
 namespace AmbientHouse.Configuracion.AdicionalesItems
 {
@@ -34,13 +30,13 @@ namespace AmbientHouse.Configuracion.AdicionalesItems
         {
             Response.Redirect("~/Configuracion/AdicionalesItems/Editar.aspx");
 
-           
+
         }
-         
+
         protected void ButtonVolver_Click(object sender, EventArgs e)
         {
-              Response.Redirect("~/Home/Index.aspx");
-          
+            Response.Redirect("~/Home/Index.aspx");
+
         }
 
         protected void ButtonExportarExcel_Click(object sender, EventArgs e)
@@ -73,7 +69,7 @@ namespace AmbientHouse.Configuracion.AdicionalesItems
 
                 int Id = int.Parse(row.Cells[0].Text);
 
-                if (administracion.ElimarItemsAdicionales(Id,Int32.Parse(DropDownListAdicionales.SelectedItem.Value)));
+                if (administracion.ElimarItemsAdicionales(Id, Int32.Parse(DropDownListAdicionales.SelectedItem.Value))) ;
                 {
                     BuscarItemsAdicional(Int32.Parse(DropDownListAdicionales.SelectedItem.Value));
 

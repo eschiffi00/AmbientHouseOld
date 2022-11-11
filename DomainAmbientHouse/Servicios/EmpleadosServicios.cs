@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Negocios;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Servicios
 {
@@ -18,10 +13,10 @@ namespace DomainAmbientHouse.Servicios
         public EmpleadosServicios()
         {
             Negocios = new EmpleadosNegocios();
-         
+
         }
 
-     
+
         public List<Empleados> ObtenerEmpleados()
         {
 

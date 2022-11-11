@@ -1,11 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Negocios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Datos;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Negocios;
 
 namespace DomainAmbientHouse.Servicios
 {
@@ -24,13 +21,13 @@ namespace DomainAmbientHouse.Servicios
         CategoriasArchivosNegocios NegocioCategoriaArchivos;
         FeriadosNegocios NegocioFeriados;
 
-      
+
 
         FuncionesSistemaNegocios NegocioFuncionesSistema;
         CostoNegocios NegocioCostos;
         ProcesoCierreNegocios NegocioProcesoCierre;
 
-      
+
 
         LocacionesNegocios NegociosLocaciones;
         CostoNegocios NegociosCosto;
@@ -58,7 +55,7 @@ namespace DomainAmbientHouse.Servicios
         ChequesNegocios NegociosCheques;
         EstadosNegocios NegocioEstados;
 
-      
+
 
         TABLARetencionesNegocios NegociosTablaReteciones;
 
@@ -109,7 +106,7 @@ namespace DomainAmbientHouse.Servicios
 
         }
 
-      
+
 
         public void NuevosProductosCatering(ProductosCatering item)
         {
@@ -2076,7 +2073,7 @@ namespace DomainAmbientHouse.Servicios
             return negocios.ListarCuentasEfectivosMasEfectivo(empresaId);
         }
 
-        
+
         public List<NotaCreditos> ObtenerNotasCreditosPorComprobante(int comprobanteId)
         {
             NotaCreditosNegocios negocios = new NotaCreditosNegocios();
@@ -2093,7 +2090,7 @@ namespace DomainAmbientHouse.Servicios
 
         public void GrabarPagoProveedores(List<OrdenPagoProveedores> ListOrdenPagoProveedoresSeleccionados)
         {
-            NegocioPagoProveedores.GrabarPagoProveedores( ListOrdenPagoProveedoresSeleccionados);
+            NegocioPagoProveedores.GrabarPagoProveedores(ListOrdenPagoProveedoresSeleccionados);
         }
 
         public LiquidacionHorasPersonal_Detalle BuscarDetalleHoras(int Id)
@@ -2178,7 +2175,7 @@ namespace DomainAmbientHouse.Servicios
         public FacturasCliente BuscarFacturasCliente(int id)
         {
             FacturasClientesNegocios negocios = new FacturasClientesNegocios();
-            
+
             return negocios.BuscarFacturasCliente(id);
         }
 

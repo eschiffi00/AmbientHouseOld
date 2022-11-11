@@ -1,9 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -43,12 +41,12 @@ namespace DomainAmbientHouse.Datos
                 salida.UnidadDescripcion = SqlContext.INVENTARIO_Unidades.Where(o => o.Id == item.UnidadId).SingleOrDefault().Descripcion;
                 salida.UnidadPresentacionId = item.UnidadPresentacionId;
                 salida.UnidadPresentacionDescripcion = SqlContext.INVENTARIO_Unidades.Where(o => o.Id == item.UnidadId).SingleOrDefault().Descripcion;
-                
+
 
                 list.Add(salida);
             }
 
-            
+
             return list.ToList();
 
         }
@@ -77,7 +75,7 @@ namespace DomainAmbientHouse.Datos
         {
             if (producto.Id > 0)
             {
-                INVENTARIO_Producto edit = SqlContext.INVENTARIO_Producto.Where(o=> o.Id == producto.Id).SingleOrDefault();
+                INVENTARIO_Producto edit = SqlContext.INVENTARIO_Producto.Where(o => o.Id == producto.Id).SingleOrDefault();
 
                 edit.Descripcion = producto.Descripcion;
 
@@ -85,7 +83,7 @@ namespace DomainAmbientHouse.Datos
                 {
                     GrabarMovimiento(producto, edit.Cantidad);
                 }
-               
+
 
                 edit.Cantidad = producto.Cantidad;
                 edit.CantidadNominal = producto.CantidadNominal;
@@ -132,7 +130,7 @@ namespace DomainAmbientHouse.Datos
             movimiento.EmpleadoId = producto.EmpleadoId;
 
             SqlContext.INVENTARIO_Movimiento_Producto.Add(movimiento);
-         
+
         }
 
         internal List<INVENTARIO_Producto> ListarINVENTARIOProductoPorRubro(int RubroId)
@@ -169,7 +167,7 @@ namespace DomainAmbientHouse.Datos
         }
 
 
-        public List<Existencias> ListarExistencias(string descripcionProducto,string codigoProducto, int depositoId, int rubroId)
+        public List<Existencias> ListarExistencias(string descripcionProducto, string codigoProducto, int depositoId, int rubroId)
         {
             var query = from p in SqlContext.INVENTARIO_Producto
                         join pd in SqlContext.INVENTARIO_ProductoDeposito on p.Id equals pd.ProductoId into Ps
@@ -190,7 +188,7 @@ namespace DomainAmbientHouse.Datos
                             DepositoId = (d.Id == null ? 0 : d.Id),
                             DepositoDescripcion = d.Descripcion,
                             RubroId = p.RubroId,
-                            UnidadId = (pd.UnidadId== null ? 0 : pd.UnidadId),
+                            UnidadId = (pd.UnidadId == null ? 0 : pd.UnidadId),
                             UnidadDescripcion = u.Descripcion,
                             UnidadesConversion = c.Cantidad
 
@@ -210,27 +208,27 @@ namespace DomainAmbientHouse.Datos
 
 
 
-             List<Existencias> Salida = new List<Existencias>();
-             foreach (var item in query)
-             {
+            List<Existencias> Salida = new List<Existencias>();
+            foreach (var item in query)
+            {
 
-                 Existencias cat = new Existencias();
+                Existencias cat = new Existencias();
 
-                 cat.ProductoId = item.ProductoId;
-                 cat.Codigo = item.Codigo;
-                 cat.Descripcion = item.Descripcion;
-                 cat.Stock = item.Stock;
-                 cat.StockDeposito = item.StockDeposito;
-                 cat.DepositoId = item.DepositoId;
-                 cat.DepositoDescripcion = item.DepositoDescripcion;
-                 cat.UnidadId = item.UnidadId;
-                 cat.UnidadDescripcion = item.UnidadDescripcion;
-                 cat.UnidadesConversion = item.UnidadesConversion;
-                 
-                 Salida.Add(cat);
-             }
+                cat.ProductoId = item.ProductoId;
+                cat.Codigo = item.Codigo;
+                cat.Descripcion = item.Descripcion;
+                cat.Stock = item.Stock;
+                cat.StockDeposito = item.StockDeposito;
+                cat.DepositoId = item.DepositoId;
+                cat.DepositoDescripcion = item.DepositoDescripcion;
+                cat.UnidadId = item.UnidadId;
+                cat.UnidadDescripcion = item.UnidadDescripcion;
+                cat.UnidadesConversion = item.UnidadesConversion;
 
-             return Salida.ToList();
+                Salida.Add(cat);
+            }
+
+            return Salida.ToList();
 
         }
 
@@ -258,7 +256,7 @@ namespace DomainAmbientHouse.Datos
                             UnidadId = pd.UnidadId,
                             UnidadDescripcion = u.Descripcion,
                             UnidadesConversion = c.Cantidad
-                 
+
 
                         };
 
@@ -294,8 +292,8 @@ namespace DomainAmbientHouse.Datos
 
             if (existe != null)
             {
-                existe.Cantidad =existe.Cantidad + depositoProducto.Cantidad;
-                
+                existe.Cantidad = existe.Cantidad + depositoProducto.Cantidad;
+
                 SqlContext.SaveChanges();
             }
             else
@@ -310,7 +308,7 @@ namespace DomainAmbientHouse.Datos
     }
 
 
-  
+
 }
 
 namespace DomainAmbientHouse.Entidades
@@ -342,9 +340,10 @@ namespace DomainAmbientHouse.Entidades
         public double Stock { get; set; }
         public double StockDeposito { get; set; }
 
-        public double StockPorUnidades 
-        { 
-            get {
+        public double StockPorUnidades
+        {
+            get
+            {
                 return UnidadesConversion * Stock;
             }
             set { }

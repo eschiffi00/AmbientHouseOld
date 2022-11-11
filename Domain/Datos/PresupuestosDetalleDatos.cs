@@ -1,17 +1,15 @@
-﻿using System;
+﻿using Domain.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Entidades;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
 
 namespace Domain.Datos
 {
     public class PresupuestosDetalleDatos
     {
-       
+
         public AmbientHouseEntities SqlContext { get; set; }
 
         public PresupuestosDetalleDatos()
@@ -33,7 +31,7 @@ namespace Domain.Datos
             if (searcher.NroPresupuesto > 0)
                 query = query.Where(o => o.PresupuestoId == searcher.NroPresupuesto);
 
-        
+
 
 
             return query.ToList();
@@ -58,7 +56,7 @@ namespace Domain.Datos
                 {
                     return false;
                 }
-              
+
             }
             else
             {
@@ -76,10 +74,10 @@ namespace Domain.Datos
 
                     return false;
                 }
-              
+
             }
 
-        
+
         }
 
         private static void ToEntity(PresupuestoDetalle detalle, PresupuestoDetalle edit)
@@ -139,7 +137,7 @@ namespace Domain.Entidades
         {
             get
             {
-                return String.Format(formatoFecha,FechaCreate );
+                return String.Format(formatoFecha, FechaCreate);
             }
             set
             {
@@ -153,7 +151,7 @@ namespace Domain.Entidades
         //    {
         //        return System.Math.Round(ValorSeleccionado, 2).ToString("C"); 
         //    }
-            
+
         //}
 
         //public readonly string UsoCocinaStr

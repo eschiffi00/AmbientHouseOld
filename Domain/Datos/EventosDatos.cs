@@ -1,11 +1,9 @@
 ﻿using Domain.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
 
 namespace Domain.Datos
 {
@@ -30,7 +28,7 @@ namespace Domain.Datos
 
 
             if (eventoSearcher.ClienteId > 0)
-                query = query.Where(o=>o.ClienteId == eventoSearcher.ClienteId);
+                query = query.Where(o => o.ClienteId == eventoSearcher.ClienteId);
 
             return query.ToList();
 
@@ -41,7 +39,7 @@ namespace Domain.Datos
 }
 
 namespace Domain.Entidades
-{ 
+{
     public partial class EventosSearcher
     {
         public int ClienteId { get; set; }
@@ -52,8 +50,9 @@ namespace Domain.Entidades
 
         private string formatoFecha = ConfigurationManager.AppSettings["FormatoddMMyyyy"].ToString();
 
-        public string FechaSenaStr {
-            get 
+        public string FechaSenaStr
+        {
+            get
             {
                 return String.Format(formatoFecha, FechaSena);
             }

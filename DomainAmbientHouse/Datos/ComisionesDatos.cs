@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -40,7 +37,7 @@ namespace DomainAmbientHouse.Datos
                 catEdit.Descripcion = comisiones.Descripcion;
                 catEdit.Porcentaje = comisiones.Porcentaje;
                 catEdit.PorcentajeAdicional = comisiones.PorcentajeAdicional;
-            
+
 
                 SqlContext.SaveChanges();
             }
@@ -59,7 +56,7 @@ namespace DomainAmbientHouse.Datos
 
         public Comisiones BuscarComisionPorUnidadNegocioPrecioSeleccionado(int UnidadNegocioParaAdicional, string PrecioParaAdicional)
         {
-            return SqlContext.Comisiones.Where(o => o.UnidadNegocioId == UnidadNegocioParaAdicional 
+            return SqlContext.Comisiones.Where(o => o.UnidadNegocioId == UnidadNegocioParaAdicional
                                                 && o.Precio.Contains(PrecioParaAdicional)).FirstOrDefault();
         }
     }

@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
     public class DepartamentosNegocios
     {
 
-      DepartamentosDatos Datos;
+        DepartamentosDatos Datos;
 
-      public DepartamentosNegocios()
+        public DepartamentosNegocios()
         {
             Datos = new DepartamentosDatos();
         }
 
-      public virtual List<Departamentos> ObtenerDepartamentos()
+        public virtual List<Departamentos> ObtenerDepartamentos()
         {
 
             return Datos.ObtenerDepartamentos();
@@ -27,9 +22,9 @@ namespace DomainAmbientHouse.Negocios
         }
 
 
-      public Departamentos BuscarDepartamentoPorSector(int sectorid)
-      {
-          return Datos.BuscarDepartamentoPorSector( sectorid);
-      }
+        public Departamentos BuscarDepartamentoPorSector(int sectorid)
+        {
+            return Datos.BuscarDepartamentoPorSector(sectorid);
+        }
     }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
+using System;
 
 namespace AmbientHouse.Costos.Canon
 {
@@ -127,7 +121,7 @@ namespace AmbientHouse.Costos.Canon
             DropDownListSegmento.SelectedValue = cc.SegmentoId.ToString();
             DropDownListTipoCatering.SelectedValue = cc.TipoCateringId.ToString();
 
-           
+
 
         }
 
@@ -180,7 +174,7 @@ namespace AmbientHouse.Costos.Canon
                 servicios.NuevoCostoCannon(cc);
                 Response.Redirect("~/Costos/Canon/Index.aspx");
             }
-            
+
         }
 
         protected void ButtonAceptar_Click(object sender, EventArgs e)
@@ -188,13 +182,13 @@ namespace AmbientHouse.Costos.Canon
             GrabarCostoCannon();
         }
 
-      
+
 
         protected void ButtonVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Costos/Canon/Index.aspx");
         }
 
- 
+
     }
 }

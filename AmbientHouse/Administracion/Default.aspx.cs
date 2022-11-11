@@ -1,15 +1,12 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Seguridad;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Seguridad;
-using System.Web.UI.HtmlControls;
-using System.Globalization;
-using System.Configuration;
 
 
 namespace AmbientHouse.Administracion
@@ -175,7 +172,7 @@ namespace AmbientHouse.Administracion
 
             int nroCliente = 0;
 
-            ListEventos = eventos.BuscarEventosConfirmadosPorEjecutivo(EmpleadoId, nroEvento, nroPresupuesto, nroCliente,TextBoxApellidoNombre.Text, TextBoxRazonSocial.Text, fechaEvento);
+            ListEventos = eventos.BuscarEventosConfirmadosPorEjecutivo(EmpleadoId, nroEvento, nroPresupuesto, nroCliente, TextBoxApellidoNombre.Text, TextBoxRazonSocial.Text, fechaEvento);
             GridViewEventosGanados.DataSource = ListEventos.ToList();
             GridViewEventosGanados.DataBind();
 
@@ -576,7 +573,7 @@ namespace AmbientHouse.Administracion
         {
 
             BuscarEventosARevisar();
-         
+
         }
 
         private void BuscarEventosARevisar()

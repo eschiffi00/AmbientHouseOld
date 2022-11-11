@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Globalization;
 using System.Configuration;
+using System.Globalization;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -321,7 +319,7 @@ namespace DomainAmbientHouse.Datos
                         from P in Ps.DefaultIfEmpty()
                         join L in SqlContext.Locaciones on A.LocacionId equals L.Id into Ls
                         from L in Ls.DefaultIfEmpty()
-                        where L.Id == LocacionId && A.EstadoId ==activoAdicional
+                        where L.Id == LocacionId && A.EstadoId == activoAdicional
                         select new
                         {
                             Id = A.Id,
@@ -451,7 +449,7 @@ namespace DomainAmbientHouse.Datos
 
 
 
-            if (edit !=null)
+            if (edit != null)
             {
 
 
@@ -497,7 +495,7 @@ namespace DomainAmbientHouse.Datos
 
                     SqlContext.AdicionalesItems.Remove(edit);
                     SqlContext.SaveChanges();
-                    
+
 
                     return true;
                 }
@@ -535,7 +533,7 @@ namespace DomainAmbientHouse.Datos
                             Costo = A.Costo,
                             LocacionId = (A.LocacionId == null ? 0 : A.LocacionId),
                             Locacion = L.Descripcion,
-                            UnidadNegocioId= R.Id
+                            UnidadNegocioId = R.Id
 
                         };
 

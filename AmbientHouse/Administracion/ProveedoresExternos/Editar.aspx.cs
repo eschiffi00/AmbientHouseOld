@@ -1,13 +1,10 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.ProveedoresExternos
 {
@@ -176,7 +173,7 @@ namespace AmbientHouse.Administracion.ProveedoresExternos
                     detalle.EstadoProveedor = false;
                 else
                     detalle.EstadoProveedor = true;
-                 
+
                 detalle.ComentarioProveedor = txtComentarioProveedor.Text;
 
                 presupuestos.ActualizarDetallePresupuestos(detalle);
@@ -190,7 +187,7 @@ namespace AmbientHouse.Administracion.ProveedoresExternos
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridViewVentas.Rows[index];
 
-               
+
                 ImageButton imgButton = (ImageButton)row.FindControl("ImageButtonEstado");
 
 
@@ -200,7 +197,7 @@ namespace AmbientHouse.Administracion.ProveedoresExternos
                     imgButton.ImageUrl = "~/Content/Imagenes/noaprobado.png";
 
                 UpdatePanelProveedores.Update();
-            
+
             }
         }
 
@@ -210,4 +207,4 @@ namespace AmbientHouse.Administracion.ProveedoresExternos
         }
 
     }
-} 
+}

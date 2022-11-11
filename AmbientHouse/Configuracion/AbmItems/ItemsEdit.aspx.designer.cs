@@ -60,13 +60,13 @@ namespace AmbientHouse.Configuracion.AbmItems
         protected global::System.Web.UI.WebControls.TextBox txtNombreFantasia;
 
         /// <summary>
-        /// Control MultiselectCategorias.
+        /// Control DDLCategorias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox MultiselectCategorias;
+        protected global::System.Web.UI.WebControls.DropDownList DDLCategorias;
 
         /// <summary>
         /// Control ddlCuenta.

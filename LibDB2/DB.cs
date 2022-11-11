@@ -2,7 +2,6 @@
 using System.Collections.Specialized;
 using System.Data;
 using System.Data.SqlClient;
-using System.Reflection;
 
 namespace LibDB2
 {
@@ -23,8 +22,9 @@ namespace LibDB2
         }
 
 
-        public static string connection_string {
-            get { return DesencriptaPasswordDeConnectionString(System.Web.HttpContext.Current.Session["WebApplicationConStr"].ToString()); } 
+        public static string connection_string
+        {
+            get { return DesencriptaPasswordDeConnectionString(System.Web.HttpContext.Current.Session["WebApplicationConStr"].ToString()); }
         }
         public static int command_timeout { get; set; } = -1; //en segundos .Un command timeout de -1 indica que se use el default. 0 es infinito
         public static bool deshabilita_encripcion { get; set; } = false;  // por default espera claves encriptadas
@@ -34,8 +34,8 @@ namespace LibDB2
         private ListDictionary openedTransactions = new ListDictionary(); //guardo las transacciones activas
 
         public DB()
-        { 
-            log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(@"D:\FFF\Work\WebApplication\Web\WebApplication\Web.config")); 
+        {
+            log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(@"D:\FFF\Work\WebApplication\Web\WebApplication\Web.config"));
         }  // si se usa este contructor usas la connection_string que tenga hasta el momento
 
         public DB(string connectionString)
@@ -245,7 +245,7 @@ namespace LibDB2
             if (returnValue is null) return null;
             if (returnValue.GetType() == typeof(DBNull)) return null;
             return Convert.ToDouble(returnValue);
-            
+
         }
         public bool? ExecuteScalarBool(string sql)
         {
@@ -462,7 +462,7 @@ namespace LibDB2
                 LOGFin();
                 return ds;
             }
-            
+
         }
         public DataTable GetDataTableWithDebug(string sql, CommandType cmdType, params SqlParameter[] args)
         {
@@ -470,11 +470,11 @@ namespace LibDB2
         }
         public DataTable GetDataTableWithDebug(SqlTransaction trans, string sql, CommandType cmdType, params SqlParameter[] args)
         {
-            return GetDataSetWithDebug(trans, sql, cmdType, args).Tables[0] ;
+            return GetDataSetWithDebug(trans, sql, cmdType, args).Tables[0];
         }
 
 
-        
+
 
 
 

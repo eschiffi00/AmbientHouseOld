@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -41,7 +39,7 @@ namespace DomainAmbientHouse.Datos
         }
 
 
-        public virtual List<Items> BuscarItemsFiltrosAgregadosProductos(int productoCateringId,string categoria, int estadoId)
+        public virtual List<Items> BuscarItemsFiltrosAgregadosProductos(int productoCateringId, string categoria, int estadoId)
         {
 
             var query = from I in SqlContext.Items
@@ -69,11 +67,11 @@ namespace DomainAmbientHouse.Datos
                                                 where I.EstadoId == estadoId && PCI.ProductoCateringId == productoCateringId
                                                 select I;
 
-          
+
 
             var queryItemsFull = from I in SqlContext.Items
-                                where I.EstadoId == estadoId
-                                select I;
+                                 where I.EstadoId == estadoId
+                                 select I;
 
 
             var queryFinal = queryItemsFull.Except(queryItemsPorProductoCatering);
@@ -98,8 +96,8 @@ namespace DomainAmbientHouse.Datos
 
             var query = from I in SqlContext.Items
                         where I.EstadoId == estadoId
-                        select new 
-                        { 
+                        select new
+                        {
                             Id = I.Id,
                             Detalle = I.Detalle,
                             CategoriaItemId = I.CategoriaItemId,
@@ -248,7 +246,7 @@ namespace DomainAmbientHouse.Datos
 
                 editPCI.ItemId = PCI.ItemId;
                 editPCI.ProductoCateringId = PCI.ProductoCateringId;
-            
+
             }
             else
             {
@@ -271,7 +269,7 @@ namespace DomainAmbientHouse.Datos
 
 
             return query.ToList();
-                        
+
         }
 
         public List<Items> ObtenerItemsPorTipoCateringTiempoCategorias(int TipoCateringId, int TiempoId, int CategoriaId)
@@ -341,7 +339,7 @@ namespace DomainAmbientHouse.Datos
 
 
             return query.ToList();
-        
+
         }
 
         public List<BuscarItemsporTipoCatering_Result> BuscarItemsPorTipoCatering(int TipoCateringId)

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Transactions;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -29,7 +26,7 @@ namespace DomainAmbientHouse.Negocios
             DatosParametros = new ParametrosDatos();
             DatosPresupuestoDetalle = new PresupuestoDetalleDatos();
         }
-        
+
         public virtual List<Presupuestos> BuscarEventosPorFecha(DateTime fecha, int locacionId)
         {
 
@@ -140,7 +137,7 @@ namespace DomainAmbientHouse.Negocios
             return Datos.BuscarClientePorEvento(EventoId);
         }
 
-        public List<ObtenerEventosPresupuestos> BuscarEventosActivosPorEjecutivoSeguimiento(int EmpleadoId,int nroEvento,int nroPresupuesto, int nroCliente,string apellidoynombre,string razonsocial, List<ClientesPipedrive> listClientes)
+        public List<ObtenerEventosPresupuestos> BuscarEventosActivosPorEjecutivoSeguimiento(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente, string apellidoynombre, string razonsocial, List<ClientesPipedrive> listClientes)
         {
             return Datos.BuscarEventosActivosPorEjecutivoSeguimiento(EmpleadoId, nroEvento, nroPresupuesto, nroCliente, apellidoynombre, razonsocial, listClientes);
         }
@@ -190,10 +187,10 @@ namespace DomainAmbientHouse.Negocios
             return Datos.ObtenerReporteEventosPorUnidadesNegocios(empleadoId);
         }
 
-        public List<ReporteEventosPorUnidadesdeNegocios> ObtenerReporteEventosPorUnidadesNegocios(int nroEvento,int nroPresupuesto,  string fechaDesde, string fechaHasta)
+        public List<ReporteEventosPorUnidadesdeNegocios> ObtenerReporteEventosPorUnidadesNegocios(int nroEvento, int nroPresupuesto, string fechaDesde, string fechaHasta)
         {
-            return Datos.ObtenerReporteEventosPorUnidadesNegocios( nroEvento,  nroPresupuesto,  fechaDesde,  fechaHasta);
-        
+            return Datos.ObtenerReporteEventosPorUnidadesNegocios(nroEvento, nroPresupuesto, fechaDesde, fechaHasta);
+
         }
 
         public List<Entidades.ObtenerEventos> BuscarEventosConfirmadosReservadosPorFechaVista(DateTime dateTime)
@@ -256,9 +253,9 @@ namespace DomainAmbientHouse.Negocios
             NewPresu.EstadoId = estadoPresupuestoEnviadoalCliente;
         }
 
-        public List<Entidades.ObtenerEventosPresupuestos> BuscarEventosConfirmadosPorEjecutivo(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente,string apellidonombre, string razonsocial, string fechaEvento)
+        public List<Entidades.ObtenerEventosPresupuestos> BuscarEventosConfirmadosPorEjecutivo(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente, string apellidonombre, string razonsocial, string fechaEvento)
         {
-            return Datos.BuscarEventosConfirmadosPorEjecutivo(EmpleadoId, nroEvento, nroPresupuesto, nroCliente,apellidonombre, razonsocial,fechaEvento);
+            return Datos.BuscarEventosConfirmadosPorEjecutivo(EmpleadoId, nroEvento, nroPresupuesto, nroCliente, apellidonombre, razonsocial, fechaEvento);
         }
 
         public List<Entidades.ObtenerEventosPresupuestos> BuscarEventosReservadosPorEjecutivos(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente, string fechaEvento)
@@ -271,7 +268,7 @@ namespace DomainAmbientHouse.Negocios
             return Datos.BuscarEventosPerdidosPorEjecutivo(EmpleadoId, nroEvento, nroPresupuesto, nroCliente);
         }
 
-        public TecnicaSalon BuscarTecnicaPorLocacion(int LocacionId , int SectorId)
+        public TecnicaSalon BuscarTecnicaPorLocacion(int LocacionId, int SectorId)
         {
             return Datos.BuscarTecnicaPorLocacion(LocacionId, SectorId);
         }
@@ -281,7 +278,7 @@ namespace DomainAmbientHouse.Negocios
             return Datos.BuscarEvento(EventoId);
         }
 
-        public List<ObtenerEventosPresupuestos> BuscarEventosGuardadosPorEjecutivo(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente,string apellidoynombre,string razonsocial, List<ClientesPipedrive> listClientes)
+        public List<ObtenerEventosPresupuestos> BuscarEventosGuardadosPorEjecutivo(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente, string apellidoynombre, string razonsocial, List<ClientesPipedrive> listClientes)
         {
             return Datos.BuscarEventosGuardadosPorEjecutivoSeguimiento(EmpleadoId, nroEvento, nroPresupuesto, nroCliente, apellidoynombre, razonsocial, listClientes);
         }
@@ -366,7 +363,7 @@ namespace DomainAmbientHouse.Negocios
 
                     DomainAmbientHouse.Servicios.Log.save(this, ex);
                 }
-            
+
             }
         }
 
@@ -378,7 +375,7 @@ namespace DomainAmbientHouse.Negocios
             {
                 try
                 {
-                    
+
 
                     Datos.GuardarEvento(EventoSeleccionado);
 
@@ -458,7 +455,7 @@ namespace DomainAmbientHouse.Negocios
 
         public List<ObtenerEventosPresupuestosProveedores> BuscarEventosConfirmadosProveedoresExternos(int nropresupuesto, string fechaDesde, string fechaHasta, int unidadNegocioId)
         {
-            return Datos.BuscarEventosConfirmadosProveedoresExternos( nropresupuesto,  fechaDesde,  fechaHasta,  unidadNegocioId);
+            return Datos.BuscarEventosConfirmadosProveedoresExternos(nropresupuesto, fechaDesde, fechaHasta, unidadNegocioId);
         }
 
         public void GuardarPresupuesto(Eventos EventoSeleccionado, Presupuestos PresupuestoSeleccionado, List<PresupuestoDetalle> ListPresupuestoDetalle, List<PresupuestoDetalle> ListPresupuestoDetalleCambios, List<PresupuestoDetalle> ListPresupuestoDetalleQuitados)
@@ -600,7 +597,7 @@ namespace DomainAmbientHouse.Negocios
 
         public List<ObtenerEventosPresupuestos> BuscarEventosRealizadosPorEjecutivo(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente, string fecha)
         {
-            return Datos.BuscarEventosRealizadosPorEjecutivo(EmpleadoId, nroEvento, nroPresupuesto, nroCliente,fecha);
+            return Datos.BuscarEventosRealizadosPorEjecutivo(EmpleadoId, nroEvento, nroPresupuesto, nroCliente, fecha);
         }
 
         public OrganizacionPresupuestoDetalle BuscarOrganizacionDetalle(int id)

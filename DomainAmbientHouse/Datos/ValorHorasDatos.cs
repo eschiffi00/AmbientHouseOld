@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
+﻿using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -40,7 +34,7 @@ namespace DomainAmbientHouse.Datos
         //        edit.TipoEmpleadoId = vh.TipoEmpleadoId;
         //        edit.TipoPagoId = vh.TipoPagoId;
         //        edit.Valor = vh.Valor;
-             
+
         //        SqlContext.SaveChanges();
 
         //    }

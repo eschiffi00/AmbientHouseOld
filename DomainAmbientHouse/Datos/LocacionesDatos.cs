@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -29,11 +27,11 @@ namespace DomainAmbientHouse.Datos
 
 
             var query = from L in SqlContext.Locaciones
-                        //join Se in SqlContext.Sectores on L.Id equals Se.LocacionId
-                        //join p in SqlContext.TecnicaSalon on Se.Id equals p.SectorId into ps
-                        //from p in ps.DefaultIfEmpty()
-                        //join Pt in SqlContext.Proveedores on p.ProveedorId equals Pt.Id into pl
-                        //from Pt in pl.DefaultIfEmpty()
+                            //join Se in SqlContext.Sectores on L.Id equals Se.LocacionId
+                            //join p in SqlContext.TecnicaSalon on Se.Id equals p.SectorId into ps
+                            //from p in ps.DefaultIfEmpty()
+                            //join Pt in SqlContext.Proveedores on p.ProveedorId equals Pt.Id into pl
+                            //from Pt in pl.DefaultIfEmpty()
                         where locaciones.Contains(L.Id)
                         select new
                         {

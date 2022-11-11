@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.TipoCatering
 {
@@ -28,7 +24,7 @@ namespace AmbientHouse.Configuracion.TipoCatering
             GridViewTpoCatering.DataBind();
         }
 
-    
+
         protected void ButtonVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Home/Index.aspx");
@@ -107,7 +103,7 @@ namespace AmbientHouse.Configuracion.TipoCatering
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                
+
 
                 DropDownList Estados = (DropDownList)e.Row.FindControl("DropDownListEstados");
 
@@ -135,10 +131,10 @@ namespace AmbientHouse.Configuracion.TipoCatering
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridViewTpoCatering.Rows[index];
 
-                
+
 
                 DropDownList Estados = row.FindControl("DropDownListEstados") as DropDownList;
-              
+
 
 
                 int ItemId = Int32.Parse(row.Cells[0].Text);
@@ -146,9 +142,9 @@ namespace AmbientHouse.Configuracion.TipoCatering
                 DomainAmbientHouse.Entidades.TipoCatering item = servicios.BuscarTipoCatering(ItemId);
 
 
-               
+
                 item.EstadoId = Int32.Parse(Estados.SelectedItem.Value);
-              
+
 
                 try
                 {

@@ -1,11 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-
 using System.Configuration;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -114,7 +111,7 @@ namespace DomainAmbientHouse.Datos
                 Salida.Add(cat);
             }
 
-           
+
 
             return Salida.ToList();
         }
@@ -149,7 +146,7 @@ namespace DomainAmbientHouse.Datos
                                                                     o.MomentoDiaId == momentoDiaId && o.DuracionId == duracionId &&
                                                                     o.TipoCateringId == tipoCateringId && o.TipoServicioId == tipoServicioId).FirstOrDefault();
 
-            
+
         }
 
         public void ActivarDesactivarConfiguracion(int Id, int estado)
@@ -176,13 +173,13 @@ namespace DomainAmbientHouse.Datos
         public List<TipoCatering> BuscarTipoCateringParaAgregarPorAdicional(int adicionalId)
         {
             List<TipoCatering> query = (from Tc in SqlContext.TipoCatering
-                        join TcA in SqlContext.TipoCateringAdicional on Tc.Id equals TcA.TipoCateringId
-                        where TcA.AdicionalId == adicionalId
-                        select Tc).ToList();
+                                        join TcA in SqlContext.TipoCateringAdicional on Tc.Id equals TcA.TipoCateringId
+                                        where TcA.AdicionalId == adicionalId
+                                        select Tc).ToList();
 
             List<TipoCatering> queryfinal = (from Tc in SqlContext.TipoCatering
                                              where Tc.EsAdicional == "N"
-                                            select Tc).ToList();
+                                             select Tc).ToList();
 
             return queryfinal.Except(query).ToList();
         }
@@ -250,7 +247,7 @@ namespace DomainAmbientHouse.Datos
         }
         public void EliminarTipoCateringAdicional(int adicionalId)
         {
-            List<TipoCateringAdicional> tipoCateringAdicional = SqlContext.TipoCateringAdicional.Where(o=> o.AdicionalId == adicionalId).ToList();
+            List<TipoCateringAdicional> tipoCateringAdicional = SqlContext.TipoCateringAdicional.Where(o => o.AdicionalId == adicionalId).ToList();
 
             foreach (var item in tipoCateringAdicional)
             {

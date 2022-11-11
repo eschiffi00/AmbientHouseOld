@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AmbientHouse.App_Shared.Controles
 {
@@ -73,7 +69,7 @@ namespace AmbientHouse.App_Shared.Controles
 
         }
 
-   
+
 
 
     }

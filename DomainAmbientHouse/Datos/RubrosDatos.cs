@@ -1,10 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -18,7 +14,7 @@ namespace DomainAmbientHouse.Datos
             SqlContext = new AmbientHouseEntities();
         }
 
-   
+
         public List<Rubros> ObtenerRubros()
         {
             return SqlContext.Rubros.ToList();
@@ -51,7 +47,7 @@ namespace DomainAmbientHouse.Datos
             }
         }
 
-      
+
 
         public List<Rubros_Proveedores> BuscarRubroPorProveedor(int ProveedorId)
         {
@@ -63,7 +59,7 @@ namespace DomainAmbientHouse.Datos
                             Id = RUP.Id,
                             RubroId = RUP.RubroId,
                             Descripcion = R.Descripcion
-                          
+
                         };
 
 
@@ -75,7 +71,7 @@ namespace DomainAmbientHouse.Datos
                 ruproveedor.Id = item.Id;
                 ruproveedor.RubroId = item.RubroId;
                 ruproveedor.Descripcion = item.Descripcion;
-                
+
 
                 Salida.Add(ruproveedor);
             }

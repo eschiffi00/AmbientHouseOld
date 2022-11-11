@@ -1,12 +1,11 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 
 namespace AmbientHouse.Reportes
 {
@@ -56,14 +55,14 @@ namespace AmbientHouse.Reportes
 
 
             return reporte.ListarProductos(searcher);
-          
+
         }
 
         protected void ButtonExportarExcel_Click(object sender, EventArgs e)
         {
             GridView grillaExcel = new GridView();
 
-            grillaExcel.DataSource= BuscarProductos().ToList();
+            grillaExcel.DataSource = BuscarProductos().ToList();
             grillaExcel.DataBind();
 
             Exportar(grillaExcel);

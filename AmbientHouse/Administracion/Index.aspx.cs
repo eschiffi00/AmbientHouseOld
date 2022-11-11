@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion
 {
@@ -26,7 +20,7 @@ namespace AmbientHouse.Administracion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
             if (!IsPostBack)
             {
                 ButtonAdministrarCuentas.Visible = false;
@@ -39,7 +33,7 @@ namespace AmbientHouse.Administracion
             }
         }
 
-       
+
 
         protected void ButtonVolver_Click(object sender, EventArgs e)
         {

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using System.Globalization;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.Cuentas
 {
@@ -79,7 +77,7 @@ namespace AmbientHouse.Administracion.Cuentas
                 CuentaId = id;
 
                 DomainAmbientHouse.Entidades.Cuentas cuenta = administracion.BuscarCuenta(id);
-                
+
                 TextBoxCuenta.Text = cuenta.Nombre;
 
                 if (cuenta.TipoCuenta == "BANCARIA")
@@ -87,9 +85,9 @@ namespace AmbientHouse.Administracion.Cuentas
 
             }
 
-           
 
-            TextBoxNroComprobante.Text = Int64.Parse(System.DateTime.Now.ToString("yyyyMMddmmss")).ToString(); 
+
+            TextBoxNroComprobante.Text = Int64.Parse(System.DateTime.Now.ToString("yyyyMMddmmss")).ToString();
             NuevoMovimientos();
 
             SetFocus(TextBoxFecha);
@@ -122,7 +120,7 @@ namespace AmbientHouse.Administracion.Cuentas
             DropDownListCentroCosto.DataValueField = "Id";
             DropDownListCentroCosto.DataBind();
 
-            DropDownListTipoImpuesto.DataSource = administracion.ObtenerImpuestos().Where(o=> o.Id == iva21 ||
+            DropDownListTipoImpuesto.DataSource = administracion.ObtenerImpuestos().Where(o => o.Id == iva21 ||
                                                                                             o.Id == iva27 ||
                                                                                             o.Id == iva105);
             DropDownListTipoImpuesto.DataTextField = "Descripcion";
@@ -290,7 +288,7 @@ namespace AmbientHouse.Administracion.Cuentas
             }
         }
 
-      
+
 
     }
 }

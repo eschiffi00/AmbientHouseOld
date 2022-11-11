@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.PresupuestosAprobados
@@ -160,7 +158,7 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
         AdministrativasServicios administrativas = new AdministrativasServicios();
         EventosServicios eventos = new EventosServicios();
         PresupuestosServicios presupuestos = new PresupuestosServicios();
-        
+
         Comun cmd = new Comun();
 
         protected void Page_Load(object sender, EventArgs e)

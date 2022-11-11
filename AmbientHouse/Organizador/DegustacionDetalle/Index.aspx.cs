@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
-using System.Text;
-using System.Web.UI.HtmlControls;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.IO;
+using System.Text;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 namespace AmbientHouse.Organizador.DegustacionDetalle
 {
     public partial class Index : System.Web.UI.Page
@@ -43,7 +39,7 @@ namespace AmbientHouse.Organizador.DegustacionDetalle
             if (base.Request["Id"] != null)
             {
                 id = int.Parse(base.Request["Id"]);
-                this.DegustacionId = id ;
+                this.DegustacionId = id;
             }
             this.Buscar();
 
@@ -113,14 +109,14 @@ namespace AmbientHouse.Organizador.DegustacionDetalle
                 int id = int.Parse(row.Cells[0].Text);
 
                 DomainAmbientHouse.Entidades.DegustacionDetalle detalle = this.administracion.BuscarDetalleDegustacion(id);
-                
+
                 detalle.EstadoId = int.Parse((row.FindControl("DropDownListEstados") as DropDownList).SelectedItem.Value);
 
-                detalle.Comentarios =comentario.Text;
+                detalle.Comentarios = comentario.Text;
 
                 if (cmd.IsNumeric(comensal.Text))
-                    detalle.NroComensal =Int32.Parse( comensal.Text.ToString());
-            
+                    detalle.NroComensal = Int32.Parse(comensal.Text.ToString());
+
                 try
                 {
                     this.administracion.Grabar(detalle);
@@ -160,10 +156,10 @@ namespace AmbientHouse.Organizador.DegustacionDetalle
                 comentario.Text = detalle.Comentarios;
 
                 if (cmd.IsNumeric(detalle.NroComensal))
-                   comensal.Text = detalle.NroComensal.ToString();
+                    comensal.Text = detalle.NroComensal.ToString();
 
 
-                
+
             }
 
         }

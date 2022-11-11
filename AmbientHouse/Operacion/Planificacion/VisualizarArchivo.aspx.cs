@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
 
 namespace AmbientHouse.Operacion.Planificacion
 {
@@ -41,7 +37,7 @@ namespace AmbientHouse.Operacion.Planificacion
         }
 
         AdministrativasServicios administracion = new AdministrativasServicios();
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

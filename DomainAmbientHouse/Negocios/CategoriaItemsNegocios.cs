@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -58,7 +53,7 @@ namespace DomainAmbientHouse.Negocios
 
         public List<CategoriasItem> ObtenerCategoriasPorTipoBarra(int TipoBarraId)
         {
-            return Datos.ObtenerCategoriasPorTipoBarra( TipoBarraId);
+            return Datos.ObtenerCategoriasPorTipoBarra(TipoBarraId);
         }
     }
 }

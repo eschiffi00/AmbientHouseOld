@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -33,12 +28,12 @@ namespace DomainAmbientHouse.Negocios
 
         }
 
-        public virtual CostosPaquetesCIAmbientacion BuscarPreciosPaquetesCIAmbientacion(int paqueteId, int caracteristicaId, 
+        public virtual CostosPaquetesCIAmbientacion BuscarPreciosPaquetesCIAmbientacion(int paqueteId, int caracteristicaId,
                                                                                         int segmentoId, int proveedorId,
-                                                                                        int cantidadPaquetes,int semestre, int anio)
+                                                                                        int cantidadPaquetes, int semestre, int anio)
         {
 
-            return Datos.BuscarPreciosPaquetesCIAmbientacion(paqueteId,caracteristicaId,segmentoId,proveedorId,cantidadPaquetes,semestre,anio);
+            return Datos.BuscarPreciosPaquetesCIAmbientacion(paqueteId, caracteristicaId, segmentoId, proveedorId, cantidadPaquetes, semestre, anio);
 
         }
 

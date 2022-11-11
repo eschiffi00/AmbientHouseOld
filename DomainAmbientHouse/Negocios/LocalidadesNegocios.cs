@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
     public class LocalidadesNegocios
     {
 
-      LocalidadesDatos Datos;
+        LocalidadesDatos Datos;
 
-      public LocalidadesNegocios()
+        public LocalidadesNegocios()
         {
             Datos = new LocalidadesDatos();
         }
 
-      public virtual List<Localidades> ObtenerLocalidades()
+        public virtual List<Localidades> ObtenerLocalidades()
         {
 
             return Datos.ObtenerLocalidades();
@@ -27,14 +22,14 @@ namespace DomainAmbientHouse.Negocios
         }
 
 
-      public Localidades BuscarLocalidades(long id)
-      {
-          return Datos.BuscarLocalidades( id);
-      }
+        public Localidades BuscarLocalidades(long id)
+        {
+            return Datos.BuscarLocalidades(id);
+        }
 
-      public void NuevaLocalidades(Localidades localidades)
-      {
-          Datos.NuevaLocalidades(localidades);
-      }
+        public void NuevaLocalidades(Localidades localidades)
+        {
+            Datos.NuevaLocalidades(localidades);
+        }
     }
 }

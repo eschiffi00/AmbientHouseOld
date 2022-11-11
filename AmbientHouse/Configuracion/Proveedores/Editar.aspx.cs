@@ -1,11 +1,9 @@
-﻿ using System;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
 using System.Configuration;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.Proveedores
 {
@@ -101,7 +99,7 @@ namespace AmbientHouse.Configuracion.Proveedores
                 InicializarPagina();
                 CargarListas();
 
-           
+
             }
         }
 
@@ -126,7 +124,7 @@ namespace AmbientHouse.Configuracion.Proveedores
             {
                 IsEdit = true;
                 EditarProveedores(id);
-               
+
             }
             SetFocus(TextBoxRazonSocial);
         }
@@ -223,7 +221,7 @@ namespace AmbientHouse.Configuracion.Proveedores
             { proveedor.Propio = "N"; }
 
 
-            servicios.NuevoProveedor(proveedor, ListUnidadesNegociosProveedores, ListRubrosProveedores,ListProveedoresFormasdePago  );
+            servicios.NuevoProveedor(proveedor, ListUnidadesNegociosProveedores, ListRubrosProveedores, ListProveedoresFormasdePago);
 
             Response.Redirect("~/Configuracion/Proveedores/Index.aspx");
         }

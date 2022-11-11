@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -29,7 +24,7 @@ namespace DomainAmbientHouse.Negocios
         public virtual List<Items> BuscarItemsFiltros(string detalle, string categoria, int estadoId)
         {
 
-            return Datos.BuscarItemsFiltros( detalle,  categoria,  estadoId);
+            return Datos.BuscarItemsFiltros(detalle, categoria, estadoId);
 
         }
 
@@ -61,7 +56,7 @@ namespace DomainAmbientHouse.Negocios
 
         public List<Items> ObtenerItemsPorCategoria(int categoriaId)
         {
-            return Datos.ObtenerItemsPorCategoria( categoriaId);
+            return Datos.ObtenerItemsPorCategoria(categoriaId);
         }
 
         public void ActualizarItem(Items item)
@@ -69,14 +64,14 @@ namespace DomainAmbientHouse.Negocios
             Datos.ActualizarItem(item);
         }
 
-        public List<Items> BuscarItemsAsociados(int productoCateringId,string categoria, int estadoActivo)
+        public List<Items> BuscarItemsAsociados(int productoCateringId, string categoria, int estadoActivo)
         {
-            return Datos.BuscarItemsFiltrosAgregadosProductos(productoCateringId,categoria, estadoActivo);
+            return Datos.BuscarItemsFiltrosAgregadosProductos(productoCateringId, categoria, estadoActivo);
         }
 
-        public List<Items> BuscarItemsNoAsociados(int productoCateringId,string categoria, int estadoActivo)
+        public List<Items> BuscarItemsNoAsociados(int productoCateringId, string categoria, int estadoActivo)
         {
-            return Datos.BuscarItemsFiltrosNoAgregadosProductos(productoCateringId,categoria, estadoActivo);
+            return Datos.BuscarItemsFiltrosNoAgregadosProductos(productoCateringId, categoria, estadoActivo);
         }
 
 
@@ -92,7 +87,7 @@ namespace DomainAmbientHouse.Negocios
 
         public List<Items> ObtenerItemsPorTipoCateringTiempo(int TipoCateringId, int TiempoId)
         {
-            return Datos.ObtenerItemsPorTipoCateringTiempo( TipoCateringId,  TiempoId);
+            return Datos.ObtenerItemsPorTipoCateringTiempo(TipoCateringId, TiempoId);
         }
 
         public List<Items> ObtenerItemsPorTipoBarraCategorias(int TipoBarraId, int CategoriaItem)

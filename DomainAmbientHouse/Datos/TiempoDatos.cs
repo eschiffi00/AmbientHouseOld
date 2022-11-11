@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -17,18 +15,18 @@ namespace DomainAmbientHouse.Datos
         {
             SqlContext = new AmbientHouseEntities();
         }
-        
+
         public virtual List<Tiempos> ObtenerTiempos()
         {
 
-            return SqlContext.Tiempos.OrderBy(o=>o.Orden).ToList();
+            return SqlContext.Tiempos.OrderBy(o => o.Orden).ToList();
 
         }
 
 
         public Tiempos BuscarTiempo(int id)
         {
-            return SqlContext.Tiempos.Where(o=> o.Id == id).SingleOrDefault();
+            return SqlContext.Tiempos.Where(o => o.Id == id).SingleOrDefault();
         }
 
         public void NuevoTiempo(Tiempos tiempo)
@@ -45,7 +43,7 @@ namespace DomainAmbientHouse.Datos
             else
             {
                 SqlContext.Tiempos.Add(tiempo);
-                    SqlContext.SaveChanges();
+                SqlContext.SaveChanges();
 
             }
 
@@ -60,7 +58,7 @@ namespace DomainAmbientHouse.Datos
                         where C.TipoCateringId == TipoCateringId && C.EstadoId == activo
                         select T;
 
-            return query.OrderBy(o=> o.Orden).Distinct().ToList();
+            return query.OrderBy(o => o.Orden).Distinct().ToList();
         }
     }
 }

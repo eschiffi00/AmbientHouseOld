@@ -1,12 +1,11 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.Cheques
 {
@@ -92,11 +91,11 @@ namespace AmbientHouse.Administracion.Cheques
             searcher.FechaVencimientoHasta = TextBoxFechaVencimientoHasta.Text;
             searcher.RazonSocial = TextBoxRazonSocial.Text;
             searcher.EstadoId = DropDownListEstados.SelectedItem.Value;
-            
+
 
             ListCheques = servicios.ListarCheques(searcher);
 
-            double SaldoCuenta = cmd.IsNumeric(Saldo)? cmd.ValidarImportes(Saldo):0;
+            double SaldoCuenta = cmd.IsNumeric(Saldo) ? cmd.ValidarImportes(Saldo) : 0;
             double OtrosDebitosCuenta = cmd.IsNumeric(OtrosDebitos) ? cmd.ValidarImportes(OtrosDebitos) : 0;
 
             SaldoCuenta = SaldoCuenta - OtrosDebitosCuenta;
@@ -126,7 +125,7 @@ namespace AmbientHouse.Administracion.Cheques
                 item.Saldo = SaldoCuenta;
             }
 
-            GridViewCheques.DataSource = ListCheques.OrderBy(o=> o.FechaVencimiento).ToList();
+            GridViewCheques.DataSource = ListCheques.OrderBy(o => o.FechaVencimiento).ToList();
             GridViewCheques.DataBind();
         }
 
@@ -144,7 +143,7 @@ namespace AmbientHouse.Administracion.Cheques
         {
             GridViewCheques.PageIndex = e.NewPageIndex;
 
-            BuscarCheques(TextBoxSaldoCuenta.Text, TextBoxOtrosConceptoADebitar.Text );
+            BuscarCheques(TextBoxSaldoCuenta.Text, TextBoxOtrosConceptoADebitar.Text);
         }
 
         protected void ButtonAcreditados_Click(object sender, EventArgs e)
@@ -189,7 +188,7 @@ namespace AmbientHouse.Administracion.Cheques
                 if (double.Parse(e.Row.Cells[11].Text) < 0)
                 {
                     e.Row.Cells[11].ForeColor = System.Drawing.Color.Red;
-                   
+
                 }
 
                 if (e.Row.Cells[9].Text == "Pagado")
@@ -280,7 +279,7 @@ namespace AmbientHouse.Administracion.Cheques
                 int ChequeId = Int32.Parse(row.Cells[1].Text);
 
                 Response.Redirect("~/Administracion/Cheques/Editar.aspx?Id=" + ChequeId);
-              
+
             }
 
             BuscarCheques(TextBoxSaldoCuenta.Text, TextBoxOtrosConceptoADebitar.Text);
@@ -289,7 +288,7 @@ namespace AmbientHouse.Administracion.Cheques
 
         protected void ButtonExportarExcel_Click(object sender, EventArgs e)
         {
-            
+
             GridView Total = new GridView();
 
             ChequesSearcher searcher = new ChequesSearcher();
@@ -305,7 +304,7 @@ namespace AmbientHouse.Administracion.Cheques
 
             ListCheques = servicios.ListarCheques(searcher);
 
-         
+
 
             Total.DataSource = ListCheques.OrderBy(o => o.FechaVencimiento).ToList();
             Total.DataBind();

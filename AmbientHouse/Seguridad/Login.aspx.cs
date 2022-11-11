@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Seguridad;
 using DomainAmbientHouse.Servicios;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
-using DomainAmbientHouse.Entidades;
+using System.Web.UI.WebControls;
 
 
 
@@ -19,7 +16,7 @@ namespace AmbientHouse.Seguridad
 
         AdministrativasServicios administracion = new AdministrativasServicios();
 
-        
+
         private int UsuarioId
         {
             get
@@ -43,7 +40,7 @@ namespace AmbientHouse.Seguridad
                 Session["UsuarioPipeDriveId"] = value;
             }
         }
-        
+
         private int EmpleadoId
         {
             get
@@ -115,7 +112,7 @@ namespace AmbientHouse.Seguridad
                 Session["ListLocacionesUsuarios"] = value;
             }
         }
-         
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
@@ -137,11 +134,11 @@ namespace AmbientHouse.Seguridad
 
             int PerfilStock = int.Parse(ConfigurationManager.AppSettings["Stock"].ToString());
             int PerfilStockCarga = int.Parse(ConfigurationManager.AppSettings["StockCarga"].ToString());
-            
+
             int PerfilCoordinadorOrganizacion = int.Parse(ConfigurationManager.AppSettings["CoordinadorOrganizacion"].ToString());
 
 
-            if (ValidarUsuario(LoginAmbient.UserName, LoginAmbient.Password,activo))
+            if (ValidarUsuario(LoginAmbient.UserName, LoginAmbient.Password, activo))
             {
                 List<DomainAmbientHouse.Entidades.OrganizacionPresupuestoDetalle> listaEventos = administracion.ListarEventosFechaEnvioMailPresentacion();
 
@@ -220,7 +217,7 @@ namespace AmbientHouse.Seguridad
                     else if (PerfilId == PerfilGerencia)
                     {
                         Response.Redirect("~/Home/Index.aspx");
-                      
+
                     }
                     else if (PerfilId == PerfilOrganizador || PerfilId == PerfilCoordinadorOrganizacion)
                     {
@@ -251,7 +248,7 @@ namespace AmbientHouse.Seguridad
         private bool ValidarUsuario(string usuario, string password, int activo)
         {
             return seguridad.ValidarUsuarios(usuario, password, activo);
-        
+
         }
 
 

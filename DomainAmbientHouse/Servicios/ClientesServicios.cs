@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Negocios;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Servicios
 {
@@ -13,13 +8,13 @@ namespace DomainAmbientHouse.Servicios
     {
 
         ClientesNegocios Negocios;
-       
+
         EventosNegocios NegociosEventos;
 
         public ClientesServicios()
         {
             Negocios = new ClientesNegocios();
-            
+
             NegociosEventos = new EventosNegocios();
         }
 
@@ -50,7 +45,7 @@ namespace DomainAmbientHouse.Servicios
             return NegociosEventos.BuscarEventosPorCliente(clienteId);
         }
 
-        public List<SeguimientosEventosClientesEstados> BuscarClientesSeguimientosBuscador(int nroCliente, int nroEvento ,int nroPresupuesto, int empleadoId)
+        public List<SeguimientosEventosClientesEstados> BuscarClientesSeguimientosBuscador(int nroCliente, int nroEvento, int nroPresupuesto, int empleadoId)
         {
             return Negocios.BuscarClientesSeguimientosBuscador(nroCliente, nroEvento, nroPresupuesto, empleadoId);
         }
@@ -61,7 +56,7 @@ namespace DomainAmbientHouse.Servicios
             return Negocios.ObtenerContactosPorCliente(clienteId);
         }
 
-      
+
         public List<AvisosClientesPorFecha> ObtenerAvisosClientes(int empleadoId)
         {
             return Negocios.ObtenerAvisosClientes(empleadoId);
@@ -79,7 +74,7 @@ namespace DomainAmbientHouse.Servicios
 
         public void GrabarClienteBisSenaEvento(ClientesBis cliente, Eventos evento, Presupuestos presupuesto)
         {
-            Negocios.GrabarClienteBisSenaEvento( cliente,  evento);
+            Negocios.GrabarClienteBisSenaEvento(cliente, evento);
         }
 
         public List<ClientesBis> BuscarClientesPorApellidoRazonSocial(ClientesSearcher searcher)

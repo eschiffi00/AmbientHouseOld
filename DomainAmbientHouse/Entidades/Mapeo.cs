@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DomainAmbientHouse.Entidades
 {
@@ -355,7 +353,7 @@ namespace DomainAmbientHouse.Entidades
                 else
                     return "Confirmado";
             }
-            set{}
+            set { }
         }
     }
 
@@ -374,7 +372,7 @@ namespace DomainAmbientHouse.Entidades
 
         public string EmpresaRS { get; set; }
 
-       
+
     }
 
     public partial class TipoMovimientos
@@ -870,13 +868,13 @@ namespace DomainAmbientHouse.Entidades
     }
 
     public partial class PersonalEventos
-    { 
+    {
 
-        public string EmpleadoApellidoNombre {get; set;}
-        public string TipoEmpleadoDescripcion {get; set;}
-        public int TipoEmpleadoId {get; set;}
+        public string EmpleadoApellidoNombre { get; set; }
+        public string TipoEmpleadoDescripcion { get; set; }
+        public int TipoEmpleadoId { get; set; }
 
-   
+
     }
 
 

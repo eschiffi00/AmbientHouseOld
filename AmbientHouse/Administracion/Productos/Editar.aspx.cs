@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using System.Configuration;
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Seguridad;
+using DomainAmbientHouse.Servicios;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.Productos
 {
@@ -496,7 +494,7 @@ namespace AmbientHouse.Administracion.Productos
                 DateTime fechaSeleccionadaVencimiento;
 
                 int activo = Int32.Parse(ConfigurationManager.AppSettings["ProductoActivo"].ToString());
-               
+
 
                 DomainAmbientHouse.Entidades.Productos producto = ProductosSeleccionado;
 
@@ -590,7 +588,7 @@ namespace AmbientHouse.Administracion.Productos
 
                 }
             }
-           
+
 
             if (DropDownListProveedores.SelectedItem != null)
             {
@@ -1283,11 +1281,11 @@ namespace AmbientHouse.Administracion.Productos
             FormarCodigoTecnica();
             FormarDescripcionTecnica();
 
-         
+
 
         }
 
-  
+
 
         protected void TextBoxFechaCodigo_TextChanged(object sender, EventArgs e)
         {
@@ -1399,7 +1397,7 @@ namespace AmbientHouse.Administracion.Productos
 
         private void FormarCodigoAmbientacion()
         {
-            TextBoxCodigo.Text = LetraCodigo.ToString() + DropDownListCategorias.SelectedItem.Value.ToString() + "P" + DropDownListProveedores.SelectedItem.Value.ToString() + "I" + DropDownListCantidadPersonas.SelectedItem.Value.ToString() + "S" + DropDownListSector.SelectedItem.Value.ToString() + "SE" + DropDownListSemestre.SelectedItem.Value.ToString() + DropDownListAnio.SelectedItem.Value.ToString(); 
+            TextBoxCodigo.Text = LetraCodigo.ToString() + DropDownListCategorias.SelectedItem.Value.ToString() + "P" + DropDownListProveedores.SelectedItem.Value.ToString() + "I" + DropDownListCantidadPersonas.SelectedItem.Value.ToString() + "S" + DropDownListSector.SelectedItem.Value.ToString() + "SE" + DropDownListSemestre.SelectedItem.Value.ToString() + DropDownListAnio.SelectedItem.Value.ToString();
         }
 
         private void FormarDescripcionAmbientacion()

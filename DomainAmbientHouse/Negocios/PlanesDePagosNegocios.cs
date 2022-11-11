@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
     public class PlanesDePagosNegocios
     {
 
-      PlanesDePagosDatos Datos;
+        PlanesDePagosDatos Datos;
 
-      public PlanesDePagosNegocios()
+        public PlanesDePagosNegocios()
         {
             Datos = new PlanesDePagosDatos();
         }
 
-      public virtual List<PlanesDePago> ObtenerPlanesDePagos()
+        public virtual List<PlanesDePago> ObtenerPlanesDePagos()
         {
 
             return Datos.ObtenerPlanesDePagos();
@@ -27,16 +22,16 @@ namespace DomainAmbientHouse.Negocios
         }
 
 
-      public PlanesDePago BuscarPlanesDePago(int id)
-      {
-          return Datos.BuscarPlanesDePago(id);
-      }
+        public PlanesDePago BuscarPlanesDePago(int id)
+        {
+            return Datos.BuscarPlanesDePago(id);
+        }
 
-      public void NuevaPlanesDePago(PlanesDePago planesDePago)
-      {
-          Datos.NuevaPlanesDePago(planesDePago);
-      }
+        public void NuevaPlanesDePago(PlanesDePago planesDePago)
+        {
+            Datos.NuevaPlanesDePago(planesDePago);
+        }
 
-   
+
     }
 }

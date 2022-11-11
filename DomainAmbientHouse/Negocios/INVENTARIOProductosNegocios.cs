@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System;
+using System.Collections.Generic;
 using System.Transactions;
 
 namespace DomainAmbientHouse.Negocios
@@ -54,14 +50,14 @@ namespace DomainAmbientHouse.Negocios
 
         public List<Existencias> ListarExistencias(string descripcionProducto, string codigoProducto, int depositoId, int rubroId)
         {
-            return Datos.ListarExistencias( descripcionProducto,codigoProducto,  depositoId,  rubroId);
+            return Datos.ListarExistencias(descripcionProducto, codigoProducto, depositoId, rubroId);
         }
 
 
 
         internal Existencias BuscarExistencias(int productoId, int depositoId)
         {
-            return Datos.BuscarExistencias( productoId,  depositoId);
+            return Datos.BuscarExistencias(productoId, depositoId);
         }
 
         internal bool GuardarExistencia(Existencias existencia)
@@ -101,7 +97,7 @@ namespace DomainAmbientHouse.Negocios
                 }
             }
 
-          
+
         }
     }
 }

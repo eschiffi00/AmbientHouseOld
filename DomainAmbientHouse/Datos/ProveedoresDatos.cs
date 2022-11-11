@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -23,14 +21,14 @@ namespace DomainAmbientHouse.Datos
         {
 
             var query = from u in SqlContext.Proveedores
-                        //join UnP in SqlContext.UnidadesNegocios_Proveedores on u.Id equals UnP.UnidadNegocioId into UnPs
-                        //from UnP in UnPs.DefaultIfEmpty()
-                        //join p in SqlContext.UnidadesNegocios on UnP.UnidadNegocioId equals p.Id into Ps
-                        //from p in Ps.DefaultIfEmpty()
-                        //join RP in SqlContext.Rubros_Proveedores on u.Id equals RP.ProveedorId into RPs
-                        //from RP in RPs.DefaultIfEmpty()
-                        //join r in SqlContext.Rubros on RP.RubroId equals r.RubroId into Rs
-                        //from r in Rs.DefaultIfEmpty()
+                            //join UnP in SqlContext.UnidadesNegocios_Proveedores on u.Id equals UnP.UnidadNegocioId into UnPs
+                            //from UnP in UnPs.DefaultIfEmpty()
+                            //join p in SqlContext.UnidadesNegocios on UnP.UnidadNegocioId equals p.Id into Ps
+                            //from p in Ps.DefaultIfEmpty()
+                            //join RP in SqlContext.Rubros_Proveedores on u.Id equals RP.ProveedorId into RPs
+                            //from RP in RPs.DefaultIfEmpty()
+                            //join r in SqlContext.Rubros on RP.RubroId equals r.RubroId into Rs
+                            //from r in Rs.DefaultIfEmpty()
                         select new
                         {
                             Id = u.Id,
@@ -514,7 +512,7 @@ namespace DomainAmbientHouse.Datos
 
         }
 
-        internal List<Proveedores> BuscarProveedores(ProveedoresSearcher searcher) 
+        internal List<Proveedores> BuscarProveedores(ProveedoresSearcher searcher)
 
         {
             var query = from P in SqlContext.Proveedores
@@ -586,12 +584,12 @@ namespace DomainAmbientHouse.Entidades
     }
 
 
-     public partial class ProveedoresExternosSearcher
+    public partial class ProveedoresExternosSearcher
     {
 
         public string RazonSocial { get; set; }
         public string FechaEventoDesde { get; set; }
         public string FechaEventoHasta { get; set; }
-         public string NroPresupuesto { get; set; }
+        public string NroPresupuesto { get; set; }
     }
 }

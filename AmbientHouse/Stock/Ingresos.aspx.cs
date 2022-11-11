@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 
 namespace AmbientHouse.Stock
 {
@@ -87,12 +85,12 @@ namespace AmbientHouse.Stock
             {
                 producto.Cantidad = producto.Cantidad + double.Parse(TextBoxCantidadExistente.Text);
             }
-            else 
+            else
             {
                 producto.Cantidad = producto.Cantidad - double.Parse(TextBoxCantidadExistente.Text);
             }
-         
-          
+
+
             producto.EmpleadoId = EmpleadoId;
 
             administracion.ActualizarProductos(producto);

@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
-using DomainAmbientHouse.Entidades;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -176,7 +174,7 @@ namespace DomainAmbientHouse.Datos
                 SqlContext.EjecucionTareasProgramadas.Add(programada);
 
                 SqlContext.SaveChanges();
-            
+
             }
         }
     }

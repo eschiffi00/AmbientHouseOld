@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AmbientHouse
 {
@@ -52,7 +48,7 @@ namespace AmbientHouse
             int PerfilGestor = int.Parse(ConfigurationManager.AppSettings["Gestor"].ToString());
 
 
-            if (PerfilId == PerfilCoordinadorVentas 
+            if (PerfilId == PerfilCoordinadorVentas
                 || PerfilId == PerfilEjecutivo
                 || PerfilId == PerfilGestor)
             {

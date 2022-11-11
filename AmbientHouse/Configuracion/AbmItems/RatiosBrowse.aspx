@@ -131,16 +131,16 @@
         <div class="form-group row" id="MultiItems">
             <label for="MultiselectItems" class="col-sm-2 col-form-label text-sm-left text-md-right">Items</label>
             <div class="col-sm-4">
-                <asp:ListBox ID="MultiselectItems" runat="server" SelectionMode="Multiple" OnSelectedIndexChanged="MultiselectItems_SelectedIndexChanged" TabIndex="1" class="form-control" ></asp:ListBox>
+                <asp:ListBox ID="MultiselectItems" runat="server" SelectionMode="Multiple" TabIndex="1" class="form-control" ></asp:ListBox>
             </div>
         </div>
 
-        <div class="form-group row" id="MultiCategorias">
+        <%--<div class="form-group row" id="MultiCategorias">
             <label for="MultiselectCategorias" class="col-sm-2 col-form-label text-sm-left text-md-right">Categorias</label>
             <div class="col-sm-4">
                 <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="2" class="form-control"></asp:ListBox>
             </div>
-        </div>
+        </div>--%>
         <div class="form-group row" id="MultiExperiencias">
             <label for="MultiselectExperiencias" class="col-sm-2 col-form-label text-sm-left text-md-right">Experiencia/Barra</label>
             <div class="col-sm-4">
@@ -177,8 +177,8 @@
                 <asp:BoundField DataField="ItemId" HeaderText="Detalle" Visible="false" />
                 <asp:BoundField DataField="ItemDetalle" HeaderText="Item" Visible="true" />
                 <asp:BoundField DataField="ExperienciaBarra" HeaderText="Experiencia/Barra" Visible="true" />
-                <asp:BoundField DataField="CategoriaId" HeaderText="CategoriaId" Visible="false" />
-                <asp:BoundField DataField="CategoriaDetalle" HeaderText="Categoria Detalle" Visible="true" />
+<%--                <asp:BoundField DataField="CategoriaId" HeaderText="CategoriaId" Visible="false" />
+                <asp:BoundField DataField="CategoriaDetalle" HeaderText="Categoria Detalle" Visible="true" />--%>
                 <asp:BoundField DataField="TipoRatio" HeaderText="Tipo Ratio" Visible="true" />
                 <asp:BoundField DataField="DetalleTipo" HeaderText="Detalle Ratio" Visible="true" />
                 <asp:BoundField DataField="ValorRatio" HeaderText="Valor Ratio" Visible="true" />

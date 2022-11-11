@@ -2,17 +2,10 @@
 using DbEntidades.Operators;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.IO;
-using System.Data;
-using NPOI.SS.Formula.Functions;
-using NPOI.XSSF.UserModel.Helpers;
-using Org.BouncyCastle.X509;
-using static System.Net.WebRequestMethods;
-using System.Drawing;
 
 namespace AmbientHouse.Configuracion.AbmItems
 {
@@ -32,13 +25,13 @@ namespace AmbientHouse.Configuracion.AbmItems
         {
             List<ItemsListado> ent = ItemsOperator.GetAllWithDetails().ToList();
             grdItems.DataSource = ent;
-            
+
             grdItems.DataBind();
             foreach (GridViewRow fila in grdItems.Rows)
             {
                 TableCellCollection fila2;
                 fila2 = fila.Cells;
-                if (fila2[15].Text == "Inactivo")
+                if (fila2[16].Text == "Inactivo")
                 {
                     fila.ControlStyle.BackColor = Color.LightSalmon;
                     fila.ControlStyle.ForeColor = Color.White;
@@ -69,7 +62,7 @@ namespace AmbientHouse.Configuracion.AbmItems
             if (e.CommandName == "CommandNameEdit")
             {
 
-                Response.Redirect("../../Configuracion/AbmItems/ItemsEdit.aspx?Id="+id);
+                Response.Redirect("../../Configuracion/AbmItems/ItemsEdit.aspx?Id=" + id);
             }
         }
 

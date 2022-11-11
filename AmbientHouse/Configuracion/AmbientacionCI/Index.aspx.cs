@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
 
 namespace AmbientHouse.Configuracion.AmbientacionCI
 {
@@ -112,7 +106,7 @@ namespace AmbientHouse.Configuracion.AmbientacionCI
             }
         }
 
-       
+
 
     }
 }

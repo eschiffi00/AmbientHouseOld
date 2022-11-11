@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibDB2
+﻿namespace LibDB2
 {
     public class Encriptador
     {
@@ -17,7 +11,7 @@ namespace LibDB2
             }
             return s;
         }
-        
+
         public static string CodPwd(string pwd)
         {
             string s = string.Empty;
@@ -27,6 +21,6 @@ namespace LibDB2
             }
             return s;
         }
-        
+
     }
 }

@@ -1,14 +1,10 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using Newtonsoft.Json;
 using System.Net;
-using DomainAmbientHouse.Negocios;
 using System.Security.Authentication;
 
 
@@ -28,7 +24,7 @@ namespace DomainAmbientHouse.Servicios
             ServicePointManager.SecurityProtocol = Tls12;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"https://grupolahusen.pipedrive.com/v1/persons?user_id=" + user + "&name=" + contacto + "&visible_to=1&api_token=d063057f2a70f91619815dd9e7a4ec673d34b80f");
-               
+
 
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             using (Stream stream = response.GetResponseStream())
@@ -61,7 +57,7 @@ namespace DomainAmbientHouse.Servicios
 
             return Salida.ToList();
 
-        
+
         }
 
         public List<ClientesPipedrive> ObtenerListaClientesPipedrive(string clientes, string user)
@@ -145,7 +141,7 @@ namespace DomainAmbientHouse.Servicios
 
             }
 
-          
+
 
             if (clientes != null)
             {

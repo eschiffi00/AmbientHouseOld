@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-using DomainAmbientHouse.Entidades;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Negocios;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
@@ -260,7 +256,7 @@ namespace DomainAmbientHouse.Servicios
             return Negocio.BuscarEventosPorEjecutivoSeguimiento(empleadoId);
         }
 
-     
+
 
         public int BuscarUltimoPresupuestoPorEvento(int eventoId)
         {
@@ -272,14 +268,14 @@ namespace DomainAmbientHouse.Servicios
             return Negocio.BuscarEventosConfirmadosReservados();
         }
 
-      
+
 
         public int BuscarClientePorEvento(int EventoId)
         {
             return Negocio.BuscarClientePorEvento(EventoId);
         }
 
-     
+
 
         public List<ObtenerEventosPresupuestos> BuscarEventosActivosPorEjecutivoSeguimiento(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente, string apellidoynombre, string razonsocial, List<ClientesPipedrive> listClientes)
         {
@@ -287,22 +283,22 @@ namespace DomainAmbientHouse.Servicios
 
         }
 
-        public List<ObtenerEventosPresupuestos> BuscarEventosConfirmadosPorEjecutivo(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente,string apellidonombre, string razonsocial, string fechaEvento)
+        public List<ObtenerEventosPresupuestos> BuscarEventosConfirmadosPorEjecutivo(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente, string apellidonombre, string razonsocial, string fechaEvento)
         {
-            return Negocio.BuscarEventosConfirmadosPorEjecutivo(EmpleadoId, nroEvento, nroPresupuesto, nroCliente, apellidonombre,razonsocial, fechaEvento);
+            return Negocio.BuscarEventosConfirmadosPorEjecutivo(EmpleadoId, nroEvento, nroPresupuesto, nroCliente, apellidonombre, razonsocial, fechaEvento);
 
         }
 
         public List<ObtenerEventosPresupuestos> BuscarEventosRealizadosPorEjecutivo(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente, string fecha)
         {
-            return Negocio.BuscarEventosRealizadosPorEjecutivo(EmpleadoId, nroEvento, nroPresupuesto, nroCliente,fecha);
+            return Negocio.BuscarEventosRealizadosPorEjecutivo(EmpleadoId, nroEvento, nroPresupuesto, nroCliente, fecha);
 
         }
 
 
         public List<ObtenerEventosPresupuestos> BuscarEventosReservadosPorEjecutivos(int EmpleadoId, int nroEvento, int nroPresupuesto, int nroCliente, string fechaEvento)
         {
-            return Negocio.BuscarEventosReservadosPorEjecutivos(EmpleadoId, nroEvento, nroPresupuesto, nroCliente,fechaEvento);
+            return Negocio.BuscarEventosReservadosPorEjecutivos(EmpleadoId, nroEvento, nroPresupuesto, nroCliente, fechaEvento);
 
         }
 
@@ -501,11 +497,11 @@ namespace DomainAmbientHouse.Servicios
             NegociosPresupuestos.GuardarPresupuesto(PresupuestoSeleccionado);
         }
 
-        public CostosPaquetesCIAmbientacion BuscarPreciosCostosPaquetesCIAmbientacion(int paqueteId, int caracteristicaId, 
+        public CostosPaquetesCIAmbientacion BuscarPreciosCostosPaquetesCIAmbientacion(int paqueteId, int caracteristicaId,
                                                                                         int segmentoId, int proveedorId,
-                                                                                        int cantidadPaquetes,int semestre, int anio)
+                                                                                        int cantidadPaquetes, int semestre, int anio)
         {
-            return NegociosCostosCIAmbientacion.BuscarPreciosPaquetesCIAmbientacion(paqueteId,caracteristicaId,segmentoId,proveedorId,cantidadPaquetes,semestre,anio);
+            return NegociosCostosCIAmbientacion.BuscarPreciosPaquetesCIAmbientacion(paqueteId, caracteristicaId, segmentoId, proveedorId, cantidadPaquetes, semestre, anio);
         }
 
         public List<CostoCanon> ObtenerCostosCanon()
@@ -616,7 +612,7 @@ namespace DomainAmbientHouse.Servicios
 
         public List<ObtenerEventosPresupuestosProveedores> BuscarEventosConfirmadosProveedoresExternos(int nropresupuesto, string fechaDesde, string fechaHasta, int unidadNegocioId)
         {
-            return Negocio.BuscarEventosConfirmadosProveedoresExternos( nropresupuesto,  fechaDesde,  fechaHasta,  unidadNegocioId);
+            return Negocio.BuscarEventosConfirmadosProveedoresExternos(nropresupuesto, fechaDesde, fechaHasta, unidadNegocioId);
 
         }
 
@@ -638,7 +634,7 @@ namespace DomainAmbientHouse.Servicios
 
         public void GuardarPresupuesto(Eventos EventoSeleccionado, Presupuestos PresupuestoSeleccionado, List<PresupuestoDetalle> ListPresupuestoDetalle, int estadoAprobadoItem, DateTime fechaAprobacion)
         {
-            Negocio.GuardarPresupuesto(EventoSeleccionado, PresupuestoSeleccionado, ListPresupuestoDetalle, estadoAprobadoItem,fechaAprobacion);
+            Negocio.GuardarPresupuesto(EventoSeleccionado, PresupuestoSeleccionado, ListPresupuestoDetalle, estadoAprobadoItem, fechaAprobacion);
         }
 
         public void AprobarPresupuesto(Eventos evento, List<ObtenerEventosPresupuestos> ListPresupuestos, ClientesBis cliente, List<PresupuestoDetalle> ListPresupuestoDetalleAprobados, Cheques cheque, Transferencias transferencia)
@@ -670,7 +666,7 @@ namespace DomainAmbientHouse.Servicios
         {
             LocacionesNegocios negocios = new LocacionesNegocios();
 
-            return negocios.ObtenerLocacionesParaCotizarPorLocacion(localidadId,tieneVerde,  estacionamiento,  aireLibre);
+            return negocios.ObtenerLocacionesParaCotizarPorLocacion(localidadId, tieneVerde, estacionamiento, aireLibre);
         }
 
         public DuracionEvento BuscarDuracionEvento(int Id)
@@ -687,7 +683,7 @@ namespace DomainAmbientHouse.Servicios
             Eventos evento = Negocio.BuscarEvento(eventoId);
 
             if (evento == null)
-                return ;
+                return;
 
             Presupuestos presupuesto = NegociosPresupuestos.BuscarPresupuesto(presupuestoId);
 
@@ -712,19 +708,19 @@ namespace DomainAmbientHouse.Servicios
 
             _retorno.Rows.Add(AddFilaEvento("Segmentos", "Duracion del Evento",
                                 this.TraerSegmentos().Where(o => o.Id == presupuesto.SegmentoId).FirstOrDefault().Descripcion,
-                                this.BuscarDuracionEvento((int) presupuesto.DuracionId).Descripcion));
+                                this.BuscarDuracionEvento((int)presupuesto.DuracionId).Descripcion));
 
             _retorno.Rows.Add(AddFilaEvento("Locacion", "Sector",
-                                this.TraerLocaciones().Where(o => o.Id == presupuesto.LocacionId).FirstOrDefault().Descripcion, 
+                                this.TraerLocaciones().Where(o => o.Id == presupuesto.LocacionId).FirstOrDefault().Descripcion,
                                 this.BuscarSector((int)presupuesto.SectorId).Descripcion));
 
             _retorno.Rows.Add(AddFilaEvento("Fecha Evento", "Ejecutivo",
-                                String.Format("{0:dd/MM/yyyy}", presupuesto.FechaEvento), 
+                                String.Format("{0:dd/MM/yyyy}", presupuesto.FechaEvento),
                                 NegociosEmpleados.BuscarEmpleado(evento.EmpleadoId).ApellidoNombre));
 
             _retorno.Rows.Add(AddFilaEvento("Cant. Mayores", "Cant. Adolescentes",
                                 presupuesto.CantidadInicialInvitados.ToString(),
-                                (presupuesto.CantidadInvitadosAdolecentes == null? "0": presupuesto.CantidadInvitadosAdolecentes.ToString())));
+                                (presupuesto.CantidadInvitadosAdolecentes == null ? "0" : presupuesto.CantidadInvitadosAdolecentes.ToString())));
 
             _retorno.Rows.Add(AddFilaEvento("Cant. entre 3 y 8", "Cant. Menores de 3",
                                 (presupuesto.CantidadInvitadosMenores3y8 == null ? "0" : presupuesto.CantidadInvitadosMenores3y8.ToString()),
@@ -742,7 +738,7 @@ namespace DomainAmbientHouse.Servicios
         {
             HtmlTableRow fila = new HtmlTableRow();
 
-            
+
 
             HtmlTableCell celda10 = new HtmlTableCell();
 
@@ -767,7 +763,7 @@ namespace DomainAmbientHouse.Servicios
 
             lbl1.CssClass = "form-control";
 
-            lbl1.Text = descripcion2 +  ": <b>" + contenido2 + "</b>";
+            lbl1.Text = descripcion2 + ": <b>" + contenido2 + "</b>";
 
             celda12.Controls.Add(lbl1);
 
@@ -776,7 +772,7 @@ namespace DomainAmbientHouse.Servicios
             fila.Cells.Add(celda12);
 
             return fila;
-        
+
         }
 
         public List<ObtenerEventosPresupuestosProveedores> BuscarProveedoresEstadosEventosConfirmados(int nropresupuesto, string fechaeventodesde, string fechaeventohasta, int unidadnegocioId, string estadoProveedor, int proveedorId)

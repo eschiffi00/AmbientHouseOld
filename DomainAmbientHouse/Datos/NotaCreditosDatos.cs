@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -30,7 +29,7 @@ namespace DomainAmbientHouse.Datos
                 salida.Fecha = item.Fecha;
                 salida.Importe = item.Importe;
                 salida.CreateFecha = item.CreateFecha;
-                
+
 
 
                 list.Add(salida);
@@ -41,7 +40,7 @@ namespace DomainAmbientHouse.Datos
 
         public List<NotaCreditos> ListarNotasdeCredito(int comprobanteId)
         {
-            return SqlContext.NotaCreditos.Where(o=> o.ComprobanteProveedorId == comprobanteId ).ToList();
+            return SqlContext.NotaCreditos.Where(o => o.ComprobanteProveedorId == comprobanteId).ToList();
         }
 
         internal NotaCreditos BuscarNotaCredito(int id)

@@ -3,8 +3,6 @@ using DomainAmbientHouse.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Operacion
@@ -220,7 +218,7 @@ namespace AmbientHouse.Operacion
 
             ClienteId = EventoSeleccionado.ClienteId;
 
-            
+
             TextBoxComentarioEvento.Text = EventoSeleccionado.Comentario;
 
         }
@@ -244,7 +242,7 @@ namespace AmbientHouse.Operacion
 
                 Fecha = String.Format("{0:dd/MM/yyyy}", PresupuestoSeleccionado.FechaEvento);
 
-              
+
 
                 LabelCaracteristica.Text = eventos.TraerCaracteristicas().Where(o => o.Id == PresupuestoSeleccionado.CaracteristicaId).Select(o => o.Descripcion).SingleOrDefault();
                 LabelSegmentos.Text = eventos.TraerSegmentos().Where(o => o.Id == PresupuestoSeleccionado.SegmentoId).Select(o => o.Descripcion).SingleOrDefault();
@@ -267,7 +265,7 @@ namespace AmbientHouse.Operacion
 
                 CalcularCantidadInvitados(TextBoxCantMayores.Text, TextBoxCantEntre3y8.Text, TextBoxCantMenores3.Text, TextBoxCantAdolescentes.Text);
 
-              
+
 
             }
         }

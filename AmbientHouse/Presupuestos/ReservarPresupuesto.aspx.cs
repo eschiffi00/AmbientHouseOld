@@ -4,10 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Presupuestos
@@ -341,7 +339,7 @@ namespace AmbientHouse.Presupuestos
 
                 int? chequeId = EventoSeleccionado.ChequeSenaId;
 
-                Cheques cheque  = new Cheques();
+                Cheques cheque = new Cheques();
 
                 if (chequeId != null)
                     cheque = administrativas.BuscarCheque((int)chequeId);
@@ -606,10 +604,10 @@ namespace AmbientHouse.Presupuestos
             return true;
         }
 
-        private void GanarEvento() 
+        private void GanarEvento()
         {
             int FormaCheque = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoCheque"].ToString());
-             int FormaTransferencia = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoTransferencia"].ToString());
+            int FormaTransferencia = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoTransferencia"].ToString());
 
             DomainAmbientHouse.Entidades.ClientesBis cliente = new DomainAmbientHouse.Entidades.ClientesBis();
 
@@ -665,7 +663,7 @@ namespace AmbientHouse.Presupuestos
             }
             else
             {
-                evento.Concepto = "RESERVA PRESUPUESTO"; 
+                evento.Concepto = "RESERVA PRESUPUESTO";
                 evento.TipoPago = DropDownListTipoPago.SelectedItem.Value;
             }
 
@@ -683,7 +681,7 @@ namespace AmbientHouse.Presupuestos
 
             if (evento.FormadePagoId == FormaCheque)
             {
-                int Pendiente = Int32.Parse(ConfigurationManager.AppSettings["ChequesPendiente"].ToString()); 
+                int Pendiente = Int32.Parse(ConfigurationManager.AppSettings["ChequesPendiente"].ToString());
 
                 cheque.NroCheque = TextBoxNroCheque.Text;
                 cheque.Importe = cmd.ValidarImportes(TextBoxMontoSenia.Text);

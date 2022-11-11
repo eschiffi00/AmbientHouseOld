@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DomainAmbientHouse.Entidades;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {

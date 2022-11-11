@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -16,11 +13,11 @@ namespace DomainAmbientHouse.Datos
         {
             SqlContext = new AmbientHouseEntities();
         }
-        
+
         public virtual List<Sectores> ObtenerSectoresPorLocacion(int locacionId)
         {
 
-            return SqlContext.Sectores.Where(o=>o.LocacionId == locacionId).ToList();
+            return SqlContext.Sectores.Where(o => o.LocacionId == locacionId).ToList();
 
         }
 
@@ -33,7 +30,7 @@ namespace DomainAmbientHouse.Datos
 
                 editSector.Descripcion = sector.Descripcion;
                 editSector.LocacionId = sector.LocacionId;
-            
+
             }
             else
             {

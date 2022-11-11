@@ -4,7 +4,6 @@ using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -76,17 +75,17 @@ namespace AmbientHouse.Inicio
                     }
                 }
 
-                 List<DomainAmbientHouse.Entidades.Items> ListItems = servicios.ObtenerItemsPorTipoBarra(TipoBarraId);
+                List<DomainAmbientHouse.Entidades.Items> ListItems = servicios.ObtenerItemsPorTipoBarra(TipoBarraId);
 
-                 foreach (var itemItems in ListItems)
-                 {
-                     TextBox textoItems = new TextBox();
-                     textoItems.Attributes.Add("style", "font-family: Dosis;");
-                     textoItems.Text = itemItems.Detalle;
+                foreach (var itemItems in ListItems)
+                {
+                    TextBox textoItems = new TextBox();
+                    textoItems.Attributes.Add("style", "font-family: Dosis;");
+                    textoItems.Text = itemItems.Detalle;
 
-                     Salida.Add("<div style=\'font-size: 10px;font-family: Dosis; margin-left: 50px;\'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + textoItems.Text + "</div>");
-  
-                 }
+                    Salida.Add("<div style=\'font-size: 10px;font-family: Dosis; margin-left: 50px;\'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + textoItems.Text + "</div>");
+
+                }
 
             }
 
@@ -98,7 +97,7 @@ namespace AmbientHouse.Inicio
                 pdfTemplate = System.Web.HttpContext.Current.Server.MapPath("~/AppShared") + "\\Plantillas Barras Hasta 38 renglones 2 hojas.pdf";
             else if (Salida.Count() <= 56)
                 pdfTemplate = System.Web.HttpContext.Current.Server.MapPath("~/AppShared") + "\\Plantillas Barras Hasta 56 renglones 3 hojas.pdf";
-            else 
+            else
                 pdfTemplate = System.Web.HttpContext.Current.Server.MapPath("~/AppShared") + "\\Plantillas Barras Hasta 75 renglones 4 hojas.pdf";
 
             string newFile = "Barras.pdf";

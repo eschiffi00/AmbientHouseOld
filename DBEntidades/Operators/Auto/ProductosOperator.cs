@@ -1,11 +1,11 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
-using System.Linq;
-using DbEntidades.Entities;
 using System.Data.SqlClient;
-using LibDB2;
+using System.Linq;
+using System.Reflection;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             Productos productos = new Productos();
             foreach (PropertyInfo prop in typeof(Productos).GetProperties())
             {
-				object value = dt.Rows[0][prop.Name];
-				if (value == DBNull.Value) value = null;
+                object value = dt.Rows[0][prop.Name];
+                if (value == DBNull.Value) value = null;
                 try { prop.SetValue(productos, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,10 +45,10 @@ namespace DbEntidades.Operators
                 Productos productos = new Productos();
                 foreach (PropertyInfo prop in typeof(Productos).GetProperties())
                 {
-					object value = dr[prop.Name];
-					if (value == DBNull.Value) value = null;
-					try { prop.SetValue(productos, value, null); }
-					catch (System.ArgumentException) { }
+                    object value = dr[prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(productos, value, null); }
+                    catch (System.ArgumentException) { }
                 }
                 lista.Add(productos);
             }
@@ -59,9 +59,9 @@ namespace DbEntidades.Operators
 
         public class MaxLength
         {
-			public static int Codigo { get; set; } = 100;
-			public static int Descripcion { get; set; } = 1000;
-			public static int Dia { get; set; } = 50;
+            public static int Codigo { get; set; } = 100;
+            public static int Descripcion { get; set; } = 1000;
+            public static int Dia { get; set; } = 50;
 
 
         }
@@ -128,19 +128,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i<param.Count; i++)
+            for (int i = 0; i < param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-        }
+            }
             sql += " where Id = " + productos.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return productos;
-    }
+        }
 
         private static string GetComilla(string tipo)
         {

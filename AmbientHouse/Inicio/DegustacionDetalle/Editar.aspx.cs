@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Configuration;
 
 namespace AmbientHouse.Inicio.DegustacionDetalle
@@ -145,45 +139,45 @@ namespace AmbientHouse.Inicio.DegustacionDetalle
 
         private void EditarDetalle(int id)
         {
-                int num = int.Parse(ConfigurationManager.AppSettings["Corporativo"].ToString());
-                DomainAmbientHouse.Entidades.DegustacionDetalle detalle = new DomainAmbientHouse.Entidades.DegustacionDetalle();
-                detalle = this.administracion.BuscarDetalleDegustacion(id);
-                this.DegustacionDetalleSeleccionado = detalle;
-                if (detalle.SegmentoId != num)
-                {
-                    this.DropDownListSegmentos.SelectedValue = detalle.SegmentoId.ToString();
-                    this.PanelSocial.Visible = true;
-                    this.PanelCorporativo.Visible = false;
-                    this.TextBoxNombreyApellidoSoc.Text = detalle.Comensal;
-                    this.TextBoxNroComensalSoc.Text = detalle.NroComensal.ToString();
-                    this.TextBoxNroMesaSoc.Text = detalle.NroMesa.ToString();
-                    this.TextBoxFechaEventoSoc.Text =String.Format("{0:dd/MM/yyyy}",detalle.FechaEvento);
-                    this.TextBoxCantInvitadosSoc.Text = detalle.CantidadInvitados.ToString();
-                    this.DropDownListCaracteristicasSoc.SelectedValue = detalle.CaracteristicaId.ToString();
-                    this.DropDownListLocacionesSoc.SelectedValue = detalle.LocacionId.ToString();
-                    this.TextBoxComentarioSoc.Text = detalle.Comentarios;
-                    this.TextBoxTelefonoSoc.Text = detalle.Telefono;
-                    this.TextBoxCorreoSoc.Text = detalle.Mail;
-                    this.DropDownListTipoEvento.SelectedValue = detalle.TipoEventoId.ToString();
-                }
-                else
-                {
-                    this.DropDownListSegmentos.SelectedValue = detalle.SegmentoId.ToString();
-                    this.PanelCorporativo.Visible = true;
-                    this.PanelSocial.Visible = false;
-                    this.TextBoxEmpresa.Text = detalle.Empresa;
-                    this.TextBoxNombreyApellidoCorp.Text = detalle.Comensal;
-                    this.TextBoxNroComensalCorp.Text = detalle.NroComensal.ToString();
-                    this.TextBoxNroMesaCorp.Text = detalle.NroMesa.ToString();
-                    this.TextBoxFechaEventoCorp.Text = String.Format("{0:dd/MM/yyyy}", detalle.FechaEvento);
-                    this.TextBoxCantInvitadosCorp.Text = detalle.CantidadInvitados.ToString();
-                    this.DropDownListCaracteristicasCorp.SelectedValue = detalle.CaracteristicaId.ToString();
-                    this.DropDownListLocacionesCorp.SelectedValue = detalle.LocacionId.ToString();
-                    this.TextBoxComentarioCorp.Text = detalle.Comentarios;
-                    this.TextBoxTelefonoCorp.Text = detalle.Telefono;
-                    this.TextBoxCorreoCorp.Text = detalle.Mail;
-                    this.DropDownListEstado.SelectedValue = detalle.EstadoEvento;
-                }
+            int num = int.Parse(ConfigurationManager.AppSettings["Corporativo"].ToString());
+            DomainAmbientHouse.Entidades.DegustacionDetalle detalle = new DomainAmbientHouse.Entidades.DegustacionDetalle();
+            detalle = this.administracion.BuscarDetalleDegustacion(id);
+            this.DegustacionDetalleSeleccionado = detalle;
+            if (detalle.SegmentoId != num)
+            {
+                this.DropDownListSegmentos.SelectedValue = detalle.SegmentoId.ToString();
+                this.PanelSocial.Visible = true;
+                this.PanelCorporativo.Visible = false;
+                this.TextBoxNombreyApellidoSoc.Text = detalle.Comensal;
+                this.TextBoxNroComensalSoc.Text = detalle.NroComensal.ToString();
+                this.TextBoxNroMesaSoc.Text = detalle.NroMesa.ToString();
+                this.TextBoxFechaEventoSoc.Text = String.Format("{0:dd/MM/yyyy}", detalle.FechaEvento);
+                this.TextBoxCantInvitadosSoc.Text = detalle.CantidadInvitados.ToString();
+                this.DropDownListCaracteristicasSoc.SelectedValue = detalle.CaracteristicaId.ToString();
+                this.DropDownListLocacionesSoc.SelectedValue = detalle.LocacionId.ToString();
+                this.TextBoxComentarioSoc.Text = detalle.Comentarios;
+                this.TextBoxTelefonoSoc.Text = detalle.Telefono;
+                this.TextBoxCorreoSoc.Text = detalle.Mail;
+                this.DropDownListTipoEvento.SelectedValue = detalle.TipoEventoId.ToString();
+            }
+            else
+            {
+                this.DropDownListSegmentos.SelectedValue = detalle.SegmentoId.ToString();
+                this.PanelCorporativo.Visible = true;
+                this.PanelSocial.Visible = false;
+                this.TextBoxEmpresa.Text = detalle.Empresa;
+                this.TextBoxNombreyApellidoCorp.Text = detalle.Comensal;
+                this.TextBoxNroComensalCorp.Text = detalle.NroComensal.ToString();
+                this.TextBoxNroMesaCorp.Text = detalle.NroMesa.ToString();
+                this.TextBoxFechaEventoCorp.Text = String.Format("{0:dd/MM/yyyy}", detalle.FechaEvento);
+                this.TextBoxCantInvitadosCorp.Text = detalle.CantidadInvitados.ToString();
+                this.DropDownListCaracteristicasCorp.SelectedValue = detalle.CaracteristicaId.ToString();
+                this.DropDownListLocacionesCorp.SelectedValue = detalle.LocacionId.ToString();
+                this.TextBoxComentarioCorp.Text = detalle.Comentarios;
+                this.TextBoxTelefonoCorp.Text = detalle.Telefono;
+                this.TextBoxCorreoCorp.Text = detalle.Mail;
+                this.DropDownListEstado.SelectedValue = detalle.EstadoEvento;
+            }
 
         }
 

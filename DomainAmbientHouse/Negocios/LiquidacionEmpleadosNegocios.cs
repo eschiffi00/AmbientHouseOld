@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -14,7 +11,7 @@ namespace DomainAmbientHouse.Negocios
         public LiquidacionEmpleadosNegocios()
         {
             Datos = new LiquidacionEmpleadosDatos();
-          
+
         }
 
         public List<LiquidacionHorasPersonal> ObtenerLiquidacionHoras()

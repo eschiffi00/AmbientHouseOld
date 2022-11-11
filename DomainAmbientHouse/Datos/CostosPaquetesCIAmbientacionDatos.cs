@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -43,9 +40,9 @@ namespace DomainAmbientHouse.Datos
                 salida.Costo = item.Costo;
                 salida.CostoFlete = item.CostoFlete;
                 salida.Margen = item.Margen;
-               
 
-              
+
+
 
 
                 list.Add(salida);
@@ -74,12 +71,12 @@ namespace DomainAmbientHouse.Datos
 
 
             return CostosPaquetesCIAmbientacionToModel(query).FirstOrDefault();
-        
+
         }
 
         public virtual CostosPaquetesCIAmbientacion BuscarPreciosPaquetesCIAmbientacion(int paqueteId, int caracteristicaId,
-                                                                                        int segmentoId,int proveedorId,
-                                                                                        int cantidadPaquetes,int semestre, int anio)
+                                                                                        int segmentoId, int proveedorId,
+                                                                                        int cantidadPaquetes, int semestre, int anio)
         {
 
             return SqlContext.CostosPaquetesCIAmbientacion.Where(o => o.PaqueteCIID == paqueteId && o.CaracteristicaId == caracteristicaId
@@ -88,7 +85,7 @@ namespace DomainAmbientHouse.Datos
                                                                     && o.Anio == anio).FirstOrDefault();
         }
 
-        public  void Grabar(CostosPaquetesCIAmbientacion costos)
+        public void Grabar(CostosPaquetesCIAmbientacion costos)
         {
             double margen = 0;
 
@@ -113,7 +110,7 @@ namespace DomainAmbientHouse.Datos
                 edit.Semestre = costos.Semestre;
 
                 SqlContext.SaveChanges();
-            
+
             }
             else
             {

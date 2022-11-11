@@ -1,12 +1,7 @@
 ﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Administracion.Recibos
 {
@@ -159,7 +154,7 @@ namespace AmbientHouse.Administracion.Recibos
 
         private void CargarEvento()
         {
-           int FormaCheque = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoCheque"].ToString());
+            int FormaCheque = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoCheque"].ToString());
             int FormaTransferencia = Int32.Parse(ConfigurationManager.AppSettings["FormaPagoTransferencia"].ToString());
 
 
@@ -171,8 +166,8 @@ namespace AmbientHouse.Administracion.Recibos
             LabelMontoSenia.Text = EventoSeleccionado.MontoSena.ToString();
             LabelFechaSenia.Text = String.Format("{0:dd/MM/yyyy}", EventoSeleccionado.FechaSena);
 
-            
-          
+
+
 
             CargarCliente();
 
@@ -197,7 +192,7 @@ namespace AmbientHouse.Administracion.Recibos
 
                 LabelApellidoyNombreText.Text = ClienteBisSeleccionado.ApellidoNombre;
 
-               
+
             }
             else
             {
@@ -206,18 +201,18 @@ namespace AmbientHouse.Administracion.Recibos
 
                 LabelRazonSocialText.Text = ClienteBisSeleccionado.RazonSocial;
 
-               
+
             }
 
             ClienteId = ClienteBisSeleccionado.Id;
             LabelDomicilio.Text = ClienteBisSeleccionado.Direccion;
             LabelCuit.Text = ClienteBisSeleccionado.CUILCUIT;
 
-          
+
 
             LabelCondicionIva.Text = ClienteBisSeleccionado.CondicionIva;
-           
-               
+
+
 
         }
 
@@ -251,6 +246,6 @@ namespace AmbientHouse.Administracion.Recibos
             Response.Redirect("~/Inicio/Default.aspx");
         }
 
-      
+
     }
 }

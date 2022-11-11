@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
 using System.Globalization;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -540,7 +538,7 @@ namespace DomainAmbientHouse.Datos
             string empresaMonotributo = "MONOTRIBUTO";
 
 
-            
+
             //OBTENGO TODOS LOS PAGOS QUE SON RESERVA
             List<PagosClientes> ListPagosRealizadosALaReserva = SqlContext.PagosClientes.Where(o => o.PresupuestoId == presupuestoId
                                                                                         && o.TipoPago == "Reserva"

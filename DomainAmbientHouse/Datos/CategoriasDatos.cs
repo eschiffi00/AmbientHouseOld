@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -28,24 +26,24 @@ namespace DomainAmbientHouse.Datos
         public List<Categorias> ObtenerAmbientaciones()
         {
             var query = from u in SqlContext.Categorias
-                        join p in SqlContext.Segmentos on u.SegmentoId equals p.Id 
-                        join q in SqlContext.Caracteristicas on u.CaracteristicaId equals q.Id 
+                        join p in SqlContext.Segmentos on u.SegmentoId equals p.Id
+                        join q in SqlContext.Caracteristicas on u.CaracteristicaId equals q.Id
                         join j in SqlContext.Locaciones on u.LocacionId equals j.Id
                         join s in SqlContext.Sectores on u.SectorId equals s.Id
                         select new
-                           {
-                               Id = u.Id,
-                               Descripcion = u.Descripcion,
-                               LocacionId =  u.LocacionId,
-                               SegmentoId =  u.SegmentoId,
-                               CaracteristicaId =  u.CaracteristicaId,
-                               SectorId = u.SectorId,
-                               SegmentoDescripcion = (p.Descripcion == null ? String.Empty : p.Descripcion),
-                               CaracteristicaDescripcion = (q == null ? String.Empty : q.Descripcion),
-                               LocacionDescripcion = (j == null ? String.Empty : j.Descripcion),
-                               SectorDescripcion = (s == null ? String.Empty : s.Descripcion)
+                        {
+                            Id = u.Id,
+                            Descripcion = u.Descripcion,
+                            LocacionId = u.LocacionId,
+                            SegmentoId = u.SegmentoId,
+                            CaracteristicaId = u.CaracteristicaId,
+                            SectorId = u.SectorId,
+                            SegmentoDescripcion = (p.Descripcion == null ? String.Empty : p.Descripcion),
+                            CaracteristicaDescripcion = (q == null ? String.Empty : q.Descripcion),
+                            LocacionDescripcion = (j == null ? String.Empty : j.Descripcion),
+                            SectorDescripcion = (s == null ? String.Empty : s.Descripcion)
 
-                           };
+                        };
 
             List<Categorias> Salida = new List<Categorias>();
             foreach (var item in query)
@@ -147,25 +145,25 @@ namespace DomainAmbientHouse.Datos
             }
         }
 
-        public List<Categorias> BuscarCategoriasPorLocacionCaracteristicaSegmento(int locacionId, 
-                                                                                    int caracteristicaId, 
-                                                                                    int segmentoId, 
+        public List<Categorias> BuscarCategoriasPorLocacionCaracteristicaSegmento(int locacionId,
+                                                                                    int caracteristicaId,
+                                                                                    int segmentoId,
                                                                                     int sectorId)
         {
 
             int activo = Int32.Parse(ConfigurationManager.AppSettings["CategoriasActivo"].ToString()); ;
 
             List<Categorias> query = (from c in SqlContext.Categorias
-                                      where (c.LocacionId == locacionId 
-                                                && c.CaracteristicaId == caracteristicaId 
-                                                && c.SegmentoId == segmentoId 
+                                      where (c.LocacionId == locacionId
+                                                && c.CaracteristicaId == caracteristicaId
+                                                && c.SegmentoId == segmentoId
                                                 && c.SectorId == sectorId
                                                 && c.EstadoId == activo)
-                                              
-                        select c).ToList();
+
+                                      select c).ToList();
 
             return query.ToList();
-        
+
         }
     }
 }

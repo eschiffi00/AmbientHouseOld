@@ -1,15 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+//using Excel = Microsoft.Office.Interop.Excel;
+using LinqToExcel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Globalization;
-using System.IO;
-//using Excel = Microsoft.Office.Interop.Excel;
-using System.Runtime.InteropServices;
-using System.Collections;
-using LinqToExcel;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -121,7 +115,7 @@ namespace DomainAmbientHouse.Datos
 
         public CostoLogistica BuscarCostoLogistica(int tipoLogisticaId, int localidadId, int cantInvitados)
         {
-            return SqlContext.CostoLogistica.Where(o => o.ConceptoId == tipoLogisticaId && o.Localidad == localidadId && o.CantidadInvitados == cantInvitados ).FirstOrDefault();
+            return SqlContext.CostoLogistica.Where(o => o.ConceptoId == tipoLogisticaId && o.Localidad == localidadId && o.CantidadInvitados == cantInvitados).FirstOrDefault();
         }
 
         public CostoLogistica BuscarCostoLogistica(int tipoLogisticaId, int localidadId, int cantInvitados, int tipoEventoId)
@@ -688,7 +682,7 @@ namespace DomainAmbientHouse.Datos
                 cat.ConceptoId = item.ConceptoId;
                 cat.ConceptoDescripcion = item.ConceptoDescripcion;
                 cat.Localidad = item.Localidad;
-                cat.LocalidadDescripcion = item.LocalidadDescripcion; 
+                cat.LocalidadDescripcion = item.LocalidadDescripcion;
                 cat.CantidadInvitados = item.CantidadPersonas;
                 cat.Valor = item.Valor;
                 cat.TipoEventoId = item.TipoEventoId;
@@ -733,7 +727,7 @@ namespace DomainAmbientHouse.Datos
                 edit.Margen = margen;
 
                 SqlContext.SaveChanges();
-            
+
             }
             else
             {
@@ -830,7 +824,7 @@ namespace DomainAmbientHouse.Datos
                 edit.CanonInterno = costo.CanonInterno;
 
                 SqlContext.SaveChanges();
-            
+
             }
             else
             {
@@ -991,10 +985,10 @@ public partial class ManipuladorExcel
     public ManipuladorExcel(string nombreArchivo)
     {
         _excel = new ExcelQueryFactory(nombreArchivo)
-{
-    ReadOnly = true,
-    UsePersistentConnection = true
-};
+        {
+            ReadOnly = true,
+            UsePersistentConnection = true
+        };
 
     }
 
@@ -1008,53 +1002,53 @@ public partial class ManipuladorExcel
 
         //Iteramos sobre este listado y generamos nuestros objetos para agregarlos a la lista de personas
 
-    
-     
-
-            foreach (var item in listado)
-            {
 
 
 
+        foreach (var item in listado)
+        {
 
-                CostoSalones nuevaPersona = new CostoSalones();
 
 
-                nuevaPersona.LocacionId = int.Parse(item.ElementAt(0).Value.ToString());
-                nuevaPersona.Anio = int.Parse(item.ElementAt(1).Value.ToString());
-                nuevaPersona.Mes = int.Parse(item.ElementAt(2).Value.ToString());
-                nuevaPersona.Dia = item.ElementAt(3).Value.ToString();
-                nuevaPersona.SectorId = int.Parse(item.ElementAt(4).Value.ToString());
-                nuevaPersona.JornadaId = int.Parse(item.ElementAt(5).Value.ToString());
-                nuevaPersona.CantidadInvitados = int.Parse(item.ElementAt(6).Value.ToString());
-                nuevaPersona.PorcentajedelTotal = double.Parse(item.ElementAt(7).Value.ToString());
-                nuevaPersona.Precio = double.Parse(item.ElementAt(8).Value.ToString());
-                nuevaPersona.Costo = double.Parse(item.ElementAt(9).Value.ToString());
 
-                //var nuevaPersona = new CostoSalones
-                //{
-                //    LocacionId = int.Parse(item.ElementAt(0).Value.ToString()),
-                //    Anio = int.Parse(item.ElementAt(1).Value.ToString()),
-                //    Mes = int.Parse(item.ElementAt(2).Value.ToString()),
-                //    Dia = item.ElementAt(3).Value.ToString(),
-                //    SectorId = int.Parse(item.ElementAt(4).Value.ToString()),
-                //    JornadaId = int.Parse(item.ElementAt(5).Value.ToString()),
-                //    CantidadInvitados = int.Parse(item.ElementAt(6).Value.ToString()),
-                //    PorcentajedelTotal = double.Parse(item.ElementAt(7).Value.ToString()),
-                //    Precio = double.Parse(item.ElementAt(8).Value.ToString()),
-                //    Costo = double.Parse(item.ElementAt(9).Value.ToString()),
-                //    ValorMas5PorCiento = double.Parse(item.ElementAt(11).ToString()),
-                //    ValorMenos5PorCiento = double.Parse(item.ElementAt(13).ToString()),
-                //    ValorMenos10PorCiento = double.Parse(item.ElementAt(14).ToString()),
+            CostoSalones nuevaPersona = new CostoSalones();
 
-                //};
 
-                listaPersonas.Add(nuevaPersona);
-            }
+            nuevaPersona.LocacionId = int.Parse(item.ElementAt(0).Value.ToString());
+            nuevaPersona.Anio = int.Parse(item.ElementAt(1).Value.ToString());
+            nuevaPersona.Mes = int.Parse(item.ElementAt(2).Value.ToString());
+            nuevaPersona.Dia = item.ElementAt(3).Value.ToString();
+            nuevaPersona.SectorId = int.Parse(item.ElementAt(4).Value.ToString());
+            nuevaPersona.JornadaId = int.Parse(item.ElementAt(5).Value.ToString());
+            nuevaPersona.CantidadInvitados = int.Parse(item.ElementAt(6).Value.ToString());
+            nuevaPersona.PorcentajedelTotal = double.Parse(item.ElementAt(7).Value.ToString());
+            nuevaPersona.Precio = double.Parse(item.ElementAt(8).Value.ToString());
+            nuevaPersona.Costo = double.Parse(item.ElementAt(9).Value.ToString());
 
-            return listaPersonas;
+            //var nuevaPersona = new CostoSalones
+            //{
+            //    LocacionId = int.Parse(item.ElementAt(0).Value.ToString()),
+            //    Anio = int.Parse(item.ElementAt(1).Value.ToString()),
+            //    Mes = int.Parse(item.ElementAt(2).Value.ToString()),
+            //    Dia = item.ElementAt(3).Value.ToString(),
+            //    SectorId = int.Parse(item.ElementAt(4).Value.ToString()),
+            //    JornadaId = int.Parse(item.ElementAt(5).Value.ToString()),
+            //    CantidadInvitados = int.Parse(item.ElementAt(6).Value.ToString()),
+            //    PorcentajedelTotal = double.Parse(item.ElementAt(7).Value.ToString()),
+            //    Precio = double.Parse(item.ElementAt(8).Value.ToString()),
+            //    Costo = double.Parse(item.ElementAt(9).Value.ToString()),
+            //    ValorMas5PorCiento = double.Parse(item.ElementAt(11).ToString()),
+            //    ValorMenos5PorCiento = double.Parse(item.ElementAt(13).ToString()),
+            //    ValorMenos10PorCiento = double.Parse(item.ElementAt(14).ToString()),
 
-      
+            //};
+
+            listaPersonas.Add(nuevaPersona);
+        }
+
+        return listaPersonas;
+
+
     }
 
     public IEnumerable<CostoCatering> ObtenerCostoCateringDesdeArchivo(string CeldaInicio, string CeldaFin)

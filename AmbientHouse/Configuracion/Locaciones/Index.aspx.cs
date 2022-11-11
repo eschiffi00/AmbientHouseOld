@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
 
 namespace AmbientHouse.Configuracion.Locaciones
 {
@@ -16,15 +13,15 @@ namespace AmbientHouse.Configuracion.Locaciones
         {
             if (!IsPostBack)
             {
-      
+
                 ObtenerLocaciones(TextBoxDescripcionBuscador.Text);
             }
-            
+
         }
 
         private void ObtenerLocaciones(string descripcion)
         {
-            GridViewLocaciones.DataSource = adminServicios.ObtenerLocaciones().Where(o=> o.Descripcion.ToLower().Contains(descripcion.ToLower())).ToList();
+            GridViewLocaciones.DataSource = adminServicios.ObtenerLocaciones().Where(o => o.Descripcion.ToLower().Contains(descripcion.ToLower())).ToList();
             GridViewLocaciones.DataBind();
         }
 
@@ -49,9 +46,9 @@ namespace AmbientHouse.Configuracion.Locaciones
             ObtenerLocaciones(TextBoxDescripcionBuscador.Text);
         }
 
-    
 
-     
-       
+
+
+
     }
 }

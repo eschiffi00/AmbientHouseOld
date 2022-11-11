@@ -12,12 +12,12 @@
 
         $(document).ready(function () {
             // seteo como multiselect al listbox
-            GroupDropdownlist();
-            $('[id*=MultiselectCategorias]').multiselect({
-                enableClickableOptGroups: true,
-                enableCollapsibleOptGroups: true,
-                enableFiltering: true
-            });
+            //GroupDropdownlist();
+            //$('[id*=MultiselectCategorias]').multiselect({
+            //    enableClickableOptGroups: true,
+            //    enableCollapsibleOptGroups: true,
+            //    enableFiltering: true
+            //});
             document.addEventListener("keydown", function (event) {
                 if (event.which == 9 ) {
                     focusNextElement();
@@ -44,33 +44,33 @@
             //$("form input:checkbox").checked = false;
               
         });
-        function GroupDropdownlist() {
-            var selectControl = $('[id*=MultiselectCategorias]');
-            var groups = [];
-            $(selectControl).find('option').each(function () {
-                groups.push($(this).attr('data-group'));
-            });
-            var uniqueGroup = groups.filter(function (itm, i, a) {
-                return i == a.indexOf(itm);
-            });
-            for (var i = 0; i < uniqueGroup.length; i++) {
+        //function GroupDropdownlist() {
+        //    var selectControl = $('[id*=MultiselectCategorias]');
+        //    var groups = [];
+        //    $(selectControl).find('option').each(function () {
+        //        groups.push($(this).attr('data-group'));
+        //    });
+        //    var uniqueGroup = groups.filter(function (itm, i, a) {
+        //        return i == a.indexOf(itm);
+        //    });
+        //    for (var i = 0; i < uniqueGroup.length; i++) {
 
-                var Group = jQuery('<optgroup/>', {
-                    label: uniqueGroup[i]
-                }).appendTo(selectControl);
-                var grpItems = $(selectControl).find('option[data-group="' + uniqueGroup[i] + '"]');
-                for (var x = 0; x < grpItems.length; x++)
-                {
-                    var item = grpItems[x];
-                    if (item.text != uniqueGroup[i]) {
-                        //item.appendTo(Group);
-                        Group.append(item);
-                    } else {
-                        grpItems[x].remove();
-                    } 
-                }
-            }
-        }
+        //        var Group = jQuery('<optgroup/>', {
+        //            label: uniqueGroup[i]
+        //        }).appendTo(selectControl);
+        //        var grpItems = $(selectControl).find('option[data-group="' + uniqueGroup[i] + '"]');
+        //        for (var x = 0; x < grpItems.length; x++)
+        //        {
+        //            var item = grpItems[x];
+        //            if (item.text != uniqueGroup[i]) {
+        //                //item.appendTo(Group);
+        //                Group.append(item);
+        //            } else {
+        //                grpItems[x].remove();
+        //            } 
+        //        }
+        //    }
+        //}
         
     </script>
 </asp:Content>
@@ -111,13 +111,15 @@
         <div class="form-group row" id="categorias">
             <label for="MultiselectCategorias" class="col-sm-2 col-form-label text-sm-left text-md-right">Categoria</label>
             <div class="col-sm-4">
-                <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="3" class="form-control"></asp:ListBox>
+                <asp:DropDownList runat="server" ID="DDLCategorias" ClientIDMode="Static" TabIndex="4" CssClass="form-control mt-1"></asp:DropDownList>
+
+                <%--<asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="3" class="form-control"></asp:ListBox>--%>
             </div>
         </div>
 
 
         <div class="form-group row" id="cuentas">
-            <label for="ddlCuenta" class="col-sm-2 col-form-label text-sm-left text-md-right">Cuenta Contable</label>
+            <label for="ddlCuenta" class="col-sm-2 col-form-label text-sm-left text-md-right">Centro de Costo</label>
             <div class="col-sm-4">
                 <asp:DropDownList runat="server" ID="ddlCuenta" ClientIDMode="Static" TabIndex="4" CssClass="form-control mt-1"></asp:DropDownList>
             </div>

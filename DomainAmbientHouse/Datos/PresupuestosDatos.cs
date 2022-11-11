@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
 using System.Transactions;
 
 namespace DomainAmbientHouse.Datos
@@ -105,7 +103,7 @@ namespace DomainAmbientHouse.Datos
                             LocacionOtra = P.LocacionOtra,
                             ValorOrganizador = P.ValorOrganizador,
                             ValorRoyaltyOrganizador = P.ValorRoyaltyOrganizador
-                           
+
                         };
 
             return query.Where(o => o.PresupuestoId == id).FirstOrDefault();
@@ -196,7 +194,7 @@ namespace DomainAmbientHouse.Datos
                             (o.Logistica == null ? 0 : (double)o.Logistica) +
                             (o.UsoCocina == null ? 0 : (double)o.UsoCocina) +
                             (o.ValorIntermediario == null ? 0 : (double)o.ValorIntermediario) +
-                            (o.PrecioSillas == null ? 0 : (double) o.PrecioSillas) +
+                            (o.PrecioSillas == null ? 0 : (double)o.PrecioSillas) +
                             (o.PrecioMesas == null ? 0 : (double)o.PrecioMesas) +
                             (o.Incremento == null ? 0 : (double)o.Incremento) -
                             (o.Descuentos == null ? 0 : (double)o.Descuentos)).Sum();
@@ -279,7 +277,7 @@ namespace DomainAmbientHouse.Datos
             int eventocerrado = Int32.Parse(ConfigurationManager.AppSettings["EstadoCerrado"].ToString());
             int presupuestoaprobado = Int32.Parse(ConfigurationManager.AppSettings["EstadoPresupuestoAprobado"].ToString());
             int presupuestorealizado = Int32.Parse(ConfigurationManager.AppSettings["EstadoRealizado"].ToString());
-           
+
 
             var query = from E in SqlContext.Eventos
                         join P in SqlContext.Presupuestos on E.Id equals P.EventoId
@@ -352,7 +350,7 @@ namespace DomainAmbientHouse.Datos
             List<ObtenerEventosPresupuestos> listEventos = eventos.ObtenerEventosPresupuestos(EventoId).OrderBy(o => o.PresupuestoId).Distinct().ToList();
 
             var query = from E in listEventos
-                        //join C in lisClientes on E.ClienteId equals C.Id
+                            //join C in lisClientes on E.ClienteId equals C.Id
                         select new ObtenerEventos
                         {
                             ApellidoNombre = E.ApellidoNombre,
@@ -578,7 +576,7 @@ namespace DomainAmbientHouse.Datos
                     }
                     break;
             }
-           
+
         }
 
         private void AplicarDescuento(PresupuestoDetalle editPresuDetalle, double TotalDescuento, double TotalIncremento, string Comentario)

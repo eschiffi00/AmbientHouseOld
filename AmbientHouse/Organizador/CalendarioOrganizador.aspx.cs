@@ -1,13 +1,11 @@
-﻿using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Entidades;
+using DomainAmbientHouse.Servicios;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
 using System.Drawing;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Organizador
 {
@@ -39,7 +37,7 @@ namespace AmbientHouse.Organizador
 
         EventosServicios eventos = new EventosServicios();
         AdministrativasServicios administracion = new AdministrativasServicios();
-     
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -75,7 +73,7 @@ namespace AmbientHouse.Organizador
         }
 
         private void Calendario(DayRenderEventArgs e)
-        { 
+        {
             int eventoConfirmado = 2;
             int eventoReservado = 4;
 
@@ -262,7 +260,7 @@ namespace AmbientHouse.Organizador
 
         protected void DropDownListTipoEvento_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+
         }
     }
 }

@@ -1,11 +1,10 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
 using System.Linq;
-using DbEntidades.Entities;
-using System.Data.SqlClient;
-using LibDB2;
+using System.Reflection;
 
 namespace DbEntidades.Operators
 {
@@ -87,11 +86,11 @@ namespace DbEntidades.Operators
             {
                 list = list.Where(x => x.NroPresupuesto == parametros.NroPresupuesto).ToList();
             }
-            if(parametros.FechaDesde != "")
+            if (parametros.FechaDesde != "")
             {
                 list = list.Where(x => x.FechaTransaccion > DateTime.Parse(parametros.FechaDesde)).ToList();
             }
-            if(parametros.FechaHasta != "")
+            if (parametros.FechaHasta != "")
             {
                 list = list.Where(x => x.FechaTransaccion < DateTime.Parse(parametros.FechaHasta)).ToList();
             }
@@ -107,8 +106,8 @@ namespace DbEntidades.Operators
             CuentaCorrienteProveedores itemfiltro2 = new CuentaCorrienteProveedores();
             foreach (var item in list)
             {
-                
-                if(Int32.Parse(item.NroComprobante) != comprobante)
+
+                if (Int32.Parse(item.NroComprobante) != comprobante)
                 {
                     comprobante = Int32.Parse(item.NroComprobante);
                     valormontofactura = 0.0;
@@ -122,7 +121,7 @@ namespace DbEntidades.Operators
                 importe += item.ImporteSinIVA;
             }
 
-            foreach(var x in listFiltro)
+            foreach (var x in listFiltro)
             {
                 list.Remove(x);
             }

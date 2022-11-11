@@ -1,11 +1,10 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
 using System.Linq;
-using DbEntidades.Entities;
-using System.Data.SqlClient;
-using LibDB2;
+using System.Reflection;
 
 namespace DbEntidades.Operators
 {
@@ -36,31 +35,8 @@ namespace DbEntidades.Operators
                 ItemsDetail.NombreFantasiaId = Items.NombreFantasiaId;
                 ItemsDetail.NombreFantasia = NombreFantasiaOperator.GetOneByIdentity(Items.NombreFantasiaId).Descripcion != null ? NombreFantasiaOperator.GetOneByIdentity(Items.NombreFantasiaId).Descripcion : "";
                 ItemsDetail.CategoriaItemId = Items.CategoriaItemId;
-                if(Items.ItemDetalleId > 0)
-                {
-                    var itemDetalle = ItemDetalleOperator.GetAllByParameter("ItemId", (int)Items.ItemDetalleId);
-                    var itemCategorias = "";
-                    foreach (var detalle in itemDetalle)
-                    {
-                        if (detalle.EstadoId == 36)
-                        {
+                ItemsDetail.CategoriaDescripcion = CategoriasItemOperator.GetOneByIdentity(Items.CategoriaItemId).Descripcion;
 
-
-                            if (itemCategorias == "")
-                            {
-                                itemCategorias = CategoriasItemOperator.GetOneByIdentity(detalle.CategoriaId).Descripcion;
-
-                            }
-                            else
-                            {
-                                itemCategorias = itemCategorias + "/" + CategoriasItemOperator.GetOneByIdentity(detalle.CategoriaId).Descripcion;
-
-                            }
-                        }
-                    }
-                    ItemsDetail.CategoriaDescripcion = itemCategorias;
-                }
-                
                 ItemsDetail.CuentaId = Items.CuentaId;
                 if (ItemsDetail.CuentaId == 0 || ItemsDetail.CuentaId == null)
                 {
@@ -80,12 +56,39 @@ namespace DbEntidades.Operators
                 ItemsDetail.Unidad = "";
                 ItemsDetail.Cantidad = 0;
                 ItemsDetail.EstadoId = Items.EstadoId;
-                if(Items.EstadoId == 36)
+                List<string> fields = new List<string>();
+                List<string> values = new List<string>();
+
+                fields.Add("ItemId");
+                values.Add(Items.ItemDetalleId.ToString());
+                if (Items.ItemDetalleId != 99 && Items.ItemDetalleId != 0 && Items.ItemDetalleId != null) 
+                {
+                    if (CommonOperator.CommonValidation("ItemDetalle", fields, values))
+                    {
+                        var commonOut = ItemDetalleOperator.GetAllByParameter("ItemId", Items.ItemDetalleId.Value);
+                        for (var i = 0; i < commonOut.Count - 1; i++)
+                        {
+                            if (i == commonOut.Count - 2)
+                            {
+                                ItemsDetail.ItemsAsociados = ItemsDetail.ItemsAsociados + ItemsOperator.GetOneByIdentity(commonOut[i].DetalleItemId).Detalle;
+                            }
+                            else
+                            {
+                                ItemsDetail.ItemsAsociados = ItemsDetail.ItemsAsociados + ItemsOperator.GetOneByIdentity(commonOut[i].DetalleItemId).Detalle + ",";
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    ItemsDetail.ItemDetalleId = 0;
+                }
+                if (Items.EstadoId == 36)
                 {
                     ItemsDetail.Estado = "Activo";
                 }
                 else { ItemsDetail.Estado = "Inactivo"; }
-                
+
                 lista.Add(ItemsDetail);
             }
             return lista;

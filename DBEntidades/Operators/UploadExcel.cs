@@ -1,22 +1,16 @@
 using System;
 using System.Configuration;
 using System.Data;
+using System.Data.OleDb;
 using System.IO;
 using System.Linq;
-using System.Data.OleDb;
 using System.Web.UI.WebControls;
-using System.Web;
-using DbEntidades.Entities;
-using DbEntidades.Operators;
-using System.Collections.Generic;
-using System.Web.UI;
-using System.Web.SessionState;
 
 namespace DbEntidades.Operators
 {
     public partial class UploadExcel
     {
-        public static DataSet UploadToExcel (FileUpload fileUpload)
+        public static DataSet UploadToExcel(FileUpload fileUpload)
         {
             //Get path from web.config file to upload
             string FilePath = ConfigurationManager.AppSettings["FilePath"].ToString();
@@ -43,7 +37,7 @@ namespace DbEntidades.Operators
                     {
                         //Get file name of selected file
                         filename = Path.GetFileName(System.Web.HttpContext.Current.Server.MapPath(fileUpload.FileName));
-                            
+
                         //Save selected file into server location
                         fileUpload.SaveAs(System.Web.HttpContext.Current.Server.MapPath(FilePath) + filename);
                         //Get file path
@@ -52,7 +46,7 @@ namespace DbEntidades.Operators
                         OleDbConnection con = null;
                         //if (FileExt == ".xls")
                         //{
-                            con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties=Excel 8.0;");
+                        con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties=Excel 8.0;");
 
                         //}
                         //else if (FileExt == ".xlsx")
@@ -95,7 +89,7 @@ namespace DbEntidades.Operators
         public static void DeleteUploads(string filename)
         {
             string FilePath = ConfigurationManager.AppSettings["FilePath"].ToString();
-            
+
             string path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(FilePath), filename);
             DirectoryInfo di = new DirectoryInfo(path);
 
@@ -114,5 +108,5 @@ namespace DbEntidades.Operators
             Console.WriteLine("Files deleted successfully");
         }
     }
-    
+
 }

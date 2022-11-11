@@ -2,10 +2,7 @@
 using DomainAmbientHouse.Servicios;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Presupuestos
@@ -151,7 +148,7 @@ namespace AmbientHouse.Presupuestos
             GridViewVentasConRenta.DataSource = ListPresuDetalle.ToList();
             GridViewVentasConRenta.DataBind();
 
-            GridViewVentasConRenta.Visible = true; 
+            GridViewVentasConRenta.Visible = true;
 
             TextBoxTotalRenta.Visible = true;
             LabelRentaTotal.Visible = true;
@@ -163,7 +160,7 @@ namespace AmbientHouse.Presupuestos
 
         private void CalcularCantidadInvitados(string pCantidadAdultos, string pCantidadInvitadosEntre3y8, string pCantidadInvitadosMenores3, string pCantidadInvitadosAdolecentes)
         {
-            CantidadTotalInvitados = Int32.Parse(cmd.CalcularCantidadInvitados( pCantidadAdultos,pCantidadInvitadosEntre3y8, pCantidadInvitadosMenores3 , pCantidadInvitadosAdolecentes).ToString());
+            CantidadTotalInvitados = Int32.Parse(cmd.CalcularCantidadInvitados(pCantidadAdultos, pCantidadInvitadosEntre3y8, pCantidadInvitadosMenores3, pCantidadInvitadosAdolecentes).ToString());
         }
 
         private void CargarEvento()
@@ -239,8 +236,8 @@ namespace AmbientHouse.Presupuestos
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-               cmd.PanelDescuentos(e);
-             
+                cmd.PanelDescuentos(e);
+
             }
 
         }

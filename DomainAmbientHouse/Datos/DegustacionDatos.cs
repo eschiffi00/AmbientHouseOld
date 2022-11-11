@@ -1,10 +1,7 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
-using System.Configuration;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -110,9 +107,11 @@ namespace DomainAmbientHouse.Entidades
         public string LocacionDescripcion { get; set; }
 
 
-        public string Identificador {
+        public string Identificador
+        {
 
-            get {
+            get
+            {
                 return "Degustacion: " + String.Format("{0:dd/MM/yyyy}", FechaDegustacion);
             }
         }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -19,7 +14,7 @@ namespace DomainAmbientHouse.Negocios
             Datos = new RubrosDatos();
         }
 
-       
+
         public List<Rubros> ObtenerRubros()
         {
             return Datos.ObtenerRubros();
@@ -27,7 +22,7 @@ namespace DomainAmbientHouse.Negocios
 
         public Rubros BuscarRubro(int id)
         {
-           return Datos.BuscarRubro( id);
+            return Datos.BuscarRubro(id);
         }
 
         public void NuevoRubro(Rubros rubro)

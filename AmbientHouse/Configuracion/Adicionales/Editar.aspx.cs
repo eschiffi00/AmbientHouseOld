@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.Adicionales
 {
@@ -602,7 +600,7 @@ namespace AmbientHouse.Configuracion.Adicionales
         protected void ButtonAgregar_Click(object sender, EventArgs e)
         {
 
-          
+
             LabelMensaje.Visible = false;
 
             if (DropDownListUnidadNegocios.SelectedItem.Value != null)
@@ -640,7 +638,7 @@ namespace AmbientHouse.Configuracion.Adicionales
                     {
                         LabelMensaje.Visible = true;
                         LabelMensaje.Text = "Ya existe la experiencia para el Adicional!!!";
-                       
+
                     }
 
                 }
@@ -671,7 +669,7 @@ namespace AmbientHouse.Configuracion.Adicionales
                     {
                         LabelMensaje.Visible = true;
                         LabelMensaje.Text = "Ya existe la experiencia para el Adicional!!!";
-                        
+
                     }
                 }
 

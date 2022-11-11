@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -21,10 +18,10 @@ namespace DomainAmbientHouse.Datos
         {
 
             var query = from c in SqlContext.UsuariosGrupos
-                        //join b in SqlContext.Bancos on c.BancoId equals b.Id
-                        //join p in SqlContext.Proveedores on c.ProveedorId equals p.Id into ps
-                        //from p in ps.DefaultIfEmpty()
-                        //join e in SqlContext.Estados on c.EstadoId equals e.Id
+                            //join b in SqlContext.Bancos on c.BancoId equals b.Id
+                            //join p in SqlContext.Proveedores on c.ProveedorId equals p.Id into ps
+                            //from p in ps.DefaultIfEmpty()
+                            //join e in SqlContext.Estados on c.EstadoId equals e.Id
                         select new
                         {
                             Id = c.Id,
@@ -40,14 +37,14 @@ namespace DomainAmbientHouse.Datos
 
                 cat.Id = item.Id;
                 cat.Nombre = item.Nombre;
-             
+
 
                 Salida.Add(cat);
             }
 
             return Salida.ToList();
 
-           
+
 
         }
 

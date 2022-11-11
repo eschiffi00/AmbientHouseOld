@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 
 namespace AmbientHouse.Configuracion.Locaciones
 {
     public partial class IndexAdicionales : System.Web.UI.Page
     {
 
-        AdministrativasServicios servicios = new  AdministrativasServicios();
+        AdministrativasServicios servicios = new AdministrativasServicios();
 
         private int LocacionId
         {
@@ -31,7 +26,7 @@ namespace AmbientHouse.Configuracion.Locaciones
             if (!IsPostBack)
             {
                 InicializarPagina();
-              
+
             }
         }
 

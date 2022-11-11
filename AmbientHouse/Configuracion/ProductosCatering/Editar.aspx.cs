@@ -1,12 +1,9 @@
-﻿using System;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.ProductosCatering
 {
@@ -77,12 +74,12 @@ namespace AmbientHouse.Configuracion.ProductosCatering
                 InicializarPagina();
 
 
-            
+
 
                 Buscar();
 
             }
-      
+
         }
 
         private void Buscar()
@@ -93,7 +90,7 @@ namespace AmbientHouse.Configuracion.ProductosCatering
             {
                 ListItemsAsociados = administrativa.BuscarItemsAsociados(ProductoCateringId, "null", estadoActivo);
 
-                GridViewItemsAsociados.DataSource = ListItemsAsociados.OrderBy(o=>o.Id).ToList();
+                GridViewItemsAsociados.DataSource = ListItemsAsociados.OrderBy(o => o.Id).ToList();
                 GridViewItemsAsociados.DataBind();
             }
             ListItemsNoAsociados = administrativa.BuscarItemsNoAsociados(ProductoCateringId, DropDownListCategorias.SelectedItem.Value, estadoActivo);
@@ -112,7 +109,7 @@ namespace AmbientHouse.Configuracion.ProductosCatering
             DropDownListCategorias.DataValueField = "Id";
             DropDownListCategorias.DataBind();
 
- 
+
         }
 
         private void InicializarPagina()
@@ -147,13 +144,13 @@ namespace AmbientHouse.Configuracion.ProductosCatering
 
             TextBoxDescripcion.Text = pc.Descripcion;
 
-            
+
 
         }
 
         private void NuevoProductoCategoria()
         {
-            ProductosCateringSeleccionado  = new DomainAmbientHouse.Entidades.ProductosCatering();
+            ProductosCateringSeleccionado = new DomainAmbientHouse.Entidades.ProductosCatering();
         }
 
         protected void ButtonAceptar_Click(object sender, EventArgs e)
@@ -173,7 +170,7 @@ namespace AmbientHouse.Configuracion.ProductosCatering
                     item = administrativa.BuscarItems(itemId);
 
                     ListItemsAsociados.Add(item);
-                  
+
 
                 }
             }
@@ -187,7 +184,7 @@ namespace AmbientHouse.Configuracion.ProductosCatering
 
             pc.Descripcion = TextBoxDescripcion.Text;
             pc.EstadoId = 1;
-          
+
             administrativa.NuevoProductoCatering(pc, ListItemsAsociados);
 
             Buscar();
@@ -235,7 +232,7 @@ namespace AmbientHouse.Configuracion.ProductosCatering
 
                     UpdatePanelGrillaItems.Update();
                 }
-            
+
             }
         }
     }

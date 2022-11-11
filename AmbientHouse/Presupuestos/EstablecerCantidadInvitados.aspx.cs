@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Presupuestos
@@ -256,10 +254,10 @@ namespace AmbientHouse.Presupuestos
                 Mail mailAprobacion = new Mail();
 
 
-                PresupuestoSeleccionado.CantidadInicialInvitados = (TextBoxCantMayores.Text != "" ?  Int32.Parse(TextBoxCantMayores.Text) :0);
-                PresupuestoSeleccionado.CantidadInvitadosAdolecentes = (TextBoxCantAdolescentes.Text != ""? Int32.Parse(TextBoxCantAdolescentes.Text) :0);
-                PresupuestoSeleccionado.CantidadInvitadosMenores3y8 = (TextBoxCantEntre3y8.Text != "" ? Int32.Parse(TextBoxCantEntre3y8.Text) :0);
-                PresupuestoSeleccionado.CantidadInvitadosMenores3 = (TextBoxCantMenores3.Text != "" ? Int32.Parse(TextBoxCantMenores3.Text):0);
+                PresupuestoSeleccionado.CantidadInicialInvitados = (TextBoxCantMayores.Text != "" ? Int32.Parse(TextBoxCantMayores.Text) : 0);
+                PresupuestoSeleccionado.CantidadInvitadosAdolecentes = (TextBoxCantAdolescentes.Text != "" ? Int32.Parse(TextBoxCantAdolescentes.Text) : 0);
+                PresupuestoSeleccionado.CantidadInvitadosMenores3y8 = (TextBoxCantEntre3y8.Text != "" ? Int32.Parse(TextBoxCantEntre3y8.Text) : 0);
+                PresupuestoSeleccionado.CantidadInvitadosMenores3 = (TextBoxCantMenores3.Text != "" ? Int32.Parse(TextBoxCantMenores3.Text) : 0);
 
                 presupuestos.EditarCantidadInvitados(PresupuestoSeleccionado);
 
@@ -277,6 +275,6 @@ namespace AmbientHouse.Presupuestos
         }
 
 
-    
+
     }
 }

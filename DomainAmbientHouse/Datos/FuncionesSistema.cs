@@ -1,8 +1,4 @@
 ﻿using DomainAmbientHouse.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -19,7 +15,7 @@ namespace DomainAmbientHouse.Datos
         public virtual void ActualizarPresupuestosVencidos()
         {
 
-           int resultado =  SqlContext.ActualizarPresupuestosVencidos();
+            int resultado = SqlContext.ActualizarPresupuestosVencidos();
 
         }
     }

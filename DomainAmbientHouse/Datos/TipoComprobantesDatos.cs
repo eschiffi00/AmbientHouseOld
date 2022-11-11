@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -49,7 +46,7 @@ namespace DomainAmbientHouse.Datos
                 SqlContext.TipoComprobantes.Add(item);
                 SqlContext.SaveChanges();
 
-               
+
             }
         }
 
@@ -68,7 +65,7 @@ namespace DomainAmbientHouse.Datos
 
         public void EliminarImpuestoTipoComprobante(int tipoComprobanteId)
         {
-            List<TipoComprobante_Impuestos> tipoComprobanteImpuestos = SqlContext.TipoComprobante_Impuestos.Where(o=>o.TipoComprobanteId == tipoComprobanteId).ToList();
+            List<TipoComprobante_Impuestos> tipoComprobanteImpuestos = SqlContext.TipoComprobante_Impuestos.Where(o => o.TipoComprobanteId == tipoComprobanteId).ToList();
 
             foreach (var item in tipoComprobanteImpuestos)
             {

@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
-using DomainAmbientHouse.Datos;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
     public class JornadasNegocios
     {
 
-      JornadasDatos Datos;
+        JornadasDatos Datos;
 
-      public JornadasNegocios()
+        public JornadasNegocios()
         {
             Datos = new JornadasDatos();
         }

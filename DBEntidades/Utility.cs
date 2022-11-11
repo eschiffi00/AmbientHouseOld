@@ -5,7 +5,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace DbEntidades
 {
@@ -85,8 +84,8 @@ namespace DbEntidades
             ";
 
             DB db = new DB();
-            return db.GetDataTable(query, CommandType.Text, 
-                new SqlParameter("@tablename", tablename), 
+            return db.GetDataTable(query, CommandType.Text,
+                new SqlParameter("@tablename", tablename),
                 new SqlParameter("@columnname", columnname));
         }
     }

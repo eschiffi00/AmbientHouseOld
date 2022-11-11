@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DomainAmbientHouse.Entidades;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainAmbientHouse.Entidades;
 using System.Configuration;
+using System.Linq;
 
 namespace DomainAmbientHouse.Datos
 {
@@ -50,12 +48,12 @@ namespace DomainAmbientHouse.Datos
                 cat.Id = item.Id;
                 cat.TipoBarraId = item.TipoBarraId;
                 cat.TipoBarraDescripcion = item.TipoBarraDescripcion;
-               
+
                 cat.ItemId = item.ItemId;
                 cat.ItemDescripcion = item.ItemDescripcion;
                 cat.CategoriaItemId = item.CategoriaItemId;
                 cat.CategoriaItemDescripcion = item.CategoriaItemDescripcion;
-              
+
                 Salida.Add(cat);
 
             }
@@ -71,7 +69,7 @@ namespace DomainAmbientHouse.Datos
                 TipoBarraCategoriaItem edit = SqlContext.TipoBarraCategoriaItem.Where(o => o.Id == tipo.Id).SingleOrDefault();
 
                 edit.TipoBarraId = tipo.TipoBarraId;
-                
+
                 edit.ItemId = tipo.ItemId;
                 edit.CategoriaItemId = tipo.CategoriaItemId;
                 edit.EstadoId = tipo.EstadoId;

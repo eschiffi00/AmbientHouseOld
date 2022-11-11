@@ -1,11 +1,11 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
-using System.Linq;
-using DbEntidades.Entities;
 using System.Data.SqlClient;
-using LibDB2;
+using System.Linq;
+using System.Reflection;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             Ratios ratios = new Ratios();
             foreach (PropertyInfo prop in typeof(Ratios).GetProperties())
             {
-				object value = dt.Rows[0][prop.Name];
-				if (value == DBNull.Value) value = null;
+                object value = dt.Rows[0][prop.Name];
+                if (value == DBNull.Value) value = null;
                 try { prop.SetValue(ratios, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,10 +45,10 @@ namespace DbEntidades.Operators
                 Ratios ratios = new Ratios();
                 foreach (PropertyInfo prop in typeof(Ratios).GetProperties())
                 {
-					object value = dr[prop.Name];
-					if (value == DBNull.Value) value = null;
-					try { prop.SetValue(ratios, value, null); }
-					catch (System.ArgumentException) { }
+                    object value = dr[prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(ratios, value, null); }
+                    catch (System.ArgumentException) { }
                 }
                 lista.Add(ratios);
             }
@@ -59,7 +59,7 @@ namespace DbEntidades.Operators
 
         public class MaxLength
         {
-			public static int TipoDependencia { get; set; } = 5;
+            public static int TipoDependencia { get; set; } = 5;
 
 
         }
@@ -126,19 +126,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i<param.Count; i++)
+            for (int i = 0; i < param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-        }
+            }
             sql += " where Id = " + ratios.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return ratios;
-    }
+        }
 
         private static string GetComilla(string tipo)
         {

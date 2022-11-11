@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DomainAmbientHouse.Servicios;
+﻿using DomainAmbientHouse.Servicios;
+using System;
 using System.Configuration;
+using System.Linq;
 
 namespace AmbientHouse.Administracion.Cuentas
 {
@@ -72,7 +68,7 @@ namespace AmbientHouse.Administracion.Cuentas
         private void InicializarPagina()
         {
             int id = 0;
-         
+
             if (Request["Id"] != null)
             {
                 id = Int32.Parse(Request["Id"]);
@@ -152,7 +148,7 @@ namespace AmbientHouse.Administracion.Cuentas
                 }
 
                 UpdatePanelTransferencias.Update();
-            
+
             }
         }
 

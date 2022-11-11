@@ -1,11 +1,10 @@
+using DbEntidades.Entities;
+using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
 using System.Linq;
-using DbEntidades.Entities;
-using System.Data.SqlClient;
-using LibDB2;
+using System.Reflection;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +22,8 @@ namespace DbEntidades.Operators
             PresupuestoDetalle presupuestoDetalle = new PresupuestoDetalle();
             foreach (PropertyInfo prop in typeof(PresupuestoDetalle).GetProperties())
             {
-				object value = dt.Rows[0][prop.Name];
-				if (value == DBNull.Value) value = null;
+                object value = dt.Rows[0][prop.Name];
+                if (value == DBNull.Value) value = null;
                 try { prop.SetValue(presupuestoDetalle, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -38,24 +37,24 @@ namespace DbEntidades.Operators
             var tipo = string.Empty;
             foreach (PropertyInfo prop in typeof(PresupuestoDetalle).GetProperties())
             {
-                if(prop.Name == campo)
+                if (prop.Name == campo)
                 {
                     tipo = prop.PropertyType.Name.ToString();
                 }
-                if(prop.Name == "Delete")
+                if (prop.Name == "Delete")
                 {
-                    columnas += "["+prop.Name+"]" + ", ";
+                    columnas += "[" + prop.Name + "]" + ", ";
                 }
                 else
                 {
                     columnas += prop.Name + ", ";
                 }
-                
+
             }
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
             var queryStr = string.Empty;
-            if(tipo == "String")
+            if (tipo == "String")
             {
                 queryStr = "select " + columnas + " from PresupuestoDetalle where " + campo + " = \'" + valor.ToString() + "\'";
             }

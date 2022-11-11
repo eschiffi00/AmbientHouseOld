@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Web;
 
 namespace DomainAmbientHouse.Servicios
@@ -17,7 +14,7 @@ namespace DomainAmbientHouse.Servicios
             //result = result + "<head> <style> ul { column-count: 2;} </style> <title></title></head><body>";
 
             //result = result + "<p>" + titulo + "</p>";
-            var result =  "<ul>";
+            var result = "<ul>";
 
             foreach (var item in list)
             {

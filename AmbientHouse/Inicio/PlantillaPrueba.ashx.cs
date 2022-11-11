@@ -4,9 +4,7 @@ using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 using System.Web.UI.WebControls;
@@ -78,14 +76,14 @@ namespace AmbientHouse.Inicio
                     foreach (var itemProducto in ListProductos)
                     {
                         TextBox textoProducto = new TextBox();
-                    //    //textoProducto.Attributes.Add("style", "font-size: 12px;font-family: Dosis-Medium;");
+                        //    //textoProducto.Attributes.Add("style", "font-size: 12px;font-family: Dosis-Medium;");
                         textoProducto.Text = itemProducto.Descripcion.ToUpper();
-                    //    textoProducto.Font.Name = "Dosis";
-                    //    Salida.Add("<div style=\'font-size: 12px;font-family: Dosis;margin-left: 30px;\'>&nbsp;&nbsp;&nbsp;" + textoProducto.Text + "</div>");
+                        //    textoProducto.Font.Name = "Dosis";
+                        //    Salida.Add("<div style=\'font-size: 12px;font-family: Dosis;margin-left: 30px;\'>&nbsp;&nbsp;&nbsp;" + textoProducto.Text + "</div>");
 
                         html = html + "<h5 style=\'margin-left: 20px; margin-right: 20px; margin-top: 10px; font-family: Dosis; color: black;text-transform: uppercase;\'>" + textoProducto.Text + "</h5> </br>";
                         html = html + "<ul style=\' margin-left: 20px;  margin-right: 20px;  margin-top: 10px; font-size: 12px;font-family: Dosis; line-height: 25px;text-align: justify;\'>";
- 
+
 
                         List<DomainAmbientHouse.Entidades.Items> ListProductoItems = servicios.ObtenerItemsPorTipoCateringTiempoProducto(TipoCateringId, item.Id, itemProducto.Id);
                         foreach (var itemProductosItems in ListProductoItems)
@@ -94,9 +92,9 @@ namespace AmbientHouse.Inicio
                             //textoProductoItem.Attributes.Add("style", "font-family: Dosis-ExtraLight;");
                             textoProductoItem.Text = itemProductosItems.Detalle;
 
-                             html = html  + "<li>" + textoProductoItem.Text + "</li>";
-                    //        Salida.Add("<div style=\'font-size: 10px; font-family: Dosis; 8px;margin-left: 50px;\'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + textoProductoItem.Text + "</div>");
-                      }
+                            html = html + "<li>" + textoProductoItem.Text + "</li>";
+                            //        Salida.Add("<div style=\'font-size: 10px; font-family: Dosis; 8px;margin-left: 50px;\'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + textoProductoItem.Text + "</div>");
+                        }
                         html = html + "</ul> </br>";
 
                     }
@@ -137,7 +135,7 @@ namespace AmbientHouse.Inicio
                     //    Salida.Add("<div style=\'font-size: 10px;font-family: Dosis; margin-left: 50px;\'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + textoItems.Text + "</div>");
                     //}
                 }
-                
+
 
             }
 
@@ -194,17 +192,17 @@ namespace AmbientHouse.Inicio
             //{
             //    contador = contador + 1;
 
-                string htmlText = html;
-                //string htmlText = sal;
+            string htmlText = html;
+            //string htmlText = sal;
 
 
-                IList<AcroFields.FieldPosition> pos = pdfFormFields.GetFieldPositions("Campo1");
-                //IList<AcroFields.FieldPosition> pos = pdfFormFields.GetFieldPositions("Campo" + contador.ToString());
-                //Field1 is the name of the field in the PDF Template you are trying to fill/overlay
-                AddHTMLToContent(htmlText, pdfStamper.GetOverContent(pos[0].page), pos);
-                //stamp is the PdfStamper in this example
+            IList<AcroFields.FieldPosition> pos = pdfFormFields.GetFieldPositions("Campo1");
+            //IList<AcroFields.FieldPosition> pos = pdfFormFields.GetFieldPositions("Campo" + contador.ToString());
+            //Field1 is the name of the field in the PDF Template you are trying to fill/overlay
+            AddHTMLToContent(htmlText, pdfStamper.GetOverContent(pos[0].page), pos);
+            //stamp is the PdfStamper in this example
 
-                //pdfFormFields.SetField("Campo" + contador.ToString(), Convert.ToString(sal));
+            //pdfFormFields.SetField("Campo" + contador.ToString(), Convert.ToString(sal));
             //}
 
 

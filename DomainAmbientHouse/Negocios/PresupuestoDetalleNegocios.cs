@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DomainAmbientHouse.Datos;
+﻿using DomainAmbientHouse.Datos;
 using DomainAmbientHouse.Entidades;
+using System.Collections.Generic;
 
 namespace DomainAmbientHouse.Negocios
 {
@@ -16,7 +13,7 @@ namespace DomainAmbientHouse.Negocios
             Datos = new PresupuestoDetalleDatos();
         }
 
-        public PresupuestoDetalle AddItem(PresupuestoDetalle detalle,Productos producto, int locacionId, int invitadosAdultos, int invitadosAdolescentes, int invitadosTotal,List<PresupuestoDetalle> list)
+        public PresupuestoDetalle AddItem(PresupuestoDetalle detalle, Productos producto, int locacionId, int invitadosAdultos, int invitadosAdolescentes, int invitadosTotal, List<PresupuestoDetalle> list)
         {
             return Datos.AddItem(detalle, producto, locacionId, invitadosAdultos, invitadosAdolescentes, invitadosTotal, list);
 
@@ -29,7 +26,7 @@ namespace DomainAmbientHouse.Negocios
 
         public PresupuestoDetalle BuscarPresupuestoDetalle(int id)
         {
-           return Datos.BuscarPresupuestoDetalle( id);
+            return Datos.BuscarPresupuestoDetalle(id);
         }
 
         internal bool ActualizarCobroItem(int Id)
@@ -39,10 +36,10 @@ namespace DomainAmbientHouse.Negocios
 
         public List<PresupuestoDetalle> BuscarDetallePresupuestoNoPagados(int PresupuestoId, string fechaEvento, string cliente)
         {
-            return Datos.BuscarDetallePresupuestoNoPagados(PresupuestoId,fechaEvento,cliente);
+            return Datos.BuscarDetallePresupuestoNoPagados(PresupuestoId, fechaEvento, cliente);
         }
 
-        public  void GrabarDetallePresupuesto(PresupuestoDetalle detalle)
+        public void GrabarDetallePresupuesto(PresupuestoDetalle detalle)
         {
             Datos.GrabarPresupuestoDetalle(detalle);
         }

@@ -346,7 +346,12 @@
                                                                             <tr>
                                                                                 <td>&nbsp;</td>
                                                                                 <td>&nbsp;</td>
-                                                                                <td>Total Organizador:<asp:TextBox ID="TextBoxTotalPorcOrganizador" runat="server" class="form-control" Font-Bold="True" ReadOnly="True" Width="100px" ForeColor="Black"></asp:TextBox>
+
+                                                                                <td>Total Organizador:
+	                                                                                <asp:TextBox ID="TextBoxTotalPorcOrganizador" runat="server" class="form-control" Font-Bold="True" Width="100px" ForeColor="Black"></asp:TextBox>
+	                                                                                <asp:Button ID="ButtonActualizarOrganizador" runat="server" Text="Actualizar Valor Organizador" CssClass="btn btn-warning" OnClick="ButtonActualizarOrganizador_Click" />
+	                                                                                <asp:Label ID="LabelMensaje" runat="server"></asp:Label>
+
                                                                                 </td>
                                                                                 <td>
                                                                                     <asp:Label ID="LabelRentaTotal" runat="server" Text="Renta Total:"></asp:Label><asp:TextBox ID="TextBoxTotalRenta" runat="server" class="form-control" ReadOnly="True" Width="100px"></asp:TextBox>
