@@ -36,6 +36,7 @@ namespace DbEntidades.Operators
                 RatiosListado RatiosDetail = new RatiosListado();
                 RatiosDetail.Id = Ratios.Id;
                 RatiosDetail.ItemId = Ratios.ItemId;
+                RatiosDetail.ExperienciaBarraCodigo = Ratios.ExperienciaBarra;
                 if (Ratios.ExperienciaBarra.Substring(0, 3) == "BAR")
                 {
                     RatiosDetail.ExperienciaBarra = TiposBarrasOperator.GetOneByParameter("Id", Ratios.ExperienciaBarra.Substring(3)).Descripcion;
@@ -45,8 +46,6 @@ namespace DbEntidades.Operators
                     RatiosDetail.ExperienciaBarra = TipoCateringOperator.GetOneByParameter("Id", Ratios.ExperienciaBarra.Substring(4)).Descripcion;
                 }
                 RatiosDetail.ItemDetalle = ItemsOperator.GetOneByIdentity(Ratios.ItemId).Detalle;
-                RatiosDetail.CategoriaId = Ratios.CategoriaId;
-                RatiosDetail.CategoriaDetalle = CategoriasItemOperator.GetOneByIdentity(Ratios.CategoriaId).Descripcion;
                 RatiosDetail.TipoRatio = Ratios.TipoRatio;
                 RatiosDetail.DetalleTipo = Ratios.DetalleTipo;
                 RatiosDetail.ValorRatio = Ratios.ValorRatio;

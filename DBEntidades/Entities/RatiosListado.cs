@@ -6,8 +6,7 @@ namespace DbEntidades.Entities
         public int ItemId { get; set; }
         public string ItemDetalle { get; set; }
         public string ExperienciaBarra { get; set; }
-        public int CategoriaId { get; set; }
-        public string CategoriaDetalle { get; set; }
+        public string ExperienciaBarraCodigo { get; set; }
         public string TipoRatio { get; set; }
         public string DetalleTipo { get; set; }
         public double? ValorRatio { get; set; }
@@ -25,8 +24,6 @@ namespace DbEntidades.Entities
             "ID: " + Id.ToString() + "\r\n " +
             "ItemId: " + ItemId.ToString() + "\r\n " +
             "ItemDetalle: " + ItemDetalle.ToString() + "\r\n " +
-            "CategoriaId: " + CategoriaId.ToString() + "\r\n " +
-            "CategoriaDetalle: " + CategoriaDetalle.ToString() + "\r\n " +
             "TipoRatio: " + TipoRatio.ToString() + "\r\n " +
             "DetalleTipo: " + DetalleTipo.ToString() + "\r\n " +
             "TopeRatio: " + TopeRatio.ToString() + "\r\n " +

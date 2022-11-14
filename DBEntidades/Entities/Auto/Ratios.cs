@@ -5,7 +5,6 @@ namespace DbEntidades.Entities
         public int Id { get; set; }
         public int ItemId { get; set; }
         public string ExperienciaBarra { get; set; }
-        public int CategoriaId { get; set; }
         public string TipoRatio { get; set; }
         public string DetalleTipo { get; set; }
         public double? ValorRatio { get; set; }
@@ -22,7 +21,6 @@ namespace DbEntidades.Entities
             return "\r\n " +
             "Id: " + Id.ToString() + "\r\n " +
             "ItemId: " + ItemId.ToString() + "\r\n " +
-            "CategoriaId: " + CategoriaId.ToString() + "\r\n " +
             "TipoRatio: " + TipoRatio.ToString() + "\r\n " +
             "DetalleTipo: " + DetalleTipo.ToString() + "\r\n " +
             "ValorRatio: " + ValorRatio.ToString() + "\r\n " +
@@ -49,7 +47,6 @@ namespace DbEntidades.Entities
             {
                 case "Id": return false;
                 case "ItemId": return false;
-                case "CategoriaId": return false;
                 case "TipoRatio": return false;
                 case "DetalleTipo": return false;
                 case "ValorRatio": return false;

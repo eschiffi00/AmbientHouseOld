@@ -10,11 +10,11 @@
         $(document).ready(function () {
             // seteo como multiselect al listbox
             GroupDropdownlist();
-            $('[id*=MultiselectCategorias]').multiselect({
-                enableClickableOptGroups: true,
-                enableCollapsibleOptGroups: true,
-                enableFiltering: true
-            });
+            //$('[id*=MultiselectCategorias]').multiselect({
+            //    enableClickableOptGroups: true,
+            //    enableCollapsibleOptGroups: true,
+            //    enableFiltering: true
+            //});
             $('[id*=MultiselectExperiencias]').multiselect({
                 enableClickableOptGroups: true,
                 enableCollapsibleOptGroups: true,
@@ -23,10 +23,7 @@
             $('[id*=MultiselectItems]').multiselect({
                 includeSelectAllOption: true,
                 dropRight: true,
-                enableFiltering: true,
-                onDropdownHide: function (event) {
-                    __doPostBack();//__doPostBack($(event.target).parent().children('#DropDownList_ExportCountry').attr('id'), '')
-                }
+                enableFiltering: true
             });
             document.addEventListener("keydown", function (event) {
                 if (event.which == 9) {
@@ -177,6 +174,7 @@
                 <asp:BoundField DataField="ItemId" HeaderText="Detalle" Visible="false" />
                 <asp:BoundField DataField="ItemDetalle" HeaderText="Item" Visible="true" />
                 <asp:BoundField DataField="ExperienciaBarra" HeaderText="Experiencia/Barra" Visible="true" />
+                <asp:BoundField DataField="ExperienciaBarraCodigo" HeaderText="Experiencia/Barra" Visible="false" />
 <%--                <asp:BoundField DataField="CategoriaId" HeaderText="CategoriaId" Visible="false" />
                 <asp:BoundField DataField="CategoriaDetalle" HeaderText="Categoria Detalle" Visible="true" />--%>
                 <asp:BoundField DataField="TipoRatio" HeaderText="Tipo Ratio" Visible="true" />

@@ -313,7 +313,6 @@ namespace AmbientHouse.Configuracion.AbmItems
                     Ratio.Id = id;
                     Ratio.ItemId = RatiosOperator.GetOneByIdentity(id).ItemId;
                     Ratio.ExperienciaBarra = RatiosOperator.GetOneByIdentity(id).ExperienciaBarra;
-                    Ratio.CategoriaId = 99;
                     RatiosOperator.Save(Ratio);
 
                 }
@@ -333,7 +332,6 @@ namespace AmbientHouse.Configuracion.AbmItems
                                 { 
                                     Ratio.Id = -1;
                                     Ratio.ItemId = detItem.Id;
-                                    Ratio.CategoriaId = 99;
                                     //verifico si se selecciono un tipo de experiencia o barra y armo el codigo
                                     if (TipoCateringOperator.TipoCateringValidation("Descripcion", MulExpBar.Text))
                                     {
@@ -345,7 +343,6 @@ namespace AmbientHouse.Configuracion.AbmItems
                                     }
                                     parametros.Add(Ratio.ItemId.ToString());
                                     parametros.Add(Ratio.ExperienciaBarra);
-                                    parametros.Add(Ratio.CategoriaId.ToString());
                                     parametros.Add(Ratio.TipoRatio);
                                     parametros.Add(Ratio.DetalleTipo);
                                     if (!RatiosOperator.RatioValidation(parametros) && duplicado == 0)

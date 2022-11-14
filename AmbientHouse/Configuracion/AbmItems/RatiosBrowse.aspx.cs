@@ -25,7 +25,9 @@ namespace AmbientHouse.Configuracion.AbmItems
                 CargaItems();
                 //CargaCategorias();
                 grdRatiosBind();
+                SessionSaveAll();
             }
+            SessionLoadAll();
         }
 
         //public void CargaCategorias()
@@ -42,6 +44,26 @@ namespace AmbientHouse.Configuracion.AbmItems
         //    }
         //    MultiselectCategorias.DataBind();
         //}
+
+        #region Session
+        protected void SessionClearAll()
+        {
+            Session["ratiosListado"] = null;
+        }
+        protected void SessionLoadAll()
+        {
+            ratiosListado = (List<RatiosListado>)Session["ratiosListado"];
+        }
+        protected void SessionSaveAll()
+        {
+            Session["ratiosListado"] = ratiosListado;
+        }
+        protected override void OnPreRenderComplete(EventArgs e)
+        {
+            SessionSaveAll();
+            base.OnPreRenderComplete(e);
+        }
+        #endregion Session
         public void CargaExperienciasBarras()
         {
             List<TipoCateringComun> tipocatering = TipoCateringOperator.GetAllForCombo();
@@ -77,6 +99,7 @@ namespace AmbientHouse.Configuracion.AbmItems
         }
         protected void grdRatiosBind()
         {
+
             ratiosListado = RatiosOperator.GetAllWithDetails().ToList();
             grdRatios.DataSource = ratiosListado;
             grdRatios.DataBind();
@@ -87,6 +110,8 @@ namespace AmbientHouse.Configuracion.AbmItems
         }
         protected void btnFiltrar_Click(object sender, EventArgs e)
         {
+            List<string> fields = new List<string>();
+            List<string> values = new List<string>();
             List<RatiosListado> ratiosfiltrados = new List<RatiosListado>();
             if (MultiselectItems.SelectedItem != null)
             {
@@ -94,7 +119,35 @@ namespace AmbientHouse.Configuracion.AbmItems
                 {
                     if (item.Selected)
                     {
-                        ratiosfiltrados.AddRange(ratiosListado.Where(x => x.ItemId == ItemsOperator.GetOneByParameter("Detalle", item.Value).Id).ToList());
+                        var id = ItemsOperator.GetOneByParameter("Detalle", item.Value).Id;
+                        ratiosfiltrados.AddRange(ratiosListado.Where(x => x.ItemId == id).ToList());
+                    }
+                }
+            }
+            if(MultiselectExperiencias.SelectedItem != null)
+            {
+                foreach (ListItem experiencia in MultiselectExperiencias.Items)
+                {
+                    var valor = experiencia.Value;
+                    var codigoExperiencia = "";
+                    if (experiencia.Selected)
+                    {
+                        var tipocatering = TipoCateringOperator.GetOneByIdentity(int.Parse(valor));
+
+                        if (tipocatering != null)
+                        {
+                            codigoExperiencia = "TCAT" + tipocatering.Id;
+                        }
+                        else
+                        {
+                            var tipobarra = TiposBarrasOperator.GetOneByIdentity(int.Parse(valor));
+                            if (tipobarra != null)
+                            {
+                                codigoExperiencia = "BAR" + tipobarra.Id;
+                            }
+                        }
+                        
+                        ratiosfiltrados = ratiosfiltrados.Where(x => x.ExperienciaBarraCodigo == codigoExperiencia).ToList();
                     }
                 }
             }
