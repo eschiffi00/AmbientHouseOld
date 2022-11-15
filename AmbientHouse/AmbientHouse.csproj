@@ -138,6 +138,7 @@
     <Content Include="Administracion\PresupuestosAprobados\SeguirAprobados.aspx" />
     <Content Include="Administracion\PresupuestosAprobados\VisualizarArchivo.aspx" />
     <Content Include="Administracion\PresupuestosAprobados\VisualizarArchivoComanda.aspx" />
+    <Content Include="Administracion\Productos\Tecnicaupd.aspx" />
     <Content Include="Administracion\Productos\Salonesupd.aspx" />
     <Content Include="Administracion\ProveedoresExternos\Editar.aspx" />
     <Content Include="Administracion\Recibos\Editar.aspx" />
@@ -912,6 +913,13 @@
     </Compile>
     <Compile Include="Administracion\PresupuestosAprobados\VisualizarArchivoComanda.aspx.designer.cs">
       <DependentUpon>VisualizarArchivoComanda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Productos\Tecnicaupd.aspx.cs">
+      <DependentUpon>Tecnicaupd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Productos\Tecnicaupd.aspx.designer.cs">
+      <DependentUpon>Tecnicaupd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administracion\Productos\Salonesupd.aspx.cs">
       <DependentUpon>Salonesupd.aspx</DependentUpon>

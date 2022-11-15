@@ -202,7 +202,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
                         foreach (var detalle in ComprobanteDetalle)
                         {
                             var importes = ComprobantesPagadosOperator.GetAllByParameter("ComprobanteProveedorDetalleId", detalle.Id);
-                            var importe = importes.Count > 0 ? importes[ind].MontoPagado : 0;
+                            var importe = importes.Count > 0 ? importes[0].MontoPagado : 0;
                             if ((detalle.Importe + detalle.ValorImpuesto) > importe)
                             {
 

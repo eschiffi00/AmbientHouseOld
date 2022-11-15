@@ -472,9 +472,16 @@ namespace AmbientHouse.App_Shared.Controles
                 mnuCostoTecnica.Value = "TTE";
                 mnuCostoTecnica.NavigateUrl = "~/Administracion/Costos/Tecnica.aspx";
 
+                MenuItem mnuActualizaTecnica = new MenuItem();
+
+                mnuActualizaTecnica.Text = "Actualizacion de Precios";
+                mnuActualizaTecnica.Value = "LOC";
+                mnuActualizaTecnica.NavigateUrl = "~/Administracion/Productos/Tecnicaupd.aspx";
+
 
 
                 mnuTecnicas.ChildItems.Add(mnuCostoTecnica);
+                mnuTecnicas.ChildItems.Add(mnuActualizaTecnica);
 
                 mnuConfiguracion.ChildItems.Add(mnuTecnicas);
 
