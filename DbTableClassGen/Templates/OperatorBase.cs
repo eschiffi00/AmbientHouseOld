@@ -54,6 +54,93 @@ namespace DbEntidades.Operators
             }
             return lista;
         }
+        public static <TableName> GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("Permiso<TableName>Browse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+        foreach (PropertyInfo prop in typeof(<TableName>).GetProperties())
+        {
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
+        }
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from <TableName> where  " + campo + " = \'" + valor + "\'").Tables[0];
+            <TableName> <TableName> = new <TableName>();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(<TableName>).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(<TableName>, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return <TableName>;
+        }
+        public static List<<TableName>> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("Permiso<TableName>Browse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(<TableName>).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from <TableName> where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from <TableName> where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<<TableName>> lista = new List<<TableName>>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    <TableName> entidad = new <TableName>();
+                    foreach (PropertyInfo prop in typeof(<TableName>).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
 
 <GetAllEstado1>
 

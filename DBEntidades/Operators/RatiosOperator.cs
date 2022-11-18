@@ -50,6 +50,7 @@ namespace DbEntidades.Operators
                 RatiosDetail.DetalleTipo = Ratios.DetalleTipo;
                 RatiosDetail.ValorRatio = Ratios.ValorRatio;
                 RatiosDetail.TopeRatio = Ratios.TopeRatio;
+                RatiosDetail.Adultos = Ratios.Adultos;
                 RatiosDetail.Menores3 = Ratios.Menores3;
                 RatiosDetail.Menores3y8 = Ratios.Menores3y8;
                 RatiosDetail.Adolescentes = Ratios.Adolescentes;
@@ -65,55 +66,7 @@ namespace DbEntidades.Operators
         ////GetAllByParameter////
         // Inputs: nombrecampo / valor 
         // funciona tanto para campos int como para campos string y realiza la conversion
-        public static List<Ratios> GetAllByParameter(string campo, string valor)
-        {
-            if (!DbEntidades.Seguridad.Permiso("PermisoRatiosBrowse")) throw new PermisoException();
-            string columnas = string.Empty;
-            var tipo = string.Empty;
-            foreach (PropertyInfo prop in typeof(Ratios).GetProperties())
-            {
-                if (prop.Name == campo)
-                {
-                    tipo = prop.PropertyType.Name.ToString();
-                }
-                if (prop.Name == "Delete")
-                {
-                    columnas += "[" + prop.Name + "]" + ", ";
-                }
-                else
-                {
-                    columnas += prop.Name + ", ";
-                }
-
-            }
-            columnas = columnas.Substring(0, columnas.Length - 2);
-            DB db = new DB();
-            var queryStr = string.Empty;
-            if (tipo == "String")
-            {
-                queryStr = "select " + columnas + " from Ratios where " + campo + " = \'" + valor.ToString() + "\'";
-            }
-            else
-            {
-                queryStr = "select " + columnas + " from Ratios where " + campo + " = " + valor.ToString();
-            }
-            DataTable dt = db.GetDataSet(queryStr).Tables[0];
-            List<Ratios> lista = new List<Ratios>();
-            foreach (DataRow dr in dt.AsEnumerable())
-            {
-
-                Ratios comprobante = new Ratios();
-                foreach (PropertyInfo prop in typeof(Ratios).GetProperties())
-                {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(comprobante, value, null); }
-                    catch (System.ArgumentException) { }
-                }
-                lista.Add(comprobante);
-            }
-            return lista;
-        }
+        
         // Ratio Validation //
         // recibe un list con los campos ItemId,CategoriaId,TipoRatio,DetalleTipo 
         // deben estar en ese orden

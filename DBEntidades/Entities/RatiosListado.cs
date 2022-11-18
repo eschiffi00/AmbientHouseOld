@@ -11,6 +11,7 @@ namespace DbEntidades.Entities
         public string DetalleTipo { get; set; }
         public double? ValorRatio { get; set; }
         public double? TopeRatio { get; set; }
+        public int Adultos { get; set; }
         public int Menores3 { get; set; }
         public int Menores3y8 { get; set; }
         public int Adolescentes { get; set; }

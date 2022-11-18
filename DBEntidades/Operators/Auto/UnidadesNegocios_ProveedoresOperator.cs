@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             UnidadesNegocios_Proveedores unidadesNegocios_Proveedores = new UnidadesNegocios_Proveedores();
             foreach (PropertyInfo prop in typeof(UnidadesNegocios_Proveedores).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(unidadesNegocios_Proveedores, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,15 +45,102 @@ namespace DbEntidades.Operators
                 UnidadesNegocios_Proveedores unidadesNegocios_Proveedores = new UnidadesNegocios_Proveedores();
                 foreach (PropertyInfo prop in typeof(UnidadesNegocios_Proveedores).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(unidadesNegocios_Proveedores, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(unidadesNegocios_Proveedores, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(unidadesNegocios_Proveedores);
             }
             return lista;
         }
+        public static UnidadesNegocios_Proveedores GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoUnidadesNegocios_ProveedoresBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+        foreach (PropertyInfo prop in typeof(UnidadesNegocios_Proveedores).GetProperties())
+        {
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
+        }
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from UnidadesNegocios_Proveedores where  " + campo + " = \'" + valor + "\'").Tables[0];
+            UnidadesNegocios_Proveedores UnidadesNegocios_Proveedores = new UnidadesNegocios_Proveedores();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(UnidadesNegocios_Proveedores).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(UnidadesNegocios_Proveedores, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return UnidadesNegocios_Proveedores;
+        }
+        public static List<UnidadesNegocios_Proveedores> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoUnidadesNegocios_ProveedoresBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(UnidadesNegocios_Proveedores).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from UnidadesNegocios_Proveedores where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from UnidadesNegocios_Proveedores where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<UnidadesNegocios_Proveedores> lista = new List<UnidadesNegocios_Proveedores>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    UnidadesNegocios_Proveedores entidad = new UnidadesNegocios_Proveedores();
+                    foreach (PropertyInfo prop in typeof(UnidadesNegocios_Proveedores).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
 
 
 
@@ -125,19 +212,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where Id = " + unidadesNegocios_Proveedores.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return unidadesNegocios_Proveedores;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

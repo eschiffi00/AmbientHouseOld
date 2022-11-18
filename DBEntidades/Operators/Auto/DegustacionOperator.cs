@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             Degustacion degustacion = new Degustacion();
             foreach (PropertyInfo prop in typeof(Degustacion).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(degustacion, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,38 +45,125 @@ namespace DbEntidades.Operators
                 Degustacion degustacion = new Degustacion();
                 foreach (PropertyInfo prop in typeof(Degustacion).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(degustacion, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(degustacion, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(degustacion);
             }
             return lista;
         }
+        public static Degustacion GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoDegustacionBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
 
-        public static List<Degustacion> GetAllEstado1()
+        foreach (PropertyInfo prop in typeof(Degustacion).GetProperties())
         {
-            return GetAll().Where(x => x.EstadoId == 1).ToList();
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
         }
-        public static List<Degustacion> GetAllEstadoNot1()
-        {
-            return GetAll().Where(x => x.EstadoId != 1).ToList();
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from Degustacion where  " + campo + " = \'" + valor + "\'").Tables[0];
+            Degustacion Degustacion = new Degustacion();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(Degustacion).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(Degustacion, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return Degustacion;
         }
-        public static List<Degustacion> GetAllEstadoN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId == estado).ToList();
-        }
-        public static List<Degustacion> GetAllEstadoNotN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId != estado).ToList();
-        }
+        public static List<Degustacion> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoDegustacionBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(Degustacion).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from Degustacion where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from Degustacion where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<Degustacion> lista = new List<Degustacion>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    Degustacion entidad = new Degustacion();
+                    foreach (PropertyInfo prop in typeof(Degustacion).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
+
+		public static List<Degustacion> GetAllEstado1()
+		{
+			return GetAll().Where(x => x.EstadoId == 1).ToList();
+		}
+		public static List<Degustacion> GetAllEstadoNot1()
+		{
+			return GetAll().Where(x => x.EstadoId != 1).ToList();
+		}
+		public static List<Degustacion> GetAllEstadoN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId == estado).ToList();
+		}
+		public static List<Degustacion> GetAllEstadoNotN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId != estado).ToList();
+		}
 
 
         public class MaxLength
         {
-            public static int HoraCorporativo { get; set; } = 5;
-            public static int HoraSocial { get; set; } = 5;
+			public static int HoraCorporativo { get; set; } = 5;
+			public static int HoraSocial { get; set; } = 5;
 
 
         }
@@ -143,19 +230,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where Id = " + degustacion.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return degustacion;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

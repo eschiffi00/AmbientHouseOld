@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -20,15 +20,15 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
             DataTable dt = db.GetDataSet("select " + columnas + " from ComprobantesPagados where Id = " + Id.ToString()).Tables[0];
-            ComprobantesPagados ComprobantesPagados = new ComprobantesPagados();
+            ComprobantesPagados comprobantesPagados = new ComprobantesPagados();
             foreach (PropertyInfo prop in typeof(ComprobantesPagados).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
-                try { prop.SetValue(ComprobantesPagados, value, null); }
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
+                try { prop.SetValue(comprobantesPagados, value, null); }
                 catch (System.ArgumentException) { }
             }
-            return ComprobantesPagados;
+            return comprobantesPagados;
         }
 
         public static List<ComprobantesPagados> GetAll()
@@ -42,35 +42,123 @@ namespace DbEntidades.Operators
             DataTable dt = db.GetDataSet("select " + columnas + " from ComprobantesPagados").Tables[0];
             foreach (DataRow dr in dt.AsEnumerable())
             {
-                ComprobantesPagados ComprobantesPagados = new ComprobantesPagados();
+                ComprobantesPagados comprobantesPagados = new ComprobantesPagados();
                 foreach (PropertyInfo prop in typeof(ComprobantesPagados).GetProperties())
                 {
-                    object value = dr[prop.Name];
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(comprobantesPagados, value, null); }
+					catch (System.ArgumentException) { }
+                }
+                lista.Add(comprobantesPagados);
+            }
+            return lista;
+        }
+        public static ComprobantesPagados GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoComprobantesPagadosBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+        foreach (PropertyInfo prop in typeof(ComprobantesPagados).GetProperties())
+        {
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
+        }
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from ComprobantesPagados where  " + campo + " = \'" + valor + "\'").Tables[0];
+            ComprobantesPagados ComprobantesPagados = new ComprobantesPagados();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(ComprobantesPagados).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
                     if (value == DBNull.Value) value = null;
                     try { prop.SetValue(ComprobantesPagados, value, null); }
                     catch (System.ArgumentException) { }
                 }
-                lista.Add(ComprobantesPagados);
             }
-            return lista;
+            return ComprobantesPagados;
         }
+        public static List<ComprobantesPagados> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoComprobantesPagadosBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(ComprobantesPagados).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from ComprobantesPagados where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from ComprobantesPagados where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<ComprobantesPagados> lista = new List<ComprobantesPagados>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    ComprobantesPagados entidad = new ComprobantesPagados();
+                    foreach (PropertyInfo prop in typeof(ComprobantesPagados).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
 
 
 
         public class MaxLength
         {
+			public static int TMDescripcion { get; set; } = 50;
 
 
         }
 
-        public static ComprobantesPagados Save(ComprobantesPagados ComprobantesPagados)
+        public static ComprobantesPagados Save(ComprobantesPagados comprobantesPagados)
         {
             if (!DbEntidades.Seguridad.Permiso("PermisoComprobantesPagadosSave")) throw new PermisoException();
-            if (ComprobantesPagados.Id == -1) return Insert(ComprobantesPagados);
-            else return Update(ComprobantesPagados);
+            if (comprobantesPagados.Id == -1) return Insert(comprobantesPagados);
+            else return Update(comprobantesPagados);
         }
 
-        public static ComprobantesPagados Insert(ComprobantesPagados ComprobantesPagados)
+        public static ComprobantesPagados Insert(ComprobantesPagados comprobantesPagados)
         {
             if (!DbEntidades.Seguridad.Permiso("PermisoComprobantesPagadosSave")) throw new PermisoException();
             string sql = "insert into ComprobantesPagados(";
@@ -86,7 +174,7 @@ namespace DbEntidades.Operators
                 columnas += prop.Name + ", ";
                 valores += "@" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
-                valor.Add(prop.GetValue(ComprobantesPagados, null));
+                valor.Add(prop.GetValue(comprobantesPagados, null));
             }
             columnas = columnas.Substring(0, columnas.Length - 2);
             valores = valores.Substring(0, valores.Length - 2);
@@ -102,11 +190,11 @@ namespace DbEntidades.Operators
             }
             //object resp = db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
-            ComprobantesPagados.Id = Convert.ToInt32(resp);
-            return ComprobantesPagados;
+            comprobantesPagados.Id = Convert.ToInt32(resp);
+            return comprobantesPagados;
         }
 
-        public static ComprobantesPagados Update(ComprobantesPagados ComprobantesPagados)
+        public static ComprobantesPagados Update(ComprobantesPagados comprobantesPagados)
         {
             if (!DbEntidades.Seguridad.Permiso("PermisoComprobantesPagadosSave")) throw new PermisoException();
             string sql = "update ComprobantesPagados set ";
@@ -120,24 +208,24 @@ namespace DbEntidades.Operators
                 if (prop.Name == "Id") continue; //es identity
                 columnas += prop.Name + " = @" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
-                valor.Add(prop.GetValue(ComprobantesPagados, null));
+                valor.Add(prop.GetValue(comprobantesPagados, null));
             }
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
-            sql += " where  Id = " + ComprobantesPagados.Id;
+        }
+            sql += " where Id = " + comprobantesPagados.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
-            return ComprobantesPagados;
-        }
+            return comprobantesPagados;
+    }
 
         private static string GetComilla(string tipo)
         {

@@ -37,27 +37,7 @@ namespace DbEntidades.Operators
             return lista;
         }
 
-        public static TipoCatering GetOneByParameter(string campo, string valor)
-        {
-            if (!DbEntidades.Seguridad.Permiso("TipoCateringBrowse")) throw new PermisoException();
-            string columnas = string.Empty;
-            foreach (PropertyInfo prop in typeof(TipoCatering).GetProperties()) columnas += prop.Name + ", ";
-            columnas = columnas.Substring(0, columnas.Length - 2);
-            DB db = new DB();
-            DataTable dt = db.GetDataSet("select " + columnas + " from TipoCatering where  " + campo + " = \'" + valor + "\'").Tables[0];
-            TipoCatering Temp = new TipoCatering();
-            if (dt.Rows.Count > 0)
-            {
-                foreach (PropertyInfo prop in typeof(TipoCatering).GetProperties())
-                {
-                    object value = dt.Rows[0][prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(Temp, value, null); }
-                    catch (System.ArgumentException) { }
-                }
-            }
-            return Temp;
-        }
+        
         public static bool TipoCateringValidation(string campo, string valor)
         {
             bool result = false;

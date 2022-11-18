@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             Feriados feriados = new Feriados();
             foreach (PropertyInfo prop in typeof(Feriados).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(feriados, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,21 +45,108 @@ namespace DbEntidades.Operators
                 Feriados feriados = new Feriados();
                 foreach (PropertyInfo prop in typeof(Feriados).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(feriados, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(feriados, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(feriados);
             }
             return lista;
         }
+        public static Feriados GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoFeriadosBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+        foreach (PropertyInfo prop in typeof(Feriados).GetProperties())
+        {
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
+        }
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from Feriados where  " + campo + " = \'" + valor + "\'").Tables[0];
+            Feriados Feriados = new Feriados();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(Feriados).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(Feriados, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return Feriados;
+        }
+        public static List<Feriados> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoFeriadosBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(Feriados).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from Feriados where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from Feriados where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<Feriados> lista = new List<Feriados>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    Feriados entidad = new Feriados();
+                    foreach (PropertyInfo prop in typeof(Feriados).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
 
 
 
         public class MaxLength
         {
-            public static int Descripcion { get; set; } = 500;
+			public static int Descripcion { get; set; } = 500;
 
 
         }
@@ -126,19 +213,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where Id = " + feriados.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return feriados;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

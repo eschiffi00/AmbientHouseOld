@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             INVENTARIO_Requerimiento iNVENTARIO_Requerimiento = new INVENTARIO_Requerimiento();
             foreach (PropertyInfo prop in typeof(INVENTARIO_Requerimiento).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(iNVENTARIO_Requerimiento, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,37 +45,124 @@ namespace DbEntidades.Operators
                 INVENTARIO_Requerimiento iNVENTARIO_Requerimiento = new INVENTARIO_Requerimiento();
                 foreach (PropertyInfo prop in typeof(INVENTARIO_Requerimiento).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(iNVENTARIO_Requerimiento, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(iNVENTARIO_Requerimiento, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(iNVENTARIO_Requerimiento);
             }
             return lista;
         }
+        public static INVENTARIO_Requerimiento GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoINVENTARIO_RequerimientoBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
 
-        public static List<INVENTARIO_Requerimiento> GetAllEstado1()
+        foreach (PropertyInfo prop in typeof(INVENTARIO_Requerimiento).GetProperties())
         {
-            return GetAll().Where(x => x.EstadoId == 1).ToList();
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
         }
-        public static List<INVENTARIO_Requerimiento> GetAllEstadoNot1()
-        {
-            return GetAll().Where(x => x.EstadoId != 1).ToList();
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from INVENTARIO_Requerimiento where  " + campo + " = \'" + valor + "\'").Tables[0];
+            INVENTARIO_Requerimiento INVENTARIO_Requerimiento = new INVENTARIO_Requerimiento();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(INVENTARIO_Requerimiento).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(INVENTARIO_Requerimiento, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return INVENTARIO_Requerimiento;
         }
-        public static List<INVENTARIO_Requerimiento> GetAllEstadoN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId == estado).ToList();
-        }
-        public static List<INVENTARIO_Requerimiento> GetAllEstadoNotN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId != estado).ToList();
-        }
+        public static List<INVENTARIO_Requerimiento> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoINVENTARIO_RequerimientoBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(INVENTARIO_Requerimiento).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from INVENTARIO_Requerimiento where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from INVENTARIO_Requerimiento where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<INVENTARIO_Requerimiento> lista = new List<INVENTARIO_Requerimiento>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    INVENTARIO_Requerimiento entidad = new INVENTARIO_Requerimiento();
+                    foreach (PropertyInfo prop in typeof(INVENTARIO_Requerimiento).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
+
+		public static List<INVENTARIO_Requerimiento> GetAllEstado1()
+		{
+			return GetAll().Where(x => x.EstadoId == 1).ToList();
+		}
+		public static List<INVENTARIO_Requerimiento> GetAllEstadoNot1()
+		{
+			return GetAll().Where(x => x.EstadoId != 1).ToList();
+		}
+		public static List<INVENTARIO_Requerimiento> GetAllEstadoN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId == estado).ToList();
+		}
+		public static List<INVENTARIO_Requerimiento> GetAllEstadoNotN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId != estado).ToList();
+		}
 
 
         public class MaxLength
         {
-            public static int Detalle { get; set; } = 1000;
+			public static int Detalle { get; set; } = 1000;
 
 
         }
@@ -142,19 +229,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where Id = " + iNVENTARIO_Requerimiento.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return iNVENTARIO_Requerimiento;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

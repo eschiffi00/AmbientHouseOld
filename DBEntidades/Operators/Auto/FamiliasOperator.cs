@@ -1,30 +1,30 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
     public partial class FamiliasOperator
     {
 
-        public static Familias GetOneByIdentity(int GrupoId)
+        public static Familias GetOneByIdentity(int Id)
         {
             if (!DbEntidades.Seguridad.Permiso("PermisoFamiliasBrowse")) throw new PermisoException();
             string columnas = string.Empty;
             foreach (PropertyInfo prop in typeof(Familias).GetProperties()) columnas += prop.Name + ", ";
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
-            DataTable dt = db.GetDataSet("select " + columnas + " from Familias where Id = " + GrupoId.ToString()).Tables[0];
+            DataTable dt = db.GetDataSet("select " + columnas + " from Familias where Id = " + Id.ToString()).Tables[0];
             Familias familias = new Familias();
             foreach (PropertyInfo prop in typeof(Familias).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(familias, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,25 +45,112 @@ namespace DbEntidades.Operators
                 Familias familias = new Familias();
                 foreach (PropertyInfo prop in typeof(Familias).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(familias, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(familias, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(familias);
             }
             return lista;
         }
+        public static Familias GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoFamiliasBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+        foreach (PropertyInfo prop in typeof(Familias).GetProperties())
+        {
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
+        }
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from Familias where  " + campo + " = \'" + valor + "\'").Tables[0];
+            Familias Familias = new Familias();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(Familias).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(Familias, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return Familias;
+        }
+        public static List<Familias> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoFamiliasBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(Familias).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from Familias where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from Familias where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<Familias> lista = new List<Familias>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    Familias entidad = new Familias();
+                    foreach (PropertyInfo prop in typeof(Familias).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
 
 
 
         public class MaxLength
         {
-            public static int Titulo { get; set; } = 200;
-            public static int Subtitulo { get; set; } = 200;
-            public static int Comentario { get; set; } = 2000;
-            public static int Edad { get; set; } = 50;
-            public static int Fantasia { get; set; } = 500;
+			public static int Titulo { get; set; } = 200;
+			public static int Subtitulo { get; set; } = 200;
+			public static int Comentario { get; set; } = 2000;
+			public static int Edad { get; set; } = 50;
+			public static int Fantasia { get; set; } = 500;
 
 
         }
@@ -130,19 +217,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
-            sql += " where GrupoId = " + familias.GrupoId;
+        }
+            sql += " where  = " + familias.GrupoId;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return familias;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

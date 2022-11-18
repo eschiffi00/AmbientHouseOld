@@ -32,8 +32,11 @@ namespace DbEntidades.Operators
                 ItemsListado ItemsDetail = new ItemsListado();
                 ItemsDetail.Id = Items.Id;
                 ItemsDetail.Detalle = Items.Detalle;
-                ItemsDetail.NombreFantasiaId = Items.NombreFantasiaId;
-                ItemsDetail.NombreFantasia = NombreFantasiaOperator.GetOneByIdentity(Items.NombreFantasiaId).Descripcion != null ? NombreFantasiaOperator.GetOneByIdentity(Items.NombreFantasiaId).Descripcion : "";
+                ItemsDetail.NombreFantasiaId = Items.NombreFantasiaId != null ? Items.NombreFantasiaId.Value : 0;
+                if(ItemsDetail.NombreFantasiaId != 0 && ItemsDetail.NombreFantasiaId != -1)
+                {
+                    ItemsDetail.NombreFantasia = NombreFantasiaOperator.GetOneByIdentity(Items.NombreFantasiaId.Value).Descripcion != null ? NombreFantasiaOperator.GetOneByIdentity(Items.NombreFantasiaId.Value).Descripcion : "";
+                }
                 ItemsDetail.CategoriaItemId = Items.CategoriaItemId;
                 ItemsDetail.CategoriaDescripcion = CategoriasItemOperator.GetOneByIdentity(Items.CategoriaItemId).Descripcion;
 
@@ -55,7 +58,7 @@ namespace DbEntidades.Operators
                 //ItemsDetail.Cantidad = INVENTARIO_ProductoOperator.GetOneByIdentity(INVENTARIO_DepositosOperator.GetOneByIdentity(Items.DepositoId).Id).Cantidad;
                 ItemsDetail.Unidad = "";
                 ItemsDetail.Cantidad = 0;
-                ItemsDetail.EstadoId = Items.EstadoId;
+                ItemsDetail.EstadoId = Items.EstadoId.Value;
                 List<string> fields = new List<string>();
                 List<string> values = new List<string>();
 
@@ -65,16 +68,16 @@ namespace DbEntidades.Operators
                 {
                     if (CommonOperator.CommonValidation("ItemDetalle", fields, values))
                     {
-                        var commonOut = ItemDetalleOperator.GetAllByParameter("ItemId", Items.ItemDetalleId.Value);
+                        var commonOut = ItemDetalleOperator.GetAllByParameter("ItemId", Items.ItemDetalleId.ToString());
                         for (var i = 0; i < commonOut.Count - 1; i++)
                         {
                             if (i == commonOut.Count - 2)
                             {
-                                ItemsDetail.ItemsAsociados = ItemsDetail.ItemsAsociados + ItemsOperator.GetOneByIdentity(commonOut[i].DetalleItemId).Detalle;
+                                ItemsDetail.ItemsAsociados = ItemsDetail.ItemsAsociados + ItemsOperator.GetOneByIdentity(commonOut[i].DetalleItemId.Value).Detalle;
                             }
                             else
                             {
-                                ItemsDetail.ItemsAsociados = ItemsDetail.ItemsAsociados + ItemsOperator.GetOneByIdentity(commonOut[i].DetalleItemId).Detalle + ",";
+                                ItemsDetail.ItemsAsociados = ItemsDetail.ItemsAsociados + ItemsOperator.GetOneByIdentity(commonOut[i].DetalleItemId.Value).Detalle + ",";
                             }
                         }
                     }
@@ -125,26 +128,6 @@ namespace DbEntidades.Operators
             u.EstadoId = EstadosOperator.GetDeshabilitadoID("Items");
             Update(u);
         }
-        public static Items GetOneByParameter(string campo, string valor)
-        {
-            if (!DbEntidades.Seguridad.Permiso("PermisoItemsBrowse")) throw new PermisoException();
-            string columnas = string.Empty;
-            foreach (PropertyInfo prop in typeof(Items).GetProperties()) columnas += prop.Name + ", ";
-            columnas = columnas.Substring(0, columnas.Length - 2);
-            DB db = new DB();
-            DataTable dt = db.GetDataSet("select " + columnas + " from Items where  " + campo + " = \'" + valor + "\'").Tables[0];
-            Items Items = new Items();
-            if (dt.Rows.Count > 0)
-            {
-                foreach (PropertyInfo prop in typeof(Items).GetProperties())
-                {
-                    object value = dt.Rows[0][prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(Items, value, null); }
-                    catch (System.ArgumentException) { }
-                }
-            }
-            return Items;
-        }
+        
     }
 }

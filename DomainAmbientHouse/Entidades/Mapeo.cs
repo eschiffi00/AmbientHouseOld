@@ -777,6 +777,8 @@ namespace DomainAmbientHouse.Entidades
         public double Costo { get; set; }
 
         public double Precio { get; set; }
+
+        public string Sector { get; set; }
     }
 
     public partial class Eventos

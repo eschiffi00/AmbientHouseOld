@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -19,12 +19,12 @@ namespace DbEntidades.Operators
             foreach (PropertyInfo prop in typeof(CodigoPorRubro).GetProperties()) columnas += prop.Name + ", ";
             columnas = columnas.Substring(0, columnas.Length - 2);
             DB db = new DB();
-            DataTable dt = db.GetDataSet("select " + columnas + " from CodigoPorRubro where id = " + id.ToString()).Tables[0];
+            DataTable dt = db.GetDataSet("select " + columnas + " from CodigoPorRubro where Id = " + id.ToString()).Tables[0];
             CodigoPorRubro codigoPorRubro = new CodigoPorRubro();
             foreach (PropertyInfo prop in typeof(CodigoPorRubro).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(codigoPorRubro, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,15 +45,102 @@ namespace DbEntidades.Operators
                 CodigoPorRubro codigoPorRubro = new CodigoPorRubro();
                 foreach (PropertyInfo prop in typeof(CodigoPorRubro).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(codigoPorRubro, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(codigoPorRubro, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(codigoPorRubro);
             }
             return lista;
         }
+        public static CodigoPorRubro GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoCodigoPorRubroBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+        foreach (PropertyInfo prop in typeof(CodigoPorRubro).GetProperties())
+        {
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
+        }
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from CodigoPorRubro where  " + campo + " = \'" + valor + "\'").Tables[0];
+            CodigoPorRubro CodigoPorRubro = new CodigoPorRubro();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(CodigoPorRubro).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(CodigoPorRubro, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return CodigoPorRubro;
+        }
+        public static List<CodigoPorRubro> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoCodigoPorRubroBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(CodigoPorRubro).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from CodigoPorRubro where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from CodigoPorRubro where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<CodigoPorRubro> lista = new List<CodigoPorRubro>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    CodigoPorRubro entidad = new CodigoPorRubro();
+                    foreach (PropertyInfo prop in typeof(CodigoPorRubro).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
 
 
 
@@ -125,19 +212,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where id = " + codigoPorRubro.id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return codigoPorRubro;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

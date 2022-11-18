@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             Adicionales adicionales = new Adicionales();
             foreach (PropertyInfo prop in typeof(Adicionales).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(adicionales, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,40 +45,127 @@ namespace DbEntidades.Operators
                 Adicionales adicionales = new Adicionales();
                 foreach (PropertyInfo prop in typeof(Adicionales).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(adicionales, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(adicionales, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(adicionales);
             }
             return lista;
         }
+        public static Adicionales GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoAdicionalesBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
 
-        public static List<Adicionales> GetAllEstado1()
+        foreach (PropertyInfo prop in typeof(Adicionales).GetProperties())
         {
-            return GetAll().Where(x => x.EstadoId == 1).ToList();
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
         }
-        public static List<Adicionales> GetAllEstadoNot1()
-        {
-            return GetAll().Where(x => x.EstadoId != 1).ToList();
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from Adicionales where  " + campo + " = \'" + valor + "\'").Tables[0];
+            Adicionales Adicionales = new Adicionales();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(Adicionales).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(Adicionales, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return Adicionales;
         }
-        public static List<Adicionales> GetAllEstadoN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId == estado).ToList();
-        }
-        public static List<Adicionales> GetAllEstadoNotN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId != estado).ToList();
-        }
+        public static List<Adicionales> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoAdicionalesBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(Adicionales).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from Adicionales where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from Adicionales where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<Adicionales> lista = new List<Adicionales>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    Adicionales entidad = new Adicionales();
+                    foreach (PropertyInfo prop in typeof(Adicionales).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
+
+		public static List<Adicionales> GetAllEstado1()
+		{
+			return GetAll().Where(x => x.EstadoId == 1).ToList();
+		}
+		public static List<Adicionales> GetAllEstadoNot1()
+		{
+			return GetAll().Where(x => x.EstadoId != 1).ToList();
+		}
+		public static List<Adicionales> GetAllEstadoN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId == estado).ToList();
+		}
+		public static List<Adicionales> GetAllEstadoNotN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId != estado).ToList();
+		}
 
 
         public class MaxLength
         {
-            public static int Descripcion { get; set; } = 300;
-            public static int RequiereCantidad { get; set; } = 1;
-            public static int RequiereCantidadRango { get; set; } = 1;
-            public static int SoloMayores { get; set; } = 1;
+			public static int Descripcion { get; set; } = 300;
+			public static int RequiereCantidad { get; set; } = 1;
+			public static int RequiereCantidadRango { get; set; } = 1;
+			public static int SoloMayores { get; set; } = 1;
 
 
         }
@@ -102,7 +189,7 @@ namespace DbEntidades.Operators
 
             foreach (PropertyInfo prop in typeof(Adicionales).GetProperties())
             {
-                if (prop.Name == "Id") continue; //es identity
+                if (prop.Name == "") continue; //es identity
                 columnas += prop.Name + ", ";
                 valores += "@" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
@@ -137,7 +224,7 @@ namespace DbEntidades.Operators
 
             foreach (PropertyInfo prop in typeof(Adicionales).GetProperties())
             {
-                if (prop.Name == "Id") continue; //es identity
+                if (prop.Name == "") continue; //es identity
                 columnas += prop.Name + " = @" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
                 valor.Add(prop.GetValue(adicionales, null));
@@ -145,19 +232,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
-            sql += " where  Id = " + adicionales.Id;
+        }
+            sql += " where  = " + adicionales.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return adicionales;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

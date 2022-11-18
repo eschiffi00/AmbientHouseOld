@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             Usuario usuario = new Usuario();
             foreach (PropertyInfo prop in typeof(Usuario).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(usuario, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,40 +45,127 @@ namespace DbEntidades.Operators
                 Usuario usuario = new Usuario();
                 foreach (PropertyInfo prop in typeof(Usuario).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(usuario, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(usuario, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(usuario);
             }
             return lista;
         }
+        public static Usuario GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoUsuarioBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
 
-        public static List<Usuario> GetAllEstado1()
+        foreach (PropertyInfo prop in typeof(Usuario).GetProperties())
         {
-            return GetAll().Where(x => x.EstadoId == 1).ToList();
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
         }
-        public static List<Usuario> GetAllEstadoNot1()
-        {
-            return GetAll().Where(x => x.EstadoId != 1).ToList();
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from Usuario where  " + campo + " = \'" + valor + "\'").Tables[0];
+            Usuario Usuario = new Usuario();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(Usuario).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(Usuario, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return Usuario;
         }
-        public static List<Usuario> GetAllEstadoN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId == estado).ToList();
-        }
-        public static List<Usuario> GetAllEstadoNotN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId != estado).ToList();
-        }
+        public static List<Usuario> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoUsuarioBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(Usuario).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from Usuario where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from Usuario where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<Usuario> lista = new List<Usuario>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    Usuario entidad = new Usuario();
+                    foreach (PropertyInfo prop in typeof(Usuario).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
+
+		public static List<Usuario> GetAllEstado1()
+		{
+			return GetAll().Where(x => x.EstadoId == 1).ToList();
+		}
+		public static List<Usuario> GetAllEstadoNot1()
+		{
+			return GetAll().Where(x => x.EstadoId != 1).ToList();
+		}
+		public static List<Usuario> GetAllEstadoN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId == estado).ToList();
+		}
+		public static List<Usuario> GetAllEstadoNotN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId != estado).ToList();
+		}
 
 
         public class MaxLength
         {
-            public static int LoginName { get; set; } = 40;
-            public static int Nombre { get; set; } = 60;
-            public static int Email { get; set; } = 50;
-            public static int Password { get; set; } = 40;
+			public static int LoginName { get; set; } = 40;
+			public static int Nombre { get; set; } = 60;
+			public static int Email { get; set; } = 50;
+			public static int Password { get; set; } = 40;
 
 
         }
@@ -145,19 +232,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where UsuarioId = " + usuario.UsuarioId;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return usuario;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

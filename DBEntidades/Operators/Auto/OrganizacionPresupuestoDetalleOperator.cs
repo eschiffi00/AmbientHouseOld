@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             OrganizacionPresupuestoDetalle organizacionPresupuestoDetalle = new OrganizacionPresupuestoDetalle();
             foreach (PropertyInfo prop in typeof(OrganizacionPresupuestoDetalle).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(organizacionPresupuestoDetalle, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,75 +45,162 @@ namespace DbEntidades.Operators
                 OrganizacionPresupuestoDetalle organizacionPresupuestoDetalle = new OrganizacionPresupuestoDetalle();
                 foreach (PropertyInfo prop in typeof(OrganizacionPresupuestoDetalle).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(organizacionPresupuestoDetalle, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(organizacionPresupuestoDetalle, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(organizacionPresupuestoDetalle);
             }
             return lista;
         }
+        public static OrganizacionPresupuestoDetalle GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoOrganizacionPresupuestoDetalleBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+        foreach (PropertyInfo prop in typeof(OrganizacionPresupuestoDetalle).GetProperties())
+        {
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
+        }
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from OrganizacionPresupuestoDetalle where  " + campo + " = \'" + valor + "\'").Tables[0];
+            OrganizacionPresupuestoDetalle OrganizacionPresupuestoDetalle = new OrganizacionPresupuestoDetalle();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(OrganizacionPresupuestoDetalle).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(OrganizacionPresupuestoDetalle, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return OrganizacionPresupuestoDetalle;
+        }
+        public static List<OrganizacionPresupuestoDetalle> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoOrganizacionPresupuestoDetalleBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(OrganizacionPresupuestoDetalle).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from OrganizacionPresupuestoDetalle where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from OrganizacionPresupuestoDetalle where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<OrganizacionPresupuestoDetalle> lista = new List<OrganizacionPresupuestoDetalle>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    OrganizacionPresupuestoDetalle entidad = new OrganizacionPresupuestoDetalle();
+                    foreach (PropertyInfo prop in typeof(OrganizacionPresupuestoDetalle).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
 
 
 
         public class MaxLength
         {
-            public static int MotivoFestejo { get; set; } = 200;
-            public static int Mail { get; set; } = 100;
-            public static int Tel { get; set; } = 100;
-            public static int LocacionOtra { get; set; } = 200;
-            public static int EnvioMailPresentacion { get; set; } = 2;
-            public static int RealizoReunionConCliente { get; set; } = 2;
-            public static int Direccion { get; set; } = 200;
-            public static int Bocados { get; set; } = 1200;
-            public static int Islas { get; set; } = 600;
-            public static int Entrada { get; set; } = 600;
-            public static int PrincipalAdultos { get; set; } = 600;
-            public static int PrincipalAdolescentes { get; set; } = 600;
-            public static int PostreAdultosAdolescentes { get; set; } = 600;
-            public static int PrincipalChicos { get; set; } = 600;
-            public static int PostreChicos { get; set; } = 600;
-            public static int MesaDulce { get; set; } = 600;
-            public static int FinFiesta { get; set; } = 600;
-            public static int MesaPrincipal { get; set; } = 200;
-            public static int Manteleria { get; set; } = 200;
-            public static int Servilletas { get; set; } = 200;
-            public static int Sillas { get; set; } = 200;
-            public static int InvitadosDespues00 { get; set; } = 200;
-            public static int CumpleaniosEnEvento { get; set; } = 200;
-            public static int TortaAlegorica { get; set; } = 600;
-            public static int LleganAlSalon { get; set; } = 200;
-            public static int PlatosEspeciales { get; set; } = 2000;
-            public static int ServiciodeVinoChampagne { get; set; } = 200;
-            public static int ObservacionBarras { get; set; } = 2000;
-            public static int ObservacionCatering { get; set; } = 2000;
-            public static int ObservacionTecnica { get; set; } = 2000;
-            public static int ObservacionAmbientacion { get; set; } = 2000;
-            public static int ObservacionParticulares { get; set; } = 2000;
-            public static int ObservacionesAdicionales { get; set; } = 2000;
-            public static int Acreditaciones { get; set; } = 200;
-            public static int ListaInvitados { get; set; } = 200;
-            public static int ListaCocheras { get; set; } = 200;
-            public static int Layout { get; set; } = 2000;
-            public static int AlfombraRoja { get; set; } = 200;
-            public static int Anexo7 { get; set; } = 200;
-            public static int Ramo { get; set; } = 10;
-            public static int Escenario { get; set; } = 10;
-            public static int IngresoProveedoresLugar { get; set; } = 200;
-            public static int ContactoResponsableLugar { get; set; } = 200;
-            public static int TelefonoResponsableLugar { get; set; } = 200;
-            public static int FechaArmadoLogistica { get; set; } = 200;
-            public static int FechaArmadoSalon { get; set; } = 200;
-            public static int FechaDesarmadoSalon { get; set; } = 200;
-            public static int HoraArmadoLogistica { get; set; } = 200;
-            public static int HoraDesarmadoSalon { get; set; } = 200;
-            public static int HoraArmadoSalon { get; set; } = 200;
-            public static int CantPersonasAfectadasArmado { get; set; } = 200;
-            public static int ObservacionesHielo { get; set; } = 2000;
-            public static int ObservacionesMoviliario { get; set; } = 2000;
-            public static int ObservacionesLogistica { get; set; } = 2000;
-            public static int ObservacionesManteleria { get; set; } = 2000;
+			public static int MotivoFestejo { get; set; } = 200;
+			public static int Mail { get; set; } = 100;
+			public static int Tel { get; set; } = 100;
+			public static int LocacionOtra { get; set; } = 200;
+			public static int EnvioMailPresentacion { get; set; } = 2;
+			public static int RealizoReunionConCliente { get; set; } = 2;
+			public static int Direccion { get; set; } = 200;
+			public static int Bocados { get; set; } = 1200;
+			public static int Islas { get; set; } = 600;
+			public static int Entrada { get; set; } = 600;
+			public static int PrincipalAdultos { get; set; } = 600;
+			public static int PrincipalAdolescentes { get; set; } = 600;
+			public static int PostreAdultosAdolescentes { get; set; } = 600;
+			public static int PrincipalChicos { get; set; } = 600;
+			public static int PostreChicos { get; set; } = 600;
+			public static int MesaDulce { get; set; } = 600;
+			public static int FinFiesta { get; set; } = 2000;
+			public static int MesaPrincipal { get; set; } = 200;
+			public static int Manteleria { get; set; } = 200;
+			public static int Servilletas { get; set; } = 200;
+			public static int Sillas { get; set; } = 200;
+			public static int InvitadosDespues00 { get; set; } = 200;
+			public static int CumpleaniosEnEvento { get; set; } = 200;
+			public static int TortaAlegorica { get; set; } = 600;
+			public static int LleganAlSalon { get; set; } = 200;
+			public static int PlatosEspeciales { get; set; } = 2000;
+			public static int ServiciodeVinoChampagne { get; set; } = 200;
+			public static int ObservacionBarras { get; set; } = 2000;
+			public static int ObservacionCatering { get; set; } = 2000;
+			public static int ObservacionTecnica { get; set; } = 2000;
+			public static int ObservacionAmbientacion { get; set; } = 2000;
+			public static int ObservacionParticulares { get; set; } = 2000;
+			public static int ObservacionesAdicionales { get; set; } = 2000;
+			public static int Acreditaciones { get; set; } = 200;
+			public static int ListaInvitados { get; set; } = 200;
+			public static int ListaCocheras { get; set; } = 200;
+			public static int Layout { get; set; } = 2000;
+			public static int AlfombraRoja { get; set; } = 200;
+			public static int Anexo7 { get; set; } = 200;
+			public static int Ramo { get; set; } = 10;
+			public static int Escenario { get; set; } = 10;
+			public static int IngresoProveedoresLugar { get; set; } = 200;
+			public static int ContactoResponsableLugar { get; set; } = 200;
+			public static int TelefonoResponsableLugar { get; set; } = 200;
+			public static int FechaArmadoLogistica { get; set; } = 200;
+			public static int FechaArmadoSalon { get; set; } = 200;
+			public static int FechaDesarmadoSalon { get; set; } = 200;
+			public static int HoraArmadoLogistica { get; set; } = 200;
+			public static int HoraDesarmadoSalon { get; set; } = 200;
+			public static int HoraArmadoSalon { get; set; } = 200;
+			public static int CantPersonasAfectadasArmado { get; set; } = 200;
+			public static int ObservacionesHielo { get; set; } = 2000;
+			public static int ObservacionesMoviliario { get; set; } = 2000;
+			public static int ObservacionesLogistica { get; set; } = 2000;
+			public static int ObservacionesManteleria { get; set; } = 2000;
 
 
         }
@@ -180,19 +267,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where Id = " + organizacionPresupuestoDetalle.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return organizacionPresupuestoDetalle;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

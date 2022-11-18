@@ -45,7 +45,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                 {
                     fields.Add("Detalle");
                     values.Add(fila[0].Text);
-                    if (CommonOperator.CommonValidation("Items", fields, values))
+                    if (fila[9].Text != "" && fila[9].Text != "0" && fila[9].Text != " " && fila[9].Text != "&nbsp;")
                     {
                         actualizados++;
                         row.ControlStyle.BackColor = Color.LightGreen;
@@ -132,57 +132,60 @@ namespace AmbientHouse.Configuracion.AbmItems
         }
         private void ActualizaItem(TableCellCollection fila)
         {
-            List<string> fields = new List<string>();
-            List<string> values = new List<string>();
-            List<string> getFields = new List<string>();
-            fields.Add("Detalle");
-            values.Add(fila[2].Text);
-            if (CommonOperator.CommonValidation("Items", fields, values))
-            {
-                fields.Clear();
-                getFields.Clear();
-                values.Clear();
-                fields.Add("Detalle");
-                getFields.Add("Id");
-                getFields.Add("ItemDetalleId");
-                getFields.Add("NombreFantasiaId");
-                values.Add(fila[2].Text);
-            }
-            else 
-            {
-                fields.Clear();
-                getFields.Clear();
-                values.Clear();
-                fields.Add("Detalle");
-                getFields.Add("Id");
-                getFields.Add("NombreFantasiaId");
-                values.Add(fila[0].Text);
-            }
-            
-            var itemData = CommonOperator.CommonGetString("Items", fields, getFields, values);
-            seItems.Id = int.Parse(itemData[0]);
+            //List<string> fields = new List<string>();
+            //List<string> values = new List<string>();
+            //List<string> getFields = new List<string>();
+            //fields.Add("Detalle");
+            //values.Add(fila[2].Text);
+            //if (CommonOperator.CommonValidation("Items", fields, values))
+            //{
+            //    fields.Clear();
+            //    getFields.Clear();
+            //    values.Clear();
+            //    fields.Add("Detalle");
+            //    getFields.Add("Id");
+            //    getFields.Add("ItemDetalleId");
+            //    getFields.Add("NombreFantasiaId");
+            //    values.Add(fila[2].Text);
+            //}
+            //else 
+            //{
+            //    fields.Clear();
+            //    getFields.Clear();
+            //    values.Clear();
+            //    fields.Add("Detalle");
+            //    getFields.Add("Id");
+            //    getFields.Add("NombreFantasiaId");
+            //    values.Add(fila[0].Text);
+            //}
+
+
+
+            //var itemData = CommonOperator.CommonGetString("Items", fields, getFields, values);
+            seItems.Id = int.Parse(fila[9].Text);
             seItems.Detalle = fila[0].Text;
             seItems.TipoItem = fila[1].Text;
             
             
-            fields.Clear();
-            getFields.Clear();
-            values.Clear();
+            //fields.Clear();
+            //getFields.Clear();
+            //values.Clear();
             NombreFantasia nombreFantasia = new NombreFantasia();
             nombreFantasia.Descripcion = fila[2].Text;
-            if (itemData[1] != "" && int.Parse(itemData[1]) != -1)
+            var idFantasia = NombreFantasiaOperator.GetOneByParameter("Descripcion", nombreFantasia.Descripcion).Id;
+            if (idFantasia > 0)
             {
-                seItems.NombreFantasiaId = int.Parse(itemData[1]);
+                seItems.NombreFantasiaId = idFantasia;
             }
             else
             {
                 seItems.NombreFantasiaId = -1;
             }
             NombreFantasiaOperator.Save(nombreFantasia);
-            if(fila[4].Text != "0")
+            if(fila[4].Text != "0" && fila[4].Text != "&nbsp;" && fila[4].Text != " " && fila[4].Text != "")
             {
                 var list = fila[4].Text.Split(',').ToList();
-                var DetalleItems = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.Id);
+                var DetalleItems = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.Id.ToString());
                 foreach (var item in DetalleItems)
                 {
                     ItemDetalleOperator.Delete(item.Id);
@@ -234,7 +237,7 @@ namespace AmbientHouse.Configuracion.AbmItems
             if (fila[4].Text != "0")
             {
                 var list = fila[4].Text.Split(',').ToList();
-                var DetalleItems = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.Id);
+                var DetalleItems = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.Id.ToString());
                 foreach (var item in DetalleItems)
                 {
                     ItemDetalleOperator.Delete(item.Id);

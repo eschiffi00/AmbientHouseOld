@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             UsuarioPipeDrive_Ambient usuarioPipeDrive_Ambient = new UsuarioPipeDrive_Ambient();
             foreach (PropertyInfo prop in typeof(UsuarioPipeDrive_Ambient).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(usuarioPipeDrive_Ambient, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,15 +45,102 @@ namespace DbEntidades.Operators
                 UsuarioPipeDrive_Ambient usuarioPipeDrive_Ambient = new UsuarioPipeDrive_Ambient();
                 foreach (PropertyInfo prop in typeof(UsuarioPipeDrive_Ambient).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(usuarioPipeDrive_Ambient, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(usuarioPipeDrive_Ambient, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(usuarioPipeDrive_Ambient);
             }
             return lista;
         }
+        public static UsuarioPipeDrive_Ambient GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoUsuarioPipeDrive_AmbientBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+        foreach (PropertyInfo prop in typeof(UsuarioPipeDrive_Ambient).GetProperties())
+        {
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
+        }
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from UsuarioPipeDrive_Ambient where  " + campo + " = \'" + valor + "\'").Tables[0];
+            UsuarioPipeDrive_Ambient UsuarioPipeDrive_Ambient = new UsuarioPipeDrive_Ambient();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(UsuarioPipeDrive_Ambient).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(UsuarioPipeDrive_Ambient, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return UsuarioPipeDrive_Ambient;
+        }
+        public static List<UsuarioPipeDrive_Ambient> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoUsuarioPipeDrive_AmbientBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(UsuarioPipeDrive_Ambient).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from UsuarioPipeDrive_Ambient where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from UsuarioPipeDrive_Ambient where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<UsuarioPipeDrive_Ambient> lista = new List<UsuarioPipeDrive_Ambient>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    UsuarioPipeDrive_Ambient entidad = new UsuarioPipeDrive_Ambient();
+                    foreach (PropertyInfo prop in typeof(UsuarioPipeDrive_Ambient).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
 
 
 
@@ -125,19 +212,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where Id = " + usuarioPipeDrive_Ambient.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return usuarioPipeDrive_Ambient;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

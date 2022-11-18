@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             OrganizacionPresupuestosArchivos organizacionPresupuestosArchivos = new OrganizacionPresupuestosArchivos();
             foreach (PropertyInfo prop in typeof(OrganizacionPresupuestosArchivos).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(organizacionPresupuestosArchivos, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,23 +45,110 @@ namespace DbEntidades.Operators
                 OrganizacionPresupuestosArchivos organizacionPresupuestosArchivos = new OrganizacionPresupuestosArchivos();
                 foreach (PropertyInfo prop in typeof(OrganizacionPresupuestosArchivos).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(organizacionPresupuestosArchivos, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(organizacionPresupuestosArchivos, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(organizacionPresupuestosArchivos);
             }
             return lista;
         }
+        public static OrganizacionPresupuestosArchivos GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoOrganizacionPresupuestosArchivosBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+        foreach (PropertyInfo prop in typeof(OrganizacionPresupuestosArchivos).GetProperties())
+        {
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
+        }
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from OrganizacionPresupuestosArchivos where  " + campo + " = \'" + valor + "\'").Tables[0];
+            OrganizacionPresupuestosArchivos OrganizacionPresupuestosArchivos = new OrganizacionPresupuestosArchivos();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(OrganizacionPresupuestosArchivos).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(OrganizacionPresupuestosArchivos, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return OrganizacionPresupuestosArchivos;
+        }
+        public static List<OrganizacionPresupuestosArchivos> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoOrganizacionPresupuestosArchivosBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(OrganizacionPresupuestosArchivos).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from OrganizacionPresupuestosArchivos where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from OrganizacionPresupuestosArchivos where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<OrganizacionPresupuestosArchivos> lista = new List<OrganizacionPresupuestosArchivos>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    OrganizacionPresupuestosArchivos entidad = new OrganizacionPresupuestosArchivos();
+                    foreach (PropertyInfo prop in typeof(OrganizacionPresupuestosArchivos).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
 
 
 
         public class MaxLength
         {
-            public static int Desripcion { get; set; } = 200;
-            public static int NombreArchivo { get; set; } = 500;
-            public static int Extension { get; set; } = 50;
+			public static int Desripcion { get; set; } = 200;
+			public static int NombreArchivo { get; set; } = 500;
+			public static int Extension { get; set; } = 50;
 
 
         }
@@ -128,19 +215,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where Id = " + organizacionPresupuestosArchivos.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return organizacionPresupuestosArchivos;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

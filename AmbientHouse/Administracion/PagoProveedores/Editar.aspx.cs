@@ -195,13 +195,13 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 foreach (var comprobante in ListComprobantesSeleccionados)
                 {
                     List<ComprobantesProveedores_Detalles> ComprobanteDetalle = new List<ComprobantesProveedores_Detalles>();
-                    ComprobanteDetalle.AddRange(ComprobantesProveedores_DetallesOperator.GetAllByParameter("ComprobanteProveedorId", comprobante.Id));
+                    ComprobanteDetalle.AddRange(ComprobantesProveedores_DetallesOperator.GetAllByParameter("ComprobanteProveedorId", comprobante.Id.ToString()));
                     if (ComprobanteDetalle.Count >= 1)
                     {
                         var ind = 0;
                         foreach (var detalle in ComprobanteDetalle)
                         {
-                            var importes = ComprobantesPagadosOperator.GetAllByParameter("ComprobanteProveedorDetalleId", detalle.Id);
+                            var importes = ComprobantesPagadosOperator.GetAllByParameter("ComprobanteProveedorDetalleId", detalle.Id.ToString());
                             var importe = importes.Count > 0 ? importes[0].MontoPagado : 0;
                             if ((detalle.Importe + detalle.ValorImpuesto) > importe)
                             {
@@ -210,8 +210,8 @@ namespace AmbientHouse.Administracion.PagoProveedores
                                 ComprobantePago.ComprobanteProveedorDetalleId = detalle.Id;
                                 ComprobantePago.NroPresupuesto = detalle.PresupuestoId is null ? 0 : detalle.PresupuestoId.Value;
                                 ComprobantePago.Descripcion = detalle.Descripcion;
-                                ComprobantePago.TipoMovimiento = TipoMovimientosOperator.GetOneByParameter("Id", detalle.TipoMoviemientoId).Id;
-                                ComprobantePago.TMDescripcion = TipoMovimientosOperator.GetOneByParameter("Id", detalle.TipoMoviemientoId).Descripcion;
+                                ComprobantePago.TipoMovimiento = TipoMovimientosOperator.GetOneByParameter("Id", detalle.TipoMoviemientoId.ToString()).Id;
+                                ComprobantePago.TMDescripcion = TipoMovimientosOperator.GetOneByParameter("Id", detalle.TipoMoviemientoId.ToString()).Descripcion;
 
                                 ComprobantePago.Costo = (detalle.Importe - importe) < 0 ? 0 : (detalle.Importe - importe);
                                 ComprobantePago.Costo = Math.Round(ComprobantePago.Costo, 2);
@@ -424,7 +424,7 @@ namespace AmbientHouse.Administracion.PagoProveedores
                 fila2 = fila.Cells;
                 //comprobante.NroComprobante = Int32.Parse(((TextBox)fila.FindControl("NroComprobante")).Text);
                 comprobante.ComprobanteProveedorDetalleId = Int32.Parse(fila2[0].Text);
-                var ids = ComprobantesPagadosOperator.GetAllByParameter("ComprobanteProveedorDetalleId", comprobante.ComprobanteProveedorDetalleId.Value);
+                var ids = ComprobantesPagadosOperator.GetAllByParameter("ComprobanteProveedorDetalleId", comprobante.ComprobanteProveedorDetalleId.ToString());
                 foreach (var idtemp in ids)
                 {
                     //var id = ids.Count > 0 ? ids[ind].Id : -1;

@@ -40,7 +40,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                 {
                     int uid = Convert.ToInt32(s);
                     seItems = ItemsOperator.GetOneByIdentity(uid);
-                    txtNombreFantasia.Text = seItems.NombreFantasiaId > 0 ? NombreFantasiaOperator.GetOneByIdentity(seItems.NombreFantasiaId).Descripcion : "";
+                    txtNombreFantasia.Text = seItems.NombreFantasiaId > 0 ? NombreFantasiaOperator.GetOneByIdentity(seItems.NombreFantasiaId.Value).Descripcion : "";
                     switch (seItems.TipoItem)
                     {
                         case "PRO":
@@ -88,7 +88,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                     txtMargen.Text = seItems.Margen.ToString();
                     txtCosto.Text = seItems.Costo.ToString();
                     txtPrecio.Text = seItems.Precio.ToString();
-                    ddlEstado.SelectedValue = EstadosOperator.GetOneByIdentity(seItems.EstadoId).Id.ToString();
+                    ddlEstado.SelectedValue = EstadosOperator.GetOneByIdentity(seItems.EstadoId.Value).Id.ToString();
                 }
                 else
                 {
@@ -196,37 +196,37 @@ namespace AmbientHouse.Configuracion.AbmItems
                 ////        idcategorias.Add(Int32.Parse(categoria.Value));
                 ////    }
                 ////}
-                
 
-                //List<ItemDetalle> temp = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.ItemDetalleId.Value);
-                //List<int> contadorCategorias = new List<int>();
-                //foreach (ItemDetalle itemDetalle in temp)
-                //{
-                //    itemDetalle.EstadoId = 37;
-                //    if (idcategorias.Contains(itemDetalle.CategoriaId))
+
+                //    List<ItemDetalle> temp = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.ItemDetalleId.Value);
+                //    List<int> contadorCategorias = new List<int>();
+                //    foreach (ItemDetalle itemDetalle in temp)
                 //    {
-                //        itemDetalle.EstadoId = 36;
-                //        contadorCategorias.Add(itemDetalle.CategoriaId);
-                //    }
-                //    ItemDetalleOperator.Save(itemDetalle);
-                //}
-                //if (contadorCategorias.Count < idcategorias.Count)
-                //{
-                //    foreach (var categoria in idcategorias)
-                //    {
-                //        if (!contadorCategorias.Contains(categoria))
+                //        itemDetalle.EstadoId = 37;
+                //        if (idcategorias.Contains(itemDetalle.CategoriaId))
                 //        {
-                //            ItemDetalle itemNuevo = new ItemDetalle();
-                //            itemNuevo.ItemId = seItems.ItemDetalleId.Value;
-                //            itemNuevo.CategoriaId = categoria;
-                //            itemNuevo.EstadoId = 36;
-                //            ItemDetalleOperator.Save(itemNuevo);
+                //            itemDetalle.EstadoId = 36;
+                //            contadorCategorias.Add(itemDetalle.CategoriaId);
+                //        }
+                //        ItemDetalleOperator.Save(itemDetalle);
+                //    }
+                //    if (contadorCategorias.Count < idcategorias.Count)
+                //    {
+                //        foreach (var categoria in idcategorias)
+                //        {
+                //            if (!contadorCategorias.Contains(categoria))
+                //            {
+                //                ItemDetalle itemNuevo = new ItemDetalle();
+                //                itemNuevo.ItemId = seItems.ItemDetalleId.Value;
+                //                itemNuevo.CategoriaId = categoria;
+                //                itemNuevo.EstadoId = 36;
+                //                ItemDetalleOperator.Save(itemNuevo);
+                //            }
                 //        }
                 //    }
-                //}
 
 
-                Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
+                //    Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
             }
             catch (Exception ex)
             {

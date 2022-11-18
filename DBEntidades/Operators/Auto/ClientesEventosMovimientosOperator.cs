@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             ClientesEventosMovimientos clientesEventosMovimientos = new ClientesEventosMovimientos();
             foreach (PropertyInfo prop in typeof(ClientesEventosMovimientos).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(clientesEventosMovimientos, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,37 +45,124 @@ namespace DbEntidades.Operators
                 ClientesEventosMovimientos clientesEventosMovimientos = new ClientesEventosMovimientos();
                 foreach (PropertyInfo prop in typeof(ClientesEventosMovimientos).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(clientesEventosMovimientos, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(clientesEventosMovimientos, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(clientesEventosMovimientos);
             }
             return lista;
         }
+        public static ClientesEventosMovimientos GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoClientesEventosMovimientosBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
 
-        public static List<ClientesEventosMovimientos> GetAllEstado1()
+        foreach (PropertyInfo prop in typeof(ClientesEventosMovimientos).GetProperties())
         {
-            return GetAll().Where(x => x.EstadoId == 1).ToList();
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
         }
-        public static List<ClientesEventosMovimientos> GetAllEstadoNot1()
-        {
-            return GetAll().Where(x => x.EstadoId != 1).ToList();
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from ClientesEventosMovimientos where  " + campo + " = \'" + valor + "\'").Tables[0];
+            ClientesEventosMovimientos ClientesEventosMovimientos = new ClientesEventosMovimientos();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(ClientesEventosMovimientos).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(ClientesEventosMovimientos, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return ClientesEventosMovimientos;
         }
-        public static List<ClientesEventosMovimientos> GetAllEstadoN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId == estado).ToList();
-        }
-        public static List<ClientesEventosMovimientos> GetAllEstadoNotN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId != estado).ToList();
-        }
+        public static List<ClientesEventosMovimientos> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoClientesEventosMovimientosBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(ClientesEventosMovimientos).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from ClientesEventosMovimientos where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from ClientesEventosMovimientos where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<ClientesEventosMovimientos> lista = new List<ClientesEventosMovimientos>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    ClientesEventosMovimientos entidad = new ClientesEventosMovimientos();
+                    foreach (PropertyInfo prop in typeof(ClientesEventosMovimientos).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
+
+		public static List<ClientesEventosMovimientos> GetAllEstado1()
+		{
+			return GetAll().Where(x => x.EstadoId == 1).ToList();
+		}
+		public static List<ClientesEventosMovimientos> GetAllEstadoNot1()
+		{
+			return GetAll().Where(x => x.EstadoId != 1).ToList();
+		}
+		public static List<ClientesEventosMovimientos> GetAllEstadoN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId == estado).ToList();
+		}
+		public static List<ClientesEventosMovimientos> GetAllEstadoNotN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId != estado).ToList();
+		}
 
 
         public class MaxLength
         {
-            public static int Comentario { get; set; } = 2000;
+			public static int Comentario { get; set; } = 2000;
 
 
         }
@@ -142,19 +229,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where Id = " + clientesEventosMovimientos.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return clientesEventosMovimientos;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

@@ -181,6 +181,7 @@
                 <asp:BoundField DataField="DetalleTipo" HeaderText="Detalle Ratio" Visible="true" />
                 <asp:BoundField DataField="ValorRatio" HeaderText="Valor Ratio" Visible="true" />
                 <asp:BoundField DataField="TopeRatio" HeaderText="Tope Ratio" Visible="true" />
+                <asp:BoundField DataField="Adultos" HeaderText="Adultos" Visible="true" />
                 <asp:BoundField DataField="Menores3" HeaderText="Menores de 3" Visible="true" />
                 <asp:BoundField DataField="Menores3y8" HeaderText="Menores entre 3 y 8" Visible="true" />
                 <asp:BoundField DataField="Adolescentes" HeaderText="Adolescentes" Visible="true" />

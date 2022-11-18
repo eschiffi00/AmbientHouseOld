@@ -115,7 +115,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                 fields.Clear();
                 values.Clear();
                 //valido si tiene Id de isla y si es correcto
-                if(fila[6].Text != "&nbsp;")
+                if(fila[6].Text != "&nbsp;" && fila[6].Text != "" && fila[6].Text != " ")
                 {
                     fields.Add("Id");
                     fields.Add("Titulo");
@@ -135,28 +135,28 @@ namespace AmbientHouse.Configuracion.AbmItems
                 }
                 //validaciones booleanos
                 //
-                if (int.Parse(fila[7].Text) > 1 || int.Parse(fila[8].Text) < 0)
+                if (int.Parse(fila[7].Text) > 1 || int.Parse(fila[7].Text) < 0)
                 {
                     erroneos++;
                     rowError = true;
                     row.Cells[7].ControlStyle.BackColor = Color.Red;
                     row.Cells[7].ControlStyle.ForeColor = Color.White;
                 }
-                if (int.Parse(fila[8].Text) > 1 || int.Parse(fila[9].Text) < 0)
+                if (int.Parse(fila[8].Text) > 1 || int.Parse(fila[8].Text) < 0)
                 {
                     erroneos++;
                     rowError = true;
                     row.Cells[8].ControlStyle.BackColor = Color.Red;
                     row.Cells[8].ControlStyle.ForeColor = Color.White;
                 }
-                if (int.Parse(fila[9].Text) > 1 || int.Parse(fila[10].Text) < 0)
+                if (int.Parse(fila[9].Text) > 1 || int.Parse(fila[9].Text) < 0)
                 {
                     erroneos++;
                     rowError = true;
                     row.Cells[9].ControlStyle.BackColor = Color.Red;
                     row.Cells[9].ControlStyle.ForeColor = Color.White;
                 }
-                if (int.Parse(fila[10].Text) > 1 || int.Parse(fila[11].Text) < 0)
+                if (int.Parse(fila[10].Text) > 1 || int.Parse(fila[10].Text) < 0)
                 {
                     erroneos++;
                     rowError = true;
@@ -170,6 +170,13 @@ namespace AmbientHouse.Configuracion.AbmItems
                     row.Cells[11].ControlStyle.BackColor = Color.Red;
                     row.Cells[11].ControlStyle.ForeColor = Color.White;
                 }
+                if (int.Parse(fila[12].Text) > 1 || int.Parse(fila[12].Text) < 0)
+                {
+                    erroneos++;
+                    rowError = true;
+                    row.Cells[12].ControlStyle.BackColor = Color.Red;
+                    row.Cells[12].ControlStyle.ForeColor = Color.White;
+                }
                 fields.Clear();
                 values.Clear();
                 //valido si existe la cabecera del ratio
@@ -177,8 +184,15 @@ namespace AmbientHouse.Configuracion.AbmItems
                 fields.Add("ExperienciaBarra");
                 fields.Add("TipoRatio");
                 fields.Add("DetalleTipo");
-                for(var i =0; i < 4; i++)
-                    {values.Add(fila[i].Text);}   
+                fields.Add("IslaId");
+                fields.Add("Adultos");
+                fields.Add("Menores3");
+                fields.Add("Menores3y8");
+                fields.Add("Adolescentes");
+                fields.Add("AdicionalRatio");
+
+                for(var i =0; i < 12; i++)
+                    {if(i!= 4 && i != 5 && i<12)values.Add(fila[i].Text);}   
                 if(CommonOperator.CommonValidation("Ratios",fields, values))
                 {
                     actualizados++;
@@ -233,9 +247,15 @@ namespace AmbientHouse.Configuracion.AbmItems
             fields.Add("ExperienciaBarra");
             fields.Add("TipoRatio");
             fields.Add("DetalleTipo");
+            fields.Add("IslaId");
+            fields.Add("Adultos");
+            fields.Add("Menores3");
+            fields.Add("Menores3y8");
+            fields.Add("Adolescentes");
+            fields.Add("AdicionalRatio");
             getFields.Add("Id");
-            for (var i = 0; i < 4; i++)
-            { values.Add(fila[i].Text); }
+            for (var i = 0; i < 12; i++)
+            { if (i != 4 && i != 5 && i < 12) values.Add(fila[i].Text); }
             var ratioData = CommonOperator.CommonGetString("Ratios", fields, getFields, values);
             seRatios.Id = int.Parse(ratioData[0]);
             seRatios.ItemId = int.Parse(fila[0].Text);
@@ -245,11 +265,12 @@ namespace AmbientHouse.Configuracion.AbmItems
             seRatios.ValorRatio = float.Parse(fila[4].Text);
             seRatios.TopeRatio = float.Parse(fila[5].Text);
             seRatios.IslaId = int.Parse(fila[6].Text);
-            seRatios.Menores3 = int.Parse(fila[7].Text);
-            seRatios.Menores3y8 = int.Parse(fila[8].Text);
-            seRatios.Adolescentes = int.Parse(fila[9].Text);
-            seRatios.AdicionalRatio = int.Parse(fila[10].Text);
-            if(int.Parse(fila[11].Text) == 0)
+            seRatios.Adultos = int.Parse(fila[7].Text);
+            seRatios.Menores3 = int.Parse(fila[8].Text);
+            seRatios.Menores3y8 = int.Parse(fila[9].Text);
+            seRatios.Adolescentes = int.Parse(fila[10].Text);
+            seRatios.AdicionalRatio = int.Parse(fila[11].Text);
+            if(int.Parse(fila[12].Text) == 0)
             {
                 seRatios.EstadoId = EstadosOperator.GetDeshabilitadoID("Ratios");
             }
@@ -272,10 +293,11 @@ namespace AmbientHouse.Configuracion.AbmItems
             seRatios.ValorRatio = float.Parse(fila[4].Text);
             seRatios.TopeRatio = float.Parse(fila[5].Text);
             seRatios.IslaId = int.Parse(fila[6].Text);
-            seRatios.Menores3 = int.Parse(fila[7].Text);
-            seRatios.Menores3y8 = int.Parse(fila[8].Text);
-            seRatios.Adolescentes = int.Parse(fila[9].Text);
-            seRatios.AdicionalRatio = int.Parse(fila[10].Text);
+            seRatios.Adultos = int.Parse(fila[7].Text);
+            seRatios.Menores3 = int.Parse(fila[8].Text);
+            seRatios.Menores3y8 = int.Parse(fila[9].Text);
+            seRatios.Adolescentes = int.Parse(fila[10].Text);
+            seRatios.AdicionalRatio = int.Parse(fila[11].Text);
             seRatios.EstadoId = EstadosOperator.GetHablitadoID("Ratios");
             RatiosOperator.Save(seRatios);
         }

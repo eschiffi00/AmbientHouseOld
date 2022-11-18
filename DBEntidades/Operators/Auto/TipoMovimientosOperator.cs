@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             TipoMovimientos tipoMovimientos = new TipoMovimientos();
             foreach (PropertyInfo prop in typeof(TipoMovimientos).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(tipoMovimientos, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,25 +45,112 @@ namespace DbEntidades.Operators
                 TipoMovimientos tipoMovimientos = new TipoMovimientos();
                 foreach (PropertyInfo prop in typeof(TipoMovimientos).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(tipoMovimientos, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(tipoMovimientos, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(tipoMovimientos);
             }
             return lista;
         }
+        public static TipoMovimientos GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoTipoMovimientosBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+        foreach (PropertyInfo prop in typeof(TipoMovimientos).GetProperties())
+        {
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
+        }
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from TipoMovimientos where  " + campo + " = \'" + valor + "\'").Tables[0];
+            TipoMovimientos TipoMovimientos = new TipoMovimientos();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(TipoMovimientos).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(TipoMovimientos, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return TipoMovimientos;
+        }
+        public static List<TipoMovimientos> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoTipoMovimientosBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(TipoMovimientos).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from TipoMovimientos where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from TipoMovimientos where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<TipoMovimientos> lista = new List<TipoMovimientos>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    TipoMovimientos entidad = new TipoMovimientos();
+                    foreach (PropertyInfo prop in typeof(TipoMovimientos).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
 
 
 
         public class MaxLength
         {
-            public static int Codigo { get; set; } = 50;
-            public static int Descripcion { get; set; } = 500;
-            public static int Tipo { get; set; } = 50;
-            public static int Visible { get; set; } = 1;
-            public static int TipoGasto { get; set; } = 50;
+			public static int Codigo { get; set; } = 50;
+			public static int Descripcion { get; set; } = 500;
+			public static int Tipo { get; set; } = 50;
+			public static int Visible { get; set; } = 1;
+			public static int TipoGasto { get; set; } = 50;
 
 
         }
@@ -130,19 +217,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where Id = " + tipoMovimientos.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return tipoMovimientos;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

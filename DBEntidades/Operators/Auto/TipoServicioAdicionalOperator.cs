@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             TipoServicioAdicional tipoServicioAdicional = new TipoServicioAdicional();
             foreach (PropertyInfo prop in typeof(TipoServicioAdicional).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(tipoServicioAdicional, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,15 +45,102 @@ namespace DbEntidades.Operators
                 TipoServicioAdicional tipoServicioAdicional = new TipoServicioAdicional();
                 foreach (PropertyInfo prop in typeof(TipoServicioAdicional).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(tipoServicioAdicional, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(tipoServicioAdicional, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(tipoServicioAdicional);
             }
             return lista;
         }
+        public static TipoServicioAdicional GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoTipoServicioAdicionalBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+        foreach (PropertyInfo prop in typeof(TipoServicioAdicional).GetProperties())
+        {
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
+        }
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from TipoServicioAdicional where  " + campo + " = \'" + valor + "\'").Tables[0];
+            TipoServicioAdicional TipoServicioAdicional = new TipoServicioAdicional();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(TipoServicioAdicional).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(TipoServicioAdicional, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return TipoServicioAdicional;
+        }
+        public static List<TipoServicioAdicional> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoTipoServicioAdicionalBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(TipoServicioAdicional).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from TipoServicioAdicional where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from TipoServicioAdicional where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<TipoServicioAdicional> lista = new List<TipoServicioAdicional>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    TipoServicioAdicional entidad = new TipoServicioAdicional();
+                    foreach (PropertyInfo prop in typeof(TipoServicioAdicional).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
 
 
 
@@ -125,19 +212,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where Id = " + tipoServicioAdicional.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return tipoServicioAdicional;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

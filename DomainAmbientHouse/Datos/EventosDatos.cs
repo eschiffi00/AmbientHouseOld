@@ -2065,6 +2065,7 @@ namespace DomainAmbientHouse.Datos
                         join em in SqlContext.Empleados on e.EmpleadoId equals em.Id
                         join l in SqlContext.Locaciones on p.LocacionId equals l.Id
                         join pr in SqlContext.Productos on pd.ProductoId equals pr.Id
+                        join s in SqlContext.Sectores on p.SectorId equals s.Id
                         join ca in SqlContext.Caracteristicas on p.CaracteristicaId equals ca.Id
                         join tc in SqlContext.TipoCatering on pr.TipoCateringId equals tc.Id into tcs
                         from tc in tcs.DefaultIfEmpty()
@@ -2124,7 +2125,8 @@ namespace DomainAmbientHouse.Datos
                             ProductoDescripcion = pr.Descripcion,
                             ProveedorId = pd.ProveedorId,
                             Costo = pd.Costo,
-                            ValorSeleccionado = pd.ValorSeleccionado
+                            ValorSeleccionado = pd.ValorSeleccionado,
+                            Sector = s.Descripcion
                         };
 
             DateTime fecDesde;
@@ -2209,6 +2211,7 @@ namespace DomainAmbientHouse.Datos
 
                 cat.Costo = item.Costo != null ? (double)item.Costo : 0;
                 cat.Precio = item.ValorSeleccionado;
+                cat.Sector = item.Sector;
 
                 Salida.Add(cat);
             }

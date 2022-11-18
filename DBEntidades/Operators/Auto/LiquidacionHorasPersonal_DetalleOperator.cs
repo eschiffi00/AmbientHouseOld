@@ -1,11 +1,11 @@
-using DbEntidades.Entities;
-using LibDB2;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
+using DbEntidades.Entities;
+using System.Data.SqlClient;
+using LibDB2;
 
 namespace DbEntidades.Operators
 {
@@ -23,8 +23,8 @@ namespace DbEntidades.Operators
             LiquidacionHorasPersonal_Detalle liquidacionHorasPersonal_Detalle = new LiquidacionHorasPersonal_Detalle();
             foreach (PropertyInfo prop in typeof(LiquidacionHorasPersonal_Detalle).GetProperties())
             {
-                object value = dt.Rows[0][prop.Name];
-                if (value == DBNull.Value) value = null;
+				object value = dt.Rows[0][prop.Name];
+				if (value == DBNull.Value) value = null;
                 try { prop.SetValue(liquidacionHorasPersonal_Detalle, value, null); }
                 catch (System.ArgumentException) { }
             }
@@ -45,38 +45,125 @@ namespace DbEntidades.Operators
                 LiquidacionHorasPersonal_Detalle liquidacionHorasPersonal_Detalle = new LiquidacionHorasPersonal_Detalle();
                 foreach (PropertyInfo prop in typeof(LiquidacionHorasPersonal_Detalle).GetProperties())
                 {
-                    object value = dr[prop.Name];
-                    if (value == DBNull.Value) value = null;
-                    try { prop.SetValue(liquidacionHorasPersonal_Detalle, value, null); }
-                    catch (System.ArgumentException) { }
+					object value = dr[prop.Name];
+					if (value == DBNull.Value) value = null;
+					try { prop.SetValue(liquidacionHorasPersonal_Detalle, value, null); }
+					catch (System.ArgumentException) { }
                 }
                 lista.Add(liquidacionHorasPersonal_Detalle);
             }
             return lista;
         }
+        public static LiquidacionHorasPersonal_Detalle GetOneByParameter(string campo, string valor)
+        {
+            if (!DbEntidades.Seguridad.Permiso("PermisoLiquidacionHorasPersonal_DetalleBrowse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
 
-        public static List<LiquidacionHorasPersonal_Detalle> GetAllEstado1()
+        foreach (PropertyInfo prop in typeof(LiquidacionHorasPersonal_Detalle).GetProperties())
         {
-            return GetAll().Where(x => x.EstadoId == 1).ToList();
+            if (prop.Name == campo)
+            {
+                tipo = prop.PropertyType.Name.ToString();
+            }
+            if (prop.Name == "Delete")
+            {
+                columnas += "[" + prop.Name + "]" + ", ";
+            }
+            else
+            {
+                columnas += prop.Name + ", ";
+            }
+
         }
-        public static List<LiquidacionHorasPersonal_Detalle> GetAllEstadoNot1()
-        {
-            return GetAll().Where(x => x.EstadoId != 1).ToList();
+        columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from LiquidacionHorasPersonal_Detalle where  " + campo + " = \'" + valor + "\'").Tables[0];
+            LiquidacionHorasPersonal_Detalle LiquidacionHorasPersonal_Detalle = new LiquidacionHorasPersonal_Detalle();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(LiquidacionHorasPersonal_Detalle).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(LiquidacionHorasPersonal_Detalle, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+            }
+            return LiquidacionHorasPersonal_Detalle;
         }
-        public static List<LiquidacionHorasPersonal_Detalle> GetAllEstadoN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId == estado).ToList();
-        }
-        public static List<LiquidacionHorasPersonal_Detalle> GetAllEstadoNotN(int estado)
-        {
-            return GetAll().Where(x => x.EstadoId != estado).ToList();
-        }
+        public static List<LiquidacionHorasPersonal_Detalle> GetAllByParameter(string campo, string valor)
+            {
+                if (!DbEntidades.Seguridad.Permiso("PermisoLiquidacionHorasPersonal_DetalleBrowse")) throw new PermisoException();
+                string columnas = string.Empty;
+                var tipo = string.Empty;
+                foreach (PropertyInfo prop in typeof(LiquidacionHorasPersonal_Detalle).GetProperties())
+                {
+                    if (prop.Name == campo)
+                    {
+                        tipo = prop.PropertyType.Name.ToString();
+                    }
+                    if (prop.Name == "Delete")
+                    {
+                        columnas += "[" + prop.Name + "]" + ", ";
+                    }
+                    else
+                    {
+                        columnas += prop.Name + ", ";
+                    }
+
+                }
+                columnas = columnas.Substring(0, columnas.Length - 2);
+                DB db = new DB();
+                var queryStr = string.Empty;
+                if (tipo == "String")
+                {
+                    queryStr = "select " + columnas + " from LiquidacionHorasPersonal_Detalle where " + campo + " = \'" + valor.ToString() + "\'";
+                }
+                else
+                {
+                    queryStr = "select " + columnas + " from LiquidacionHorasPersonal_Detalle where " + campo + " = " + valor.ToString();
+                }
+                DataTable dt = db.GetDataSet(queryStr).Tables[0];
+                List<LiquidacionHorasPersonal_Detalle> lista = new List<LiquidacionHorasPersonal_Detalle>();
+                foreach (DataRow dr in dt.AsEnumerable())
+                {
+
+                    LiquidacionHorasPersonal_Detalle entidad = new LiquidacionHorasPersonal_Detalle();
+                    foreach (PropertyInfo prop in typeof(LiquidacionHorasPersonal_Detalle).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        if (value == DBNull.Value) value = null;
+                        try { prop.SetValue(entidad, value, null); }
+                        catch (System.ArgumentException) { }
+                    }
+                    lista.Add(entidad);
+                }
+                return lista;
+            }
+
+		public static List<LiquidacionHorasPersonal_Detalle> GetAllEstado1()
+		{
+			return GetAll().Where(x => x.EstadoId == 1).ToList();
+		}
+		public static List<LiquidacionHorasPersonal_Detalle> GetAllEstadoNot1()
+		{
+			return GetAll().Where(x => x.EstadoId != 1).ToList();
+		}
+		public static List<LiquidacionHorasPersonal_Detalle> GetAllEstadoN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId == estado).ToList();
+		}
+		public static List<LiquidacionHorasPersonal_Detalle> GetAllEstadoNotN(int estado)
+		{
+			return GetAll().Where(x => x.EstadoId != estado).ToList();
+		}
 
 
         public class MaxLength
         {
-            public static int HoraEntrada { get; set; } = 5;
-            public static int HoraSalida { get; set; } = 5;
+			public static int HoraEntrada { get; set; } = 5;
+			public static int HoraSalida { get; set; } = 5;
 
 
         }
@@ -143,19 +230,19 @@ namespace DbEntidades.Operators
             columnas = columnas.Substring(0, columnas.Length - 2);
             sql += columnas;
             List<object> parametros = new List<object>();
-            for (int i = 0; i < param.Count; i++)
+            for (int i = 0; i<param.Count; i++)
             {
                 parametros.Add(param[i]);
                 parametros.Add(valor[i]);
                 SqlParameter p = new SqlParameter(param[i].ToString(), valor[i]);
                 sqlParams.Add(p);
-            }
+        }
             sql += " where Id = " + liquidacionHorasPersonal_Detalle.Id;
             DB db = new DB();
             //db.execute_scalar(sql, parametros.ToArray());
             object resp = db.ExecuteScalar(sql, sqlParams.ToArray());
             return liquidacionHorasPersonal_Detalle;
-        }
+    }
 
         private static string GetComilla(string tipo)
         {

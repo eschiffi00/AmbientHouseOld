@@ -123,6 +123,7 @@
                                             <asp:BoundField DataField="PresupuestoId" HeaderText="Nro. Presup." SortExpression="PresupuestoId" />
                                             <asp:BoundField DataField="FechaEvento" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Fec. Evento" SortExpression="FechaEvento" />
                                             <asp:BoundField DataField="Locacion" HeaderText="Locacion" SortExpression="Locacion" />
+                                            <asp:BoundField DataField="Sector" HeaderText="Sector" SortExpression="Sector" />
                                             <asp:BoundField DataField="CantidadTotal" HeaderText="PAX" SortExpression="CantidadTotal" />
                                             <asp:BoundField DataField="HorarioEvento" HeaderText="Hora Desde" SortExpression="HorarioEvento" />
                                             <asp:BoundField DataField="HoraFinalizado" HeaderText="Hora Hasta" SortExpression="HoraFinalizado" />
