@@ -178,9 +178,11 @@
 <%--                <asp:BoundField DataField="CategoriaId" HeaderText="CategoriaId" Visible="false" />
                 <asp:BoundField DataField="CategoriaDetalle" HeaderText="Categoria Detalle" Visible="true" />--%>
                 <asp:BoundField DataField="TipoRatio" HeaderText="Tipo Ratio" Visible="true" />
-                <asp:BoundField DataField="DetalleTipo" HeaderText="Detalle Ratio" Visible="true" />
+                <asp:BoundField DataField="BaseRatio" HeaderText="Base Ratio" Visible="true" />
                 <asp:BoundField DataField="ValorRatio" HeaderText="Valor Ratio" Visible="true" />
                 <asp:BoundField DataField="TopeRatio" HeaderText="Tope Ratio" Visible="true" />
+                <asp:BoundField DataField="ItemRatioId" HeaderText="Depende de Item" Visible="true" />
+                <asp:BoundField DataField="IslaId" HeaderText="Isla" Visible="true" />
                 <asp:BoundField DataField="Adultos" HeaderText="Adultos" Visible="true" />
                 <asp:BoundField DataField="Menores3" HeaderText="Menores de 3" Visible="true" />
                 <asp:BoundField DataField="Menores3y8" HeaderText="Menores entre 3 y 8" Visible="true" />

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 
 namespace AmbientHouse.Configuracion.AbmItems
@@ -69,21 +70,25 @@ namespace AmbientHouse.Configuracion.AbmItems
                         row.Cells[3].ControlStyle.BackColor = Color.Red;
                         row.Cells[3].ControlStyle.ForeColor = Color.White;
                     }
-                    var list = fila[4].Text.Split(',').ToList();
-                    foreach(var value in list)
+                    if (fila[4].Text != "0" && fila[4].Text != "&nbsp;" && fila[4].Text != " " && fila[4].Text != "")
                     {
-                        fields.Clear();
-                        values.Clear();
-                        fields.Add("Id");
-                        values.Add(value);
-                        if (!CommonOperator.CommonValidation("Items", fields, values))
+                        var list = fila[4].Text.Split(',').ToList();
+                        foreach (var value in list)
                         {
-                            erroneos++;
-                            rowError = true;
-                            row.Cells[4].ControlStyle.BackColor = Color.Red;
-                            row.Cells[4].ControlStyle.ForeColor = Color.White;
+                            fields.Clear();
+                            values.Clear();
+                            fields.Add("Id");
+                            values.Add(value);
+                            if (!CommonOperator.CommonValidation("Items", fields, values))
+                            {
+                                erroneos++;
+                                rowError = true;
+                                row.Cells[4].ControlStyle.BackColor = Color.Red;
+                                row.Cells[4].ControlStyle.ForeColor = Color.White;
+                            }
                         }
                     }
+                    
                     fields.Clear();
                     values.Clear();
                     fields.Add("Id");
@@ -163,7 +168,7 @@ namespace AmbientHouse.Configuracion.AbmItems
 
             //var itemData = CommonOperator.CommonGetString("Items", fields, getFields, values);
             seItems.Id = int.Parse(fila[9].Text);
-            seItems.Detalle = fila[0].Text;
+            seItems.Detalle = HttpContext.Current.Server.HtmlDecode(fila[0].Text);
             seItems.TipoItem = fila[1].Text;
             
             
@@ -171,17 +176,25 @@ namespace AmbientHouse.Configuracion.AbmItems
             //getFields.Clear();
             //values.Clear();
             NombreFantasia nombreFantasia = new NombreFantasia();
-            nombreFantasia.Descripcion = fila[2].Text;
-            var idFantasia = NombreFantasiaOperator.GetOneByParameter("Descripcion", nombreFantasia.Descripcion).Id;
-            if (idFantasia > 0)
+            if(fila[2].Text != "&nbsp;" && fila[2].Text != " " && fila[2].Text != "")
             {
-                seItems.NombreFantasiaId = idFantasia;
+                nombreFantasia.Descripcion = fila[2].Text;
+                var idFantasia = NombreFantasiaOperator.GetOneByParameter("Descripcion", nombreFantasia.Descripcion).Id;
+                if (idFantasia > 0)
+                {
+                    seItems.NombreFantasiaId = idFantasia;
+                }
+                else
+                {
+                    seItems.NombreFantasiaId = -1;
+                }
+                NombreFantasiaOperator.Save(nombreFantasia);
             }
             else
             {
                 seItems.NombreFantasiaId = -1;
             }
-            NombreFantasiaOperator.Save(nombreFantasia);
+            
             if(fila[4].Text != "0" && fila[4].Text != "&nbsp;" && fila[4].Text != " " && fila[4].Text != "")
             {
                 var list = fila[4].Text.Split(',').ToList();
@@ -219,11 +232,18 @@ namespace AmbientHouse.Configuracion.AbmItems
         {
             seItems.Id = -1;
             seItems.ItemDetalleId = 99;
-            seItems.Detalle = fila[0].Text;
+            seItems.Detalle = HttpContext.Current.Server.HtmlDecode(fila[0].Text);
             seItems.TipoItem = fila[1].Text;
-            NombreFantasia nombreFantasia = new NombreFantasia();
-            nombreFantasia.Descripcion = fila[2].Text;
-            seItems.NombreFantasiaId = NombreFantasiaOperator.Save(nombreFantasia).Id;
+            if (fila[2].Text != " " && fila[2].Text != "&nbsp;")
+            {
+                NombreFantasia nombreFantasia = new NombreFantasia();
+                nombreFantasia.Descripcion = fila[2].Text;
+                seItems.NombreFantasiaId = NombreFantasiaOperator.Save(nombreFantasia).Id;
+            }
+            else
+            {
+                seItems.NombreFantasiaId = -1;
+            }
             seItems.CategoriaItemId = int.Parse(fila[3].Text);
             seItems.ItemDetalleId = 0;
 
@@ -234,7 +254,7 @@ namespace AmbientHouse.Configuracion.AbmItems
             seItems.Precio = System.Math.Round(float.Parse(fila[8].Text), 2);
             seItems.DepositoId = 99;
             seItems.Id = ItemsOperator.Save(seItems).Id;
-            if (fila[4].Text != "0")
+            if (fila[4].Text != "0" && fila[4].Text != "&nbsp;")
             {
                 var list = fila[4].Text.Split(',').ToList();
                 var DetalleItems = ItemDetalleOperator.GetAllByParameter("ItemId", seItems.Id.ToString());

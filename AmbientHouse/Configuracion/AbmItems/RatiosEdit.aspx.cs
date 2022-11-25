@@ -73,9 +73,15 @@ namespace AmbientHouse.Configuracion.AbmItems
                             ddlDependencia.SelectedValue = "2";
                             break;
                     }
-                    txtDetalle.Text = seRatios.DetalleTipo;
+                    txtDetalle.Text = seRatios.BaseRatio.ToString();
                     txtValor.Text = seRatios.ValorRatio.ToString();
                     txtTope.Text = seRatios.TopeRatio.ToString();
+                    txtItemRatio.Text = seRatios.ItemRatioId != null ? seRatios.ItemRatioId.Value.ToString(): "0";
+                    txtIsla.Text = seRatios.IslaId != null ? seRatios.IslaId.Value.ToString() : "0";
+                    if (seRatios.Adultos == 1)
+                    {
+                        chkMenores3.Checked = true;
+                    }
                     if (seRatios.Menores3 == 1)
                     {
                         chkMenores3.Checked = true;
@@ -289,11 +295,28 @@ namespace AmbientHouse.Configuracion.AbmItems
             Ratios Ratio = new Ratios();
             try
             {
-                var id = int.Parse(Request["Id"]);
-                if (txtDetalle.Text == null || txtDetalle.Text == "") { Ratio.DetalleTipo = " "; }
-                else { Ratio.DetalleTipo = txtDetalle.Text; }
+                var temp = Request["Id"];
+                var id = 0;
+                if(temp != null)
+                {
+                    id = int.Parse(Request["Id"]);
+                }
+                
+                if (txtDetalle.Text == null || txtDetalle.Text == "") { Ratio.BaseRatio = 0; }
+                else { Ratio.BaseRatio = System.Math.Round(float.Parse(txtTope.Text), 2); }
                 Ratio.ValorRatio = System.Math.Round(float.Parse(txtValor.Text), 2);
                 Ratio.TopeRatio = System.Math.Round(float.Parse(txtTope.Text), 2);
+                if(txtItemRatio.Text != null && txtItemRatio.Text != "0")
+                {
+                    Ratio.ItemRatioId = int.Parse(txtItemRatio.Text);
+                }
+                else
+                {
+                    Ratio.ItemRatioId = 0;
+                }
+                
+                Ratio.IslaId = int.Parse(txtIsla.Text);
+                Ratio.Adultos = chkAdultos.Checked ? 1 : 0;
                 Ratio.Menores3 = chkMenores3.Checked ? 1 : 0;
                 Ratio.Menores3y8 = chkMenores3y8.Checked ? 1 : 0;
                 Ratio.Adolescentes = chkAdolescentes.Checked ? 1 : 0;
@@ -344,7 +367,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                                     parametros.Add(Ratio.ItemId.ToString());
                                     parametros.Add(Ratio.ExperienciaBarra);
                                     parametros.Add(Ratio.TipoRatio);
-                                    parametros.Add(Ratio.DetalleTipo);
+                                    parametros.Add(Ratio.BaseRatio.ToString());
                                     if (!RatiosOperator.RatioValidation(parametros) && duplicado == 0)
                                     {
                                         RatiosOperator.Save(Ratio);

@@ -8,9 +8,11 @@ namespace DbEntidades.Entities
         public string ExperienciaBarra { get; set; }
         public string ExperienciaBarraCodigo { get; set; }
         public string TipoRatio { get; set; }
-        public string DetalleTipo { get; set; }
+        public double? BaseRatio { get; set; }
         public double? ValorRatio { get; set; }
         public double? TopeRatio { get; set; }
+        public int? ItemRatioId { get; set; }
+        public int? IslaId { get; set; }
         public int Adultos { get; set; }
         public int Menores3 { get; set; }
         public int Menores3y8 { get; set; }
@@ -26,8 +28,11 @@ namespace DbEntidades.Entities
             "ItemId: " + ItemId.ToString() + "\r\n " +
             "ItemDetalle: " + ItemDetalle.ToString() + "\r\n " +
             "TipoRatio: " + TipoRatio.ToString() + "\r\n " +
-            "DetalleTipo: " + DetalleTipo.ToString() + "\r\n " +
+            "DetalleTipo: " + BaseRatio.ToString() + "\r\n " +
             "TopeRatio: " + TopeRatio.ToString() + "\r\n " +
+            "ItemRatioId: " + ItemRatioId.ToString() + "\r\n " +
+            "IslaId: " + IslaId.ToString() + "\r\n " +
+            "Adultos: " + Adultos.ToString() + "\r\n " +
             "Menores3: " + Menores3.ToString() + "\r\n " +
             "Menores3y8: " + Menores3y8.ToString() + "\r\n " +
             "Adolescentes: " + Adolescentes.ToString() + "\r\n " +

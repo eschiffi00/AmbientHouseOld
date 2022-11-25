@@ -27,26 +27,48 @@ namespace DomainAmbientHouse.Datos
             return PagoClienteToModel(query).OrderBy(o => o.FechaCreate).ToList();
 
         }
-
         public virtual List<PagosClientes> ObtenerPagosClientePorPresupuestoNeto(int presupuestoId)
+
         {
+
             int cuentaClientes = Int32.Parse(ConfigurationManager.AppSettings["CuentaClientes"].ToString());
+
             int cuentaRetencionesGanancias = Int32.Parse(ConfigurationManager.AppSettings["CuentaRetencionesGanancias"].ToString());
+
             int cuentaRetencionesIVA = Int32.Parse(ConfigurationManager.AppSettings["CuentaRetencionesIVA"].ToString());
+
             int cuentaRetencionesIIBB = Int32.Parse(ConfigurationManager.AppSettings["CuentaRetencionesIIBB"].ToString());
+
             int cuentaRetencionesSUSS = Int32.Parse(ConfigurationManager.AppSettings["CuentaRetencionesSUSS"].ToString());
 
+            int cuentaImpuestosMusicales = Int32.Parse(ConfigurationManager.AppSettings["CuentaImpuestoMusicales"].ToString());
+
+
+
             var query = from p in SqlContext.PagosClientes
+
                         where p.PresupuestoId == presupuestoId && p.Delete == false && (p.TipoMovimientoId == cuentaClientes
+
                                                                                         || p.TipoMovimientoId == cuentaRetencionesGanancias
+
                                                                                         || p.TipoMovimientoId == cuentaRetencionesIVA
+
                                                                                         || p.TipoMovimientoId == cuentaRetencionesIIBB
-                                                                                        || p.TipoMovimientoId == cuentaRetencionesSUSS)
+
+                                                                                        || p.TipoMovimientoId == cuentaRetencionesSUSS
+
+                                                                                        || p.TipoMovimientoId == cuentaImpuestosMusicales)
+
                         select p;
+
+
 
             return PagoClienteToModel(query).OrderBy(o => o.FechaCreate).ToList();
 
+
+
         }
+        
 
         private List<PagosClientes> PagoClienteToModel(IQueryable<PagosClientes> query)
         {

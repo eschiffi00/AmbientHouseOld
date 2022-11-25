@@ -171,7 +171,7 @@ namespace DbEntidades.Operators
 
             foreach (PropertyInfo prop in typeof(Ciudades).GetProperties())
             {
-                if (prop.Name == "") continue; //es identity
+                if (prop.Name == "Id") continue; //es identity
                 columnas += prop.Name + ", ";
                 valores += "@" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
@@ -206,7 +206,7 @@ namespace DbEntidades.Operators
 
             foreach (PropertyInfo prop in typeof(Ciudades).GetProperties())
             {
-                if (prop.Name == "") continue; //es identity
+                if (prop.Name == "Id") continue; //es identity
                 columnas += prop.Name + " = @" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
                 valor.Add(prop.GetValue(ciudades, null));

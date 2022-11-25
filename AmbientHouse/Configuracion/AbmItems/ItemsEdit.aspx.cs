@@ -161,7 +161,7 @@ namespace AmbientHouse.Configuracion.AbmItems
         {
             try
             {
-                seItems.ItemDetalleId = 99;
+                //seItems.ItemDetalleId = 99;
                 seItems.Detalle = txtDescripcion.Text;
                 seItems.CuentaId = Int32.Parse(ddlCuenta.Text);
                 seItems.EstadoId = Int32.Parse(ddlEstado.Text);
@@ -171,6 +171,16 @@ namespace AmbientHouse.Configuracion.AbmItems
                 seItems.Precio = float.Parse(txtPrecio.Text);
                 seItems.DepositoId = 99;
                 seItems.EstadoId = EstadosOperator.GetHablitadoID("Items");
+                var Itemdetalleid = ItemDetalleOperator.GetOneByParameter("Id", seItems.Id.ToString()).DetalleItemId;
+                if (Itemdetalleid != null && Itemdetalleid > -1)
+                {
+                    seItems.ItemDetalleId = Itemdetalleid;
+                }
+                else
+                {
+                    seItems.ItemDetalleId = -1;
+                }
+                
                 NombreFantasia nombreFantasia = new NombreFantasia();
                 nombreFantasia.Descripcion = txtNombreFantasia.Text;
                 seItems.NombreFantasiaId = NombreFantasiaOperator.Save(nombreFantasia).Id;
@@ -226,7 +236,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                 //    }
 
 
-                //    Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
+                    Response.Redirect("~/Configuracion/AbmItems/ItemsBrowse.aspx");
             }
             catch (Exception ex)
             {

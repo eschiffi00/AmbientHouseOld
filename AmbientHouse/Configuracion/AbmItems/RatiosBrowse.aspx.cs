@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 namespace AmbientHouse.Configuracion.AbmItems
 {
@@ -103,6 +104,16 @@ namespace AmbientHouse.Configuracion.AbmItems
             ratiosListado = RatiosOperator.GetAllWithDetails().ToList();
             grdRatios.DataSource = ratiosListado;
             grdRatios.DataBind();
+            foreach (GridViewRow fila in grdRatios.Rows)
+            {
+                TableCellCollection fila2;
+                fila2 = fila.Cells;
+                if (fila2[18].Text == "Inactivo")
+                {
+                    fila.ControlStyle.BackColor = Color.LightSalmon;
+                    fila.ControlStyle.ForeColor = Color.White;
+                }
+            }
         }
         protected void btnExportar_Click(object sender, EventArgs e)
         {
@@ -216,7 +227,7 @@ namespace AmbientHouse.Configuracion.AbmItems
 
             if (e.CommandName == "CommandNameDelete")
             {
-                ItemsOperator.Delete(id);
+                RatiosOperator.Delete(id);
                 grdRatiosBind();
             }
             if (e.CommandName == "CommandNameEdit")

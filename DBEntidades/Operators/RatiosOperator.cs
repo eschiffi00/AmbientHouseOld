@@ -47,9 +47,11 @@ namespace DbEntidades.Operators
                 }
                 RatiosDetail.ItemDetalle = ItemsOperator.GetOneByIdentity(Ratios.ItemId).Detalle;
                 RatiosDetail.TipoRatio = Ratios.TipoRatio;
-                RatiosDetail.DetalleTipo = Ratios.DetalleTipo;
+                RatiosDetail.BaseRatio = Ratios.BaseRatio;
                 RatiosDetail.ValorRatio = Ratios.ValorRatio;
                 RatiosDetail.TopeRatio = Ratios.TopeRatio;
+                RatiosDetail.ItemRatioId = Ratios.ItemRatioId;
+                RatiosDetail.IslaId = Ratios.IslaId;
                 RatiosDetail.Adultos = Ratios.Adultos;
                 RatiosDetail.Menores3 = Ratios.Menores3;
                 RatiosDetail.Menores3y8 = Ratios.Menores3y8;
@@ -114,6 +116,12 @@ namespace DbEntidades.Operators
             }
 
             return id;
+        }
+        public static void Delete(int id)
+        {
+            Ratios u = RatiosOperator.GetOneByIdentity(id);
+            u.EstadoId = EstadosOperator.GetDeshabilitadoID("Ratios");
+            Update(u);
         }
     }
 }

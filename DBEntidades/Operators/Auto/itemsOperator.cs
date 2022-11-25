@@ -187,7 +187,7 @@ namespace DbEntidades.Operators
 
             foreach (PropertyInfo prop in typeof(Items).GetProperties())
             {
-                if (prop.Name == "") continue; //es identity
+                if (prop.Name == "Id") continue; //es identity
                 columnas += prop.Name + ", ";
                 valores += "@" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
@@ -195,7 +195,7 @@ namespace DbEntidades.Operators
             }
             columnas = columnas.Substring(0, columnas.Length - 2);
             valores = valores.Substring(0, valores.Length - 2);
-            sql += columnas + ") output inserted. values (" + valores + ")";
+            sql += columnas + ") values (" + valores + ")";
             DB db = new DB();
             List<object> parametros = new List<object>();
             for (int i = 0; i < param.Count; i++)
@@ -222,7 +222,7 @@ namespace DbEntidades.Operators
 
             foreach (PropertyInfo prop in typeof(Items).GetProperties())
             {
-                if (prop.Name == "") continue; //es identity
+                if (prop.Name == "Id") continue; //es identity
                 columnas += prop.Name + " = @" + prop.Name + ", ";
                 param.Add("@" + prop.Name);
                 valor.Add(prop.GetValue(items, null));

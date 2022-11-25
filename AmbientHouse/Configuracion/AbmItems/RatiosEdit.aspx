@@ -140,7 +140,7 @@
             </div>
         </div>
         <div class="form-group row" id="Detalle">
-            <label for="txtDetalle" class="col-sm-2 col-form-label text-sm-left text-md-right">Detalle Ratio</label>
+            <label for="txtDetalle" class="col-sm-2 col-form-label text-sm-left text-md-right">Base Ratio</label>
             <div class="col-sm-6">
                 <asp:TextBox runat="server" ID="txtDetalle" TabIndex="5" CssClass="form-control" required="required" />        
             </div>
@@ -157,7 +157,24 @@
                 <asp:TextBox runat="server" ID="txtTope" TabIndex="7" CssClass="form-control" required="required" />        
             </div>
         </div>
-
+         <div class="form-group row" id="ItemRatio">
+            <label for="txtItemRatio" class="col-sm-2 col-form-label text-sm-left text-md-right">Depende de Item</label>
+            <div class="col-sm-6">
+                <asp:TextBox runat="server" ID="txtItemRatio" TabIndex="7" CssClass="form-control" required="required" />        
+            </div>
+        </div>
+        <div class="form-group row" id="Isla">
+            <label for="txtIsla" class="col-sm-2 col-form-label text-sm-left text-md-right">Ratio Isla</label>
+            <div class="col-sm-6">
+                <asp:TextBox runat="server" ID="txtIsla" TabIndex="7" CssClass="form-control" required="required" />        
+            </div>
+        </div>
+         <div class="form-group row" id="Adultos">
+            <label for="chkAdultos" class="col-sm-2 col-form-label text-sm-left text-md-right">Adultos</label>
+            <div class="col-sm-6">
+               <asp:CheckBox ID="chkAdultos" runat="server" class="form-check" Checked="False" TabIndex="8" />        
+        </div>
+        </div>
         <div class="form-group row" id="Menores3">
             <label for="chkMenores3" class="col-sm-2 col-form-label text-sm-left text-md-right">Ratio para Menores de 3 años</label>
             <div class="col-sm-6">

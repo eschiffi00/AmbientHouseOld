@@ -87,6 +87,33 @@ namespace AmbientHouse.Configuracion.AbmItems
         protected global::System.Web.UI.WebControls.TextBox txtTope;
 
         /// <summary>
+        /// Control txtItemRatio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtItemRatio;
+
+        /// <summary>
+        /// Control txtIsla.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIsla;
+
+        /// <summary>
+        /// Control chkAdultos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkAdultos;
+
+        /// <summary>
         /// Control chkMenores3.
         /// </summary>
         /// <remarks>
