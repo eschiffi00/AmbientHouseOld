@@ -3,6 +3,8 @@ using DomainAmbientHouse.Servicios;
 using System;
 using System.Linq;
 using System.Web.UI.WebControls;
+using DbEntidades.Entities;
+using DbEntidades.Operators;
 
 namespace AmbientHouse.Administracion.PresupuestosAprobados
 {
@@ -137,32 +139,32 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
 
             CargarPresupuesto();
 
-            EditarOrganizacionDetalle();
+            //EditarOrganizacionDetalle();
 
 
-            GridViewCatering.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 3 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
-            GridViewCatering.DataBind();
+            //GridViewCatering.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 3 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
+            //GridViewCatering.DataBind();
 
-            GridViewBarras.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 6 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
-            GridViewBarras.DataBind();
+            //GridViewBarras.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 6 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
+            //GridViewBarras.DataBind();
 
-            GridViewAdicionales.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 9 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
-            GridViewAdicionales.DataBind();
+            //GridViewAdicionales.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 9 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
+            //GridViewAdicionales.DataBind();
 
-            GridViewAmbientacion.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 1 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
-            GridViewAmbientacion.DataBind();
+            //GridViewAmbientacion.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 1 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
+            //GridViewAmbientacion.DataBind();
 
-            GridViewTecnica.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 2 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
-            GridViewTecnica.DataBind();
+            //GridViewTecnica.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 2 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
+            //GridViewTecnica.DataBind();
 
-            GridViewOtros.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 8 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
-            GridViewOtros.DataBind();
+            //GridViewOtros.DataSource = presupuestos.BuscarDetallePresupuesto(PresupuestoId).Where(o => o.UnidadNegocioId == 8 && (o.EstadoId == 24 || o.EstadoId == 43)).ToList();
+            //GridViewOtros.DataBind();
 
-            GridViewProveedoresExternos.DataSource = administrativas.ObtenerProveedoresExternosPorPresupuesto(PresupuestoId);
-            GridViewProveedoresExternos.DataBind();
+            //GridViewProveedoresExternos.DataSource = administrativas.ObtenerProveedoresExternosPorPresupuesto(PresupuestoId);
+            //GridViewProveedoresExternos.DataBind();
 
 
-            BuscarArchivos();
+            //BuscarArchivos();
 
         }
 
@@ -175,108 +177,26 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
 
             if (OrganizacionDetalle != null)
             {
-                TextBoxMotivo.Text = OrganizacionDetalle.MotivoFestejo;
-
-                TextBoxMail.Text = OrganizacionDetalle.Mail;
-                TextBoxTelefono.Text = OrganizacionDetalle.Tel;
-
-                TextBoxLocacionOtra.Text = OrganizacionDetalle.LocacionOtra;
-                TextBoxDireccionLocacion.Text = OrganizacionDetalle.Direccion;
-
-                if (OrganizacionDetalle.BocadosEstado)
-                    TextBoxBocados.Text = OrganizacionDetalle.Bocados;
-
-
-                if (OrganizacionDetalle.IslasEstado)
-                    TextBoxIslas.Text = OrganizacionDetalle.Islas;
-
-
-                if (OrganizacionDetalle.PrincipalAdultosEstado)
-                    TextBoxPrincipalAdultos.Text = OrganizacionDetalle.PrincipalAdultos;
-
-                if (OrganizacionDetalle.PrincipalAdolescentesEstado)
-                    TextBoxPrincipalAdolescentes.Text = OrganizacionDetalle.PrincipalAdolescentes;
-
-                if (OrganizacionDetalle.PostreAdultosAdolescentesEstado)
-                    TextBoxPostreAdultosAdolescentes.Text = OrganizacionDetalle.PostreAdultosAdolescentes;
-
-                if (OrganizacionDetalle.PrincipalChicosEstado)
-                    TextBoxPrincipalMenores.Text = OrganizacionDetalle.PrincipalChicos;
-
-                if (OrganizacionDetalle.PostreChicosEstado)
-                    TextBoxPostreMenores.Text = OrganizacionDetalle.PostreChicos;
-
-                if (OrganizacionDetalle.MesaDulceEstado)
-                    TextBoxMesaDulce.Text = OrganizacionDetalle.MesaDulce;
-
-                if (OrganizacionDetalle.FinFiestaEstado)
-                    TextBoxFindeFiesta.Text = OrganizacionDetalle.FinFiesta;
-
-                if (OrganizacionDetalle.ServiciodeVinoChampagneEstado)
-                    TextBoxVinoChampagne.Text = OrganizacionDetalle.ServiciodeVinoChampagne;
 
                 if (OrganizacionDetalle.ManteleriaEstado)
-                    TextBoxManteleria.Text = OrganizacionDetalle.Manteleria;
+                    LabelManSalon.Text = OrganizacionDetalle.Manteleria;
+                    LabelManRecepcion.Text = OrganizacionDetalle.Manteleria;
 
                 if (OrganizacionDetalle.ServilletasEstado)
-                    TextBoxServilletas.Text = OrganizacionDetalle.Servilletas;
-
-                if (OrganizacionDetalle.SillasEstado)
-                    TextBoxSillas.Text = OrganizacionDetalle.Sillas;
-
-                if (OrganizacionDetalle.InvitadosDespues00Estado)
-                    TextBoxInvitadosDespuesde00.Text = OrganizacionDetalle.InvitadosDespues00;
-
-                if (OrganizacionDetalle.CumpleaniosEnEventoEstado)
-                    TextBoxCumpleenelEvento.Text = OrganizacionDetalle.CumpleaniosEnEvento;
-
-                if (OrganizacionDetalle.TortaAlegoricaEstado)
-                    TextBoxTortaAlegorica.Text = OrganizacionDetalle.TortaAlegorica;
-
-                if (OrganizacionDetalle.LleganAlSalonEstado)
-                    TextBoxLlegaSalon.Text = OrganizacionDetalle.LleganAlSalon;
-
-                if (OrganizacionDetalle.PlatosEspecialesEstado)
-                    TextBox1PlatosEspecciales.Text = OrganizacionDetalle.PlatosEspeciales;
-
-                if (OrganizacionDetalle.ListaCocherasEstado)
-                    TextBoxListaCocheras.Text = OrganizacionDetalle.ListaCocheras;
-
-                if (OrganizacionDetalle.AcreditacionesEstado)
-                    TextBoxAcreditaciones.Text = OrganizacionDetalle.Acreditaciones;
-
-                if (OrganizacionDetalle.ListaInvitadosEstado)
-                    TextBoxListadeInvitados.Text = OrganizacionDetalle.ListaInvitados;
-
-                if (OrganizacionDetalle.LayoutEstado)
-                    TextBoxLayout.Text = OrganizacionDetalle.Layout;
-
-                if (OrganizacionDetalle.AlfombraRojaEstado)
-                    TextBoxAlfombraRoja.Text = OrganizacionDetalle.AlfombraRoja;
-
-                if (OrganizacionDetalle.Anexo7Estado)
-                    TextBoxAnexo7.Text = OrganizacionDetalle.Anexo7;
-
-                TextBoxObservacionesBarras.Text = OrganizacionDetalle.ObservacionBarras;
-                TextBoxObservacionesAmbientacion.Text = OrganizacionDetalle.ObservacionAmbientacion;
-                TextBoxObservacionesCatering.Text = OrganizacionDetalle.ObservacionCatering;
-                TextBoxObservacionesAdicionales.Text = OrganizacionDetalle.ObservacionesAdicionales;
-                TextBoxObservacionesParticularidades.Text = OrganizacionDetalle.ObservacionParticulares;
-                TextBoxObservacionesTecnica.Text = OrganizacionDetalle.ObservacionTecnica;
-
-                DropDownListEscenario.SelectedValue = OrganizacionDetalle.Escenario;
-                DropDownListRamo.SelectedValue = OrganizacionDetalle.Ramo;
+                    LabelServilletas.Text = OrganizacionDetalle.Servilletas;
+ 
+                TextBoxParti.Text = OrganizacionDetalle.ObservacionParticulares;
 
 
             }
 
 
-            GridViewProveedoresExternos.DataSource = administrativas.ObtenerProveedoresExternosPorPresupuesto(PresupuestoId);
-            GridViewProveedoresExternos.DataBind();
+            //GridViewProveedoresExternos.DataSource = administrativas.ObtenerProveedoresExternosPorPresupuesto(PresupuestoId);
+            //GridViewProveedoresExternos.DataBind();
 
 
-            GridViewTimming.DataSource = administrativas.ObtenerTimmingPorPresupuesto(PresupuestoId);
-            GridViewTimming.DataBind();
+            //GridViewTimming.DataSource = administrativas.ObtenerTimmingPorPresupuesto(PresupuestoId);
+            //GridViewTimming.DataBind();
         }
 
         private void CargarEvento(string mail, string telefono)
@@ -291,7 +211,7 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
 
             ClientesServicios clienteServicios = new ClientesServicios();
 
-            ClientesBis cliente = clienteServicios.BuscarCliente(ClienteId);
+            DomainAmbientHouse.Entidades.ClientesBis cliente = clienteServicios.BuscarCliente(ClienteId);
 
 
             if (cliente.ApellidoNombre != "")
@@ -342,7 +262,7 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
                 TextBoxHoraInicio.Text = PresupuestoSeleccionado.HorarioEvento;
                 TextBoxHoraFin.Text = PresupuestoSeleccionado.HoraFinalizado;
 
-                EmpleadosPresupuestosAprobados existeEquipo = administrativas.BuscarEquiposPorPresupuesto((int)PresupuestoId);
+                DomainAmbientHouse.Entidades.EmpleadosPresupuestosAprobados existeEquipo = administrativas.BuscarEquiposPorPresupuesto((int)PresupuestoId);
 
                 int? OrganizadorId = 0;
 
@@ -371,112 +291,108 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
             }
         }
 
-        protected void ButtonAgregarArchivo_Click(object sender, EventArgs e)
-        {
-            OrganizacionPresupuestosArchivos archivo = new OrganizacionPresupuestosArchivos();
+        //protected void ButtonAgregarArchivo_Click(object sender, EventArgs e)
+        //{
+        //    OrganizacionPresupuestosArchivos archivo = new OrganizacionPresupuestosArchivos();
 
-            archivo.PresupuestoId = PresupuestoId;
-            archivo.Desripcion = TextBoxArchivoDescripcion.Text;
-            archivo.NombreArchivo = System.IO.Path.GetFileName(FileUploadArchivo.FileName);
+        //    archivo.PresupuestoId = PresupuestoId;
+        //    archivo.Desripcion = TextBoxArchivoDescripcion.Text;
+        //    archivo.NombreArchivo = System.IO.Path.GetFileName(FileUploadArchivo.FileName);
 
-            archivo.Archivo = FileUploadArchivo.FileBytes;
-            archivo.Extension = System.IO.Path.GetExtension(FileUploadArchivo.FileName);
+        //    archivo.Archivo = FileUploadArchivo.FileBytes;
+        //    archivo.Extension = System.IO.Path.GetExtension(FileUploadArchivo.FileName);
 
-            archivo.EmpleadoId = EmpleadoId;
-            archivo.CreateFecha = System.DateTime.Now;
+        //    archivo.EmpleadoId = EmpleadoId;
+        //    archivo.CreateFecha = System.DateTime.Now;
 
-            administrativas.GrabarArchivo(archivo);
-
-
-            BuscarArchivos();
-
-            TextBoxArchivoDescripcion.Text = "";
+        //    administrativas.GrabarArchivo(archivo);
 
 
-        }
+        //    BuscarArchivos();
 
-        private void BuscarArchivos()
-        {
-
-
-            GridViewArchivo.DataSource = administrativas.ObtenerArchivosPorPresupuestoPorUsuario(PresupuestoId, EmpleadoId).ToList();
-            GridViewArchivo.DataBind();
-        }
-
-        protected void GridViewArchivo_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Quitar")
-            {
-
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GridViewArchivo.Rows[index];
-
-                int Id = Int32.Parse(row.Cells[0].Text);
-
-                DomainAmbientHouse.Entidades.OrganizacionPresupuestosArchivos archivos = administrativas.BuscarOrganizacionArchivo(Id);
-
-                administrativas.EliminarArchivo(archivos);
-
-                BuscarArchivos();
-
-            }
-            else if (e.CommandName == "Descargar")
-            {
-
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GridViewArchivo.Rows[index];
-
-                int Id = Int32.Parse(row.Cells[0].Text);
-
-                DomainAmbientHouse.Entidades.OrganizacionPresupuestosArchivos archivos = administrativas.BuscarOrganizacionArchivo(Id);
+        //    TextBoxArchivoDescripcion.Text = "";
 
 
+        //}
 
-                Response.Redirect("~/Administracion/PresupuestosAprobados/VisualizarArchivoComanda.aspx?Id=" + Id + "&EventoId=" + EventoId + "&PresupuestoId=" + PresupuestoId);
-            }
-            else if (e.CommandName == "EditarArchivo")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GridViewArchivo.Rows[index];
-
-                FileUpload subir = row.FindControl("FileUploadArchivoEditar") as FileUpload;
+        //private void BuscarArchivos()
+        //{
 
 
-                int Id = Int32.Parse(row.Cells[0].Text);
+        //    GridViewArchivo.DataSource = administrativas.ObtenerArchivosPorPresupuestoPorUsuario(PresupuestoId, EmpleadoId).ToList();
+        //    GridViewArchivo.DataBind();
+        //}
 
-                DomainAmbientHouse.Entidades.OrganizacionPresupuestosArchivos archivos = administrativas.BuscarOrganizacionArchivo(Id);
+        //protected void GridViewArchivo_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    if (e.CommandName == "Quitar")
+        //    {
 
-                archivos.Archivo = subir.FileBytes;
-                archivos.NombreArchivo = System.IO.Path.GetFileName(subir.FileName);
-                archivos.Extension = System.IO.Path.GetExtension(subir.FileName);
-                archivos.CreateFecha = System.DateTime.Now;
+        //        int index = Convert.ToInt32(e.CommandArgument);
+        //        GridViewRow row = GridViewArchivo.Rows[index];
 
-                GrabarArchivo(archivos);
+        //        int Id = Int32.Parse(row.Cells[0].Text);
 
-                Mail mail = new Mail();
+        //        DomainAmbientHouse.Entidades.OrganizacionPresupuestosArchivos archivos = administrativas.BuscarOrganizacionArchivo(Id);
 
-                mail.envioMailModificacionArchivos(archivos);
-            }
-        }
+        //        administrativas.EliminarArchivo(archivos);
 
-        private void GrabarArchivo(OrganizacionPresupuestosArchivos archivo)
-        {
+        //        BuscarArchivos();
+
+        //    }
+        //    else if (e.CommandName == "Descargar")
+        //    {
+
+        //        int index = Convert.ToInt32(e.CommandArgument);
+        //        GridViewRow row = GridViewArchivo.Rows[index];
+
+        //        int Id = Int32.Parse(row.Cells[0].Text);
+
+        //        DomainAmbientHouse.Entidades.OrganizacionPresupuestosArchivos archivos = administrativas.BuscarOrganizacionArchivo(Id);
 
 
-            administrativas.GrabarArchivo(archivo);
+
+        //        Response.Redirect("~/Administracion/PresupuestosAprobados/VisualizarArchivoComanda.aspx?Id=" + Id + "&EventoId=" + EventoId + "&PresupuestoId=" + PresupuestoId);
+        //    }
+        //    else if (e.CommandName == "EditarArchivo")
+        //    {
+        //        int index = Convert.ToInt32(e.CommandArgument);
+        //        GridViewRow row = GridViewArchivo.Rows[index];
+
+        //        FileUpload subir = row.FindControl("FileUploadArchivoEditar") as FileUpload;
 
 
-            BuscarArchivos();
-        }
+        //        int Id = Int32.Parse(row.Cells[0].Text);
+
+        //        DomainAmbientHouse.Entidades.OrganizacionPresupuestosArchivos archivos = administrativas.BuscarOrganizacionArchivo(Id);
+
+        //        archivos.Archivo = subir.FileBytes;
+        //        archivos.NombreArchivo = System.IO.Path.GetFileName(subir.FileName);
+        //        archivos.Extension = System.IO.Path.GetExtension(subir.FileName);
+        //        archivos.CreateFecha = System.DateTime.Now;
+
+        //        GrabarArchivo(archivos);
+
+        //        Mail mail = new Mail();
+
+        //        mail.envioMailModificacionArchivos(archivos);
+        //    }
+        //}
+
+        //private void GrabarArchivo(OrganizacionPresupuestosArchivos archivo)
+        //{
+
+
+        //    administrativas.GrabarArchivo(archivo);
+
+
+        //    BuscarArchivos();
+        //}
 
         protected void ButtonVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administracion/Default.aspx");
         }
 
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

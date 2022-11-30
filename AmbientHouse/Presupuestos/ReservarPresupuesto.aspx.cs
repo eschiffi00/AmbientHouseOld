@@ -1,4 +1,7 @@
-﻿using DomainAmbientHouse.Entidades;
+﻿using AmbientHouse.Administracion.PresupuestosAprobados;
+using DbEntidades.Entities;
+using DbEntidades.Operators;
+using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
 using System;
 using System.Collections.Generic;
@@ -710,10 +713,150 @@ namespace AmbientHouse.Presupuestos
             servicios.ReservarPresupuesto(evento, presupuesto, cliente, ListPresupuestoDetalle, cheque, transferencia);
 
             mailAprobacion.envioMailAprobadoAdministracion(presupuesto.Id, evento.Id);
+  
+            CargarComanda();
 
             Response.Redirect("~/Administracion/Default.aspx");
         }
 
+        protected void CargarComanda()
+        {
+            DbEntidades.Entities.Comandas comanda = new DbEntidades.Entities.Comandas();
+            comanda = CargarEventoComanda();
+            comanda = CargarPresupuestoComanda(comanda);
+            ComandasOperator.Save(comanda);
+            DbEntidades.Entities.ComandaDetalle comandaDetalle = new DbEntidades.Entities.ComandaDetalle();
+            comandaDetalle = CargaDetalleComanda();
+
+        }
+        private DbEntidades.Entities.Comandas CargarEventoComanda()
+        {
+            EventoSeleccionado = new DomainAmbientHouse.Entidades.Eventos();
+            EventosServicios eventos = new EventosServicios();
+            DbEntidades.Entities.Comandas comanda = new DbEntidades.Entities.Comandas();
+            EventoSeleccionado = eventos.BuscarEvento(EventoId);
+
+
+            comanda.Empresa = EventoSeleccionado.ApellidoNombreCliente;
+
+            ClienteId = (int)EventoSeleccionado.ClienteBisId;
+
+            ClientesServicios clienteServicios = new ClientesServicios();
+
+            DomainAmbientHouse.Entidades.ClientesBis cliente = clienteServicios.BuscarCliente(ClienteId);
+
+            if (cliente.RazonSocial != "")
+            {
+                comanda.Empresa = cliente.RazonSocial.ToUpper();
+            }
+            return comanda;
+        }
+        private DbEntidades.Entities.Comandas CargarPresupuestoComanda(DbEntidades.Entities.Comandas comanda)
+
+        {
+
+            EventosServicios eventos = new EventosServicios();
+            PresupuestoSeleccionado = new DomainAmbientHouse.Entidades.Presupuestos();
+
+            if (PresupuestoId > 0)
+            {
+                PresupuestoSeleccionado = eventos.BuscarPresupuesto(PresupuestoId);
+
+                comanda.Adultos = PresupuestoSeleccionado.CantidadInicialInvitados;
+
+                if (PresupuestoSeleccionado.CantidadInvitadosAdolecentes != null) comanda.Adolescentes = PresupuestoSeleccionado.CantidadInvitadosAdolecentes;
+                if (PresupuestoSeleccionado.CantidadInvitadosMenores3 != null)comanda.Menores3 = PresupuestoSeleccionado.CantidadInvitadosMenores3;
+                if (PresupuestoSeleccionado.CantidadInvitadosMenores3y8 != null) comanda.Menores3y8 = PresupuestoSeleccionado.CantidadInvitadosMenores3y8;
+
+                comanda.PresupuestoId = int.Parse(PresupuestoSeleccionado.NroPresupuesto);
+                comanda.HorarioLlegada = PresupuestoSeleccionado.HorarioArmado;
+
+                comanda.fechaEvento = PresupuestoSeleccionado.FechaEvento;
+
+                comanda.TipoEvento = eventos.TraerTipoEvento().Where(o => o.Id == PresupuestoSeleccionado.TipoEventoId).Select(o => o.Descripcion).SingleOrDefault();
+
+                comanda.TipoExperiencia = eventos.TraerCaracteristicas().Where(o => o.Id == PresupuestoSeleccionado.CaracteristicaId).Select(o => o.Descripcion).SingleOrDefault();
+                comanda.HorarioInicio = PresupuestoSeleccionado.HorarioEvento;
+                comanda.HorarioFin = PresupuestoSeleccionado.HoraFinalizado;
+
+                DomainAmbientHouse.Entidades.EmpleadosPresupuestosAprobados existeEquipo = administrativas.BuscarEquiposPorPresupuesto((int)PresupuestoId);
+
+                int? OrganizadorId = 0;
+
+                if (existeEquipo != null)
+                    OrganizadorId = existeEquipo.OrganizadorId;
+
+                if (OrganizadorId > 0)
+                    comanda.Organizador = administrativas.BuscarEmpleado((int)OrganizadorId).ApellidoNombre;
+
+
+                string Locacion = eventos.BuscarLocacion(PresupuestoSeleccionado.LocacionId).Descripcion;
+                //string Locacion = eventos.TraerLocaciones().Where(o => o.Id == PresupuestoSeleccionado.LocacionId).Select(o => o.Descripcion).SingleOrDefault();
+
+                if (PresupuestoSeleccionado.SectorId != null)
+                {
+                    string sector = administrativas.BuscarSector((int)PresupuestoSeleccionado.SectorId).Descripcion;
+
+                    comanda.Locacion = Locacion.ToUpper() + " (" + sector.ToUpper() + ")";
+
+                    return comanda;
+
+                }
+
+                comanda.Locacion = Locacion.ToUpper();
+
+            }
+            return comanda;
+        }
+        private DbEntidades.Entities.ComandaDetalle CargaDetalleComanda(DbEntidades.Entities.Comandas comanda)
+        {
+            DbEntidades.Entities.ComandaDetalle comandaDetalle = new DbEntidades.Entities.ComandaDetalle();
+            PresupuestoId = Int32.Parse(Request["PresupuestoId"]);
+            //obtengo todos los presupuestos para la unidad de catering y saber el tipocatering
+            var idPreDet = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId", PresupuestoId.ToString()).Where(x => x.UnidadNegocioId == 3).ToList();
+            var tipoCatering = TipoCateringOperator.GetOneByIdentity(idPreDet[0].ServicioId.Value);
+            AdministrativasServicios servicios = new AdministrativasServicios();
+            //obtengo todos los elementos asociados a la experiencia
+            var ListTipo = TipoCateringTiempoProductoItemOperator.GetAllByParameter("TipoCateringId", tipoCatering.Id.ToString());
+            List<int> itemsComanda = new List<int>();
+            //recorro todos los tiempos y obtengo un listado de todos los items que componen la experiencia
+            foreach(var tipos in ListTipo)
+            {
+                itemsComanda.AddRange(ObtenerItemsTiempo(tipos));
+            }
+            foreach(var item in itemsComanda)
+            {
+                //Input: ItemId,Clave(TCAT + TipoCateringId),Adultos,Menores3,Menores3y8,Adolecentes
+                //Output: Cantidad
+                ObtenerCantidadRatio(item);
+                
+            }
+        }
+        private List<int> ObtenerItemsTiempo(DbEntidades.Entities.TipoCateringTiempoProductoItem tipos)
+        {
+            List<int> itemComanda = new List<int>();
+            if (tipos.ItemId != null)
+            {
+                itemComanda.Add(tipos.ItemId.Value);
+            }
+            if(tipos.CategoriaItemId != null)
+            {
+                var items = ItemsOperator.GetAllByParameter("CategoriaItemId", tipos.CategoriaItemId.ToString());
+                foreach(var item in items)
+                {
+                    itemComanda.Add(item.Id);
+                }
+            }
+            if(tipos.ProductoCateringId != null)
+            {
+                var itemProducto = ProductosCateringItemsOperator.GetAllByParameter("ProductoCateringId",tipos.ProductoCateringId.ToString());
+                foreach(var producto in itemProducto)
+                {
+                    itemComanda.Add(producto.ItemId);
+                }
+            }
+            return itemComanda;
+        }
         protected void ButtonVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administracion/Default.aspx");

@@ -146,6 +146,7 @@
     <Content Include="Administracion\NotaCreditos\Index.aspx" />
     <Content Include="Administracion\PagoProveedores\Pago.aspx" />
     <Content Include="Administracion\PresupuestosAprobados\CargarComanda.aspx" />
+    <Content Include="Administracion\PresupuestosAprobados\CargarComandaNew.aspx" />
     <Content Include="Administracion\PresupuestosAprobados\Descuentos.aspx" />
     <Content Include="Administracion\PresupuestosAprobados\Imprimir.aspx" />
     <Content Include="Administracion\PresupuestosAprobados\PresupuestosARevisar.aspx" />
@@ -873,6 +874,13 @@
     </Compile>
     <Compile Include="Administracion\PresupuestosAprobados\CargarComanda.aspx.designer.cs">
       <DependentUpon>CargarComanda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\CargarComandaNew.aspx.cs">
+      <DependentUpon>CargarComandaNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\PresupuestosAprobados\CargarComandaNew.aspx.designer.cs">
+      <DependentUpon>CargarComandaNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administracion\PresupuestosAprobados\DescargarArchivos.ashx.cs">
       <DependentUpon>DescargarArchivos.ashx</DependentUpon>

@@ -79,6 +79,8 @@
     <Compile Include="Entities\Auto\ClientesEventosMovimientos.cs" />
     <Compile Include="Entities\Auto\ClientesPrueba.cs" />
     <Compile Include="Entities\Auto\CodigoPorRubro.cs" />
+    <Compile Include="Entities\Auto\ComandaDetalle.cs" />
+    <Compile Include="Entities\Auto\Comandas.cs" />
     <Compile Include="Entities\Auto\Comisiones.cs" />
     <Compile Include="Entities\Auto\ComprobantePagoProveedor.cs" />
     <Compile Include="Entities\Auto\ComprobantesProveedores.cs" />
@@ -261,6 +263,8 @@
     <Compile Include="Operators\Auto\ClientesEventosMovimientosOperator.cs" />
     <Compile Include="Operators\Auto\ClientesPruebaOperator.cs" />
     <Compile Include="Operators\Auto\CodigoPorRubroOperator.cs" />
+    <Compile Include="Operators\Auto\ComandaDetalleOperator.cs" />
+    <Compile Include="Operators\Auto\ComandasOperator.cs" />
     <Compile Include="Operators\Auto\ComisionesOperator.cs" />
     <Compile Include="Operators\Auto\ComprobantePagoProveedorOperator.cs" />
     <Compile Include="Operators\Auto\ComprobantesProveedoresOperator.cs" />
