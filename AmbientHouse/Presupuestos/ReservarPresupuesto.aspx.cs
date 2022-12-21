@@ -1,5 +1,5 @@
 ﻿using AmbientHouse.Administracion.PresupuestosAprobados;
-using DbEntidades.Entities;
+//using DbEntidades.Entities;
 using DbEntidades.Operators;
 using DomainAmbientHouse.Entidades;
 using DomainAmbientHouse.Servicios;
@@ -10,6 +10,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using static iTextSharp.text.pdf.AcroFields;
 
 namespace AmbientHouse.Presupuestos
 {
@@ -712,7 +713,7 @@ namespace AmbientHouse.Presupuestos
 
             servicios.ReservarPresupuesto(evento, presupuesto, cliente, ListPresupuestoDetalle, cheque, transferencia);
 
-            mailAprobacion.envioMailAprobadoAdministracion(presupuesto.Id, evento.Id);
+            //mailAprobacion.envioMailAprobadoAdministracion(presupuesto.Id, evento.Id);
   
             CargarComanda();
 
@@ -724,9 +725,14 @@ namespace AmbientHouse.Presupuestos
             DbEntidades.Entities.Comandas comanda = new DbEntidades.Entities.Comandas();
             comanda = CargarEventoComanda();
             comanda = CargarPresupuestoComanda(comanda);
-            ComandasOperator.Save(comanda);
-            DbEntidades.Entities.ComandaDetalle comandaDetalle = new DbEntidades.Entities.ComandaDetalle();
-            comandaDetalle = CargaDetalleComanda();
+            comanda.EstadoId = EstadosOperator.GetApertura("Comandas");
+            var comandaNew = ComandasOperator.Save(comanda);
+            List<DbEntidades.Entities.ComandaDetalle> comandaDetalle = new List<DbEntidades.Entities.ComandaDetalle>();
+            comandaDetalle = CargaDetalleComanda(comandaNew);
+            foreach(var detalle in comandaDetalle)
+            {
+                ComandaDetalleOperator.Save(detalle);
+            }
 
         }
         private DbEntidades.Entities.Comandas CargarEventoComanda()
@@ -735,7 +741,6 @@ namespace AmbientHouse.Presupuestos
             EventosServicios eventos = new EventosServicios();
             DbEntidades.Entities.Comandas comanda = new DbEntidades.Entities.Comandas();
             EventoSeleccionado = eventos.BuscarEvento(EventoId);
-
 
             comanda.Empresa = EventoSeleccionado.ApellidoNombreCliente;
 
@@ -808,9 +813,9 @@ namespace AmbientHouse.Presupuestos
             }
             return comanda;
         }
-        private DbEntidades.Entities.ComandaDetalle CargaDetalleComanda(DbEntidades.Entities.Comandas comanda)
+        private List<DbEntidades.Entities.ComandaDetalle> CargaDetalleComanda(DbEntidades.Entities.Comandas comanda)
         {
-            DbEntidades.Entities.ComandaDetalle comandaDetalle = new DbEntidades.Entities.ComandaDetalle();
+            List<DbEntidades.Entities.ComandaDetalle> comandaDetalle = new List<DbEntidades.Entities.ComandaDetalle>();
             PresupuestoId = Int32.Parse(Request["PresupuestoId"]);
             //obtengo todos los presupuestos para la unidad de catering y saber el tipocatering
             var idPreDet = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId", PresupuestoId.ToString()).Where(x => x.UnidadNegocioId == 3).ToList();
@@ -818,33 +823,66 @@ namespace AmbientHouse.Presupuestos
             AdministrativasServicios servicios = new AdministrativasServicios();
             //obtengo todos los elementos asociados a la experiencia
             var ListTipo = TipoCateringTiempoProductoItemOperator.GetAllByParameter("TipoCateringId", tipoCatering.Id.ToString());
-            List<int> itemsComanda = new List<int>();
+            List<DbEntidades.Entities.ComandaDetalleDescripcion> itemsComanda = new List<DbEntidades.Entities.ComandaDetalleDescripcion>();
             //recorro todos los tiempos y obtengo un listado de todos los items que componen la experiencia
+
+
             foreach(var tipos in ListTipo)
             {
-                itemsComanda.AddRange(ObtenerItemsTiempo(tipos));
+                var comandaTemp = ObtenerItemsTiempo(tipos);
+                if(comandaTemp.Count > 0)
+                {
+                    itemsComanda.AddRange(comandaTemp);
+                }
             }
-            foreach(var item in itemsComanda)
+            EventosServicios eventos = new EventosServicios();
+            foreach (var item in itemsComanda)
             {
                 //Input: ItemId,Clave(TCAT + TipoCateringId),Adultos,Menores3,Menores3y8,Adolecentes
                 //Output: Cantidad
-                ObtenerCantidadRatio(item);
-                
+
+                PresupuestoSeleccionado = new DomainAmbientHouse.Entidades.Presupuestos();
+
+                PresupuestoSeleccionado = eventos.BuscarPresupuesto(PresupuestoId);
+                var ratio = RatiosOperator.ObtenerValorRatio(
+                    item.ItemId,0,0,"TCAT" + tipoCatering.Id,
+                    PresupuestoSeleccionado.CantidadAdultosFinal == 0|| PresupuestoSeleccionado.CantidadAdultosFinal == null ? PresupuestoSeleccionado.CantidadInicialInvitados.Value : PresupuestoSeleccionado.CantidadAdultosFinal.Value,
+                    PresupuestoSeleccionado.CantidadInvitadosMenores3 == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosMenores3.Value, 
+                    PresupuestoSeleccionado.CantidadInvitadosMenores3y8 == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosMenores3y8.Value, 
+                    PresupuestoSeleccionado.CantidadInvitadosAdolecentes == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosAdolecentes.Value);
+                DbEntidades.Entities.ComandaDetalle detalle = new DbEntidades.Entities.ComandaDetalle();
+                detalle.ComandaId = comanda.Id;
+                detalle.Clave = string.IsNullOrEmpty(item.Descripcion) ? " " : item.Descripcion;
+                detalle.ItemId = item.ItemId;
+                detalle.Cantidad = System.Math.Round(ratio,2);
+                detalle.EsAdicional = 0;
+                detalle.EsProducto = 0;
+                detalle.EsItem = 0;
+                detalle.Orden = 0;
+                comandaDetalle.Add(detalle);
             }
+            return comandaDetalle;
         }
-        private List<int> ObtenerItemsTiempo(DbEntidades.Entities.TipoCateringTiempoProductoItem tipos)
+        private List<DbEntidades.Entities.ComandaDetalleDescripcion> ObtenerItemsTiempo(DbEntidades.Entities.TipoCateringTiempoProductoItem tipos)
         {
-            List<int> itemComanda = new List<int>();
+            List<DbEntidades.Entities.ComandaDetalleDescripcion> lista = new List<DbEntidades.Entities.ComandaDetalleDescripcion>();
+            DbEntidades.Entities.ComandaDetalleDescripcion itemComanda = new DbEntidades.Entities.ComandaDetalleDescripcion();
+
             if (tipos.ItemId != null)
             {
-                itemComanda.Add(tipos.ItemId.Value);
+                itemComanda.ItemId = tipos.ItemId.Value;
+                itemComanda.Descripcion = "ITEM" + tipos.ItemId;
+                lista.Add(itemComanda);
             }
             if(tipos.CategoriaItemId != null)
             {
                 var items = ItemsOperator.GetAllByParameter("CategoriaItemId", tipos.CategoriaItemId.ToString());
                 foreach(var item in items)
                 {
-                    itemComanda.Add(item.Id);
+                    itemComanda = new DbEntidades.Entities.ComandaDetalleDescripcion();
+                    itemComanda.ItemId = item.Id;
+                    itemComanda.Descripcion = "CAT" + tipos.CategoriaItemId;
+                    lista.Add(itemComanda);
                 }
             }
             if(tipos.ProductoCateringId != null)
@@ -852,11 +890,15 @@ namespace AmbientHouse.Presupuestos
                 var itemProducto = ProductosCateringItemsOperator.GetAllByParameter("ProductoCateringId",tipos.ProductoCateringId.ToString());
                 foreach(var producto in itemProducto)
                 {
-                    itemComanda.Add(producto.ItemId);
+                    itemComanda = new DbEntidades.Entities.ComandaDetalleDescripcion();
+                    itemComanda.ItemId = producto.ItemId;
+                    itemComanda.Descripcion ="PRO" + tipos.ProductoCateringId;
+                    lista.Add(itemComanda);
                 }
             }
-            return itemComanda;
+            return lista;
         }
+        
         protected void ButtonVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Administracion/Default.aspx");

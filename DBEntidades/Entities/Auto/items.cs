@@ -42,6 +42,17 @@ namespace DbEntidades.Entities
         public Items()
         {
             Id = -1;
+			Detalle = "";
+			CategoriaItemId = 0;
+			Costo = 0;
+			Margen = 0;
+			Precio = 0;
+			EstadoId = 0;
+			ItemDetalleId = 0;
+			CuentaId = 0;
+			DepositoId = 0;
+			TipoItem = "";
+			NombreFantasiaId = 0;
 
         }
 

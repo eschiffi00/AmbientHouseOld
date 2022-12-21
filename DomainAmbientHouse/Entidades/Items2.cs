@@ -12,11 +12,21 @@ namespace DomainAmbientHouse.Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class ItemDetalle
+    public partial class Items2
     {
         public int Id { get; set; }
-        public Nullable<int> ItemId { get; set; }
-        public Nullable<int> DetalleItemId { get; set; }
+        public string Detalle { get; set; }
+        public int CategoriaItemId { get; set; }
+        public double Costo { get; set; }
+        public double Margen { get; set; }
+        public double Precio { get; set; }
         public Nullable<int> EstadoId { get; set; }
+        public Nullable<int> ItemDetalleId { get; set; }
+        public Nullable<int> CuentaId { get; set; }
+        public Nullable<int> DepositoId { get; set; }
+        public string TipoItem { get; set; }
+        public Nullable<int> NombreFantasiaId { get; set; }
+    
+        public virtual CategoriasItem CategoriasItem { get; set; }
     }
 }

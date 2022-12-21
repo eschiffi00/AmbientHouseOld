@@ -982,6 +982,32 @@ namespace AmbientHouse.Administracion.PresupuestosAprobados
                 UpdatePanelPagos.Update();
             }
         }
+        protected void GridViewFacturas_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                TextBox txtdetalle = (TextBox)e.Row.FindControl("TextBoxDetalleFactura");
+
+
+                int Id = int.Parse(e.Row.Cells[0].Text);
+
+                List<FacturaClienteDetalle> fd = administrativas.BuscarDetalleFacturas(Id);
+
+                string detalleFactura = "";
+                int linea = 0;
+
+                foreach (var item in fd)
+                {
+                    linea = linea + 1;
+
+                    detalleFactura = linea.ToString() + "-" + detalleFactura + item.Descripcion + Environment.NewLine;
+                }
+
+                txtdetalle.Text = detalleFactura.ToUpper();
+            }
+        }
+
 
     }
 }

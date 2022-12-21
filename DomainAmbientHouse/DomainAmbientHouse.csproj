@@ -251,6 +251,12 @@
     <Compile Include="Entidades\CodigoPorRubro.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\ComandaDetalle.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Comandas.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\Comisiones.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
@@ -447,6 +453,9 @@
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Items.cs">
+      <DependentUpon>AmbientHouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Items2.cs">
       <DependentUpon>AmbientHouse.tt</DependentUpon>
     </Compile>
     <Compile Include="Entidades\IVAVenta_Result.cs">

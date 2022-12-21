@@ -2242,5 +2242,12 @@ namespace DomainAmbientHouse.Servicios
 
             return negocios.BuscarIvaVenta(fechaInicio, fechaFin, empresa);
         }
+        public List<FacturaClienteDetalle> BuscarDetalleFacturas(int facturaId)
+        {
+            FacturasClientesNegocios negocios = new FacturasClientesNegocios();
+
+            return negocios.BuscarDetalleFacturas(facturaId);
+        }
+
     }
 }

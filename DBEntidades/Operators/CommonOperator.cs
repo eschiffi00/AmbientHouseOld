@@ -1,5 +1,7 @@
+using DbEntidades.Entities;
 using LibDB2;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
@@ -123,6 +125,82 @@ namespace DbEntidades.Operators
                 }
             }
             return returnField;
+        }
+        public static List<List<string>> CommonGetRecords(string tableName, List<string> fields, List<string> getFields, List<string> values)
+        {
+            string columnas = string.Empty;
+            List<string> tipo = new List<string>();
+            List< List<string>> returnList = new List<List<string>>();
+            string classname = "DbEntidades.Entities." + tableName;
+            foreach (PropertyInfo prop in Type.GetType(classname).GetProperties())
+            {
+                if (fields.Contains(prop.Name))
+                {
+                    tipo.Add(prop.PropertyType.Name.ToString());
+                }
+
+                if (prop.Name == "Delete")
+                {
+                    columnas += "[" + prop.Name + "]" + ", ";
+                }
+                else
+                {
+                    columnas += prop.Name + ", ";
+                }
+            }
+            columnas = columnas.Substring(0, columnas.Length - 2);
+            string querystring = "";
+            querystring = "select " + columnas + " from " + tableName + " where ";
+            for (var i = 0; i < fields.Count; i++)
+            {
+                //valido si es el ultimo campo de la query
+                if (i < (fields.Count - 1))
+                {
+                    //valido formato del campo para agregar comillas
+                    if (tipo[i] == "String")
+                    { querystring = querystring + " " + fields[i] + "= \'" + values[i] + "\'" + " and "; }
+                    else
+                    { querystring = querystring + " " + fields[i] + "= " + values[i] + " and "; }
+                }
+                else
+                {
+                    //valido formato del campo pra agregar comillas
+                    if (tipo[i] == "String")
+                    { querystring = querystring + " " + fields[i] + "= \'" + values[i] + "\'"; }
+                    else
+                    { querystring = querystring + " " + fields[i] + "= " + values[i]; }
+                }
+            }
+            DB db = new DB();
+            DataTable dt = db.GetDataSet(querystring).Tables[0];
+            List<string> list = new List<string>();
+
+            foreach (DataRow dr in dt.AsEnumerable())
+            {
+                if (getFields.Count > 0)
+                {
+                    foreach (var field in getFields)
+                    {
+                        var value = dt.Rows[0][field].ToString();
+                        list.Add(value);
+                    }
+                }
+                else if (getFields.Count == 0)
+                {
+
+                    foreach (PropertyInfo prop in Type.GetType(classname).GetProperties())
+                    {
+                        object value = dr[prop.Name];
+                        
+                        var temp = "";
+                        prop.SetValue(temp, value, null);
+                        list.Add(temp);
+                    }
+                    
+                }
+                returnList.Add(list);
+            }
+            return returnList;
         }
 
     }

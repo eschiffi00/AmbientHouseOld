@@ -24,7 +24,7 @@ namespace DbEntidades.Entities
 		public string Organizador { get; set; }
 		public string Maitre { get; set; }
 		public string Coordinador { get; set; }
-		public string JedePorducto { get; set; }
+		public string JefeProducto { get; set; }
 		public int? Adultos { get; set; }
 		public int? Menores3 { get; set; }
 		public int? Menores3y8 { get; set; }
@@ -48,7 +48,7 @@ namespace DbEntidades.Entities
 			"Organizador: " + Organizador.ToString() + "\r\n " + 
 			"Maitre: " + Maitre.ToString() + "\r\n " + 
 			"Coordinador: " + Coordinador.ToString() + "\r\n " + 
-			"JedePorducto: " + JedePorducto.ToString() + "\r\n " + 
+			"JefeProducto: " + JefeProducto.ToString() + "\r\n " + 
 			"Adultos: " + Adultos.ToString() + "\r\n " + 
 			"Menores3: " + Menores3.ToString() + "\r\n " + 
 			"Menores3y8: " + Menores3y8.ToString() + "\r\n " + 
@@ -83,7 +83,7 @@ namespace DbEntidades.Entities
 				case "Organizador": return true;
 				case "Maitre": return true;
 				case "Coordinador": return true;
-				case "JedePorducto": return true;
+				case "JefeProducto": return true;
 				case "Adultos": return true;
 				case "Menores3": return true;
 				case "Menores3y8": return true;

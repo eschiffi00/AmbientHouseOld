@@ -180,16 +180,22 @@
                 <asp:BoundField DataField="TipoRatio" HeaderText="Tipo Ratio" Visible="true" />
                 <asp:BoundField DataField="BaseRatio" HeaderText="Base Ratio" Visible="true" />
                 <asp:BoundField DataField="ValorRatio" HeaderText="Valor Ratio" Visible="true" />
-                <asp:BoundField DataField="TopeRatio" HeaderText="Tope Ratio" Visible="true" />
-                <asp:BoundField DataField="ItemRatioId" HeaderText="Depende de Item" Visible="true" />
-                <asp:BoundField DataField="IslaId" HeaderText="Isla" Visible="true" />
+                <asp:BoundField DataField="TopeRatio" HeaderText="Tope Ratio" Visible="true" /> 
+                <asp:BoundField DataField="Isla" HeaderText="Isla" Visible="true" />
                 <asp:BoundField DataField="Adultos" HeaderText="Adultos" Visible="true" />
                 <asp:BoundField DataField="Menores3" HeaderText="Menores de 3" Visible="true" />
                 <asp:BoundField DataField="Menores3y8" HeaderText="Menores entre 3 y 8" Visible="true" />
                 <asp:BoundField DataField="Adolescentes" HeaderText="Adolescentes" Visible="true" />
-                <asp:BoundField DataField="AdicionalRatio" HeaderText="Es Adicional" Visible="true" />       
+                <asp:BoundField DataField="FijoRatio" HeaderText="Es Adicional" Visible="true" /> 
+                <asp:BoundField DataField="ItemRatioId" HeaderText="Item Ratio" Visible="true" />
+                <asp:BoundField DataField="ProductoRatioId" HeaderText="Producto Ratio" Visible="true" />
+                <asp:BoundField DataField="CategoriaRatioId" HeaderText="Categoria Ratio" Visible="true" />
                 <asp:BoundField DataField="EstadoId" HeaderText="EstadoId" Visible="false" />       
-                <asp:BoundField DataField="Estado" HeaderText="Estado" Visible="true" />       
+                <asp:BoundField DataField="Estado" HeaderText="Estado" Visible="true" /> 
+                <asp:BoundField DataField="ItemRatioId" HeaderText="Item Ratio" Visible="true" /> 
+                <asp:BoundField DataField="ProductoRatioId" HeaderText="Producto Ratio" Visible="true" /> 
+                <asp:BoundField DataField="CategoriaRatioId" HeaderText="Categoria Ratio" Visible="true" /> 
+                
             </Columns>
             <EmptyDataTemplate>
                 <div class="nohaydatos">No hay datos.</div>

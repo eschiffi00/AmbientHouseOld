@@ -76,25 +76,28 @@ namespace AmbientHouse.Configuracion.AbmItems
                     txtDetalle.Text = seRatios.BaseRatio.ToString();
                     txtValor.Text = seRatios.ValorRatio.ToString();
                     txtTope.Text = seRatios.TopeRatio.ToString();
-                    txtItemRatio.Text = seRatios.ItemRatioId != null ? seRatios.ItemRatioId.Value.ToString(): "0";
-                    txtIsla.Text = seRatios.IslaId != null ? seRatios.IslaId.Value.ToString() : "0";
-                    if (seRatios.Adultos == 1)
+                    txtItemRatio.Text = seRatios.ItemRatioId.Value.ToString();
+                    if (seRatios.Isla == true)
+                    {
+                        chkIsla.Checked = true;
+                    }
+                    if (seRatios.Adultos == true)
+                    {
+                        chkAdultos.Checked = true;
+                    }
+                    if (seRatios.Menores3 == true)
                     {
                         chkMenores3.Checked = true;
                     }
-                    if (seRatios.Menores3 == 1)
-                    {
-                        chkMenores3.Checked = true;
-                    }
-                    if (seRatios.Menores3y8 == 1)
+                    if (seRatios.Menores3y8 == true)
                     {
                         chkMenores3y8.Checked = true;
                     }
-                    if (seRatios.Adolescentes == 1)
+                    if (seRatios.Adolescentes == true)
                     {
                         chkAdolescentes.Checked = true;
                     }
-                    if (seRatios.AdicionalRatio == 1)
+                    if (seRatios.FijoRatio == true)
                     {
                         chkAdicional.Checked = true;
                     }
@@ -315,12 +318,12 @@ namespace AmbientHouse.Configuracion.AbmItems
                     Ratio.ItemRatioId = 0;
                 }
                 
-                Ratio.IslaId = int.Parse(txtIsla.Text);
-                Ratio.Adultos = chkAdultos.Checked ? 1 : 0;
-                Ratio.Menores3 = chkMenores3.Checked ? 1 : 0;
-                Ratio.Menores3y8 = chkMenores3y8.Checked ? 1 : 0;
-                Ratio.Adolescentes = chkAdolescentes.Checked ? 1 : 0;
-                Ratio.AdicionalRatio = chkAdicional.Checked ? 1 : 0;
+                Ratio.Isla = chkIsla.Checked ? true : false;
+                Ratio.Adultos = chkAdultos.Checked ? true : false;
+                Ratio.Menores3 = chkMenores3.Checked ? true : false;
+                Ratio.Menores3y8 = chkMenores3y8.Checked ? true : false;
+                Ratio.Adolescentes = chkAdolescentes.Checked ? true : false;
+                Ratio.FijoRatio = chkAdicional.Checked ? true : false;
                 Ratio.EstadoId = EstadosOperator.GetHablitadoID("Items");
                 switch (ddlDependencia.SelectedValue)
                 {

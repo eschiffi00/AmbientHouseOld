@@ -1,4 +1,5 @@
 ﻿using DomainAmbientHouse.Entidades;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,11 @@ namespace DomainAmbientHouse.Datos
             }
 
             return list;
+        }
+
+        internal List<FacturaClienteDetalle> BuscarDetalleFacturas(int facturaId)
+        {
+            return SqlContext.FacturaClienteDetalle.Where(o => o.FacturaClienteId == facturaId).ToList();
         }
 
         public virtual FacturaClienteDetalle BuscarFacturaClienteDetalle(int id)
@@ -143,7 +149,6 @@ namespace DomainAmbientHouse.Entidades
             }
 
         }
-
 
 
     }

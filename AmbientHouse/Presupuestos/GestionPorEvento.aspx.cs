@@ -1119,7 +1119,7 @@ namespace AmbientHouse.Presupuestos
 
             foreach (var item in ListPresupuestos)
             {
-                mailAprobacion.envioMailAprobadoComercial(item.PresupuestoId, evento.Id);
+                //mailAprobacion.envioMailAprobadoComercial(item.PresupuestoId, evento.Id);
             }
 
 

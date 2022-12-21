@@ -169,7 +169,7 @@ namespace DbEntidades.Operators
 			public static int Organizador { get; set; } = 200;
 			public static int Maitre { get; set; } = 200;
 			public static int Coordinador { get; set; } = 200;
-			public static int JedePorducto { get; set; } = 200;
+			public static int JefeProducto { get; set; } = 200;
 
 
         }

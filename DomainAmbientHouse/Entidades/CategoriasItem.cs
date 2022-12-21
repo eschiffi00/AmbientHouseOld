@@ -18,6 +18,7 @@ namespace DomainAmbientHouse.Entidades
         {
             this.Familias = new HashSet<Familias>();
             this.Items = new HashSet<Items>();
+            this.Items2 = new HashSet<Items2>();
             this.TipoBarraCategoriaItem = new HashSet<TipoBarraCategoriaItem>();
             this.TipoCateringTiempoProductoItem = new HashSet<TipoCateringTiempoProductoItem>();
         }
@@ -29,6 +30,7 @@ namespace DomainAmbientHouse.Entidades
     
         public virtual ICollection<Familias> Familias { get; set; }
         public virtual ICollection<Items> Items { get; set; }
+        public virtual ICollection<Items2> Items2 { get; set; }
         public virtual ICollection<TipoBarraCategoriaItem> TipoBarraCategoriaItem { get; set; }
         public virtual ICollection<TipoCateringTiempoProductoItem> TipoCateringTiempoProductoItem { get; set; }
     }

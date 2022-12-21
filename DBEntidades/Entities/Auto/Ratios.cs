@@ -17,16 +17,18 @@ namespace DbEntidades.Entities
 		public double BaseRatio { get; set; }
 		public double ValorRatio { get; set; }
 		public double TopeRatio { get; set; }
-		public int? ItemRatioId { get; set; }
-		public int? IslaId { get; set; }
-		public int Adultos { get; set; }
-		public int Menores3 { get; set; }
-		public int Menores3y8 { get; set; }
-		public int Adolescentes { get; set; }
-		public int AdicionalRatio { get; set; }
+		public bool? Isla { get; set; }
+		public bool Adultos { get; set; }
+		public bool Menores3 { get; set; }
+		public bool Menores3y8 { get; set; }
+		public bool Adolescentes { get; set; }
+		public bool FijoRatio { get; set; }
 		public int EstadoId { get; set; }
+        public int? ItemRatioId { get; set; }
+        public int? ProductoRatioId { get; set; }
+        public int? CategoriaRatioId { get; set; }
 
-		public override string ToString() 
+        public override string ToString() 
 		{
 			return "\r\n " + 
 			"Id: " + Id.ToString() + "\r\n " + 
@@ -36,19 +38,34 @@ namespace DbEntidades.Entities
 			"DetalleTipo: " + BaseRatio.ToString() + "\r\n " + 
 			"ValorRatio: " + ValorRatio.ToString() + "\r\n " + 
 			"TopeRatio: " + TopeRatio.ToString() + "\r\n " + 
-			"IslaId: " + IslaId.ToString() + "\r\n " + 
+			"Isla: " + Isla.ToString() + "\r\n " + 
 			"Adultos: " + Menores3.ToString() + "\r\n " + 
 			"Menores3: " + Menores3.ToString() + "\r\n " + 
 			"Menores3y8: " + Menores3y8.ToString() + "\r\n " + 
 			"Adolescentes: " + Adolescentes.ToString() + "\r\n " + 
-			"AdicionalRatio: " + AdicionalRatio.ToString() + "\r\n " + 
+			"FijoRatio: " + FijoRatio.ToString() + "\r\n " + 
 			"EstadoId: " + EstadoId.ToString() + "\r\n " ;
 		}
         public Ratios()
         {
             Id = -1;
-
-        }
+			ItemId = 0;
+			ExperienciaBarra = "";
+			TipoRatio = "";
+			BaseRatio = 0.0;
+			ValorRatio = 0.0;
+			TopeRatio = 0.0;
+			Isla = false;
+			Adultos = false;
+            Menores3 = false;
+            Menores3y8 = false;
+            Adolescentes = false;
+            FijoRatio = false;
+			ItemRatioId = 0;
+			ProductoRatioId = 0;
+            CategoriaRatioId = 0;
+            EstadoId = 0;
+		}
 
 
 
@@ -70,7 +87,7 @@ namespace DbEntidades.Entities
 				case "Menores3": return false;
 				case "Menores3y8": return false;
 				case "Adolescentes": return false;
-				case "AdicionalRatio": return false;
+				case "FijoRatio": return false;
 				case "EstadoId": return false;
 				default: return false;
 			}

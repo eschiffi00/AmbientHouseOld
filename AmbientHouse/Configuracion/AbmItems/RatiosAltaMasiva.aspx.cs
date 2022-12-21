@@ -44,7 +44,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                 fila = row.Cells;
                 List<string> fields = new List<string>();
                 List<string> values = new List<string>();
-                //valida Id del item
+                //ITEM ID
                 fields.Add("Id");
                 values.Add(fila[0].Text);
                 if (!CommonOperator.CommonValidation("Items", fields, values))
@@ -56,6 +56,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                 }
                 fields.Clear();
                 values.Clear();
+                //EXPERIENCIA/BARRA
                 //valido si es tipocatering o tipobarra y consulto que sea un id correcto
                 fields.Add("Id");
                 
@@ -80,7 +81,8 @@ namespace AmbientHouse.Configuracion.AbmItems
 
                 fields.Clear();
                 values.Clear();
-                //valido tipo de ratio
+                //TIPO RATIO
+
                 if(fila[2].Text != "PAX" && fila[2].Text != "ITEM")
                 {
                     erroneos++;
@@ -88,25 +90,31 @@ namespace AmbientHouse.Configuracion.AbmItems
                     row.Cells[2].ControlStyle.BackColor = Color.Red;
                     row.Cells[2].ControlStyle.ForeColor = Color.White;
                 }
-                //valido centro de costos
-                fields.Add("Id");
-                values.Add(fila[3].Text);
-                if (Regex.IsMatch(fila[3].Text, @"^[A-Z]+$"))
+                //BASE RATIO
+                //valida si es numerico
+                var numerodbl = 0.0;
+                var numeroint = 0;
+                if (!double.TryParse(fila[3].Text, out numerodbl))
                 {
                     erroneos++;
                     rowError = true;
                     row.Cells[3].ControlStyle.BackColor = Color.Red;
                     row.Cells[3].ControlStyle.ForeColor = Color.White;
                 }
-                //valido formato de datos adicionales
-                if (Regex.IsMatch(fila[4].Text, @"^[A-Z]+$"))
+                //VALOR RATIO
+                //valida si es numerico
+                numerodbl = 0.0;
+                if (!double.TryParse(fila[4].Text, out numerodbl))
                 {
                     erroneos++;
                     rowError = true;
                     row.Cells[4].ControlStyle.BackColor = Color.Red;
                     row.Cells[4].ControlStyle.ForeColor = Color.White;
                 }
-                if (Regex.IsMatch(fila[5].Text, @"^[A-Z]+$"))
+                //TOPE RATIO
+                //valida si es numerico
+                numerodbl = 0.0;
+                if (!double.TryParse(fila[4].Text, out numerodbl))
                 {
                     erroneos++;
                     rowError = true;
@@ -115,26 +123,15 @@ namespace AmbientHouse.Configuracion.AbmItems
                 }
                 fields.Clear();
                 values.Clear();
-                //valido si tiene Id de isla y si es correcto
-                if(fila[6].Text != "&nbsp;" && fila[6].Text != "" && fila[6].Text != "0")
+                //ISLA (BOOL)
+                if (int.Parse(fila[6].Text) > 1 || int.Parse(fila[6].Text) < 0)
                 {
-                    fields.Add("Id");
-                    fields.Add("Titulo");
-                    values.Add(fila[6].Text);
-                    values.Add("Islas");
-                    if (!CommonOperator.CommonValidation("ProductosCatering", fields, values))
-                    {
-                        erroneos++;
-                        rowError = true;
-                        row.Cells[6].ControlStyle.BackColor = Color.Red;
-                        row.Cells[6].ControlStyle.ForeColor = Color.White;
-                    }
+                    erroneos++;
+                    rowError = true;
+                    row.Cells[6].ControlStyle.BackColor = Color.Red;
+                    row.Cells[6].ControlStyle.ForeColor = Color.White;
                 }
-                else
-                {
-                    fila[6].Text = "0";
-                }
-                //validaciones booleanos
+                //ADULTOS (BOOL)
                 //
                 if (int.Parse(fila[7].Text) > 1 || int.Parse(fila[7].Text) < 0)
                 {
@@ -143,6 +140,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                     row.Cells[7].ControlStyle.BackColor = Color.Red;
                     row.Cells[7].ControlStyle.ForeColor = Color.White;
                 }
+                //MENORES3 (BOOL)
                 if (int.Parse(fila[8].Text) > 1 || int.Parse(fila[8].Text) < 0)
                 {
                     erroneos++;
@@ -150,6 +148,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                     row.Cells[8].ControlStyle.BackColor = Color.Red;
                     row.Cells[8].ControlStyle.ForeColor = Color.White;
                 }
+                //MENORES3Y8 (BOOL)
                 if (int.Parse(fila[9].Text) > 1 || int.Parse(fila[9].Text) < 0)
                 {
                     erroneos++;
@@ -157,6 +156,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                     row.Cells[9].ControlStyle.BackColor = Color.Red;
                     row.Cells[9].ControlStyle.ForeColor = Color.White;
                 }
+                //ADOLESCENTES (BOOL)
                 if (int.Parse(fila[10].Text) > 1 || int.Parse(fila[10].Text) < 0)
                 {
                     erroneos++;
@@ -164,6 +164,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                     row.Cells[10].ControlStyle.BackColor = Color.Red;
                     row.Cells[10].ControlStyle.ForeColor = Color.White;
                 }
+                //FIJO RATIO (BOOL)
                 if (int.Parse(fila[11].Text) > 1 || int.Parse(fila[11].Text) < 0)
                 {
                     erroneos++;
@@ -171,27 +172,85 @@ namespace AmbientHouse.Configuracion.AbmItems
                     row.Cells[11].ControlStyle.BackColor = Color.Red;
                     row.Cells[11].ControlStyle.ForeColor = Color.White;
                 }
+                //ITEM RATIO ID
+                //VALIDO NUMERICO Y LUEGO VALIDO QUE EXISTA EL ITEM ID
                 fields.Clear();
                 values.Clear();
-                if (fila[12].Text != null && fila[12].Text != "0" && fila[12].Text != "")
+                numerodbl = 0.0;
+                
+                if (int.TryParse(fila[12].Text, out numeroint))
                 {
-                    fields.Add("Id");
-                    values.Add(fila[12].Text);
-                    if (!CommonOperator.CommonValidation("Items", fields, values))
+                    if (numeroint > 0)
                     {
-                        erroneos++;
-                        rowError = true;
-                        row.Cells[12].ControlStyle.BackColor = Color.Red;
-                        row.Cells[12].ControlStyle.ForeColor = Color.White;
+                        fields.Add("Id");
+                        values.Add(fila[12].Text);
+                        if (!CommonOperator.CommonValidation("Items", fields, values))
+                        {
+                            erroneos++;
+                            rowError = true;
+                            row.Cells[12].ControlStyle.BackColor = Color.Red;
+                            row.Cells[12].ControlStyle.ForeColor = Color.White;
+                        }
                     }
                 }
-                
-                if (int.Parse(fila[13].Text) > 1 || int.Parse(fila[13].Text) < 0)
+                else
+                {
+                    erroneos++;
+                    rowError = true;
+                    row.Cells[12].ControlStyle.BackColor = Color.Red;
+                    row.Cells[12].ControlStyle.ForeColor = Color.White;
+                }
+                //PRODUCTO RATIO ID
+                //VALIDO NUMERICO Y LUEGO VALIDO QUE EXISTA EL PRODUCTO ID
+                fields.Clear();
+                values.Clear();
+                if (int.TryParse(fila[13].Text, out numeroint))
+                {
+                    if (numeroint > 0)
+                    {
+                        fields.Add("Id");
+                        values.Add(fila[13].Text);
+                        if (!CommonOperator.CommonValidation("ProductosCateringItems", fields, values))
+                        {
+                            erroneos++;
+                            rowError = true;
+                            row.Cells[13].ControlStyle.BackColor = Color.Red;
+                            row.Cells[13].ControlStyle.ForeColor = Color.White;
+                        }
+                    }
+                }
+                else
                 {
                     erroneos++;
                     rowError = true;
                     row.Cells[13].ControlStyle.BackColor = Color.Red;
                     row.Cells[13].ControlStyle.ForeColor = Color.White;
+                }
+                //CATEGORIA RATIO ID
+                //VALIDO NUMERICO Y LUEGO VALIDO QUE EXISTA EL CATEGORIA ID
+                fields.Clear();
+                values.Clear();
+                if (int.TryParse(fila[14].Text, out numeroint))
+                {
+                    if(numeroint > 0)
+                    {
+                        fields.Add("Id");
+                        values.Add(fila[14].Text);
+                        if (!CommonOperator.CommonValidation("CategoriasItem", fields, values))
+                        {
+                            erroneos++;
+                            rowError = true;
+                            row.Cells[14].ControlStyle.BackColor = Color.Red;
+                            row.Cells[14].ControlStyle.ForeColor = Color.White;
+                        }
+                    } 
+                }
+                else
+                {
+                    erroneos++;
+                    rowError = true;
+                    row.Cells[14].ControlStyle.BackColor = Color.Red;
+                    row.Cells[14].ControlStyle.ForeColor = Color.White;
                 }
                 fields.Clear();
                 values.Clear();
@@ -200,16 +259,17 @@ namespace AmbientHouse.Configuracion.AbmItems
                 fields.Add("ExperienciaBarra");
                 fields.Add("TipoRatio");
                 fields.Add("BaseRatio");
-                fields.Add("ItemRatioId");
-                fields.Add("IslaId");
+                fields.Add("TopeRatio");
+                fields.Add("Isla");
                 fields.Add("Adultos");
                 fields.Add("Menores3");
                 fields.Add("Menores3y8");
                 fields.Add("Adolescentes");
-                fields.Add("AdicionalRatio");
+                fields.Add("FijoRatio");
 
-                for(var i =0; i < 13; i++)
-                    {if(i!= 4 && i != 5 && i<13)values.Add(fila[i].Text);}   
+                for(var i =0; i < 14; i++)
+                    //se filtran los campos no utilizables
+                    {if(i!= 4 && i!= 12 && i != 13 && i != 14 && i<14)values.Add(fila[i].Text);}   
                 if(CommonOperator.CommonValidation("Ratios",fields, values))
                 {
                     actualizados++;
@@ -270,10 +330,10 @@ namespace AmbientHouse.Configuracion.AbmItems
                 fields.Add("Menores3");
                 fields.Add("Menores3y8");
                 fields.Add("Adolescentes");
-                fields.Add("AdicionalRatio");
+                fields.Add("FijoRatio");
             getFields.Add("Id");
-            for (var i = 0; i < 13; i++)
-            { if (i != 4 && i != 5 && i < 13) values.Add(fila[i].Text); }
+            for (var i = 0; i < 14; i++)
+            { if (i != 4 && i != 12 && i != 13 && i != 14 && i < 14) values.Add(fila[i].Text); }
             var ratioData = CommonOperator.CommonGetString("Ratios", fields, getFields, values);
             seRatios.Id = int.Parse(ratioData[0]);
             seRatios.ItemId = int.Parse(fila[0].Text);
@@ -282,22 +342,24 @@ namespace AmbientHouse.Configuracion.AbmItems
             seRatios.BaseRatio = float.Parse(fila[3].Text);
             seRatios.ValorRatio = System.Math.Round(float.Parse(fila[4].Text), 2); 
             seRatios.TopeRatio = float.Parse(fila[5].Text);
-            seRatios.IslaId = int.Parse(fila[6].Text);
-            seRatios.Adultos = int.Parse(fila[7].Text);
-            seRatios.Menores3 = int.Parse(fila[8].Text);
-            seRatios.Menores3y8 = int.Parse(fila[9].Text);
-            seRatios.Adolescentes = int.Parse(fila[10].Text);
-            seRatios.AdicionalRatio = int.Parse(fila[11].Text);
+            //seRatios.Isla = int.Parse(fila[6].Text);
+            //seRatios.Adultos = int.Parse(fila[7].Text);
+            //seRatios.Menores3 = int.Parse(fila[8].Text);
+            //seRatios.Menores3y8 = int.Parse(fila[9].Text);
+            //seRatios.Adolescentes = int.Parse(fila[10].Text);
+            //seRatios.FijoRatio = int.Parse(fila[11].Text);
+            seRatios.Isla = bool.Parse(fila[6].Text);
+            seRatios.Adultos = bool.Parse(fila[7].Text);
+            seRatios.Menores3 = bool.Parse(fila[8].Text);
+            seRatios.Menores3y8 = bool.Parse(fila[9].Text);
+            seRatios.Adolescentes = bool.Parse(fila[10].Text);
+            seRatios.FijoRatio = bool.Parse(fila[11].Text);
             seRatios.ItemRatioId = int.Parse(fila[12].Text);
-            if(int.Parse(fila[13].Text) == 0)
-            {
-                seRatios.EstadoId = EstadosOperator.GetDeshabilitadoID("Ratios");
-            }
-            else
-            {
-                seRatios.EstadoId = EstadosOperator.GetHablitadoID("Ratios");
-            }
-            
+            seRatios.ProductoRatioId = int.Parse(fila[13].Text);
+            seRatios.CategoriaRatioId = int.Parse(fila[14].Text);
+            seRatios.EstadoId = EstadosOperator.GetHablitadoID("Ratios");
+
+
             RatiosOperator.Save(seRatios);
 
         }
@@ -311,13 +373,15 @@ namespace AmbientHouse.Configuracion.AbmItems
             seRatios.BaseRatio = float.Parse(fila[3].Text);
             seRatios.ValorRatio = float.Parse(fila[4].Text);
             seRatios.TopeRatio = float.Parse(fila[5].Text);
-            seRatios.IslaId = int.Parse(fila[6].Text);
-            seRatios.Adultos = int.Parse(fila[7].Text);
-            seRatios.Menores3 = int.Parse(fila[8].Text);
-            seRatios.Menores3y8 = int.Parse(fila[9].Text);
-            seRatios.Adolescentes = int.Parse(fila[10].Text);
-            seRatios.AdicionalRatio = int.Parse(fila[11].Text);
+            seRatios.Isla = bool.Parse(fila[6].Text);
+            seRatios.Adultos = bool.Parse(fila[7].Text);
+            seRatios.Menores3 = bool.Parse(fila[8].Text);
+            seRatios.Menores3y8 = bool.Parse(fila[9].Text);
+            seRatios.Adolescentes = bool.Parse(fila[10].Text);
+            seRatios.FijoRatio = bool.Parse(fila[11].Text);
             seRatios.ItemRatioId = int.Parse(fila[12].Text);
+            seRatios.ProductoRatioId = int.Parse(fila[13].Text);
+            seRatios.CategoriaRatioId = int.Parse(fila[14].Text);
             seRatios.EstadoId = EstadosOperator.GetHablitadoID("Ratios");
             RatiosOperator.Save(seRatios);
         }

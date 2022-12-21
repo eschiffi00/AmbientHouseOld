@@ -195,6 +195,43 @@
           <Property Name="RubroId" Type="int" Nullable="false" />
           <Property Name="Codigo" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ComandaDetalle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="EsItem" Type="bit" />
+          <Property Name="EsProducto" Type="bit" />
+          <Property Name="EsAdicional" Type="bit" />
+        </EntityType>
+        <EntityType Name="Comandas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PresupuestoId" Type="int" Nullable="false" />
+          <Property Name="fechaEvento" Type="date" />
+          <Property Name="Locacion" Type="varchar" MaxLength="200" />
+          <Property Name="HorarioLlegada" Type="varchar" MaxLength="10" />
+          <Property Name="HorarioInicio" Type="varchar" MaxLength="10" />
+          <Property Name="HorarioFin" Type="varchar" MaxLength="10" />
+          <Property Name="TipoEvento" Type="varchar" MaxLength="50" />
+          <Property Name="TipoExperiencia" Type="varchar" MaxLength="50" />
+          <Property Name="Duracion" Type="int" />
+          <Property Name="Empresa" Type="varchar" MaxLength="200" />
+          <Property Name="Organizador" Type="varchar" MaxLength="200" />
+          <Property Name="Maitre" Type="varchar" MaxLength="200" />
+          <Property Name="Coordinador" Type="varchar" MaxLength="200" />
+          <Property Name="JefeProducto" Type="varchar" MaxLength="200" />
+          <Property Name="Adultos" Type="int" />
+          <Property Name="Menores3" Type="int" />
+          <Property Name="Menores3y8" Type="int" />
+          <Property Name="Adolescentes" Type="int" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Comisiones">
           <Key>
             <PropertyRef Name="Id" />
@@ -898,14 +935,31 @@ advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.ItemDetalle' no tie
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ItemId" Type="int" />
-          <Property Name="CategoriaId" Type="int" />
+          <Property Name="DetalleItemId" Type="int" />
           <Property Name="EstadoId" Type="int" />
         </EntityType>
         <EntityType Name="Items">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="CategoriaItemId" Type="int" Nullable="false" />
+          <Property Name="Costo" Type="float" Nullable="false" />
+          <Property Name="Margen" Type="float" Nullable="false" />
+          <Property Name="Precio" Type="float" Nullable="false" />
+          <Property Name="EstadoId" Type="int" />
+          <Property Name="ItemDetalleId" Type="int" />
+          <Property Name="CuentaId" Type="int" />
+          <Property Name="DepositoId" Type="int" />
+          <Property Name="TipoItem" Type="varchar" MaxLength="10" />
+          <Property Name="NombreFantasiaId" Type="int" />
+        </EntityType>
+        <EntityType Name="Items2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Detalle" Type="varchar" MaxLength="300" Nullable="false" />
           <Property Name="CategoriaItemId" Type="int" Nullable="false" />
           <Property Name="Costo" Type="float" Nullable="false" />
@@ -1499,15 +1553,17 @@ advertencia 6013: La tabla o vista 'w230092_AmbientHouse.dbo.Prueba' no tiene de
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ItemId" Type="int" Nullable="false" />
           <Property Name="ExperienciaBarra" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="CategoriaId" Type="int" Nullable="false" />
           <Property Name="TipoRatio" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="DetalleTipo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BaseRatio" Type="float" Nullable="false" />
           <Property Name="ValorRatio" Type="float" />
           <Property Name="TopeRatio" Type="float" />
+          <Property Name="ItemRatioId" Type="int" />
+          <Property Name="IslaId" Type="int" />
+          <Property Name="Adultos" Type="bit" />
           <Property Name="Menores3" Type="bit" Nullable="false" />
           <Property Name="Menores3y8" Type="bit" Nullable="false" />
           <Property Name="Adolescentes" Type="bit" Nullable="false" />
-          <Property Name="AdicionalRatio" Type="bit" Nullable="false" />
+          <Property Name="FijoRatio" Type="bit" Nullable="false" />
           <Property Name="EstadoId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ReciboEventoPresupuesto">
@@ -4233,6 +4289,18 @@ advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.SeguimientosEventos
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Items_CategoriasItem2">
+          <End Role="CategoriasItem" Type="Self.CategoriasItem" Multiplicity="1" />
+          <End Role="Items2" Type="Self.Items2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriasItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Items2">
+              <PropertyRef Name="CategoriaItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_LiquidacionHorasPersonal_Detalle_Empleados">
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
           <End Role="LiquidacionHorasPersonal_Detalle" Type="Self.LiquidacionHorasPersonal_Detalle" Multiplicity="*" />
@@ -5396,6 +5464,8 @@ advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.SeguimientosEventos
           <EntitySet Name="ClientesEventosMovimientos" EntityType="Self.ClientesEventosMovimientos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientesPrueba" EntityType="Self.ClientesPrueba" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CodigoPorRubro" EntityType="Self.CodigoPorRubro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComandaDetalle" EntityType="Self.ComandaDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comandas" EntityType="Self.Comandas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comisiones" EntityType="Self.Comisiones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComprobantePagoProveedor" EntityType="Self.ComprobantePagoProveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComprobantesPagados" EntityType="Self.ComprobantesPagados" Schema="dbo" store:Type="Tables" />
@@ -5449,6 +5519,7 @@ advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.SeguimientosEventos
           <EntitySet Name="INVENTARIO_Unidades" EntityType="Self.INVENTARIO_Unidades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INVENTARIO_UnidadesConversion" EntityType="Self.INVENTARIO_UnidadesConversion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items2" EntityType="Self.Items2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Jornadas" EntityType="Self.Jornadas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LiquidacionHorasPersonal" EntityType="Self.LiquidacionHorasPersonal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LiquidacionHorasPersonal_Detalle" EntityType="Self.LiquidacionHorasPersonal_Detalle" Schema="dbo" store:Type="Tables" />
@@ -5526,7 +5597,7 @@ advertencia 6002: La tabla o vista 'w230092_AmbientHouse.dbo.SeguimientosEventos
             <DefiningQuery>SELECT 
 [ItemDetalle].[Id] AS [Id], 
 [ItemDetalle].[ItemId] AS [ItemId], 
-[ItemDetalle].[CategoriaId] AS [CategoriaId], 
+[ItemDetalle].[DetalleItemId] AS [DetalleItemId], 
 [ItemDetalle].[EstadoId] AS [EstadoId]
 FROM [dbo].[ItemDetalle] AS [ItemDetalle]</DefiningQuery>
           </EntitySet>
@@ -6689,6 +6760,10 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <End Role="CategoriasItem" EntitySet="CategoriasItem" />
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
+          <AssociationSet Name="FK_Items_CategoriasItem2" Association="Self.FK_Items_CategoriasItem2">
+            <End Role="CategoriasItem" EntitySet="CategoriasItem" />
+            <End Role="Items2" EntitySet="Items2" />
+          </AssociationSet>
           <AssociationSet Name="FK_LiquidacionHorasPersonal_Detalle_Empleados" Association="Self.FK_LiquidacionHorasPersonal_Detalle_Empleados">
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="LiquidacionHorasPersonal_Detalle" EntitySet="LiquidacionHorasPersonal_Detalle" />
@@ -7196,6 +7271,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="EstadoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Familias" Relationship="Self.FK_Familias_CategoriasItem" FromRole="CategoriasItem" ToRole="Familias" />
           <NavigationProperty Name="Items" Relationship="Self.FK_Items_CategoriasItem" FromRole="CategoriasItem" ToRole="Items" />
+          <NavigationProperty Name="Items2" Relationship="Self.FK_Items_CategoriasItem2" FromRole="CategoriasItem" ToRole="Items2" />
           <NavigationProperty Name="TipoBarraCategoriaItem" Relationship="Self.FK_TipoBarraCategoriaItem_CategoriasItem" FromRole="CategoriasItem" ToRole="TipoBarraCategoriaItem" />
           <NavigationProperty Name="TipoCateringTiempoProductoItem" Relationship="Self.FK_TipoCateringTiempoProductoItem_CategoriasItem" FromRole="CategoriasItem" ToRole="TipoCateringTiempoProductoItem" />
         </EntityType>
@@ -7305,6 +7381,43 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="RubroId" Type="Int32" Nullable="false" />
           <Property Name="Codigo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Rubros" Relationship="Self.FK_CodigoPorRubro_Rubros" FromRole="CodigoPorRubro" ToRole="Rubros" />
+        </EntityType>
+        <EntityType Name="ComandaDetalle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="EsItem" Type="Boolean" />
+          <Property Name="EsProducto" Type="Boolean" />
+          <Property Name="EsAdicional" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Comandas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PresupuestoId" Type="Int32" Nullable="false" />
+          <Property Name="fechaEvento" Type="DateTime" Precision="0" />
+          <Property Name="Locacion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="HorarioLlegada" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HorarioInicio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HorarioFin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TipoEvento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoExperiencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Duracion" Type="Int32" />
+          <Property Name="Empresa" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Organizador" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Maitre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Coordinador" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="JefeProducto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Adultos" Type="Int32" />
+          <Property Name="Menores3" Type="Int32" />
+          <Property Name="Menores3y8" Type="Int32" />
+          <Property Name="Adolescentes" Type="Int32" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Comisiones">
           <Key>
@@ -8152,7 +8265,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Detalle" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CategoriaItemId" Type="Int32" Nullable="false" />
           <Property Name="Costo" Type="Double" Nullable="false" />
@@ -8167,6 +8280,24 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <NavigationProperty Name="AdicionalesItems" Relationship="Self.FK_AdicionalesItems_Items" FromRole="Items" ToRole="AdicionalesItems" />
           <NavigationProperty Name="CategoriasItem" Relationship="Self.FK_Items_CategoriasItem" FromRole="Items" ToRole="CategoriasItem" />
           <NavigationProperty Name="ProductosCateringItems" Relationship="Self.FK_ProductosCateringItems_Items" FromRole="Items" ToRole="ProductosCateringItems" />
+        </EntityType>
+        <EntityType Name="Items2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Detalle" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CategoriaItemId" Type="Int32" Nullable="false" />
+          <Property Name="Costo" Type="Double" Nullable="false" />
+          <Property Name="Margen" Type="Double" Nullable="false" />
+          <Property Name="Precio" Type="Double" Nullable="false" />
+          <Property Name="EstadoId" Type="Int32" />
+          <Property Name="ItemDetalleId" Type="Int32" />
+          <Property Name="CuentaId" Type="Int32" />
+          <Property Name="DepositoId" Type="Int32" />
+          <Property Name="TipoItem" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NombreFantasiaId" Type="Int32" />
+          <NavigationProperty Name="CategoriasItem" Relationship="Self.FK_Items_CategoriasItem2" FromRole="Items2" ToRole="CategoriasItem" />
         </EntityType>
         <EntityType Name="Jornadas">
           <Key>
@@ -8819,15 +8950,17 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ItemId" Type="Int32" Nullable="false" />
           <Property Name="ExperienciaBarra" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CategoriaId" Type="Int32" Nullable="false" />
           <Property Name="TipoRatio" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DetalleTipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BaseRatio" Type="Double" Nullable="false" />
           <Property Name="ValorRatio" Type="Double" />
           <Property Name="TopeRatio" Type="Double" />
+          <Property Name="ItemRatioId" Type="Int32" />
+          <Property Name="IslaId" Type="Int32" />
+          <Property Name="Adultos" Type="Boolean" />
           <Property Name="Menores3" Type="Boolean" Nullable="false" />
           <Property Name="Menores3y8" Type="Boolean" Nullable="false" />
           <Property Name="Adolescentes" Type="Boolean" Nullable="false" />
-          <Property Name="AdicionalRatio" Type="Boolean" Nullable="false" />
+          <Property Name="FijoRatio" Type="Boolean" Nullable="false" />
           <Property Name="EstadoId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ReciboEventoPresupuesto">
@@ -9291,7 +9424,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ItemId" Type="Int32" />
-          <Property Name="CategoriaId" Type="Int32" />
+          <Property Name="DetalleItemId" Type="Int32" />
           <Property Name="EstadoId" Type="Int32" />
         </EntityType>
         <EntityType Name="NombreFantasia">
@@ -10648,6 +10781,18 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Items">
+              <PropertyRef Name="CategoriaItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_CategoriasItem2">
+          <End Role="CategoriasItem" Type="Self.CategoriasItem" Multiplicity="1" />
+          <End Role="Items2" Type="Self.Items2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriasItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Items2">
               <PropertyRef Name="CategoriaItemId" />
             </Dependent>
           </ReferentialConstraint>
@@ -12591,6 +12736,8 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <EntitySet Name="ClientesEventosMovimientos" EntityType="Self.ClientesEventosMovimientos" />
           <EntitySet Name="ClientesPrueba" EntityType="Self.ClientesPrueba" />
           <EntitySet Name="CodigoPorRubro" EntityType="Self.CodigoPorRubro" />
+          <EntitySet Name="ComandaDetalle" EntityType="Self.ComandaDetalle" />
+          <EntitySet Name="Comandas" EntityType="Self.Comandas" />
           <EntitySet Name="Comisiones" EntityType="Self.Comisiones" />
           <EntitySet Name="ComprobantePagoProveedor" EntityType="Self.ComprobantePagoProveedor" />
           <EntitySet Name="ComprobantesPagados" EntityType="Self.ComprobantesPagados" />
@@ -12644,6 +12791,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <EntitySet Name="INVENTARIO_Unidades" EntityType="Self.INVENTARIO_Unidades" />
           <EntitySet Name="INVENTARIO_UnidadesConversion" EntityType="Self.INVENTARIO_UnidadesConversion" />
           <EntitySet Name="Items" EntityType="Self.Items" />
+          <EntitySet Name="Items2" EntityType="Self.Items2" />
           <EntitySet Name="Jornadas" EntityType="Self.Jornadas" />
           <EntitySet Name="LiquidacionHorasPersonal" EntityType="Self.LiquidacionHorasPersonal" />
           <EntitySet Name="LiquidacionHorasPersonal_Detalle" EntityType="Self.LiquidacionHorasPersonal_Detalle" />
@@ -12863,6 +13011,10 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <AssociationSet Name="FK_Items_CategoriasItem" Association="Self.FK_Items_CategoriasItem">
             <End Role="CategoriasItem" EntitySet="CategoriasItem" />
             <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_CategoriasItem2" Association="Self.FK_Items_CategoriasItem2">
+            <End Role="CategoriasItem" EntitySet="CategoriasItem" />
+            <End Role="Items2" EntitySet="Items2" />
           </AssociationSet>
           <AssociationSet Name="FK_TipoBarraCategoriaItem_CategoriasItem" Association="Self.FK_TipoBarraCategoriaItem_CategoriasItem">
             <End Role="CategoriasItem" EntitySet="CategoriasItem" />
@@ -13919,6 +14071,45 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ComandaDetalle">
+            <EntityTypeMapping TypeName="AmbientHouseModel.ComandaDetalle">
+              <MappingFragment StoreEntitySet="ComandaDetalle">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="EsItem" ColumnName="EsItem" />
+                <ScalarProperty Name="EsProducto" ColumnName="EsProducto" />
+                <ScalarProperty Name="EsAdicional" ColumnName="EsAdicional" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comandas">
+            <EntityTypeMapping TypeName="AmbientHouseModel.Comandas">
+              <MappingFragment StoreEntitySet="Comandas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PresupuestoId" ColumnName="PresupuestoId" />
+                <ScalarProperty Name="fechaEvento" ColumnName="fechaEvento" />
+                <ScalarProperty Name="Locacion" ColumnName="Locacion" />
+                <ScalarProperty Name="HorarioLlegada" ColumnName="HorarioLlegada" />
+                <ScalarProperty Name="HorarioInicio" ColumnName="HorarioInicio" />
+                <ScalarProperty Name="HorarioFin" ColumnName="HorarioFin" />
+                <ScalarProperty Name="TipoEvento" ColumnName="TipoEvento" />
+                <ScalarProperty Name="TipoExperiencia" ColumnName="TipoExperiencia" />
+                <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Organizador" ColumnName="Organizador" />
+                <ScalarProperty Name="Maitre" ColumnName="Maitre" />
+                <ScalarProperty Name="Coordinador" ColumnName="Coordinador" />
+                <ScalarProperty Name="JefeProducto" ColumnName="JefeProducto" />
+                <ScalarProperty Name="Adultos" ColumnName="Adultos" />
+                <ScalarProperty Name="Menores3" ColumnName="Menores3" />
+                <ScalarProperty Name="Menores3y8" ColumnName="Menores3y8" />
+                <ScalarProperty Name="Adolescentes" ColumnName="Adolescentes" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Comisiones">
             <EntityTypeMapping TypeName="AmbientHouseModel.Comisiones">
               <MappingFragment StoreEntitySet="Comisiones">
@@ -14683,6 +14874,24 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Items2">
+            <EntityTypeMapping TypeName="AmbientHouseModel.Items2">
+              <MappingFragment StoreEntitySet="Items2">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="CategoriaItemId" ColumnName="CategoriaItemId" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Margen" ColumnName="Margen" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="ItemDetalleId" ColumnName="ItemDetalleId" />
+                <ScalarProperty Name="CuentaId" ColumnName="CuentaId" />
+                <ScalarProperty Name="DepositoId" ColumnName="DepositoId" />
+                <ScalarProperty Name="TipoItem" ColumnName="TipoItem" />
+                <ScalarProperty Name="NombreFantasiaId" ColumnName="NombreFantasiaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Jornadas">
             <EntityTypeMapping TypeName="AmbientHouseModel.Jornadas">
               <MappingFragment StoreEntitySet="Jornadas">
@@ -15281,15 +15490,17 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="ExperienciaBarra" ColumnName="ExperienciaBarra" />
-                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
                 <ScalarProperty Name="TipoRatio" ColumnName="TipoRatio" />
-                <ScalarProperty Name="DetalleTipo" ColumnName="DetalleTipo" />
+                <ScalarProperty Name="BaseRatio" ColumnName="BaseRatio" />
                 <ScalarProperty Name="ValorRatio" ColumnName="ValorRatio" />
                 <ScalarProperty Name="TopeRatio" ColumnName="TopeRatio" />
+                <ScalarProperty Name="ItemRatioId" ColumnName="ItemRatioId" />
+                <ScalarProperty Name="IslaId" ColumnName="IslaId" />
+                <ScalarProperty Name="Adultos" ColumnName="Adultos" />
                 <ScalarProperty Name="Menores3" ColumnName="Menores3" />
                 <ScalarProperty Name="Menores3y8" ColumnName="Menores3y8" />
                 <ScalarProperty Name="Adolescentes" ColumnName="Adolescentes" />
-                <ScalarProperty Name="AdicionalRatio" ColumnName="AdicionalRatio" />
+                <ScalarProperty Name="FijoRatio" ColumnName="FijoRatio" />
                 <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -15698,7 +15909,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
               <MappingFragment StoreEntitySet="ItemDetalle">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="DetalleItemId" ColumnName="DetalleItemId" />
                 <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
               </MappingFragment>
             </EntityTypeMapping>

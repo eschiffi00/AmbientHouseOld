@@ -421,13 +421,13 @@
                     <div class="panel-heading">
                         <h3>Listado de Facturas</h3>
                     </div>
-                    <asp:GridView ID="GridViewFacturas" runat="server" CssClass="table table-bordered bs-table" AutoGenerateColumns="False" CellPadding="4" EmptyDataText="No se Encontraron Registros" ForeColor="#333333" GridLines="None" Width="100%" PageSize="100" AllowPaging="True" >
+                    <asp:GridView ID="GridViewFacturas" runat="server" CssClass="table table-bordered bs-table" AutoGenerateColumns="False" CellPadding="4" EmptyDataText="No se Encontraron Registros" ForeColor="#333333" GridLines="None" Width="100%" PageSize="100" AllowPaging="True"  OnRowDataBound="GridViewFacturas_RowDataBound" >
                         <AlternatingRowStyle BackColor="#EBEBEB" ForeColor="#284775" />
                         <HeaderStyle BackColor="#2E64FE" Font-Bold="True" ForeColor="White" />
                         <EditRowStyle BackColor="#ffffcc" />
                         <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                         <EmptyDataTemplate>
-                            ¡No hay Facturas con los parametros seleccionados!  
+                            ¡No hay Facturas con los parametros seleccionados!  
                         </EmptyDataTemplate>
                         <Columns>
                             <asp:BoundField DataField="Id" HeaderText="Nro Item" SortExpression="Id" HeaderStyle-Width="10px" />
@@ -455,6 +455,22 @@
                             <asp:BoundField DataField="Cuit" HeaderText="Cuit" />
                             <asp:BoundField DataField="FechaStr" HeaderText="Fecha" SortExpression="FechaStr" />
 
+                              <asp:TemplateField HeaderStyle-Width="400px" ControlStyle-Width="100%" HeaderText="Detalle Factura">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="TextBoxDetalleFactura" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                </ItemTemplate>
+                                <ControlStyle Width="100%" />
+                                <HeaderStyle Width="400px" />
+                            </asp:TemplateField>
+
+                           <%--   <asp:TemplateField HeaderStyle-Width="150px" ControlStyle-Width="100%">
+                                <ItemTemplate>
+                                    <asp:Button ID="ButtonVer" runat="server" Text="Ver Detalle" class="btn btn-info" CommandName="VerDetalle" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                                </ItemTemplate>
+                                <ControlStyle Width="100%" />
+                                <HeaderStyle Width="150px" />
+                            </asp:TemplateField>--%>
+
                         <%--    <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:DropDownList ID="DropDownListEstados" runat="server" CssClass="form-control"></asp:DropDownList>
@@ -463,18 +479,12 @@
                                 <HeaderStyle Width="150px" />
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderStyle-Width="150px" ControlStyle-Width="100%">
-                                <ItemTemplate>
-                                 <asp:Button ID="ButtonActualizar" runat="server" Text="Actualizar" class="btn btn-warning" CommandName="Actualizar" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
-                                    <asp:Button ID="ButtonVer" runat="server" Text="Ver" class="btn btn-info" CommandName="Ver" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
-                                </ItemTemplate>
-                                <ControlStyle Width="100%" />
-                                <HeaderStyle Width="150px" />
-                            </asp:TemplateField>--%>
+                          --%>
 
                         </Columns>
 
                     </asp:GridView>
+
                 </ContentTemplate>
             </asp:UpdatePanel>
             <div class="panel-body">

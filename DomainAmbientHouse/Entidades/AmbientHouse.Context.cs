@@ -46,6 +46,8 @@ namespace DomainAmbientHouse.Entidades
         public DbSet<ClientesEventosMovimientos> ClientesEventosMovimientos { get; set; }
         public DbSet<ClientesPrueba> ClientesPrueba { get; set; }
         public DbSet<CodigoPorRubro> CodigoPorRubro { get; set; }
+        public DbSet<ComandaDetalle> ComandaDetalle { get; set; }
+        public DbSet<Comandas> Comandas { get; set; }
         public DbSet<Comisiones> Comisiones { get; set; }
         public DbSet<ComprobantePagoProveedor> ComprobantePagoProveedor { get; set; }
         public DbSet<ComprobantesPagados> ComprobantesPagados { get; set; }
@@ -99,6 +101,7 @@ namespace DomainAmbientHouse.Entidades
         public DbSet<INVENTARIO_Unidades> INVENTARIO_Unidades { get; set; }
         public DbSet<INVENTARIO_UnidadesConversion> INVENTARIO_UnidadesConversion { get; set; }
         public DbSet<Items> Items { get; set; }
+        public DbSet<Items2> Items2 { get; set; }
         public DbSet<Jornadas> Jornadas { get; set; }
         public DbSet<LiquidacionHorasPersonal> LiquidacionHorasPersonal { get; set; }
         public DbSet<LiquidacionHorasPersonal_Detalle> LiquidacionHorasPersonal_Detalle { get; set; }

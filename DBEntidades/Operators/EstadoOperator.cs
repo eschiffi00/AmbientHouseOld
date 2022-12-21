@@ -15,5 +15,16 @@ namespace DbEntidades.Operators
             int u = GetAll().Where(x => x.Descripcion == "Inactivo" && x.Entidad == entidad).FirstOrDefault().Id;
             return u;
         }
+        public static int GetApertura(string entidad)
+        {
+            int u = GetAll().Where(x => x.Descripcion == "Abierto" && x.Entidad == entidad).FirstOrDefault().Id;
+            return u;
+        }
+        public static int GetCierre(string entidad)
+        {
+            int u = GetAll().Where(x => x.Descripcion == "Cerrado" && x.Entidad == entidad).FirstOrDefault().Id;
+            return u;
+        }
+
     }
 }

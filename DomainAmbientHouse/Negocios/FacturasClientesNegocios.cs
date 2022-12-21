@@ -67,5 +67,10 @@ namespace DomainAmbientHouse.Negocios
         {
             return Datos.BuscarFacturasClientePorNroPresupuesto(presupuestoId);
         }
+        internal List<FacturaClienteDetalle> BuscarDetalleFacturas(int facturaId)
+        {
+            return DatosDetalle.BuscarDetalleFacturas(facturaId);
+        }
+
     }
 }

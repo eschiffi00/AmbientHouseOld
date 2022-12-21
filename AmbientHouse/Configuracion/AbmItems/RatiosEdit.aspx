@@ -164,9 +164,9 @@
             </div>
         </div>
         <div class="form-group row" id="Isla">
-            <label for="txtIsla" class="col-sm-2 col-form-label text-sm-left text-md-right">Ratio Isla</label>
+            <label for="chkIsla" class="col-sm-2 col-form-label text-sm-left text-md-right">Ratio Isla</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtIsla" TabIndex="7" CssClass="form-control" required="required" />        
+                <asp:CheckBox ID="chkIsla" runat="server" class="form-check" Checked="False" TabIndex="7" />         
             </div>
         </div>
          <div class="form-group row" id="Adultos">
