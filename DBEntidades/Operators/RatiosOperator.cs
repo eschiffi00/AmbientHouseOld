@@ -54,12 +54,12 @@ namespace DbEntidades.Operators
                 RatiosDetail.ValorRatio = Ratios.ValorRatio;
                 RatiosDetail.TopeRatio = Ratios.TopeRatio;
                 RatiosDetail.ItemRatioId = Ratios.ItemRatioId;
-                RatiosDetail.Isla = Ratios.Isla;
-                RatiosDetail.Adultos = Ratios.Adultos;
-                RatiosDetail.Menores3 = Ratios.Menores3;
-                RatiosDetail.Menores3y8 = Ratios.Menores3y8;
-                RatiosDetail.Adolescentes = Ratios.Adolescentes;
-                RatiosDetail.FijoRatio = Ratios.FijoRatio;
+                RatiosDetail.Isla = Ratios.Isla.Value ? "Si":"No";
+                RatiosDetail.Adultos = Ratios.Adultos ? "Si" : "No";
+                RatiosDetail.Menores3 = Ratios.Menores3 ? "Si" : "No";
+                RatiosDetail.Menores3y8 = Ratios.Menores3y8 ? "Si" : "No";
+                RatiosDetail.Adolescentes = Ratios.Adolescentes ? "Si" : "No";
+                RatiosDetail.FijoRatio = Ratios.FijoRatio ? "Si" : "No";
                 RatiosDetail.EstadoId = Ratios.EstadoId;
 
                 RatiosDetail.Estado = EstadosOperator.GetOneByIdentity(RatiosDetail.EstadoId).Descripcion;

@@ -11,12 +11,12 @@ namespace DbEntidades.Entities
         public double BaseRatio { get; set; }
         public double ValorRatio { get; set; }
         public double TopeRatio { get; set; }
-        public bool? Isla { get; set; }
-        public bool Adultos { get; set; }
-        public bool Menores3 { get; set; }
-        public bool Menores3y8 { get; set; }
-        public bool Adolescentes { get; set; }
-        public bool FijoRatio { get; set; }
+        public string Isla { get; set; }
+        public string Adultos { get; set; }
+        public string Menores3 { get; set; }
+        public string Menores3y8 { get; set; }
+        public string Adolescentes { get; set; }
+        public string FijoRatio { get; set; }
         public int EstadoId { get; set; }
         public string Estado { get; set; }
         public int? ItemRatioId { get; set; }
@@ -52,12 +52,12 @@ namespace DbEntidades.Entities
             BaseRatio = 0.0;
             ValorRatio = 0.0;
             TopeRatio = 0.0;
-            Isla = false;
-            Adultos = false;
-            Menores3 = false;
-            Menores3y8 = false;
-            Adolescentes = false;
-            FijoRatio = false;
+            Isla = "";
+            Adultos = "";
+            Menores3 = "";
+            Menores3y8 = "";
+            Adolescentes = "";
+            FijoRatio = "";
             EstadoId = 0;              
             Estado = "";
             ItemRatioId = 0;
