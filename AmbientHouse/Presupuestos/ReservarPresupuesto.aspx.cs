@@ -819,47 +819,51 @@ namespace AmbientHouse.Presupuestos
             PresupuestoId = Int32.Parse(Request["PresupuestoId"]);
             //obtengo todos los presupuestos para la unidad de catering y saber el tipocatering
             var idPreDet = PresupuestoDetalleOperator.GetAllByParameter("PresupuestoId", PresupuestoId.ToString()).Where(x => x.UnidadNegocioId == 3).ToList();
-            var tipoCatering = TipoCateringOperator.GetOneByIdentity(idPreDet[0].ServicioId.Value);
-            AdministrativasServicios servicios = new AdministrativasServicios();
-            //obtengo todos los elementos asociados a la experiencia
-            var ListTipo = TipoCateringTiempoProductoItemOperator.GetAllByParameter("TipoCateringId", tipoCatering.Id.ToString());
-            List<DbEntidades.Entities.ComandaDetalleDescripcion> itemsComanda = new List<DbEntidades.Entities.ComandaDetalleDescripcion>();
-            //recorro todos los tiempos y obtengo un listado de todos los items que componen la experiencia
-
-
-            foreach(var tipos in ListTipo)
+            if (idPreDet.Count > 0)
             {
-                var comandaTemp = ObtenerItemsTiempo(tipos);
-                if(comandaTemp.Count > 0)
+                var tipoCatering = TipoCateringOperator.GetOneByIdentity(idPreDet[0].ServicioId.Value);
+                AdministrativasServicios servicios = new AdministrativasServicios();
+                //obtengo todos los elementos asociados a la experiencia
+                var ListTipo = TipoCateringTiempoProductoItemOperator.GetAllByParameter("TipoCateringId", tipoCatering.Id.ToString());
+                List<DbEntidades.Entities.ComandaDetalleDescripcion> itemsComanda = new List<DbEntidades.Entities.ComandaDetalleDescripcion>();
+                //recorro todos los tiempos y obtengo un listado de todos los items que componen la experiencia
+
+
+                foreach (var tipos in ListTipo)
                 {
-                    itemsComanda.AddRange(comandaTemp);
+                    var comandaTemp = ObtenerItemsTiempo(tipos);
+                    if (comandaTemp.Count > 0)
+                    {
+                        itemsComanda.AddRange(comandaTemp);
+                    }
                 }
-            }
-            EventosServicios eventos = new EventosServicios();
-            foreach (var item in itemsComanda)
-            {
-                //Input: ItemId,Clave(TCAT + TipoCateringId),Adultos,Menores3,Menores3y8,Adolecentes
-                //Output: Cantidad
+                EventosServicios eventos = new EventosServicios();
+                foreach (var item in itemsComanda)
+                {
+                    //Input: ItemId,Clave(TCAT + TipoCateringId),Adultos,Menores3,Menores3y8,Adolecentes
+                    //Output: Cantidad
 
-                PresupuestoSeleccionado = new DomainAmbientHouse.Entidades.Presupuestos();
+                    PresupuestoSeleccionado = new DomainAmbientHouse.Entidades.Presupuestos();
 
-                PresupuestoSeleccionado = eventos.BuscarPresupuesto(PresupuestoId);
-                var ratio = RatiosOperator.ObtenerValorRatio(
-                    item.ItemId,0,0,"TCAT" + tipoCatering.Id,
-                    PresupuestoSeleccionado.CantidadAdultosFinal == 0|| PresupuestoSeleccionado.CantidadAdultosFinal == null ? PresupuestoSeleccionado.CantidadInicialInvitados.Value : PresupuestoSeleccionado.CantidadAdultosFinal.Value,
-                    PresupuestoSeleccionado.CantidadInvitadosMenores3 == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosMenores3.Value, 
-                    PresupuestoSeleccionado.CantidadInvitadosMenores3y8 == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosMenores3y8.Value, 
-                    PresupuestoSeleccionado.CantidadInvitadosAdolecentes == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosAdolecentes.Value);
-                DbEntidades.Entities.ComandaDetalle detalle = new DbEntidades.Entities.ComandaDetalle();
-                detalle.ComandaId = comanda.Id;
-                detalle.Clave = string.IsNullOrEmpty(item.Descripcion) ? " " : item.Descripcion;
-                detalle.ItemId = item.ItemId;
-                detalle.Cantidad = System.Math.Round(ratio,2);
-                detalle.EsAdicional = 0;
-                detalle.EsProducto = 0;
-                detalle.EsItem = 0;
-                detalle.Orden = 0;
-                comandaDetalle.Add(detalle);
+                    PresupuestoSeleccionado = eventos.BuscarPresupuesto(PresupuestoId);
+                    var ratio = RatiosOperator.ObtenerValorRatio(
+                        item.ItemId, 0, 0, "TCAT" + tipoCatering.Id,
+                        PresupuestoSeleccionado.CantidadAdultosFinal == 0 || PresupuestoSeleccionado.CantidadAdultosFinal == null ? PresupuestoSeleccionado.CantidadInicialInvitados.Value : PresupuestoSeleccionado.CantidadAdultosFinal.Value,
+                        PresupuestoSeleccionado.CantidadInvitadosMenores3 == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosMenores3.Value,
+                        PresupuestoSeleccionado.CantidadInvitadosMenores3y8 == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosMenores3y8.Value,
+                        PresupuestoSeleccionado.CantidadInvitadosAdolecentes == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosAdolecentes.Value);
+                    DbEntidades.Entities.ComandaDetalle detalle = new DbEntidades.Entities.ComandaDetalle();
+                    detalle.ComandaId = comanda.Id;
+                    detalle.Clave = string.IsNullOrEmpty(item.Descripcion) ? " " : item.Descripcion;
+                    detalle.ItemId = item.ItemId;
+                    detalle.Cantidad = System.Math.Round(ratio, 2);
+                    detalle.EsAdicional = 0;
+                    detalle.EsProducto = 0;
+                    detalle.EsItem = 0;
+                    detalle.Orden = 0;
+                    comandaDetalle.Add(detalle);
+                }
+                return comandaDetalle;
             }
             return comandaDetalle;
         }

@@ -173,6 +173,7 @@ namespace DbEntidades.Operators
         {
             var valorRatio = 0.0;
             List<Ratios> listaFiltrada = new List<Ratios>();
+            List<Ratios> registro = new List<Ratios>();
             if (lista.Count > 0)
             {
                 List<Ratios> lista2 = new List<Ratios>();
@@ -181,15 +182,19 @@ namespace DbEntidades.Operators
                     lista2 = lista.Where(x => x.Adultos == true).ToList();
                     if(lista2.Count > 0)
                     {
-                        listaFiltrada.Add(lista2.First(x => x.TopeRatio >= parametros[0]));
+                        listaFiltrada.AddRange(lista2.Where(x => x.TopeRatio >= parametros[0]));
                     }
                 }
                 if (parametros[1] > 0)
-                    listaFiltrada.Add(lista.First(x => x.TopeRatio >= parametros[1] && x.Menores3 == true));
+                    registro = lista.Where(x => x.TopeRatio >= parametros[1] && x.Menores3 == true).ToList();
+                    listaFiltrada.AddRange(registro);
                 if (parametros[2] > 0)
-                    listaFiltrada.Add(lista.First(x => x.TopeRatio >= parametros[2] && x.Menores3y8 == true));
+                    registro = lista.Where(x => x.TopeRatio >= parametros[2] && x.Menores3y8 == true).ToList();
+                    listaFiltrada.AddRange(registro);
                 if (parametros[3] > 0)
-                    listaFiltrada.Add(lista.First(x => x.TopeRatio >= parametros[3] && x.Adolescentes == true));
+                   registro  = lista.Where(x => x.TopeRatio >= parametros[3] && x.Adolescentes == true).ToList();
+                if(registro.Count > 0)
+                    listaFiltrada.AddRange(registro);
 
                 var listaItem = listaFiltrada.Where(x => x.TipoRatio == "ITEM").ToList();
                 var listaPax = listaFiltrada.Where(x => x.TipoRatio == "PAX").ToList();
