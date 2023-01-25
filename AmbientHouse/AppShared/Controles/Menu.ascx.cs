@@ -90,6 +90,14 @@ namespace AmbientHouse.App_Shared.Controles
                 mnuOperaciones.Value = "OPE";
                 mnuOperaciones.NavigateUrl = "~/Operacion/CalendarioOperacion.aspx";
 
+                MenuItem mnuComandas = new MenuItem();
+
+                mnuComandas.Text = "Comandas";
+                mnuComandas.Value = "OPE";
+                mnuComandas.NavigateUrl = "~/Operacion/ComandasBrowse.aspx";
+
+                mnuOperaciones.ChildItems.Add(mnuComandas);
+
                 #region Administracion
 
                 MenuItem mnuAdministracion = new MenuItem();
@@ -261,22 +269,28 @@ namespace AmbientHouse.App_Shared.Controles
                 mnuItemsMasiva.NavigateUrl = "~/Configuracion/AbmItems/ItemsAltaMasiva.aspx";
 
                 mnuItems.ChildItems.Add(mnuItemsMasiva);
+                mnuConfiguracion.ChildItems.Add(mnuItems);
+                MenuItem mnuRatios = new MenuItem();
+
+                mnuRatios.Text = "Ratios";
+                mnuRatios.Value = "RAT";
+                mnuRatios.NavigateUrl = "~/Configuracion/Ratios/RatiosBrowse.aspx";
 
                 MenuItem mnuAbmRatios = new MenuItem();
 
                 mnuAbmRatios.Text = "Administracion de Ratios";
                 mnuAbmRatios.Value = "RAT";
-                mnuAbmRatios.NavigateUrl = "~/Configuracion/AbmItems/RatiosBrowse.aspx";
+                mnuAbmRatios.NavigateUrl = "~/Configuracion/Ratios/RatiosBrowse.aspx";
 
-                mnuItems.ChildItems.Add(mnuAbmRatios);
+                mnuRatios.ChildItems.Add(mnuAbmRatios);
                 MenuItem mnuRatiosMasiva = new MenuItem();
 
                 mnuRatiosMasiva.Text = "Alta Masiva de Ratios";
                 mnuRatiosMasiva.Value = "RAT";
-                mnuRatiosMasiva.NavigateUrl = "~/Configuracion/AbmItems/RatiosAltaMasiva.aspx";
+                mnuRatiosMasiva.NavigateUrl = "~/Configuracion/Ratios/RatiosAltaMasiva.aspx";
 
-                mnuItems.ChildItems.Add(mnuRatiosMasiva);
-                mnuConfiguracion.ChildItems.Add(mnuItems);
+                mnuRatios.ChildItems.Add(mnuRatiosMasiva);
+                mnuConfiguracion.ChildItems.Add(mnuRatios);
 
                 #endregion
                 #region Adicionales

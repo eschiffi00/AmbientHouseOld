@@ -89,6 +89,7 @@ namespace AmbientHouse.Configuracion.AbmItems
                     txtCosto.Text = seItems.Costo.ToString();
                     txtPrecio.Text = seItems.Precio.ToString();
                     ddlEstado.SelectedValue = EstadosOperator.GetOneByIdentity(seItems.EstadoId.Value).Id.ToString();
+                    btnSubmit.Text = "Confirmar";
                 }
                 else
                 {
@@ -161,6 +162,8 @@ namespace AmbientHouse.Configuracion.AbmItems
         {
             try
             {
+                int id = 0;
+                id = Int32.Parse(Request["Id"] != null ? Request["Id"] : "0");
                 //seItems.ItemDetalleId = 99;
                 seItems.Detalle = txtDescripcion.Text;
                 seItems.CuentaId = Int32.Parse(ddlCuenta.Text);
@@ -170,7 +173,18 @@ namespace AmbientHouse.Configuracion.AbmItems
                 seItems.Margen = float.Parse(txtMargen.Text);
                 seItems.Precio = float.Parse(txtPrecio.Text);
                 seItems.DepositoId = 99;
-                seItems.EstadoId = EstadosOperator.GetHablitadoID("Items");
+                if (id > 0)
+                {
+                    if (ddlEstado.SelectedIndex == 1)
+                        seItems.EstadoId = EstadosOperator.GetDeshabilitadoID("Items");
+                    else
+                        seItems.EstadoId = EstadosOperator.GetHablitadoID("Items");
+                }
+                else
+                {
+                    seItems.EstadoId = EstadosOperator.GetHablitadoID("Items");
+                }
+                
                 var Itemdetalleid = ItemDetalleOperator.GetOneByParameter("Id", seItems.Id.ToString()).DetalleItemId;
                 if (Itemdetalleid != null && Itemdetalleid > -1)
                 {
@@ -243,35 +257,35 @@ namespace AmbientHouse.Configuracion.AbmItems
                 //AlertaRoja(ex.Message);
             }
         }
-        public int ActualizaStock(INVENTARIO_Producto Item)
-        {
-            Item.RubroId = 1;
-            Item.Codigo = "";
-            Item.CodigoBarra = "";
-            Item.Descripcion = "prueba";
-            Item.CantidadNominal = 1.0m;
-            Item.Cantidad = 0; //Decimal.Parse(txtCantidad.Text);
-            Item.Costo = 1.0m;
-            Item.UnidadId = 1;
-            Item.UnidadPresentacionId = 1;
-            Item.UnidadMedidaConversionId = 1;
-            Item.TipoMovimientoId = 1;
-            Item.CentroCostoId = 1;
-            Item.UpdateDate = null;
+        //public int ActualizaStock(INVENTARIO_Producto Item)
+        //{
+        //    Item.RubroId = 1;
+        //    Item.Codigo = "";
+        //    Item.CodigoBarra = "";
+        //    Item.Descripcion = "prueba";
+        //    Item.CantidadNominal = 1.0m;
+        //    Item.Cantidad = 0;
+        //    Item.Costo = 1.0m;
+        //    Item.UnidadId = 1;
+        //    Item.UnidadPresentacionId = 1;
+        //    Item.UnidadMedidaConversionId = 1;
+        //    Item.TipoMovimientoId = 1;
+        //    Item.CentroCostoId = 1;
+        //    Item.UpdateDate = null;
 
-            if (Item.Id > -1)
-            {
-                Item.UpdateDate = DateTime.Now;
-            }
-            else
-            {
-                Item.CreateDate = DateTime.Now;
-            }
-            Item.Delete = 1;
-            Item.DeleteDate = null;
-            Item = INVENTARIO_ProductoOperator.Save(Item);
-            return Item.Id;
-        }
+        //    if (Item.Id > -1)
+        //    {
+        //        Item.UpdateDate = DateTime.Now;
+        //    }
+        //    else
+        //    {
+        //        Item.CreateDate = DateTime.Now;
+        //    }
+        //    Item.Delete = 1;
+        //    Item.DeleteDate = null;
+        //    Item = INVENTARIO_ProductoOperator.Save(Item);
+        //    return Item.Id;
+        //}
 
     }
 

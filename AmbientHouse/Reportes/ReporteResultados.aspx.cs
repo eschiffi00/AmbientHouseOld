@@ -64,7 +64,7 @@ namespace AmbientHouse.Reportes
             TextBoxSaldo.Text = System.Math.Round(Saldo, 2).ToString("C");
 
         }
-
+        
         protected void ButtonExportarExcel_Click(object sender, EventArgs e)
         {
             List<InformeResultados_Result> ListaInformeResultados = servicios.BuscarInformeResultados(TextBoxNroFechaDesde.Text, TextBoxFechaHasta.Text);

@@ -145,20 +145,19 @@ namespace AmbientHouse.Configuracion.AbmItems
                     {
                         var tipocatering = TipoCateringOperator.GetOneByIdentity(int.Parse(valor));
 
-                        if (tipocatering != null)
+                        if (tipocatering != null && tipocatering.Descripcion == experiencia.Text)
                         {
                             codigoExperiencia = "TCAT" + tipocatering.Id;
                         }
                         else
                         {
                             var tipobarra = TiposBarrasOperator.GetOneByIdentity(int.Parse(valor));
-                            if (tipobarra != null)
+                            if (tipobarra != null && tipobarra.Descripcion == experiencia.Text)
                             {
                                 codigoExperiencia = "BAR" + tipobarra.Id;
                             }
                         }
-                        
-                        ratiosfiltrados = ratiosfiltrados.Where(x => x.ExperienciaBarraCodigo == codigoExperiencia).ToList();
+                        ratiosfiltrados.AddRange(ratiosListado.Where(x => x.ExperienciaBarraCodigo == codigoExperiencia).ToList());
                     }
                 }
             }

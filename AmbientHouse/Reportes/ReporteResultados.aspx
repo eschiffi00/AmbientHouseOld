@@ -110,6 +110,7 @@
                             <asp:BoundField DataField="Codigo" HeaderText="Codigo" SortExpression="Codigo" ItemStyle-Width="10%" />
                              <asp:BoundField DataField="Id" HeaderText="" SortExpression="Id" ItemStyle-Width="0%" />
                             <asp:BoundField DataField="Descripcion" HeaderText="Cuenta" SortExpression="Descripcion" ItemStyle-Width="50%" />
+                            <asp:BoundField DataField="TipoGasto" HeaderText="TipoGasto" SortExpression="TipoGasto" ItemStyle-Width="10%" />
                             <asp:BoundField DataField="TotalStr" HeaderText="Total" SortExpression="TotalStr" ItemStyle-Width="20%" />
                             <asp:TemplateField HeaderStyle-Width="100px" ControlStyle-Width="10%">
                                 <ItemTemplate >
@@ -155,6 +156,7 @@
                             <asp:BoundField DataField="Codigo" HeaderText="Codigo" SortExpression="Codigo" ItemStyle-Width="10%" />
                             <asp:BoundField DataField="Id" HeaderText="" SortExpression="Id" ItemStyle-Width="0%" />
                             <asp:BoundField DataField="Descripcion" HeaderText="Cuenta" SortExpression="Descripcion" ItemStyle-Width="50%" />
+                            <asp:BoundField DataField="TipoGasto" HeaderText="TipoGasto" SortExpression="TipoGasto" ItemStyle-Width="10%" />
                             <asp:BoundField DataField="TotalStr" HeaderText="Total" SortExpression="TotalStr" ItemStyle-Width="20%" />
                             <asp:TemplateField HeaderStyle-Width="100px" ControlStyle-Width="10%">
                                 <ItemTemplate>

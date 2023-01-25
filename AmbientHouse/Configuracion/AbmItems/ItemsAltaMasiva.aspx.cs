@@ -137,44 +137,10 @@ namespace AmbientHouse.Configuracion.AbmItems
         }
         private void ActualizaItem(TableCellCollection fila)
         {
-            //List<string> fields = new List<string>();
-            //List<string> values = new List<string>();
-            //List<string> getFields = new List<string>();
-            //fields.Add("Detalle");
-            //values.Add(fila[2].Text);
-            //if (CommonOperator.CommonValidation("Items", fields, values))
-            //{
-            //    fields.Clear();
-            //    getFields.Clear();
-            //    values.Clear();
-            //    fields.Add("Detalle");
-            //    getFields.Add("Id");
-            //    getFields.Add("ItemDetalleId");
-            //    getFields.Add("NombreFantasiaId");
-            //    values.Add(fila[2].Text);
-            //}
-            //else 
-            //{
-            //    fields.Clear();
-            //    getFields.Clear();
-            //    values.Clear();
-            //    fields.Add("Detalle");
-            //    getFields.Add("Id");
-            //    getFields.Add("NombreFantasiaId");
-            //    values.Add(fila[0].Text);
-            //}
-
-
-
-            //var itemData = CommonOperator.CommonGetString("Items", fields, getFields, values);
             seItems.Id = int.Parse(fila[9].Text);
             seItems.Detalle = HttpContext.Current.Server.HtmlDecode(fila[0].Text);
             seItems.TipoItem = fila[1].Text;
             
-            
-            //fields.Clear();
-            //getFields.Clear();
-            //values.Clear();
             NombreFantasia nombreFantasia = new NombreFantasia();
             if(fila[2].Text != "&nbsp;" && fila[2].Text != " " && fila[2].Text != "")
             {

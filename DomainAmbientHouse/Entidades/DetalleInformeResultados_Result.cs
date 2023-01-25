@@ -21,5 +21,6 @@ namespace DomainAmbientHouse.Entidades
         public double Importe { get; set; }
         public string Descripcion { get; set; }
         public string ApellidoNombre { get; set; }
+        public string Empresa { get; set; }
     }
 }

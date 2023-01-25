@@ -15,11 +15,13 @@ namespace DomainAmbientHouse.Entidades
     public partial class ComandaDetalle
     {
         public int Id { get; set; }
+        public int ComandaId { get; set; }
         public string Clave { get; set; }
         public Nullable<int> ItemId { get; set; }
-        public Nullable<int> Cantidad { get; set; }
+        public Nullable<double> Cantidad { get; set; }
         public Nullable<bool> EsItem { get; set; }
         public Nullable<bool> EsProducto { get; set; }
         public Nullable<bool> EsAdicional { get; set; }
+        public Nullable<int> Orden { get; set; }
     }
 }

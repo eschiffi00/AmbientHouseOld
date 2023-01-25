@@ -200,12 +200,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComandaId" Type="int" Nullable="false" />
           <Property Name="Clave" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ItemId" Type="int" />
-          <Property Name="Cantidad" Type="int" />
+          <Property Name="Cantidad" Type="float" />
           <Property Name="EsItem" Type="bit" />
           <Property Name="EsProducto" Type="bit" />
           <Property Name="EsAdicional" Type="bit" />
+          <Property Name="Orden" Type="int" />
         </EntityType>
         <EntityType Name="Comandas">
           <Key>
@@ -1553,18 +1555,20 @@ advertencia 6013: La tabla o vista 'w230092_AmbientHouse.dbo.Prueba' no tiene de
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ItemId" Type="int" Nullable="false" />
           <Property Name="ExperienciaBarra" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="TipoRatio" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="TipoRatio" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="BaseRatio" Type="float" Nullable="false" />
-          <Property Name="ValorRatio" Type="float" />
-          <Property Name="TopeRatio" Type="float" />
-          <Property Name="ItemRatioId" Type="int" />
-          <Property Name="IslaId" Type="int" />
-          <Property Name="Adultos" Type="bit" />
+          <Property Name="ValorRatio" Type="float" Nullable="false" />
+          <Property Name="TopeRatio" Type="float" Nullable="false" />
+          <Property Name="Isla" Type="bit" />
+          <Property Name="Adultos" Type="bit" Nullable="false" />
           <Property Name="Menores3" Type="bit" Nullable="false" />
           <Property Name="Menores3y8" Type="bit" Nullable="false" />
           <Property Name="Adolescentes" Type="bit" Nullable="false" />
           <Property Name="FijoRatio" Type="bit" Nullable="false" />
           <Property Name="EstadoId" Type="int" Nullable="false" />
+          <Property Name="ItemRatioId" Type="int" />
+          <Property Name="ProductoRatioId" Type="int" />
+          <Property Name="CategoriaRatioId" Type="int" />
         </EntityType>
         <EntityType Name="ReciboEventoPresupuesto">
           <Key>
@@ -7387,12 +7391,14 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComandaId" Type="Int32" Nullable="false" />
           <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ItemId" Type="Int32" />
-          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="Cantidad" Type="Double" />
           <Property Name="EsItem" Type="Boolean" />
           <Property Name="EsProducto" Type="Boolean" />
           <Property Name="EsAdicional" Type="Boolean" />
+          <Property Name="Orden" Type="Int32" />
         </EntityType>
         <EntityType Name="Comandas">
           <Key>
@@ -8950,18 +8956,20 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ItemId" Type="Int32" Nullable="false" />
           <Property Name="ExperienciaBarra" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TipoRatio" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoRatio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BaseRatio" Type="Double" Nullable="false" />
-          <Property Name="ValorRatio" Type="Double" />
-          <Property Name="TopeRatio" Type="Double" />
-          <Property Name="ItemRatioId" Type="Int32" />
-          <Property Name="IslaId" Type="Int32" />
-          <Property Name="Adultos" Type="Boolean" />
+          <Property Name="ValorRatio" Type="Double" Nullable="false" />
+          <Property Name="TopeRatio" Type="Double" Nullable="false" />
+          <Property Name="Isla" Type="Boolean" />
+          <Property Name="Adultos" Type="Boolean" Nullable="false" />
           <Property Name="Menores3" Type="Boolean" Nullable="false" />
           <Property Name="Menores3y8" Type="Boolean" Nullable="false" />
           <Property Name="Adolescentes" Type="Boolean" Nullable="false" />
           <Property Name="FijoRatio" Type="Boolean" Nullable="false" />
           <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <Property Name="ItemRatioId" Type="Int32" />
+          <Property Name="ProductoRatioId" Type="Int32" />
+          <Property Name="CategoriaRatioId" Type="Int32" />
         </EntityType>
         <EntityType Name="ReciboEventoPresupuesto">
           <Key>
@@ -13790,6 +13798,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Type="Double" Name="Importe" Nullable="false" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="ApellidoNombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Empresa" Nullable="false" MaxLength="300" />
         </ComplexType>
         <ComplexType Name="EventosReservadosPorFechasPorSegmentos_Result">
           <Property Type="Int32" Name="Nro_Presupuesto" Nullable="false" />
@@ -13806,6 +13815,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="500" />
           <Property Type="Double" Name="Total" Nullable="true" />
+          <Property Type="String" Name="TipoGasto" Nullable="false" MaxLength="15" />
         </ComplexType>
         <ComplexType Name="IVAVenta_Result">
           <Property Type="Int32" Name="NroFactura" Nullable="false" />
@@ -14075,12 +14085,14 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
             <EntityTypeMapping TypeName="AmbientHouseModel.ComandaDetalle">
               <MappingFragment StoreEntitySet="ComandaDetalle">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ComandaId" ColumnName="ComandaId" />
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="EsItem" ColumnName="EsItem" />
                 <ScalarProperty Name="EsProducto" ColumnName="EsProducto" />
                 <ScalarProperty Name="EsAdicional" ColumnName="EsAdicional" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -15494,14 +15506,16 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="BaseRatio" ColumnName="BaseRatio" />
                 <ScalarProperty Name="ValorRatio" ColumnName="ValorRatio" />
                 <ScalarProperty Name="TopeRatio" ColumnName="TopeRatio" />
-                <ScalarProperty Name="ItemRatioId" ColumnName="ItemRatioId" />
-                <ScalarProperty Name="IslaId" ColumnName="IslaId" />
+                <ScalarProperty Name="Isla" ColumnName="Isla" />
                 <ScalarProperty Name="Adultos" ColumnName="Adultos" />
                 <ScalarProperty Name="Menores3" ColumnName="Menores3" />
                 <ScalarProperty Name="Menores3y8" ColumnName="Menores3y8" />
                 <ScalarProperty Name="Adolescentes" ColumnName="Adolescentes" />
                 <ScalarProperty Name="FijoRatio" ColumnName="FijoRatio" />
                 <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="ItemRatioId" ColumnName="ItemRatioId" />
+                <ScalarProperty Name="ProductoRatioId" ColumnName="ProductoRatioId" />
+                <ScalarProperty Name="CategoriaRatioId" ColumnName="CategoriaRatioId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -16880,6 +16894,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Importe" ColumnName="Importe" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -16905,6 +16920,7 @@ FROM [dbo].[SeguimientosEventosClientesEstados] AS [SeguimientosEventosClientesE
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="TipoGasto" ColumnName="TipoGasto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

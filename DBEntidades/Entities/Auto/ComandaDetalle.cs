@@ -71,7 +71,10 @@ namespace DbEntidades.Entities
 	public partial class ComandaDetalleDescripcion
 	{
 		public int ItemId { get; set; }
+		public int ProductoId { get; set; }
+		public int CategoriaId { get; set; }
 		public string Descripcion { get; set; }
+		public int Tiempo { get; set; }
 	}
 }
 

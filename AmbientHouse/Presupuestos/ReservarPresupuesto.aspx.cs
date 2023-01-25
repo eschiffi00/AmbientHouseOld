@@ -713,8 +713,9 @@ namespace AmbientHouse.Presupuestos
 
             servicios.ReservarPresupuesto(evento, presupuesto, cliente, ListPresupuestoDetalle, cheque, transferencia);
 
-            //mailAprobacion.envioMailAprobadoAdministracion(presupuesto.Id, evento.Id);
-  
+ //           mailAprobacion.envioMailAprobadoAdministracion(presupuesto.Id, evento.Id);
+            
+            
             CargarComanda();
 
             Response.Redirect("~/Administracion/Default.aspx");
@@ -838,6 +839,8 @@ namespace AmbientHouse.Presupuestos
                     }
                 }
                 EventosServicios eventos = new EventosServicios();
+                string prod = "";
+                string cat = "";
                 foreach (var item in itemsComanda)
                 {
                     //Input: ItemId,Clave(TCAT + TipoCateringId),Adultos,Menores3,Menores3y8,Adolecentes
@@ -847,7 +850,7 @@ namespace AmbientHouse.Presupuestos
 
                     PresupuestoSeleccionado = eventos.BuscarPresupuesto(PresupuestoId);
                     var ratio = RatiosOperator.ObtenerValorRatio(
-                        item.ItemId, 0, 0, "TCAT" + tipoCatering.Id,
+                        item.ItemId, item.ProductoId, item.CategoriaId, "TCAT" + tipoCatering.Id,
                         PresupuestoSeleccionado.CantidadAdultosFinal == 0 || PresupuestoSeleccionado.CantidadAdultosFinal == null ? PresupuestoSeleccionado.CantidadInicialInvitados.Value : PresupuestoSeleccionado.CantidadAdultosFinal.Value,
                         PresupuestoSeleccionado.CantidadInvitadosMenores3 == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosMenores3.Value,
                         PresupuestoSeleccionado.CantidadInvitadosMenores3y8 == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosMenores3y8.Value,
@@ -856,12 +859,41 @@ namespace AmbientHouse.Presupuestos
                     detalle.ComandaId = comanda.Id;
                     detalle.Clave = string.IsNullOrEmpty(item.Descripcion) ? " " : item.Descripcion;
                     detalle.ItemId = item.ItemId;
-                    detalle.Cantidad = System.Math.Round(ratio, 2);
+                    if(item.ItemId < 0 && ratio > 0)
+                    {
+                        if(item.Descripcion.Substring(0,3) == "PRO")
+                        {
+                            prod = item.Descripcion;
+                            detalle.Cantidad = System.Math.Round(ratio, 2);
+
+                        }
+                        if(item.Descripcion.Substring(0, 3) == "CAT")
+                        {
+                            cat = item.Descripcion;
+                            detalle.Cantidad = System.Math.Round(ratio, 2);
+                        }
+                    }
+                    if (item.ItemId > 0)
+                    {
+                        if (prod == item.Descripcion)
+                        {
+                            var cantidaditems = itemsComanda.Count(x => x.Descripcion == prod);
+                            detalle.Cantidad = System.Math.Round(ratio/cantidaditems, 2);
+
+                        }
+                        if (cat ==item.Descripcion)
+                        {
+                            var cantidaditems = itemsComanda.Count(x => x.Descripcion == cat);
+                            detalle.Cantidad = System.Math.Round(ratio/cantidaditems, 2);
+                        }
+                    }
+                    
                     detalle.EsAdicional = 0;
                     detalle.EsProducto = 0;
                     detalle.EsItem = 0;
-                    detalle.Orden = 0;
+                    detalle.Orden = item.Tiempo;
                     comandaDetalle.Add(detalle);
+
                 }
                 return comandaDetalle;
             }
@@ -875,28 +907,50 @@ namespace AmbientHouse.Presupuestos
             if (tipos.ItemId != null)
             {
                 itemComanda.ItemId = tipos.ItemId.Value;
+                itemComanda.CategoriaId = 0;
+                itemComanda.ProductoId = 0;
                 itemComanda.Descripcion = "ITEM" + tipos.ItemId;
+                itemComanda.Tiempo = tipos.TiempoId;
                 lista.Add(itemComanda);
             }
             if(tipos.CategoriaItemId != null)
             {
+                itemComanda.ItemId = -1;
+                itemComanda.CategoriaId = tipos.CategoriaItemId.Value;
+                itemComanda.ProductoId = 0;
+                itemComanda.Descripcion = "CAT" + tipos.CategoriaItemId;
+                itemComanda.Tiempo = tipos.TiempoId;
+                lista.Add(itemComanda);
+
                 var items = ItemsOperator.GetAllByParameter("CategoriaItemId", tipos.CategoriaItemId.ToString());
                 foreach(var item in items)
                 {
                     itemComanda = new DbEntidades.Entities.ComandaDetalleDescripcion();
                     itemComanda.ItemId = item.Id;
+                    itemComanda.ProductoId = 0;
                     itemComanda.Descripcion = "CAT" + tipos.CategoriaItemId;
+                    itemComanda.CategoriaId = tipos.CategoriaItemId.Value;
+                    itemComanda.Tiempo = tipos.TiempoId;
                     lista.Add(itemComanda);
                 }
             }
             if(tipos.ProductoCateringId != null)
             {
+                itemComanda.ItemId = -1;
+                itemComanda.CategoriaId = 0;
+                itemComanda.ProductoId = tipos.ProductoCateringId.Value;
+                itemComanda.Descripcion = "PRO" + tipos.ProductoCateringId;
+                itemComanda.Tiempo = tipos.TiempoId;
+                lista.Add(itemComanda);
                 var itemProducto = ProductosCateringItemsOperator.GetAllByParameter("ProductoCateringId",tipos.ProductoCateringId.ToString());
                 foreach(var producto in itemProducto)
                 {
                     itemComanda = new DbEntidades.Entities.ComandaDetalleDescripcion();
                     itemComanda.ItemId = producto.ItemId;
+                    itemComanda.CategoriaId = 0;
                     itemComanda.Descripcion ="PRO" + tipos.ProductoCateringId;
+                    itemComanda.ProductoId = tipos.ProductoCateringId.Value;
+                    itemComanda.Tiempo = tipos.TiempoId;
                     lista.Add(itemComanda);
                 }
             }

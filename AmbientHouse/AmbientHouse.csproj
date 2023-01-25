@@ -172,9 +172,9 @@
     <Content Include="Configuracion\AbmItems\ItemsAltaMasiva.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsBrowse.aspx" />
     <Content Include="Configuracion\AbmItems\ItemsEdit.aspx" />
-    <Content Include="Configuracion\AbmItems\RatiosAltaMasiva.aspx" />
-    <Content Include="Configuracion\AbmItems\RatiosBrowse.aspx" />
-    <Content Include="Configuracion\AbmItems\RatiosEdit.aspx" />
+    <Content Include="Configuracion\Ratios\RatiosAltaMasiva.aspx" />
+    <Content Include="Configuracion\Ratios\RatiosBrowse.aspx" />
+    <Content Include="Configuracion\Ratios\RatiosEdit.aspx" />
     <Content Include="Configuracion\AdicionalesItems\Editar.aspx" />
     <Content Include="Configuracion\AdicionalesItems\Index.aspx" />
     <Content Include="Configuracion\AmbientacionCI\Editar.aspx" />
@@ -366,11 +366,13 @@
     <Content Include="Inicio\Principal.aspx" />
     <Content Include="Operacion\AgregarPersonal.aspx" />
     <Content Include="Operacion\CalendarioOperacion.aspx" />
+    <Content Include="Operacion\ComandasBrowse.aspx" />
     <Content Include="Operacion\Degustacion\Index.aspx" />
     <Content Include="Operacion\DegustacionDetalle\Index.aspx" />
     <Content Include="Operacion\Index.aspx" />
     <Content Include="Operacion\Planificacion\Editar.aspx" />
     <Content Include="Operacion\Planificacion\VisualizarArchivo.aspx" />
+    <Content Include="Operacion\ComandasEdit.aspx" />
     <Content Include="Operacion\ReporteEventos.aspx" />
     <Content Include="Operacion\ReporteExperienciaOperaciones.aspx" />
     <Content Include="Operacion\Ver.aspx" />
@@ -1043,25 +1045,25 @@
     <Compile Include="Configuracion\AbmItems\ItemsEdit.aspx.designer.cs">
       <DependentUpon>ItemsEdit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Configuracion\AbmItems\RatiosAltaMasiva.aspx.cs">
+    <Compile Include="Configuracion\Ratios\RatiosAltaMasiva.aspx.cs">
       <DependentUpon>RatiosAltaMasiva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Configuracion\AbmItems\RatiosAltaMasiva.aspx.designer.cs">
+    <Compile Include="Configuracion\Ratios\RatiosAltaMasiva.aspx.designer.cs">
       <DependentUpon>RatiosAltaMasiva.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Configuracion\AbmItems\RatiosBrowse.aspx.cs">
+    <Compile Include="Configuracion\Ratios\RatiosBrowse.aspx.cs">
       <DependentUpon>RatiosBrowse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Configuracion\AbmItems\RatiosBrowse.aspx.designer.cs">
+    <Compile Include="Configuracion\Ratios\RatiosBrowse.aspx.designer.cs">
       <DependentUpon>RatiosBrowse.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Configuracion\AbmItems\RatiosEdit.aspx.cs">
+    <Compile Include="Configuracion\Ratios\RatiosEdit.aspx.cs">
       <DependentUpon>RatiosEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Configuracion\AbmItems\RatiosEdit.aspx.designer.cs">
+    <Compile Include="Configuracion\Ratios\RatiosEdit.aspx.designer.cs">
       <DependentUpon>RatiosEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Configuracion\AdicionalesItems\Editar.aspx.cs">
@@ -1389,6 +1391,13 @@
     <Compile Include="Operacion\CalendarioOperacion.aspx.designer.cs">
       <DependentUpon>CalendarioOperacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Operacion\ComandasBrowse.aspx.cs">
+      <DependentUpon>ComandasBrowse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\ComandasBrowse.aspx.designer.cs">
+      <DependentUpon>ComandasBrowse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Operacion\Degustacion\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1426,6 +1435,13 @@
     </Compile>
     <Compile Include="Operacion\Planificacion\VisualizarArchivo.aspx.designer.cs">
       <DependentUpon>VisualizarArchivo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\ComandasEdit.aspx.cs">
+      <DependentUpon>ComandasEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Operacion\ComandasEdit.aspx.designer.cs">
+      <DependentUpon>ComandasEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Operacion\ReporteEventos.aspx.cs">
       <DependentUpon>ReporteEventos.aspx</DependentUpon>

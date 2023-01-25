@@ -139,7 +139,11 @@ namespace DbEntidades.Operators
             {
                 claveTabla = "ItemId = -1 and ProductoRatioId = " + ProductoId;
             }
-            if (CategoriaItemId > 0) claveTabla = "ItemId = -1 and CategoriaItemId = " + CategoriaItemId;
+            if (CategoriaItemId > 0) claveTabla = "ItemId = -1 and CategoriaRatioId = " + CategoriaItemId;
+            try
+            {
+
+            
             DataTable dt = db.GetDataSet("select " + columnas + " from Ratios where " + claveTabla
                                                                                         + " and ExperienciaBarra = \'" + clave + "\'"
                                                                                         + "order by BaseRatio"
@@ -165,8 +169,12 @@ namespace DbEntidades.Operators
             parametros.Add(canAdolescentes);
 
             ratioFinal = CalculaValorRatio(lista, parametros);
-            
 
+            }
+            catch (Exception ex)
+            {
+                ratioFinal = -1;
+            }
             return ratioFinal;
         }
         private static double CalculaValorRatio(List<Ratios> lista ,List<int> parametros)

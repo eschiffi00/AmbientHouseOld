@@ -122,9 +122,9 @@ namespace AmbientHouse.Inicio
                     {
                         TextBox textoItems = new TextBox();
                         textoItems.Attributes.Add("style", "font-family: Dosis;");
-                        var nombreItem = NombreFantasiaOperator.GetOneByIdentity(ItemsOperator.GetOneByIdentity(itemItems.Id).NombreFantasiaId.Value).Descripcion;
-                        textoItems.Text = nombreItem;
-                        //textoItems.Text = itemItems.Detalle;
+                        //var nombreItem = NombreFantasiaOperator.GetOneByIdentity(ItemsOperator.GetOneByIdentity(itemItems.Id).NombreFantasiaId.Value).Descripcion;
+                        //textoItems.Text = nombreItem;
+                        textoItems.Text = itemItems.Detalle;
 
                         Salida.Add("<div style=\'font-size: 10px;font-family: Calibri; margin-left: 50px;\'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + textoItems.Text + "</div>");
                     }

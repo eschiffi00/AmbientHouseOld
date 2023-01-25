@@ -112,7 +112,7 @@
                                 <asp:BoundField DataField="FechaPagoStr" HeaderText="Fecha" SortExpression="FechaPagoStr" ItemStyle-Width="20%" />
                                 <asp:BoundField DataField="ImporteStr" HeaderText="Total" SortExpression="ImporteStr" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField DataField="ApellidoNombre" HeaderText="Ejecutivo" ItemStyle-Width="10%" ItemStyle-HorizontalAlign="Right" />
-
+                                <asp:BoundField DataField="Empresa" HeaderText="Empresa" SortExpression="Empresa" ItemStyle-Width="10%" />
                                 <asp:TemplateField HeaderStyle-Width="100px" HeaderText="Tipo Mov." ControlStyle-Width="100px">
                                     <ItemTemplate>
                                         <asp:DropDownList ID="DropDownListTipoMovimientos" runat="server" CssClass="form-control"></asp:DropDownList>

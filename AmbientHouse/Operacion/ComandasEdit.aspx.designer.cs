@@ -11,70 +11,79 @@ namespace AmbientHouse.Configuracion.AbmItems
 {
 
 
-    public partial class ItemsBrowse
+    public partial class ComandasEdit
     {
 
         /// <summary>
-        /// Control searchpanelstate.
+        /// Control divPpal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox searchpanelstate;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPpal;
 
         /// <summary>
-        /// Control MultiselectItems.
+        /// Control pnlBebidas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox MultiselectItems;
+        protected global::System.Web.UI.WebControls.Panel pnlBebidas;
 
         /// <summary>
-        /// Control MultiselectCategorias.
+        /// Control repBebidas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox MultiselectCategorias;
+        protected global::System.Web.UI.WebControls.Repeater repBebidas;
 
         /// <summary>
-        /// Control btnFiltrar.
+        /// Control pnlComida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFiltrar;
+        protected global::System.Web.UI.WebControls.Panel pnlComida;
 
         /// <summary>
-        /// Control btnNuevoProducto.
+        /// Control pnlBocados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNuevoProducto;
+        protected global::System.Web.UI.WebControls.Panel pnlBocados;
 
         /// <summary>
-        /// Control txtBuscar.
+        /// Control repBocados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
+        protected global::System.Web.UI.WebControls.Repeater repBocados;
 
         /// <summary>
-        /// Control grdItems.
+        /// Control pnlIslas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdItems;
+        protected global::System.Web.UI.WebControls.Panel pnlIslas;
+
+        /// <summary>
+        /// Control repIslas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater repIslas;
     }
 }

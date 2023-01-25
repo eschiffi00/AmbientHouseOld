@@ -121,8 +121,7 @@
     <div class="row" style ="display:Block">
         <div class="col-8">
             <h4 class="ml-3 mb-4">Listado de Ratios &nbsp;
-                <%--<i class="fa fa-search searchicon faborde"></i>
-                <asp:LinkButton CssClass="LnkBtnExportar" runat="server" ID="btnExportar" OnClick="btnExportar_Click"><i class="fa fa-download exporticon faborde" title="Exportar Productos"></i></asp:LinkButton>--%>
+               
             </h4>
         </div>
         <div class="form-group row" id="MultiItems">
@@ -131,13 +130,6 @@
                 <asp:ListBox ID="MultiselectItems" runat="server" SelectionMode="Multiple" TabIndex="1" class="form-control" ></asp:ListBox>
             </div>
         </div>
-
-        <%--<div class="form-group row" id="MultiCategorias">
-            <label for="MultiselectCategorias" class="col-sm-2 col-form-label text-sm-left text-md-right">Categorias</label>
-            <div class="col-sm-4">
-                <asp:ListBox ID="MultiselectCategorias" runat="server" SelectionMode="Multiple" TabIndex="2" class="form-control"></asp:ListBox>
-            </div>
-        </div>--%>
         <div class="form-group row" id="MultiExperiencias">
             <label for="MultiselectExperiencias" class="col-sm-2 col-form-label text-sm-left text-md-right">Experiencia/Barra</label>
             <div class="col-sm-4">
@@ -175,8 +167,6 @@
                 <asp:BoundField DataField="ItemDetalle" HeaderText="Item" Visible="true" />
                 <asp:BoundField DataField="ExperienciaBarra" HeaderText="Experiencia/Barra" Visible="true" />
                 <asp:BoundField DataField="ExperienciaBarraCodigo" HeaderText="Experiencia/Barra" Visible="false" />
-<%--                <asp:BoundField DataField="CategoriaId" HeaderText="CategoriaId" Visible="false" />
-                <asp:BoundField DataField="CategoriaDetalle" HeaderText="Categoria Detalle" Visible="true" />--%>
                 <asp:BoundField DataField="TipoRatio" HeaderText="Tipo Ratio" Visible="true" />
                 <asp:BoundField DataField="BaseRatio" HeaderText="Base Ratio" Visible="true" />
                 <asp:BoundField DataField="ValorRatio" HeaderText="Valor Ratio" Visible="true" />
@@ -202,10 +192,5 @@
             </EmptyDataTemplate>
         </asp:GridView>
     </div>
-    <%--<div id="dialog" style="display: none;" title="Eliminar">--%>
-      <%--<p>
-        El Monto a Pagar es mayor que el Costo
-      </p>--%>
-    <%--</div>--%>
 </asp:Content>
 
