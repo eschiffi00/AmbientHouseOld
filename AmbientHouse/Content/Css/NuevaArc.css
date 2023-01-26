@@ -346,4 +346,11 @@ footer {
     padding-left:10px;
 
 }
+.separador {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 

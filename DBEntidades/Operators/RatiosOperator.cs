@@ -195,13 +195,14 @@ namespace DbEntidades.Operators
                 }
                 if (parametros[1] > 0)
                     registro = lista.Where(x => x.TopeRatio >= parametros[1] && x.Menores3 == true).ToList();
-                    listaFiltrada.AddRange(registro);
+                    //listaFiltrada.AddRange(registro);
                 if (parametros[2] > 0)
                     registro = lista.Where(x => x.TopeRatio >= parametros[2] && x.Menores3y8 == true).ToList();
-                    listaFiltrada.AddRange(registro);
+                    //listaFiltrada.AddRange(registro);
                 if (parametros[3] > 0)
                    registro  = lista.Where(x => x.TopeRatio >= parametros[3] && x.Adolescentes == true).ToList();
-                if(registro.Count > 0)
+                    //listaFiltrada.AddRange(registro);
+                if (registro.Count > 0)
                     listaFiltrada.AddRange(registro);
 
                 var listaItem = listaFiltrada.Where(x => x.TipoRatio == "ITEM").ToList();

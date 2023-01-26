@@ -46,7 +46,13 @@
                     }
                 }
             }
-
+            $(document).ready(function () {
+                $(".titulo").click(function () {
+                    
+                    $(this).closest(".panel").find(".panelbody").slideToggle();
+                      
+                });
+            });
             
             //$("form input:checkbox").checked = false;
               
@@ -71,82 +77,283 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
-    
+    <h1>Edicion de Comanda</h1>
+    <br />
+
     <!--#region divPpal -->
+     <asp:Panel ID="pnlGral" CssClass="panel" runat="server" data-toggle="collapse">
+        <h3 class ="titulo" >Datos Generales</h3>
+            <div class="panelbody">
+                <div class="data-container">
+                    <div class="data-row">
+                        <span class="data-title">PresupuestoId:</span>
+                        <asp:Label ID="lblPresupuestoId" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Fecha Evento:</span>
+                        <asp:Label ID="lblFechaEvento" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Locacion:</span>
+                        <asp:Label ID="lblLocacion" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Horario Llegada:</span>
+                        <asp:Label ID="lblHorarioLlegada" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Horario Inicio:</span>
+                        <asp:Label ID="lblHorarioInicio" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Horario Fin:</span>
+                        <asp:Label ID="lblHorarioFin" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Tipo de Evento:</span>
+                        <asp:Label ID="lblTipoEvento" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Tipo de Experiencia:</span>
+                        <asp:Label ID="lblTipoExperiencia" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Duracion:</span>
+                        <asp:Label ID="lblDuracion" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Empresa:</span>
+                        <asp:Label ID="lblEmpresa" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Organizador:</span>
+                        <asp:Label ID="lblOrganizador" runat="server" Text=""  CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Maitre:</span>
+                        <asp:Label ID="lblMaitre" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Coordinador:</span>
+                        <asp:Label ID="lblCoordinador" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">JefeProducto:</span>
+                        <asp:Label ID="lblJefeProducto" runat="server" Text=""  CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Adultos:</span>
+                        <asp:Label ID="lblAdultos" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Menores de 3:</span>
+                        <asp:Label ID="lblMenores3" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Menores entre 3 y 8:</span>
+                        <asp:Label ID="lblMenores3y8" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Adolescentes:</span>
+                        <asp:Label ID="lblAdolescentes" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-title">Estado:</span>
+                        <asp:Label ID="lblEstado" runat="server" Text="" CssClass="data-value"></asp:Label>
+                    </div>
+                </div>
+            </div>
+        </asp:Panel>
+    <hr class="separador" />
     <div runat="server" id="divPpal">
-        <%--<asp:GridView ID="grdBebidas" CssClass="table table-striped table-bordered table-hover table-sm" runat="server" AutoGenerateColumns="false">
-            <Columns>
-                <asp:TemplateField HeaderText="" HeaderStyle-CssClass="text-center columna-iconos-th">
-                    <ItemStyle HorizontalAlign="Center" CssClass="verticalMiddle columna-iconos-td" />
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtNombreItem"  runat="server"/>
-                    </EditItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="" HeaderStyle-CssClass="text-center columna-iconos-th">
-                    <ItemStyle HorizontalAlign="Center" CssClass="verticalMiddle columna-iconos-td" />
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtCantidad"  runat="server"/>
-                    </EditItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-            <EmptyDataTemplate>
-                <div class="nohaydatos">No hay datos.</div>
-            </EmptyDataTemplate>
-        </asp:GridView>--%>
-        <asp:Panel ID="pnlBebidas" runat="server" GroupingText="Bebidas">
+        <asp:Panel ID="pnlBebidas" CssClass="panel" runat="server" data-toggle="collapse">
+            <h3 class ="titulo" >Bebidas</h3>
+            <div class="panelbody">
                 <asp:Repeater ID="repBebidas" runat="server">
                     <ItemTemplate>
                         <table>
                             <tr>
                                 <td>
-                                    <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
+                                    <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
+                                    </div>                            
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                                <td>
+                                    <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        </asp:Panel>
+        <hr class="separador" />
+        <asp:Panel ID="pnlRecepcion" class="panel" runat="server" data-toggle="collapse">
+            <h3 class ="titulo" >Recepcion</h3>
+            <div class="panelbody"> 
+                <asp:Panel ID="pnlBocados" CssClass="panel" runat="server"  data-toggle="collapse">
+                    <h4 class ="titulo" >Bocados</h4>
+                    <div class="panelbody">
+                        <asp:Repeater ID="repBocados" runat="server">
+                    <ItemTemplate>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
+                                    </div>                            
+                                </td>
+                                <td>
+                                <td>
+                                    <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+                    </asp:Repeater>
+                    </div>
+                </asp:Panel>
+                <hr class="separador" />
+                <asp:Panel ID="pnlIslas" runat="server" CssClass="panel"  data-toggle="collapse">
+                    <h4 class ="titulo" >Islas</h4>
+                    <div class="panelbody">
+                        <asp:Repeater ID="repIslas" runat="server" OnItemDataBound="repIslas_ItemDataBound">
+                    <ItemTemplate>
+                        <asp:PlaceHolder ID="phSubtitulo" runat="server"></asp:PlaceHolder>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:HiddenField ID="hfIsla" runat="server" Value='<%# Eval("Titulo") %>'/>
+                                        <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
+                                    </div>                            
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+                    </asp:Repeater>
+                    </div>
+                </asp:Panel>
+            </div>
+        </asp:Panel>
+        <hr class="separador" />
+        <asp:Panel ID="pnlPrincipal" runat="server" CssClass="panel"  data-toggle="collapse">
+            <h3 class ="titulo" >Plato Principal</h3>
+            <div class="panelbody">    
+                <asp:Repeater ID="repPrincipales" runat="server">
+                    <ItemTemplate>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
+                                    </div>                            
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
                     </ItemTemplate>
             </asp:Repeater>
+            </div>
         </asp:Panel>
-
-        <asp:Panel ID="pnlComida" runat="server" GroupingText="Comida">
-            <asp:Panel ID="pnlBocados" runat="server" GroupingText="Bocados">
-                <asp:Repeater ID="repBocados" runat="server">
-                <ItemTemplate>
-                    <table>
-                        <tr>
-                            <td>
+        <hr class="separador" />
+        <asp:Panel ID="pnlBrindis" runat="server" CssClass="panel"  data-toggle="collapse">
+            <h3 class ="titulo" >Brindis</h3>
+            <div class="panelbody">
+                <asp:Repeater ID="repBrindis" runat="server">
+            <ItemTemplate>
+                <table>
+                    <tr>
+                        <td>
+                            <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                                 <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
-                            </td>
-                        </tr>
-                    </table>
-                </ItemTemplate>
-                </asp:Repeater>
-            </asp:Panel>
-            <asp:Panel ID="pnlIslas" runat="server" GroupingText="Islas">
-                <asp:Repeater ID="repIslas" runat="server">
-                <ItemTemplate>
-                    <table>
-                        <tr>
-                            <td>
-                                <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
-                            </td>
-                        </tr>
-                    </table>
-                </ItemTemplate>
-                </asp:Repeater>
-            </asp:Panel>
+                            </div>                            
+                        </td>
+                        <td>
+                        <td>
+                            <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                        </td>
+                    </tr>
+                </table>
+            </ItemTemplate>
+    </asp:Repeater>
+            </div>
         </asp:Panel>
-
-
-        
+        <hr class="separador" />
+        <asp:Panel ID="pnlDulce" runat="server" CssClass="panel"  data-toggle="collapse">
+            <h3 class ="titulo" >Mesa Dulce</h3>
+            <div class="panelbody">    
+                <asp:Repeater ID="repDulce" runat="server">
+                    <ItemTemplate>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
+                                    </div>                            
+                                </td>
+                                <td>
+                                <td>
+                                    <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+            </asp:Repeater>
+            </div>
+        </asp:Panel>      
+        <hr class="separador" />
+        <asp:Panel ID="pnlFinFiesta" runat="server" CssClass="panel"  data-toggle="collapse">
+            <h3 class ="titulo" >Fin de Fiesta</h3>
+            <div class="panelbody">    
+                <asp:Repeater ID="repFinFiesta" runat="server">
+                    <ItemTemplate>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
+                                    </div>                            
+                                </td>
+                                <td>
+                                <td>
+                                    <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+            </asp:Repeater>
+            </div>
+        </asp:Panel>  
+        <hr class="separador" />
+         <asp:Panel ID="pnlPostre" runat="server" CssClass="panel"  data-toggle="collapse">
+             <h3 class ="titulo" >Postre</h3>
+             <div class="panelbody">   
+                <asp:Repeater ID="repPostre" runat="server">
+                    <ItemTemplate>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
+                                    </div>                            
+                                </td>
+                                <td>
+                                <td>
+                                    <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+            </asp:Repeater>
+             </div>
+        </asp:Panel>  
 
     </div>
 

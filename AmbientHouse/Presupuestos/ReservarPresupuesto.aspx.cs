@@ -830,7 +830,7 @@ namespace AmbientHouse.Presupuestos
                 //recorro todos los tiempos y obtengo un listado de todos los items que componen la experiencia
 
 
-                foreach (var tipos in ListTipo)
+                foreach (var tipos in ListTipo.Where(x => x.EstadoId == 38))
                 {
                     var comandaTemp = ObtenerItemsTiempo(tipos);
                     if (comandaTemp.Count > 0)
@@ -850,7 +850,7 @@ namespace AmbientHouse.Presupuestos
 
                     PresupuestoSeleccionado = eventos.BuscarPresupuesto(PresupuestoId);
                     var ratio = RatiosOperator.ObtenerValorRatio(
-                        item.ItemId, item.ProductoId, item.CategoriaId, "TCAT" + tipoCatering.Id,
+                        item.ItemId, 0, 0, "TCAT" + tipoCatering.Id,
                         PresupuestoSeleccionado.CantidadAdultosFinal == 0 || PresupuestoSeleccionado.CantidadAdultosFinal == null ? PresupuestoSeleccionado.CantidadInicialInvitados.Value : PresupuestoSeleccionado.CantidadAdultosFinal.Value,
                         PresupuestoSeleccionado.CantidadInvitadosMenores3 == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosMenores3.Value,
                         PresupuestoSeleccionado.CantidadInvitadosMenores3y8 == null ? 0 : PresupuestoSeleccionado.CantidadInvitadosMenores3y8.Value,
@@ -859,33 +859,35 @@ namespace AmbientHouse.Presupuestos
                     detalle.ComandaId = comanda.Id;
                     detalle.Clave = string.IsNullOrEmpty(item.Descripcion) ? " " : item.Descripcion;
                     detalle.ItemId = item.ItemId;
-                    if(item.ItemId < 0 && ratio > 0)
-                    {
-                        if(item.Descripcion.Substring(0,3) == "PRO")
-                        {
-                            prod = item.Descripcion;
-                            detalle.Cantidad = System.Math.Round(ratio, 2);
+                    //if(item.ItemId < 0 && ratio > 0)
+                    //{
+                    //    if(item.Descripcion.Substring(0,3) == "PRO")
+                    //    {
+                    //        prod = item.Descripcion;
+                    //        detalle.Cantidad = System.Math.Round(ratio, 2);
 
-                        }
-                        if(item.Descripcion.Substring(0, 3) == "CAT")
-                        {
-                            cat = item.Descripcion;
-                            detalle.Cantidad = System.Math.Round(ratio, 2);
-                        }
-                    }
+                    //    }
+                    //    if(item.Descripcion.Substring(0, 3) == "CAT")
+                    //    {
+                    //        cat = item.Descripcion;
+                    //        detalle.Cantidad = System.Math.Round(ratio, 2);
+                    //    }
+                    //}
                     if (item.ItemId > 0)
                     {
-                        if (prod == item.Descripcion)
-                        {
-                            var cantidaditems = itemsComanda.Count(x => x.Descripcion == prod);
-                            detalle.Cantidad = System.Math.Round(ratio/cantidaditems, 2);
+                        detalle.Cantidad = ratio;
+                        //if (prod == item.Descripcion)
+                        //{
+                        //    var cantidaditems = itemsComanda.Count(x => x.Descripcion == prod);
+                        //    detalle.Cantidad = System.Math.Round(ratio/cantidaditems, 2);
 
-                        }
-                        if (cat ==item.Descripcion)
-                        {
-                            var cantidaditems = itemsComanda.Count(x => x.Descripcion == cat);
-                            detalle.Cantidad = System.Math.Round(ratio/cantidaditems, 2);
-                        }
+                        //}
+                        //if (cat ==item.Descripcion)
+                        //{
+                        //    var cantidaditems = itemsComanda.Count(x => x.Descripcion == cat);
+                        //    detalle.Cantidad = System.Math.Round(ratio/cantidaditems, 2);
+                        //}
+
                     }
                     
                     detalle.EsAdicional = 0;
@@ -915,12 +917,12 @@ namespace AmbientHouse.Presupuestos
             }
             if(tipos.CategoriaItemId != null)
             {
-                itemComanda.ItemId = -1;
-                itemComanda.CategoriaId = tipos.CategoriaItemId.Value;
-                itemComanda.ProductoId = 0;
-                itemComanda.Descripcion = "CAT" + tipos.CategoriaItemId;
-                itemComanda.Tiempo = tipos.TiempoId;
-                lista.Add(itemComanda);
+                //itemComanda.ItemId = -1;
+                //itemComanda.CategoriaId = tipos.CategoriaItemId.Value;
+                //itemComanda.ProductoId = 0;
+                //itemComanda.Descripcion = "CAT" + tipos.CategoriaItemId;
+                //itemComanda.Tiempo = tipos.TiempoId;
+                //lista.Add(itemComanda);
 
                 var items = ItemsOperator.GetAllByParameter("CategoriaItemId", tipos.CategoriaItemId.ToString());
                 foreach(var item in items)
@@ -936,12 +938,12 @@ namespace AmbientHouse.Presupuestos
             }
             if(tipos.ProductoCateringId != null)
             {
-                itemComanda.ItemId = -1;
-                itemComanda.CategoriaId = 0;
-                itemComanda.ProductoId = tipos.ProductoCateringId.Value;
-                itemComanda.Descripcion = "PRO" + tipos.ProductoCateringId;
-                itemComanda.Tiempo = tipos.TiempoId;
-                lista.Add(itemComanda);
+                //itemComanda.ItemId = -1;
+                //itemComanda.CategoriaId = 0;
+                //itemComanda.ProductoId = tipos.ProductoCateringId.Value;
+                //itemComanda.Descripcion = "PRO" + tipos.ProductoCateringId;
+                //itemComanda.Tiempo = tipos.TiempoId;
+                //lista.Add(itemComanda);
                 var itemProducto = ProductosCateringItemsOperator.GetAllByParameter("ProductoCateringId",tipos.ProductoCateringId.ToString());
                 foreach(var producto in itemProducto)
                 {
