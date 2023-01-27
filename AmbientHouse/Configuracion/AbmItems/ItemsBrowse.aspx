@@ -157,7 +157,7 @@
                     <ItemTemplate>
                         <div class="columna-iconos-gridview">
                             <div>
-                                <asp:LinkButton ID="LinkButtonDelete" runat="server" CausesValidation="false" CommandName="CommandNameDelete" Text="" ToolTip="Borrar Item" CssClass="ml-2 mr-2" OnClientClick="return ConfirmaBorrado(this);"><i class="fa fa-trash" ></i></asp:LinkButton>
+                                <asp:LinkButton ID="LinkButtonDelete" runat="server" CausesValidation="false" CommandName="CommandNameDelete" Text="" ToolTip="Inhabilitar Item" CssClass="ml-2 mr-2" OnClientClick="return ConfirmaBorrado(this);"><i class="fa fa-trash" ></i></asp:LinkButton>
                             </div>
                             <div>
                                 <asp:LinkButton ID="LinkButtonEdit" runat="server" CausesValidation="false" CommandName="CommandNameEdit" Text="" ToolTip="Modificar" CssClass="ml-2 mr-2" ><i class="fa fa-pencil" ></i></asp:LinkButton>
@@ -170,7 +170,7 @@
                 <asp:BoundField DataField="CategoriaItemId" HeaderText="Categoria" Visible="false" HeaderStyle-CssClass="header-black"/>
                 <asp:BoundField DataField="CategoriaDescripcion" HeaderText="Categoria" Visible="true" HeaderStyle-CssClass="header-black" />
                 <asp:BoundField DataField="NombreFantasiaId" HeaderText="NombreFantasiaId" Visible="false" HeaderStyle-CssClass="header-black"/>
-                <asp:BoundField DataField="NombreFantasia" HeaderText="Nombre Fantasía" Visible="true" HeaderStyle-CssClass="header-black"/>
+                <asp:BoundField DataField="NombreFantasia" HeaderText="Nombre Fantasía" Visible="false" HeaderStyle-CssClass="header-black"/>
                 <asp:BoundField DataField="ItemsAsociados" HeaderText="Items Asociados" Visible="false" HeaderStyle-CssClass="header-black"/>
                 <asp:BoundField DataField="CuentaId" HeaderText="CuentaId" Visible="false" HeaderStyle-CssClass="header-black"/>
                 <asp:BoundField DataField="CuentaDescripcion" HeaderText="Cuenta" Visible="true" HeaderStyle-CssClass="header-black"/>

@@ -152,18 +152,30 @@ namespace AmbientHouse.Configuracion.AbmItems
                 {
                     if (categoria.Selected)
                     {
+                        
                         var idCat = CategoriasItemOperator.GetOneByParameter("Descripcion", categoria.Text).Id;
-                        itemsFiltrados.AddRange(itemsListado.Where(x => x.CategoriaItemId == idCat));
+                        
+                        if (itemsListado.Where(x => x.CategoriaItemId == idCat).Count() <= 0)
+                        {
+                            var subCategorias = CategoriasItemOperator.GetAllByParameter("CategoriaItemPadreId", idCat.ToString());
+                            if (subCategorias.Count > 0)
+                            {
+                                foreach(var subCategoria in subCategorias)
+                                {
+                                    itemsFiltrados.AddRange(itemsListado.Where(x => x.CategoriaItemId == subCategoria.Id));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            itemsFiltrados.AddRange(itemsListado.Where(x => x.CategoriaItemId == idCat));
+                        }
+
                     }
                 }
             }
-
-
             grdItems.DataSource = itemsFiltrados;
             grdItems.DataBind();
-
-
-
         }
         protected void InicializaItems()
         {

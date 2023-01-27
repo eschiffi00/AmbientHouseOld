@@ -348,9 +348,18 @@ footer {
 }
 .separador {
     border: none;
-    height: 1px;
+    height: 2px;
     background-color: #ccc;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.superTitulo:hover {
+    cursor: pointer;
+}
+.titulo:hover {
+    cursor: pointer;
+}
+.subtitulo:hover {
+    cursor: pointer;
 }
 

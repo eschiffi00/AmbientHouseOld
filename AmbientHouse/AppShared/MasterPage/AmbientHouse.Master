@@ -26,7 +26,13 @@
     </script>--%>
 
     <script type="text/javascript">
-
+        $(document).ready(function () {
+            document.addEventListener("keydown", function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                }
+            });
+        });
         function showimagepreview(input) {
 
             if (input.files && input.files[0]) {
@@ -39,6 +45,7 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
 
     </script>  
 

@@ -308,7 +308,7 @@ namespace AmbientHouse.Configuracion.AbmItems
 
 
                 }
-                Response.Redirect("~/Configuracion/AbmItems/RatiosBrowse.aspx");
+                Response.Redirect("~/Configuracion/Ratios/RatiosBrowse.aspx");
             }
 
             
@@ -374,7 +374,7 @@ namespace AmbientHouse.Configuracion.AbmItems
             seRatios.ExperienciaBarra = fila[1].Text;
             seRatios.TipoRatio = fila[2].Text;
             seRatios.BaseRatio = float.Parse(fila[3].Text);
-            seRatios.ValorRatio = float.Parse(fila[4].Text);
+            seRatios.ValorRatio = System.Math.Round(float.Parse(fila[4].Text), 2);
             seRatios.TopeRatio = float.Parse(fila[5].Text);
             seRatios.Isla = fila[6].Text == "1" ? true : false;
             seRatios.Adultos = fila[7].Text == "1" ? true : false;

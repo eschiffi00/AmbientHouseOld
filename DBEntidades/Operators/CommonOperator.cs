@@ -203,5 +203,87 @@ namespace DbEntidades.Operators
             return returnList;
         }
 
+        public static T GetOneByParameter<T>(string campo, string valor) where T : new()
+        {
+            if (!DbEntidades.Seguridad.Permiso("Permiso" + typeof(T).Name + "Browse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+
+            foreach (PropertyInfo prop in typeof(T).GetProperties())
+            {
+                if (prop.Name == campo)
+                {
+                    tipo = prop.PropertyType.Name.ToString();
+                }
+                if (prop.Name == "Delete")
+                {
+                    columnas += "[" + prop.Name + "]" + ", ";
+                }
+                else
+                {
+                    columnas += prop.Name + ", ";
+                }
+
+            }
+            columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            DataTable dt = db.GetDataSet("select " + columnas + " from " + typeof(T).Name + " where  " + campo + " = \'" + valor + "\'").Tables[0];
+            T obj = new T();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(T).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(obj, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+                return obj;
+            }
+            return default(T);
+        }
+
+        public static T GetOneByMultipleParameter<T>(Dictionary<string, string> parametros) where T : new()
+        {
+            if (!DbEntidades.Seguridad.Permiso("Permiso" + typeof(T).Name + "Browse")) throw new PermisoException();
+            string columnas = string.Empty;
+            string tipo = string.Empty;
+            foreach (PropertyInfo prop in typeof(T).GetProperties())
+            {
+                if (prop.Name == "Delete")
+                {
+                    columnas += "[" + prop.Name + "]" + ", ";
+                }
+                else
+                {
+                    columnas += prop.Name + ", ";
+                }
+
+            }
+            columnas = columnas.Substring(0, columnas.Length - 2);
+            DB db = new DB();
+            string where = " where ";
+            foreach (KeyValuePair<string, string> kvp in parametros)
+            {
+                where += kvp.Key + " = '" + kvp.Value + "' and ";
+            }
+            where = where.Substring(0, where.Length - 4);
+            DataTable dt = db.GetDataSet("select " + columnas + " from " + typeof(T).Name + where).Tables[0];
+            T obj = new T();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (PropertyInfo prop in typeof(T).GetProperties())
+                {
+                    object value = dt.Rows[0][prop.Name];
+                    if (value == DBNull.Value) value = null;
+                    try { prop.SetValue(obj, value, null); }
+                    catch (System.ArgumentException) { }
+                }
+                return obj;
+            }
+            return default(T);
+        }
+
+
     }
 }

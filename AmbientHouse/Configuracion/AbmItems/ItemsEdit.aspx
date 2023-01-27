@@ -73,7 +73,7 @@
         <div class="form-group row">
             <label for="txtNombreFantasia" class="col-sm-2 col-form-label text-sm-left text-md-right">Nombre Fantasía</label>
             <div class="col-sm-6">
-                <asp:TextBox runat="server" ID="txtNombreFantasia" CssClass="form-control" TabIndex="1" placeholder="Nombre de Fantasía" />
+                <asp:TextBox runat="server" ID="txtNombreFantasia" CssClass="form-control" TabIndex="1" placeholder="Nombre de Fantasía" Enabled="false" />
             </div>
         </div>
 

@@ -121,10 +121,6 @@ namespace AmbientHouse.Configuracion.AbmItems
         //    grdComandas.DataBind();
         //}
 
-        protected void btnNuevoRatio_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Configuracion/AbmItems/RatiosEdit.aspx");
-        }
         protected void grdComandas_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             GridViewRow row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
@@ -135,7 +131,7 @@ namespace AmbientHouse.Configuracion.AbmItems
 
             if (e.CommandName == "CommandNameDelete")
             {
-                RatiosOperator.Delete(id);
+                ComandasOperator.Delete(id);
                 grdComandasBind();
             }
             if (e.CommandName == "CommandNameEdit")
@@ -154,13 +150,5 @@ namespace AmbientHouse.Configuracion.AbmItems
         {
 
         }
-        //protected void InicializaExpBarras()
-        //{
-        //    foreach (ListItem Item in MultiselectExperiencias.Items)
-        //    {
-        //        Item.Selected = false;
-        //        Item.Enabled = true;
-        //    }
-        //}
     }
 }

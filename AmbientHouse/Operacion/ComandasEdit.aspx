@@ -47,11 +47,29 @@
                 }
             }
             $(document).ready(function () {
+                //$(".titulo").click(function () {
+                    
+                //    $(this).closest(".panel").find(".panelbody").slideToggle();  
+                //});
                 $(".titulo").click(function () {
                     
-                    $(this).closest(".panel").find(".panelbody").slideToggle();
-                      
+                    var $panelBody = $(this).closest(".panel").find(".panelbody");
+                    $panelBody.slideToggle();
+                    if ($panelBody.find(".subtitulo").length > 0) {
+                        $panelBody.find(".subtitulo").slideToggle();
+                    }
                 });
+                $(".superTitulo").click(function () {
+
+                    $(".panelbody").slideToggle();
+
+                });
+                $(".subtitulo").click(function () {
+
+                    $(this).nextUntil(".subtitulo:has(h5)").slideToggle();
+
+                });
+
             });
             
             //$("form input:checkbox").checked = false;
@@ -77,7 +95,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
-    <h1>Edicion de Comanda</h1>
+    <h1 class="superTitulo">Edicion de Comanda</h1>
     <br />
 
     <!--#region divPpal -->
@@ -175,10 +193,12 @@
                             <tr>
                                 <td>
                                     <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:HiddenField ID="hfCommon" runat="server" Value='<%# Eval("Clave") %>'/>
+                                        <asp:HiddenField ID="hfCommon2" runat="server" Value='<%# Eval("ItemId") %>'/>
                                         <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                                     </div>                            
                                 </td>
-                                <td>
+                                
                                 <td>
                                     <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
                                 </td>
@@ -201,10 +221,12 @@
                             <tr>
                                 <td>
                                     <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:HiddenField ID="hfCommon" runat="server" Value='<%# Eval("Clave") %>'/>
+                                        <asp:HiddenField ID="hfCommon2" runat="server" Value='<%# Eval("ItemId") %>'/>
                                         <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                                     </div>                            
                                 </td>
-                                <td>
+                                
                                 <td>
                                     <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
                                 </td>
@@ -220,11 +242,16 @@
                     <div class="panelbody">
                         <asp:Repeater ID="repIslas" runat="server" OnItemDataBound="repIslas_ItemDataBound">
                     <ItemTemplate>
-                        <asp:PlaceHolder ID="phSubtitulo" runat="server"></asp:PlaceHolder>
-                        <table>
+                        <div class="subtitulo">
+                            <asp:PlaceHolder ID="phSubtitulo" runat="server"></asp:PlaceHolder>
+                        </div>
+                        <div class="subbody">
+                            <table>
                             <tr>
                                 <td>
                                     <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:HiddenField ID="hfCommon" runat="server" Value='<%# Eval("Clave") %>'/>
+                                        <asp:HiddenField ID="hfCommon2" runat="server" Value='<%# Eval("ItemId") %>'/>
                                         <asp:HiddenField ID="hfIsla" runat="server" Value='<%# Eval("Titulo") %>'/>
                                         <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                                     </div>                            
@@ -234,6 +261,7 @@
                                 </td>
                             </tr>
                         </table>
+                        </div>
                     </ItemTemplate>
                     </asp:Repeater>
                     </div>
@@ -250,6 +278,8 @@
                             <tr>
                                 <td>
                                     <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:HiddenField ID="hfCommon" runat="server" Value='<%# Eval("Clave") %>'/>
+                                        <asp:HiddenField ID="hfCommon2" runat="server" Value='<%# Eval("ItemId") %>'/>
                                         <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                                     </div>                            
                                 </td>
@@ -272,10 +302,12 @@
                     <tr>
                         <td>
                             <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                <asp:HiddenField ID="hfCommon" runat="server" Value='<%# Eval("Clave") %>'/>
+                                <asp:HiddenField ID="hfCommon2" runat="server" Value='<%# Eval("ItemId") %>'/>
                                 <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                             </div>                            
                         </td>
-                        <td>
+                        
                         <td>
                             <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
                         </td>
@@ -295,10 +327,12 @@
                             <tr>
                                 <td>
                                     <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:HiddenField ID="hfCommon" runat="server" Value='<%# Eval("Clave") %>'/>
+                                        <asp:HiddenField ID="hfCommon2" runat="server" Value='<%# Eval("ItemId") %>'/>
                                         <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                                     </div>                            
                                 </td>
-                                <td>
+                                
                                 <td>
                                     <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
                                 </td>
@@ -318,10 +352,12 @@
                             <tr>
                                 <td>
                                     <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:HiddenField ID="hfCommon" runat="server" Value='<%# Eval("Clave") %>'/>
+                                        <asp:HiddenField ID="hfCommon2" runat="server" Value='<%# Eval("ItemId") %>'/>
                                         <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                                     </div>                            
                                 </td>
-                                <td>
+                                
                                 <td>
                                     <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
                                 </td>
@@ -341,10 +377,12 @@
                             <tr>
                                 <td>
                                     <div style="width: 500px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        <asp:HiddenField ID="hfCommon" runat="server" Value='<%# Eval("Clave") %>'/>
+                                        <asp:HiddenField ID="hfCommon2" runat="server" Value='<%# Eval("ItemId") %>'/>
                                         <asp:Label ID="lblNombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                                     </div>                            
                                 </td>
-                                <td>
+                               
                                 <td>
                                     <asp:TextBox ID="txtCantidad" runat="server" Style="width:80px" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
                                 </td>
@@ -355,6 +393,14 @@
              </div>
         </asp:Panel>  
 
+    </div>
+    <hr class="separador" />
+    <div class="form-group row">
+        <label for="btnSubmit" class="col-sm-2 col-form-label text-sm-left text-md-right"></label>
+        <div class="col-sm-4">
+            <a href="~/Operacion/ComandasBrowse.aspx" rel="stylesheet" class="btn btncancel mt-1"  runat="server">Cancelar</a>
+            <asp:Button Text="Guardar" runat="server" ID="btnSubmit" ClientIDMode="Static" CssClass="btn btnsubmit mt-1" OnClick="btnSubmit_Click" />
+        </div>
     </div>
 
     <!--#endregion divPpal -->

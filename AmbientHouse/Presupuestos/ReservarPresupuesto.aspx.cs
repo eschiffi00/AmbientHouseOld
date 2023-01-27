@@ -713,7 +713,7 @@ namespace AmbientHouse.Presupuestos
 
             servicios.ReservarPresupuesto(evento, presupuesto, cliente, ListPresupuestoDetalle, cheque, transferencia);
 
- //           mailAprobacion.envioMailAprobadoAdministracion(presupuesto.Id, evento.Id);
+            mailAprobacion.envioMailAprobadoAdministracion(presupuesto.Id, evento.Id);
             
             
             CargarComanda();
